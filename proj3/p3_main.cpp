@@ -500,11 +500,12 @@ Person* read_and_find_person(const Person_c& persons_c)
 Room& read_and_find_room(Room_c& rooms_c)
 {
   int room_number = read_room_number();
-  if (rooms_c.find(room_number) == rooms_c.end()) {
+  auto room_it = rooms_c.find(room_number);
+  if (room_it == rooms_c.end()) {
     throw Error{"No room with that number!"};
   }
  
-  return rooms_c[room_number];
+  return room_it->second;
 }
 
 int read_int()

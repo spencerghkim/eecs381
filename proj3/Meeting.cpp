@@ -33,10 +33,6 @@ Meeting::Meeting(
 
     // Find person in the master list of people.
     Person probe{lastname};
-    /*auto person_it = std::lower_bound(persons_c.begin(),
-                                      persons_c.end(),
-                                      &probe,
-                                      Person_comp);*/
     auto person_it = persons_c.begin();
     if ((person_it = persons_c.find(&probe)) == persons_c.end()) {
       throw_invalid_data();
