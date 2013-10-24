@@ -1,0 +1,119 @@
+
+Enter command: ai Ebenezer Scrooge 666
+Person Scrooge added
+
+Enter command: ai Jacob Marley 000
+Person Marley added
+
+Enter command: ar 1001
+Room 1001 added
+
+Enter command: ar 1002
+Room 1002 added
+
+Enter command: am 1001 10 Money
+Meeting added at 10
+
+Enter command: ap 1001 10 Scrooge
+Participant Scrooge added
+
+Enter command: am 1002 10 Christmas
+Meeting added at 10
+
+Enter command: ap 1002 10 Scrooge
+Person is already committed at that time!
+
+Enter command: rm 1002 10 1002 11
+Meeting rescheduled to room 1002 at 11
+
+Enter command: ap 1002 11 Marley
+Participant Marley added
+
+Enter command: ap 1002 11 Scrooge
+Participant Scrooge added
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Money
+Participants:
+Ebenezer Scrooge 666
+--- Room 1002 ---
+Meeting time: 11, Topic: Christmas
+Participants:
+Jacob Marley 000
+Ebenezer Scrooge 666
+
+Enter command: pc Scrooge
+Room:1001 Time: 10 Topic: Money
+Room:1002 Time: 11 Topic: Christmas
+
+Enter command: pc Marley
+Room:1002 Time: 11 Topic: Christmas
+
+Enter command: sd commit_save1.txt
+Data saved
+
+Enter command: rm 1002 11 1002 10
+A participant is already committed at the new time!
+
+Enter command: rm 1002 11 1002 9
+Meeting rescheduled to room 1002 at 9
+
+Enter command: pc Scrooge
+Room:1001 Time: 10 Topic: Money
+Room:1002 Time: 9 Topic: Christmas
+
+Enter command: pc Marley
+Room:1002 Time: 9 Topic: Christmas
+
+Enter command: dm 1002 9
+Meeting at 9 deleted
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Money
+Participants:
+Ebenezer Scrooge 666
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: pc Scrooge
+Room:1001 Time: 10 Topic: Money
+
+Enter command: pc Marley
+No commitments
+
+Enter command: ds
+All meetings deleted
+
+Enter command: pc Scrooge
+No commitments
+
+Enter command: ld commit_save1.txt
+Data loaded
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Money
+Participants:
+Ebenezer Scrooge 666
+--- Room 1002 ---
+Meeting time: 11, Topic: Christmas
+Participants:
+Jacob Marley 000
+Ebenezer Scrooge 666
+
+Enter command: pc Scrooge
+Room:1001 Time: 10 Topic: Money
+Room:1002 Time: 11 Topic: Christmas
+
+Enter command: pc Marley
+Room:1002 Time: 11 Topic: Christmas
+
+Enter command: qq
+All rooms and meetings deleted
+All persons deleted
+Done
