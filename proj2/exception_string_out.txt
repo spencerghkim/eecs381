@@ -1,0 +1,155 @@
+Ctor: "A"
+Thing 1 with ID A constructed
+Ctor: "B"
+Thing 2 with ID B constructed
+Ctor: "C"
+Thing 3 with ID C constructed
+Ctor: "D"
+Thing 4 with ID D constructed
+Ctor: "E"
+Thing 5 with ID E constructed
+
+Demonstrate exception safety on insert
+Copy ctor: "A"
+Thing 6 with ID A copy constructed
+Copy ctor: "B"
+Thing 7 with ID B copy constructed
+thing_list after first insertions has 2 items: Thing6-A Thing7-B
+Attempt thing_list.insert(t3);
+Copy ctor: "C"
+Attempt to copy construct Thing 8 with ID C failed!!!
+Dtor: "C"
+Thing_exception caught:Boom!
+thing_list after exception caught: has 2 items: Thing6-A Thing7-B
+not damaged by failed insertion and no debris left over
+leaving local scope
+Thing 6 with ID A destroyed
+Dtor: "A"
+Thing 7 with ID B destroyed
+Dtor: "B"
+
+Demonstrate exception safety on list copy construction
+Copy ctor: "A"
+Thing 8 with ID A copy constructed
+Copy ctor: "B"
+Thing 9 with ID B copy constructed
+Copy ctor: "C"
+Thing 10 with ID C copy constructed
+thing_list after insertions has 3 items: Thing8-A Thing9-B Thing10-C
+Attempt copy construction: Thing_list_t thing_list2(thing_list);
+Copy ctor: "A"
+Thing 11 with ID A copy constructed
+Copy ctor: "B"
+Thing 12 with ID B copy constructed
+Copy ctor: "C"
+Attempt to copy construct Thing 13 with ID C failed!!!
+Dtor: "C"
+Thing 11 with ID A destroyed
+Dtor: "A"
+Thing 12 with ID B destroyed
+Dtor: "B"
+Thing_exception caught:Boom!
+thing_list2 failed construction and does not exist - all debris cleaned up
+leaving local scope
+Thing 8 with ID A destroyed
+Dtor: "A"
+Thing 9 with ID B destroyed
+Dtor: "B"
+Thing 10 with ID C destroyed
+Dtor: "C"
+
+Demonstrate exception safety on list copy assignment
+Copy ctor: "A"
+Thing 13 with ID A copy constructed
+Copy ctor: "B"
+Thing 14 with ID B copy constructed
+Copy ctor: "C"
+Thing 15 with ID C copy constructed
+thing_list1 after insertions has 3 items: Thing13-A Thing14-B Thing15-C
+Copy ctor: "D"
+Thing 16 with ID D copy constructed
+Copy ctor: "E"
+Thing 17 with ID E copy constructed
+thing_list2 after insertions has 2 items: Thing16-D Thing17-E
+Attempt thing_list1 = thing_list2;
+Copy ctor: "D"
+Thing 18 with ID D copy constructed
+Copy ctor: "E"
+Attempt to copy construct Thing 19 with ID E failed!!!
+Dtor: "E"
+Thing 18 with ID D destroyed
+Dtor: "D"
+Thing_exception caught:Boom!
+thing_list1 is unchanged has 3 items: Thing13-A Thing14-B Thing15-C
+thing_list2 is unchanged has 2 items: Thing16-D Thing17-E
+no debris left over
+leaving local scope
+Thing 16 with ID D destroyed
+Dtor: "D"
+Thing 17 with ID E destroyed
+Dtor: "E"
+Thing 13 with ID A destroyed
+Dtor: "A"
+Thing 14 with ID B destroyed
+Dtor: "B"
+Thing 15 with ID C destroyed
+Dtor: "C"
+
+Demonstrate list move construction
+Copy ctor: "A"
+Thing 19 with ID A copy constructed
+Copy ctor: "B"
+Thing 20 with ID B copy constructed
+Copy ctor: "C"
+Thing 21 with ID C copy constructed
+thing_list after insertions has 3 items: Thing19-A Thing20-B Thing21-C
+Attempt move construction: Thing_list_t thing_list2(std::move(thing_list));
+thing_list after move construction has 0 items:
+thing_list2 after move construction has 3 items: Thing19-A Thing20-B Thing21-C
+leaving local scope
+Thing 19 with ID A destroyed
+Dtor: "A"
+Thing 20 with ID B destroyed
+Dtor: "B"
+Thing 21 with ID C destroyed
+Dtor: "C"
+
+Demonstrate list move assignment
+Copy ctor: "A"
+Thing 22 with ID A copy constructed
+Copy ctor: "B"
+Thing 23 with ID B copy constructed
+Copy ctor: "C"
+Thing 24 with ID C copy constructed
+thing_list1 after insertions has 3 items: Thing22-A Thing23-B Thing24-C
+Copy ctor: "D"
+Thing 25 with ID D copy constructed
+Copy ctor: "E"
+Thing 26 with ID E copy constructed
+thing_list2 after insertions has 2 items: Thing25-D Thing26-E
+Attempt thing_list1 = std::move(thing_list2);
+thing_list1 has 2 items: Thing25-D Thing26-E
+thing_list2 has 3 items: Thing22-A Thing23-B Thing24-C
+leaving local scope
+Thing 22 with ID A destroyed
+Dtor: "A"
+Thing 23 with ID B destroyed
+Dtor: "B"
+Thing 24 with ID C destroyed
+Dtor: "C"
+Thing 25 with ID D destroyed
+Dtor: "D"
+Thing 26 with ID E destroyed
+Dtor: "E"
+leaving main
+Thing 5 with ID E destroyed
+Dtor: "E"
+Thing 4 with ID D destroyed
+Dtor: "D"
+Thing 3 with ID C destroyed
+Dtor: "C"
+Thing 2 with ID B destroyed
+Dtor: "B"
+Thing 1 with ID A destroyed
+Dtor: "A"
+Done!

@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+#include "Person.h"
+
+int main() {
+  struct Person* p1 = create_Person("John", "Smith", "1234");
+
+  print_Person(p1);
+
+  printf("%s\n", get_Person_lastname(p1));
+
+  destroy_Person(p1);
+
+  return 0;
+}

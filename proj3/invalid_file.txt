@@ -1,0 +1,9 @@
+This is one of the very large number of ways that a file might contain invalid data.
+Be sure you test for the different possibilities.
+A good approach: Create a correct save file, verify that it restores correctly.
+Then make several copies. 
+The use a text editor to damage each copy by making a small alteration to the data,
+for example, by deleting a line from the middle of the file. Then test to see
+if your program detects an invalid data condition. Compare with the project specifications.
+
+

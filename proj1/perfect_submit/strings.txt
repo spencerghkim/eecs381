@@ -1,0 +1,80 @@
+/* Notes:
+1. The messages are classified by which module's .c file prints them out.
+You must follow this classification to be sure your modules behave like ours.
+Note that p1_main does all printing except for data about individual Persons, 
+Meetings, or Rooms, which is output by their print_ function.
+
+2. Where two percent signs appear in a row ('%%'), change it to the appropriate 
+printf formatting item. 
+
+3. If there is no actual constant text involved in an output statement, it
+is not shown here. For example, the printf for printing a Person's data just
+outputs the data with one space between each item. This format is not shown here.
+
+4. Note how the command error messages listed below are output by p1_main; thus, 
+functions in other modules must return an error condition to p1_main, 
+which then prints the appropriate message from this list.
+*/
+
+
+/* top level messages emitted by p1_main */
+"\nEnter command: "
+"Done\n"
+
+/* print command messages emitted by p1_main */
+"List of people is empty\n"
+"Information for %% people:\n"
+"List of rooms is empty\n"
+"Information for %% rooms:\n"
+"Memory allocations:\n"
+"C-strings: %% bytes total\n"
+"Person structs: %%\n"
+"Meeting structs: %%\n"
+"Room structs: %%\n"
+"Containers: %d\n"
+"Container items in use: %d\n"
+"Container items allocated: %d\n"
+
+/* add/delete/load/save command messages emitted by p1_main */
+"Person %% added\n"
+"Room %% added\n"
+"Meeting added at %%\n"
+"Participant %% added\n"
+"Meeting rescheduled to room %% at %%\n"
+"Person %% deleted\n"
+"Room %% deleted\n"
+"Meeting at %% deleted\n"
+"Participant %% deleted\n"
+"All meetings deleted\n"
+"All rooms deleted\n"
+"All persons deleted\n"
+"Data saved\n";
+"Data loaded\n";
+
+/* print command messages emitted by Meeting */
+"Meeting time: %%, Topic: %%\nParticipants:"
+" None\n"
+
+/* print command messages emitted by Room */
+"--- Room %% ---\n"
+"No meetings are scheduled\n"
+
+
+/* command error messages emitted by p1_main */
+"Unrecognized command!\n"
+"There is already a person with this last name!\n"
+"There is already a meeting at that time!\n"
+"There is already a room with this number!\n"
+"This person is already a participant!\n"
+"This person is a participant in a meeting!\n"
+"This person is not a participant in the meeting!\n"
+"Cannot clear people list unless there are no meetings!\n"
+"No person with that name!\n"
+"No room with that number!\n"
+"No meeting at that time!\n"
+"Room number is not in range!\n"
+"Time is not in range!\n"
+"Could not read an integer value!\n"
+"Could not open file!\n";
+"Invalid data found in file!\n";
+

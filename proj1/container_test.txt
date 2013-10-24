@@ -1,0 +1,100 @@
+#include <assert.h>
+#include <stdio.h>
+#include "Ordered_container.h"
+
+#include "Utility.h"
+
+int compareIntegers(const void* data_ptr1, const void* data_ptr2);
+void printInteger(void* data_ptr);
+
+int main() {
+  struct Ordered_container* c_ptr = OC_create_container(compareIntegers);
+  int one = 1;
+  int two = 2;
+  int three = 3;
+  int four = 4;
+  void* item_ptr;
+  void* data_ptr;
+
+  /* Test that initialized container is empty. */
+  assert(OC_get_size(c_ptr) == 0);
+  assert(OC_empty(c_ptr));
+
+  OC_clear(c_ptr);
+
+  /* Insert 1 into the container. */
+  OC_insert(c_ptr, &one);
+
+  /* Test that there is one thing in the non-empty container. */
+  assert(OC_get_size(c_ptr) == 1);
+  assert(!OC_empty(c_ptr));
+
+  /* Test that 1 is found and that the object found contains 1. */
+  item_ptr = OC_find_item(c_ptr, &one);
+  assert(item_ptr);
+  data_ptr = OC_get_data_ptr(item_ptr);
+  assert(data_ptr);
+  assert(*((int *)data_ptr) == 1);
+
+  /* Delete 1 from the container. */
+  OC_delete_item(c_ptr, item_ptr);
+
+  /* Assert that the container is now empty. */
+  assert(OC_get_size(c_ptr) == 0);
+  assert(OC_empty(c_ptr));
+
+  /* Insert 3, 1, and 2 into the container. */
+  OC_insert(c_ptr, &three);
+  OC_insert(c_ptr, &one);
+  OC_insert(c_ptr, &two);
+  OC_insert(c_ptr, &four);
+
+  /* Test that the size is right. */
+  assert(OC_get_size(c_ptr) == 4);
+  assert(!OC_empty(c_ptr));
+
+  /* Print out integers to visually confirm the correct ordering. */
+  OC_apply(c_ptr, printInteger);
+
+  /* Test that 3 is in the container. */
+  item_ptr = OC_find_item(c_ptr, &three);
+  assert(item_ptr);
+  data_ptr = OC_get_data_ptr(item_ptr);
+  assert(data_ptr);
+  assert(*((int *)data_ptr) == 3);
+
+  /* Delete 3 from the container. */
+  OC_delete_item(c_ptr, item_ptr);
+
+  /* Test that the size of the container is correct. */
+  assert(OC_get_size(c_ptr) == 3);
+
+  /* Test that 2 is in the container. */
+  item_ptr = OC_find_item(c_ptr, &two);
+  assert(item_ptr);
+  data_ptr = OC_get_data_ptr(item_ptr);
+  assert(data_ptr);
+  assert(*((int *)data_ptr) == 2);
+
+  /* Clear the container. */
+  OC_clear(c_ptr);
+
+  /* Test size of cleared container. */
+  assert(OC_get_size(c_ptr) == 0);
+  assert(OC_empty(c_ptr));
+
+  /* Destroy the container. */
+  OC_destroy_container(c_ptr);
+
+  return 0;
+}
+
+int compareIntegers(const void* data_ptr1, const void* data_ptr2) {
+  return *((int *)data_ptr1) - *((int *)data_ptr2);
+}
+
+void printInteger(void* data_ptr) {
+  int* int_ptr = (int *)data_ptr;
+
+  printf("%d\n", *int_ptr);
+}

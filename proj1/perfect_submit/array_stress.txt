@@ -1,0 +1,23 @@
+pa
+ar 1
+pa
+ar 2
+ar 3
+pa
+ar 4
+ar 5
+ar 6
+pa
+ar 7
+pa
+ar 8 ar 9 ar 10 ar 11 ar 12 pa
+ar 13
+pa
+dr 3
+pa
+dr 5
+pa
+da
+pa
+qq
+
