@@ -58,7 +58,6 @@ void Room::remove_Meeting(int time) {
 
 void Room::save(std::ostream& os) const {
   os << room_number << " " << meetings.size() << std::endl;
-  // Find out how to use bind/mem_fn.
   std::for_each(meetings.begin(), meetings.end(), std::bind(&Meeting::save, _1, ref(os)));
 }
 

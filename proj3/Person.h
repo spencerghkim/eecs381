@@ -6,12 +6,6 @@
 #include <string>
 
 class Room;
-
-struct Commitment_comp {
-  using commitment_t = std::pair<int, const Room&>;
-  bool operator() (const commitment_t& c_1, const commitment_t& c_2);
-};
-
 class Person {
   public:
     Person(const std::string& firstname_, const std::string& lastname_, const std::string& phoneno_)
@@ -63,7 +57,7 @@ class Person {
     std::string firstname;
     std::string phoneno;
 
-    using Commitment_c = std::map<int, const Room&, Commitment_comp>;
+    using Commitment_c = std::map<int, const Room&>;
     Commitment_c commitments;
 };
 
