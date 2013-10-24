@@ -1,0 +1,26 @@
+/* 
+The only strings shown here are ones that are new to Project 3, or 
+substantially different from Project 2. Otherwise, use the strings from
+Project 2.
+*/
+
+// different 'pa' output produced by main module
+ "Memory allocations:"  
+ "Persons: "  
+ "Meetings: "  
+ "Rooms: "  
+
+// additional 'rm' output message produced by main module
+"No change made to schedule"
+
+// output produced by pc command - your choice on which module is responsible
+ "No commitments"
+ "Room:" " Time: " " Topic: "
+
+// messages used to initialize an exception Error object
+//  - your choice on which module is responsible for these
+ "Person is already committed at that time!" 
+ "A participant is already committed at the new time!"
+
+
+
