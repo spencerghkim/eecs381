@@ -470,7 +470,7 @@ void save_rooms(ofstream& ofs, const Room_c rooms_c)
   ofs << rooms_c.size() << endl;
   for_each(rooms_c.begin(),
            rooms_c.end(),
-           bind(&Room::save, bind(&Room_c::value_type::second, _1)));
+           bind(&Room::save, bind(&Room_c::value_type::second, _1), ref(ofs)));
 }
 
 void print_bad_command_and_clear() {
