@@ -385,13 +385,13 @@ void print_memory(Containers& containers)
   cout << "Rooms: " << containers.rooms.size() << endl;
 }
 
-void print_person(const Containers& containers)
+void print_person(Containers& containers)
 {
   Person* person_ptr = read_and_find_person(containers.persons);
   cout << *person_ptr << endl;
 }
 
-void print_person_all(const Containers& containers)
+void print_person_all(Containers& containers)
 {
   if (containers.persons.empty()) {
     cout << "List of people is empty" << endl;
