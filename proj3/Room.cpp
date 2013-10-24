@@ -7,6 +7,8 @@
 #include <iostream>
 #include <map>
 
+using namespace std::placeholders;
+
 using Person_c = std::set<Person*, Person_comp>;
 using Meetings_c = std::list<Meeting>;
 
@@ -57,7 +59,7 @@ void Room::remove_Meeting(int time) {
 void Room::save(std::ostream& os) const {
   os << room_number << " " << meetings.size() << std::endl;
   // Find out how to use bind/mem_fn.
-  std::for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { m.save(os); });
+  std::for_each(meetings.begin(), meetings.end(), std::bind(&Meeting::save, _1, ref(os)));
 }
 
 std::ostream& operator<< (std::ostream& os, const Room& room) {
@@ -65,7 +67,7 @@ std::ostream& operator<< (std::ostream& os, const Room& room) {
   if (room.meetings.empty()) {
     os << "No meetings are scheduled" << std::endl;
   } else {
-    std::for_each(room.meetings.begin(), room.meetings.end(), [&os] (Meeting& m) { os << m; });
+    std::for_each(room.meetings.begin(), room.meetings.end(), [&os] (Meeting m) { os << m; });
   }
   return os;
 }

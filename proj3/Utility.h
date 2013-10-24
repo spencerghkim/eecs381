@@ -14,7 +14,7 @@ struct Error {
 };
 
 struct Person_comp {
-  bool operator() (const Person* person_ptr_1, const Person* person_ptr_2) {
+  bool operator() (const Person* person_ptr_1, const Person* person_ptr_2) const {
     return person_ptr_1->get_lastname() < person_ptr_2->get_lastname();
   }
 };
