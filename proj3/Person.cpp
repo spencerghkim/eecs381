@@ -9,15 +9,14 @@
 #include <map>
 #include <string>
 
-using Commitment_c = std::map<int, const Room&>;
+using Commitment_c = std::list<Commitment_t>;
 
 struct Commitment_comp {
-  using commitment_t = std::pair<int, const Room&>;
-  bool operator() (const commitment_t& c_1, const commitment_t& c_2) {
-    if (!(c_1.second < c_2.second) && !(c_2.second < c_1.second)) {
-      return c_1.first < c_2.first;
+  bool operator() (const Commitment_t* c_1, const Commitment_t* c_2) {
+    if (!(c_1->room < c_2->room) && !(c_2->room < c_1->room)) {
+      return c_1->meeting->get_time() < c_2->meeting->get_time();
     }
-    return c_1.second < c_2.second;
+    return c_1->room < c_2->room;
   }
 };
 
@@ -28,13 +27,21 @@ Person::Person(std::ifstream& is)
   }
 }
 
-void Person::add_commitment(int time, const Room& room)
+void Person::add_commitment(const Room* room, const Meeting* meeting)
 {
-  if (commitments.find(time) != commitments.end()) {
+  Commitment_t c {room, meeting};
+  
+  Commitment_c::iterator it =
+      std::lower_bound(commitments.begin(), commitments.end(), c, Commitment_comp());
+  if ((it != commitments.end()) && (it->meeting == meeting)) {
     throw Error{"Person is already committed at that time!"};
   }
-  commitments.insert(std::make_pair(time, room));
+  commitments.insert(it, c);
 }
+
+struct Commitment_finder {
+  void isAtTime
+};
 
 bool Person::has_commitment(int time)
 {
@@ -59,12 +66,17 @@ void Person::print_commitments() const
              printable_commitments.insert(commitment);
            });
   
+  if (commitments.empty()) {
+    std::cout << "No commitments" << std::endl;
+    return;
+  }
+  
   for_each(printable_commitments.begin(),
            printable_commitments.end(),
            [] (commitment_t pair) {
     std::cout << "Room:" << pair.second.get_room_number();
     std::cout << " Time: " << pair.first;
-    std::cout << " Topic: " << pair.second.get_Meeting(pair.first).get_topic() << std::endl;
+    std::cout << " Topic: " << pair.second.get_Meeting(pair.first)->get_topic() << std::endl;
   });
 }
 

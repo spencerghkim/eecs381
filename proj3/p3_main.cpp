@@ -17,7 +17,7 @@
 using namespace std;
 using namespace std::placeholders;
 
-using Room_c = map<int, Room>;
+using Room_c = map<int, Room*>;
 using Person_c = set<Person *, Person_comp>;
 
 using Room_it = Room_c::iterator;
@@ -49,6 +49,7 @@ void load_data(Containers& containers);
 Person_c load_persons(ifstream& is);
 Room_c load_rooms(ifstream& is, const Person_c& persons_c);
 
+void print_commitments(Containers& containers);
 void print_meeting(Containers& containers);
 void print_meeting_all(Containers& containers);
 void print_memory(Containers& containers);
@@ -66,9 +67,9 @@ void save_rooms(ofstream& ofs, const Room_c& rooms_c);
 
 void print_bad_command_and_clear();
 
-Meeting& read_and_find_meeting(Room_c& rooms_c);
+Meeting* read_and_find_meeting(Room_c& rooms_c);
 Person* read_and_find_person(const Person_c& persons_c);
-Room& read_and_find_room(Room_c& rooms_c);
+Room* read_and_find_room(Room_c& rooms_c);
 
 int read_int();
 int read_int_from_file(ifstream& ifs);
@@ -140,6 +141,7 @@ void populate_top_level_func_map(Function_map& func_map)
   func_map["dr"] = delete_room;
   func_map["ld"] = load_data;
   func_map["pa"] = print_memory;
+  func_map["pc"] = print_commitments;
   func_map["pg"] = print_person_all;
   func_map["pi"] = print_person;
   func_map["pm"] = print_meeting;
@@ -151,29 +153,28 @@ void populate_top_level_func_map(Function_map& func_map)
 
 void add_meeting(Containers& containers)
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
   int time = read_time();
   string topic;
   cin >> topic;
-  Meeting new_meeting(time, topic);
-  room.add_Meeting(new_meeting);
+  Meeting* new_meeting = new Meeting(time, topic);
+  room->add_Meeting(new_meeting);
 
   cout << "Meeting added at " << time << endl;
 }
 
 void add_participant(Containers& containers) 
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
   int time = read_time();
-  Meeting& meeting = room.get_Meeting(time);
+  Meeting* meeting_ptr = room->get_Meeting(time);
   Person* person_ptr = read_and_find_person(containers.persons);
 
-  if (meeting.is_participant_present(person_ptr)) {
+  if (meeting_ptr->is_participant_present(person_ptr)) {
     throw Error{"This person is already a participant!"};
   }
 
-  person_ptr->add_commitment(time, room);
-  meeting.add_participant(person_ptr, room);
+  meeting_ptr->add_participant(person_ptr, room);
 
   cout << "Participant " << person_ptr->get_lastname() << " added" << endl;
 }
@@ -221,6 +222,7 @@ void delete_person(Containers& containers)
 void delete_room(Containers& containers)
 {
   Room& room = read_and_find_room(containers.rooms);
+  room.clear_Meetings();
 
   cout << "Room " << room.get_room_number() << " deleted" << endl;
   containers.rooms.erase(room.get_room_number());
@@ -228,6 +230,9 @@ void delete_room(Containers& containers)
 
 void delete_room_all(Containers& containers)
 {
+  for_each(containers.rooms.begin(),
+           containers.rooms.end(),
+           bind(&Room::clear_Meetings, bind(&Room_c::value_type::second, _1)));
   containers.rooms.clear();
   cout << "All rooms and meetings deleted" << endl;
 }
@@ -243,9 +248,9 @@ void delete_meeting(Containers& containers)
 
 void delete_participant(Containers& containers)
 {
-  Meeting& meeting = read_and_find_meeting(containers.rooms);
+  Meeting* meeting_ptr = read_and_find_meeting(containers.rooms);
   Person* person_ptr = read_and_find_person(containers.persons);
-  meeting.remove_participant(person_ptr);
+  meeting_ptr->remove_participant(person_ptr);
 
   cout << "Participant " << person_ptr->get_lastname() << " deleted" << endl;
 }
@@ -291,10 +296,12 @@ void load_data(Containers& containers)
     throw Error{"Could not open file!"};
   }
 
-  // We need this inner try block in order to catch any errors and restore the old
-  // copies of Rooms and Persons.
-  Person_c persons_backup {containers.persons};
-  Room_c rooms_backup {containers.rooms};
+  // Store a backup copy of containers.
+  Containers containers_backup = containers;
+  
+  // Clear the containers. If an exception is thrown during data load, we can safely delete
+  // these containers (including dynamically allocated memory) without touching the structures
+  // and dynamically allocated memory in the backup copy.
   containers.persons.clear();
   containers.rooms.clear();
   try {
@@ -302,19 +309,12 @@ void load_data(Containers& containers)
     containers.rooms = load_rooms(ifs, containers.persons);
 
   } catch (Error& e) {
-    // Make sure to actually delete any added persons - everything else will be taken care
-    // of when we reassign the containers to their backups.
-    //apply(containers.persons.begin(), containers.persons.end(), free_person_ptr);
-
-    containers.persons = persons_backup;
-    containers.rooms = rooms_backup;
+    delete_all(containers);
+    containers = containers_backup;
 
     ifs.close();
     throw e;
   }
-
-  // Load was successful! Free any person ptr in the backup copies.
-  //apply(persons_backup.begin(), persons_backup.end(), free_person_ptr);
 
   ifs.close();
   cout << "Data loaded" << endl;
@@ -340,12 +340,18 @@ Room_c load_rooms(ifstream& ifs, const Person_c& persons_c)
     rooms_c.insert(make_pair(new_room.get_room_number(), new_room));
   }
   return rooms_c;
-} 
+}
+
+void print_commitments(Containers& containers)
+{
+  Person* person_ptr = read_and_find_person(containers.persons);
+  person_ptr->print_commitments();
+}
 
 void print_meeting(Containers& containers)
 {
-  Meeting& meeting = read_and_find_meeting(containers.rooms);
-  cout << meeting;
+  Meeting* meeting = read_and_find_meeting(containers.rooms);
+  cout << *meeting;
 }
  
 void print_meeting_all(Containers& containers)
@@ -413,13 +419,13 @@ void reschedule_meeting(Containers& containers)
 {
   Room& old_room = read_and_find_room(containers.rooms);
   int old_time = read_time();
-  Meeting old_Meeting = old_room.get_Meeting(old_time);
+  Meeting* old_Meeting = old_room.get_Meeting(old_time);
 
   Room& new_room = read_and_find_room(containers.rooms);
   int new_time = read_time();
   
   if (new_room.get_room_number() == old_room.get_room_number() &&
-      old_Meeting.get_time() == new_time) {
+      old_Meeting->get_time() == new_time) {
     throw Error{"No change made to schedule"};
   }
   
@@ -427,10 +433,17 @@ void reschedule_meeting(Containers& containers)
     throw Error{"There is already a meeting at that time!"};
   }
 
-  Meeting new_meeting {new_time, old_Meeting.get_topic()};
-  old_Meeting.transfer_participants(new_meeting, new_room);
+  Meeting* new_meeting = new Meeting{new_time, old_Meeting->get_topic()};
+  
+  // If transfer_participants fails, we are in charge of deleting the pointer, since
+  // we never added the meeting to a room.
+  try {
+    old_Meeting->transfer_participants(new_meeting, new_room);
+  } catch (Error e) {
+    delete new_meeting;
+  }
 
-  // Actually insert the new meeting.
+  // Actually insert the new meeting. Should not fail.
   new_room.add_Meeting(new_meeting);
 
   // If we get here, we're safe to remove the meeting from the old room.
@@ -457,7 +470,7 @@ void save_data(Containers& containers)
   cout << "Data saved" << endl;
 }
 
-void save_persons(ofstream& ofs, const Person_c persons_c)
+void save_persons(ofstream& ofs, const Person_c& persons_c)
 {
   ofs << persons_c.size() << endl;
   for (auto person_ptr : persons_c) {
@@ -465,7 +478,7 @@ void save_persons(ofstream& ofs, const Person_c persons_c)
   }
 }
 
-void save_rooms(ofstream& ofs, const Room_c rooms_c)
+void save_rooms(ofstream& ofs, const Room_c& rooms_c)
 {
   ofs << rooms_c.size() << endl;
   for_each(rooms_c.begin(),
@@ -478,7 +491,7 @@ void print_bad_command_and_clear() {
   while (cin.get() != '\n');
 }
 
-Meeting& read_and_find_meeting(Room_c& rooms_c)
+Meeting* read_and_find_meeting(Room_c& rooms_c)
 {
   Room& room = read_and_find_room(rooms_c);
   int time = read_time();

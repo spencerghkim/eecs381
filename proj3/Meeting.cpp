@@ -8,7 +8,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <vector>
 
 using namespace std::placeholders;
 using std::string;
@@ -17,8 +16,7 @@ using Person_c = std::set<Person*, Person_comp>;
 
 int normalized_time(int time);
 
-Meeting::Meeting(
-    std::ifstream& is, const Person_c& persons_c, const Room& room)
+Meeting::Meeting(std::ifstream& is, const Person_c& persons_c, const Room* room)
 {
   int num_participants = 0;
   if (!(is >> time) || !(is >> topic) || !(is >> num_participants)) {
@@ -45,15 +43,13 @@ Meeting::Meeting(
   }
 }
 
-Meeting::~Meeting() noexcept
-{
-  // Let the Persons know that they don't have commitments at this time any longer.
+Meeting::~Meeting() {
   std::for_each(participants.begin(),
                 participants.end(),
                 std::bind(&Person::remove_commitment, _1, time));
 }
 
-void Meeting::add_participant(Person* person_ptr, const Room& room)
+void Meeting::add_participant(Person* person_ptr, const Room* room)
 {
   auto participant_it = std::lower_bound(participants.begin(),
                                          participants.end(),
@@ -93,12 +89,12 @@ void Meeting::remove_participant(Person* person_ptr)
   person_ptr->remove_commitment(time);
 }
 
-void Meeting::transfer_participants(Meeting& new_meeting, const Room& new_room)
+void Meeting::transfer_participants(Meeting* new_meeting, const Room& new_room)
 {
   // First, check if any of the participants has a conflict at the new time. Note
   // that we only have to check for conflicts if the times are different - if they
   // are the same, then we know everyone is available.
-  int proposed_time = new_meeting.get_time();
+  int proposed_time = new_meeting->get_time();
   if (proposed_time != time) {
     std::for_each(participants.begin(),
                   participants.end(),
@@ -109,11 +105,14 @@ void Meeting::transfer_participants(Meeting& new_meeting, const Room& new_room)
     });
   }
   
+  // Next, tell all the people that their commitment has changed.
   std::for_each(participants.begin(), participants.end(), [&] (Person* person_ptr) {
-      new_meeting.add_participant(person_ptr, new_room);
       person_ptr->remove_commitment(time);
-      person_ptr->add_commitment(new_meeting.get_time(), new_room);
+      person_ptr->add_commitment(proposed_time, new_room);
   });
+  
+  // Finally, transfer the participants list.
+  new_meeting->participants = participants;
   participants.clear();
 }
 

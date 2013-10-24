@@ -48,8 +48,8 @@ class Room {
 	// the container. The container of Meetings is not available to clients.
 
 	// Add the Meeting, throw exception if there is already a Meeting at that time.
-	// A copy of the supplied Meeting is stored in the Meeting container.
-	void add_Meeting(const Meeting& m);
+	// A copy of the supplied Meeting pointer is stored in the Meeting container.
+	void add_Meeting(Meeting* m);
 	// Return true if there is at least one meeting, false if none
 	bool has_Meetings() const
 		{ return !meetings.empty(); }		
@@ -58,13 +58,12 @@ class Room {
 		{ return meetings.size(); }		
 	// Return true if there is a Meeting at the time, false if not.
 	bool is_Meeting_present(int time) const;
-	// Return a reference if the Meeting is present, throw exception if not.
-	Meeting& get_Meeting(int time) const;
+	// Return a pointer if the Meeting is present, throw exception if not.
+	Meeting* get_Meeting(int time) const;
 	// Remove the specified Meeting, throw exception if a Meeting at that time was not found.
 	void remove_Meeting(int time);
 	// Remove and destroy all meetings
-	void clear_Meetings()
-		{ meetings.clear(); }		
+	void clear_Meetings();		
 	// Return true if the person is present in any of the meetings
 	bool is_participant_present(const Person* person_ptr) const;
 
@@ -79,10 +78,12 @@ class Room {
 
   private:
     int room_number;
-    using Meetings_c = std::list<Meeting>;
+    using Meetings_c = std::map<int, Meeting*>;
     Meetings_c meetings;
+  
+    Meetings_c::const_iterator get_Meeting_helper(int time) const;
 };
-	
+
 // Print the Room data as follows:
 // The room heading with room number followed by an endl, followed by either:
 // The no-meetings message with an endl, or
