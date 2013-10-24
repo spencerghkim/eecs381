@@ -15,8 +15,6 @@ using std::string;
 
 using Person_c = std::set<Person*, Person_comp>;
 
-Person_c::iterator
-
 int normalized_time(int time);
 
 Meeting::Meeting(
@@ -44,14 +42,14 @@ Meeting::Meeting(
       throw_invalid_data();
     }
 
-    (*person_it)->add_commitment(room, time);
+    (*person_it)->add_commitment(time, room);
     // Insert person into our participants. Since we saved them in order,
     // we can read them in order.
     participants.push_back(*person_it);
   }
 }
 
-~Meeting::Meeting()
+Meeting::~Meeting() noexcept
 {
   // Let the Persons know that they don't have commitments at this time any longer.
   std::for_each(participants.begin(),
@@ -59,19 +57,19 @@ Meeting::Meeting(
                 std::bind(&Person::remove_commitment, _1, time));
 }
 
-void Meeting::add_participant(const Person* person_ptr, const Room& room)
+void Meeting::add_participant(Person* person_ptr, const Room& room)
 {
   auto participant_it = std::lower_bound(participants.begin(),
                                          participants.end(),
                                          person_ptr,
-                                         Person_comp);
+                                         Person_comp());
   if ((participant_it != participants.end()) && (*participant_it) == person_ptr) {
     throw Error{"This person is already a participant!"};
   }
 
   // Tell the person they now have a commitment. Throw exception if they're
   // already committed at this time.
-  person_ptr->add_commitment(room, time);
+  person_ptr->add_commitment(time, room);
   participants.insert(participant_it, person_ptr);
 }
 
@@ -80,7 +78,7 @@ bool Meeting::is_participant_present(const Person* person_ptr) const
   auto participant_it = std::lower_bound(participants.begin(),
                                          participants.end(),
                                          person_ptr,
-                                         Person_comp);
+                                         Person_comp());
   return ((participant_it != participants.end()) && (*participant_it) == person_ptr);
 }
 
@@ -89,7 +87,7 @@ void Meeting::remove_participant(Person* person_ptr)
  auto participant_it = std::lower_bound(participants.begin(),
                                         participants.end(),
                                         person_ptr,
-                                        Person_comp);
+                                        Person_comp());
   if ((participant_it == participants.end()) || (*participant_it) != person_ptr) {
     throw Error{"This person is not a participant in the meeting!"};
   }
@@ -113,13 +111,14 @@ void Meeting::transfer_participants(Meeting& new_meeting, const Room& new_room)
           throw Error{"A participant is already committed at the new time!"};
         }
     });
-    
+  }
+  
   std::for_each(participants.begin(), participants.end(), [&] (Person* person_ptr) {
       new_meeting.add_participant(person_ptr, new_room);
       person_ptr->remove_commitment(time);
-      person_ptr->add_commitment(new_room, new_meeting.get_time());
+      person_ptr->add_commitment(new_meeting.get_time(), new_room);
   });
-  clear_participants();
+  participants.clear();
 }
 
 void Meeting::save(std::ostream& os) const

@@ -7,8 +7,10 @@
 #include <iostream>
 #include <map>
 
-Room::Room(std::ifstream& is,
-           const Ordered_list<const Person*, Less_than_ptr<const Person*> >& people_list) {
+using Person_c = std::set<Person*, Person_comp>;
+using Meetings_c = std::list<Meeting>;
+
+Room::Room(std::ifstream& is, const Person_c& people_list) {
   int num_meetings = 0;
 
   if (!(is >> room_number) || !(is >> num_meetings)) {
@@ -16,7 +18,7 @@ Room::Room(std::ifstream& is,
   }
 
   for (; num_meetings > 0; --num_meetings) {
-    Meeting meeting(is, people_list);
+    Meeting meeting(is, people_list, *this);
     meetings.push_back(meeting);
   }
 }
@@ -36,15 +38,15 @@ bool Room::is_Meeting_present(int time) const {
 
 Meetings_c::iterator get_Meeting_helper(Meetings_c meetings_c, int time)
 {
-  Meetings_c::iterator low = lower_bound(meetings_c.begin(), meetings_c.end(), m);
-  if (low->get_time != time) {
+  Meetings_c::iterator low = lower_bound(meetings_c.begin(), meetings_c.end(), Meeting{time});
+  if (low->get_time() != time) {
     throw Error{"No meeting at that time!"};
   }
   return low;
 }
 
 Meeting& Room::get_Meeting(int time) const {
-  return get_Meeting_helper(meetings, time);
+  return (*get_Meeting_helper(meetings, time));
 }
 
 void Room::remove_Meeting(int time) {
@@ -52,22 +54,10 @@ void Room::remove_Meeting(int time) {
   meetings.erase(meeting_it);
 }
 
-/*bool Room::is_participant_present(const Person* person_ptr) const {
-  for (auto meeting_it = meetings.begin(); meeting_it != meetings.end(); ++meeting_it) {
-    if (meeting_it->is_participant_present(person_ptr)) {
-      return true;
-    }
-  }
-  return false;
-}*/ 
-
 void Room::save(std::ostream& os) const {
   os << room_number << " " << meetings.size() << std::endl;
   // Find out how to use bind/mem_fn.
-  for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { m.save(os); });
-  /*for (auto meeting_it = meetings.begin(); meeting_it != meetings.end(); ++meeting_it) {
-    meeting_it->save(os);
-  }*/
+  std::for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { m.save(os); });
 }
 
 std::ostream& operator<< (std::ostream& os, const Room& room) {
@@ -75,10 +65,7 @@ std::ostream& operator<< (std::ostream& os, const Room& room) {
   if (room.meetings.empty()) {
     os << "No meetings are scheduled" << std::endl;
   } else {
-    for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { os << m; });
-/*    for (auto it = room.meetings.begin(); it != room.meetings.end(); ++it) {
-      os << *it;
-    }*/
+    std::for_each(room.meetings.begin(), room.meetings.end(), [&os] (Meeting& m) { os << m; });
   }
   return os;
 }

@@ -15,7 +15,9 @@ We let the compiler supply the destructor and the copy/move constructors and ass
 
 */
 #include "Utility.h"
+
 #include <iosfwd>
+#include <list>
 #include <set>
 #include <string>
 
@@ -23,6 +25,7 @@ class Person;
 class Room;
 class Meeting {
   using Participants_c = std::list<Person*>;
+  using Person_c = std::set<Person*, Person_comp>;
   public:
 
 	Meeting(int time_, const std::string& topic_) : time{time_}, topic{topic_} {}
@@ -30,22 +33,22 @@ class Meeting {
 	// construct a Meeting with only a time
 	Meeting(int time_) : time{time_} {}
 
-    // only for letting Person's know that they no longer have commitments
-    ~Meeting() noexcept;
+  // only for letting Person's know that they no longer have commitments
+  ~Meeting() noexcept;
 
 	// Construct a Meeting from an input file stream in save format
 	// Throw Error exception if invalid data discovered in file.
 	// No check made for whether the Meeting already exists or not.
 	// Person list is needed to resolve references to meeting participants
 	// Input for a member variable value is read directly into the member variable.
-	Meeting(std::ifstream& is, const Participants_c& persons_c);
+	Meeting(std::ifstream& is, const Person_c& persons_c, const Room& room);
 
 	// accessors
 	int get_time() const
 		{ return time; }
 
-    std::string get_topic() const
-        { return topic; }
+  std::string get_topic() const
+    { return topic; }
 
 	// Meeting objects manage their own participant list. Participants
 	// are identified by a pointer to that individual's Person object.
@@ -57,7 +60,7 @@ class Meeting {
 	// Remove from the list, throw exception if participant was not found.
 	void remove_participant(Person* p);
 
-    void transfer_participants(Meeting& new_meeting, const Room& new_room);
+  void transfer_participants(Meeting& new_meeting, const Room& new_room);
 
 	// Write a Meeting's data to a stream in save format with final endl.
 	void save(std::ostream& os) const;
@@ -70,7 +73,7 @@ class Meeting {
   private:
     int time;
     std::string topic;
-	Participants_c participants;
+	  Participants_c participants;
 };
 
 // Print the Meeting data as follows:

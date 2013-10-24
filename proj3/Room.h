@@ -22,6 +22,7 @@ We let the compiler supply the destructor and copy/move constructors and assignm
 #include "Utility.h"
 
 #include <iosfwd>
+#include <list>
 #include <map>
 #include <set>
 
@@ -30,14 +31,14 @@ class Room {
   public:
 	// Construct a room with the specified room number and no meetings
 	Room(int room_number_) : room_number(room_number_) {}
-		/*fill this in*/
+
 	// Construct a Room from an input file stream in save format, using the people list,
 	// restoring all the Meeting information. 
 	// Person list is needed to resolve references to meeting participants.
 	// No check made for whether the Room already exists or not.
 	// Throw Error exception if invalid data discovered in file.
 	// Input for a member variable value is read directly into the member variable.
-	Room(std::ifstream& is, std::set<Person*, Person_comp>);
+	Room(std::ifstream& is, const std::set<Person*, Person_comp>& people_list);
 
 	// Accessors
 	int get_room_number() const
@@ -78,8 +79,8 @@ class Room {
 
   private:
     int room_number;
-	using Meetings_c = std::map<Meeting>;
-	Meetings_c meetings;
+    using Meetings_c = std::list<Meeting>;
+    Meetings_c meetings;
 };
 	
 // Print the Room data as follows:

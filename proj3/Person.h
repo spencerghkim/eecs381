@@ -6,32 +6,38 @@
 #include <string>
 
 class Room;
+
+struct Commitment_comp {
+  using commitment_t = std::pair<int, const Room&>;
+  bool operator() (const commitment_t& c_1, const commitment_t& c_2);
+};
+
 class Person {
   public:
-	Person(const std::string& firstname_, const std::string& lastname_, const std::string& phoneno_)
-		: lastname{lastname_}, firstname{firstname_}, phoneno{phoneno_} {}
-	// construct a Person object with only a lastname
-	Person(const std::string& lastname_)
-		: lastname{lastname_} {}
+    Person(const std::string& firstname_, const std::string& lastname_, const std::string& phoneno_)
+      : lastname{lastname_}, firstname{firstname_}, phoneno{phoneno_} {}
+    // construct a Person object with only a lastname
+    Person(const std::string& lastname_)
+      : lastname{lastname_} {}
 
     Person(const Person& p) = delete;
     Person(Person&& p) = delete;
     Person& operator= (const Person& p) = delete;
     Person& operator= (Person&& p) = delete;
 
-	// Construct a Person object from a file stream in save format.
-	// Throw Error exception if invalid data discovered in file.
-	// No check made for whether the Person already exists or not.
-	// Input for a member variable value is read directly into the member variable.
-	Person(std::ifstream& is);
-	
-	// Accessors
-	std::string get_lastname() const
-		{ return lastname; }
+    // Construct a Person object from a file stream in save format.
+    // Throw Error exception if invalid data discovered in file.
+    // No check made for whether the Person already exists or not.
+    // Input for a member variable value is read directly into the member variable.
+    Person(std::ifstream& is);
+    
+    // Accessors
+    std::string get_lastname() const
+      { return lastname; }
 
     // Add a commitment. Throw an exception if person is already committed
     // at the specified time.
-    void add_commitment(const Room& room, int time);
+    void add_commitment(int time, const Room& room);
 
     bool has_commitment(int time);
 
@@ -43,12 +49,12 @@ class Person {
     // Remove a commitment at the specified time.
     void remove_commitment(int time) noexcept;
 	
-	// Write a Person's data to a stream in save format with final endl.
-	void save(std::ostream& os) const;
+    // Write a Person's data to a stream in save format with final endl.
+    void save(std::ostream& os) const;
 
-	// This operator defines the order relation between Persons, based just on the last name
-	bool operator< (const Person& rhs) const
-		{ return lastname < rhs.lastname; }
+    // This operator defines the order relation between Persons, based just on the last name
+    bool operator< (const Person& rhs) const
+      { return lastname < rhs.lastname; }
 
     friend std::ostream& operator<< (std::ostream& os, const Person& person);
 
@@ -57,7 +63,7 @@ class Person {
     std::string firstname;
     std::string phoneno;
 
-    using Commitment_c = set::map<int, const Room& room>;
+    using Commitment_c = std::map<int, const Room&, Commitment_comp>;
     Commitment_c commitments;
 };
 
