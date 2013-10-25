@@ -6,19 +6,17 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <string>
 
-using Commitment_c = std::list<Commitment_t>;
+using namespace std::placeholders;
 
-struct Commitment_comp {
-  bool operator() (const Commitment_t c_1, const Commitment_t c_2) {
-    if (!(c_1.room < c_2.room) && !(c_2.room < c_1.room)) {
-      return c_1.meeting->get_time() < c_2.meeting->get_time();
-    }
-    return c_1.room < c_2.room;
+bool Person::Commitment_t::operator< (const Commitment_t other) const
+{
+  if (!(this->room < other.room) && !(other.room < this->room)) {
+    return this->meeting->get_time() < other.meeting->get_time();
   }
-};
+  return this->room < other.room;
+}
 
 Person::Person(std::ifstream& is)
 {
@@ -35,11 +33,21 @@ void Person::add_commitment(const Room* room, const Meeting* meeting)
   
   Commitment_t c {room, meeting};
   Commitment_c::iterator it =
-      std::lower_bound(commitments.begin(), commitments.end(), c, Commitment_comp());
+      std::lower_bound(commitments.begin(), commitments.end(), c);
   commitments.insert(it, c);
 }
 
-bool Person::has_commitment(int time)
+void Person::remove_commitment(int time) noexcept
+{
+  commitments.remove_if([time] (Commitment_t commitment) {
+    if (commitment.meeting->get_time() == time) {
+      return true;
+    }
+    return false;
+  });
+}
+
+bool Person::has_commitment(int time) const
 {
   for (Commitment_t c : commitments) {
     if (c.meeting->get_time() == time) {
@@ -54,7 +62,6 @@ bool Person::has_commitments() const
   return !commitments.empty();
 }
 
-using commitment_t = Commitment_c::value_type;
 void Person::print_commitments() const
 {
   if (commitments.empty()) {
@@ -71,17 +78,6 @@ void Person::print_commitments() const
   });
 }
 
-void Person::remove_commitment(int time) noexcept
-{
-  // TODO(wjbillin): Figure out how to do this with for_each or bind or something.
-  for (Commitment_c::iterator it = commitments.begin(); it != commitments.end(); ++it) {
-    if (it->meeting->get_time() == time) {
-      commitments.erase(it);
-      break;
-    }
-  }
-} 
-
 void Person::save(std::ostream& os) const
 {
   os << firstname << " " << lastname << " " << phoneno << std::endl;
@@ -90,5 +86,11 @@ void Person::save(std::ostream& os) const
 std::ostream& operator<< (std::ostream& os, const Person& person)
 {
   os << person.firstname << " " << person.lastname << " " << person.phoneno;
+  return os;
+}
+
+std::ostream& operator<< (std::ostream& os, const Person* person)
+{
+  os << *person;
   return os;
 }

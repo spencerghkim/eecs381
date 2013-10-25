@@ -6,12 +6,11 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <vector>
+#include <set>
 
 using namespace std::placeholders;
 
 using Person_c = std::set<Person*, Person_ptr_comp>;
-using Meetings_c = std::map<int, Meeting*, Meeting_map_comp>;
 
 Room::Room(std::ifstream& is, const Person_c& people_list) {
   int num_meetings = 0;
@@ -58,7 +57,7 @@ void Room::remove_Meeting(int time) {
 void Room::clear_Meetings() {
   std::for_each(meetings.begin(),
                 meetings.end(),
-                [] (Meetings_c::value_type pair) { delete pair.second; });
+                [] (Meeting_c::value_type pair) { delete pair.second; });
   meetings.clear();
 }
 
@@ -66,7 +65,7 @@ void Room::save(std::ostream& os) const {
   os << room_number << " " << meetings.size() << std::endl;
   std::for_each(meetings.begin(),
                 meetings.end(),
-                std::bind(&Meeting::save, std::bind(&Meetings_c::value_type::second, _1), ref(os)));
+                std::bind(&Meeting::save, std::bind(&Meeting_c::value_type::second, _1), ref(os)));
 }
 
 std::ostream& operator<< (std::ostream& os, const Room& room) {
@@ -76,7 +75,7 @@ std::ostream& operator<< (std::ostream& os, const Room& room) {
   } else {
     std::for_each(room.meetings.begin(),
                   room.meetings.end(),
-                  [&os] (Meetings_c::value_type pair) { os << *(pair.second); });
+                  [&os] (Room::Meeting_c::value_type pair) { os << *(pair.second); });
   }
   return os;
 }

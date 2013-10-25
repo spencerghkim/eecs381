@@ -12,13 +12,15 @@
 #include <new>
 #include <set>
 #include <string>
-#include <vector>
 
-using namespace std;
 using namespace std::placeholders;
 
-using Room_c = map<int, Room*>;
-using Person_c = set<Person *, Person_ptr_comp>;
+using std::cout; using std::cin; using std::cerr; using std::endl;
+using std::ifstream; using std::ofstream;
+using std::string;
+
+using Room_c = std::map<int, Room*>;
+using Person_c = std::set<Person *, Person_ptr_comp>;
 
 using Room_it = Room_c::iterator;
 using Person_it = Person_c::iterator;
@@ -29,7 +31,8 @@ struct Containers {
 };
 
 using top_level_func_ptr = void (*)(Containers&);
-using Function_map = map<string, top_level_func_ptr>;
+using Function_map = std::map<string, top_level_func_ptr>;
+void populate_top_level_func_map(Function_map& func_map);
 
 void add_meeting(Containers& containers);
 void add_participant(Containers& containers);
@@ -75,8 +78,6 @@ int read_int();
 int read_int_from_file(ifstream& ifs);
 int read_room_number();
 int read_time();
-
-void populate_top_level_func_map(Function_map& func_map);
 
 int main() {
   Containers containers {};
@@ -171,10 +172,6 @@ void add_participant(Containers& containers)
   Meeting* meeting_ptr = room->get_Meeting(time);
   Person* person_ptr = read_and_find_person(containers.persons);
 
-  if (meeting_ptr->is_participant_present(person_ptr)) {
-    throw Error{"This person is already a participant!"};
-  }
-
   meeting_ptr->add_participant(person_ptr, room);
 
   cout << "Participant " << person_ptr->get_lastname() << " added" << endl;
@@ -256,7 +253,10 @@ void delete_room_all_helper(Room_c& rooms_c)
 {
   for_each(rooms_c.begin(),
            rooms_c.end(),
-           bind(&Room::clear_Meetings, bind(&Room_c::value_type::second, _1)));
+           [] (Room_c::value_type pair) {
+             pair.second->clear_Meetings();
+             delete pair.second;
+           });
   rooms_c.clear();
 }
 
@@ -317,8 +317,8 @@ void load_data(Containers& containers)
   Containers containers_backup = containers;
   
   // Clear the containers. If an exception is thrown during data load, we can safely delete
-  // these containers (including dynamically allocated memory) without touching the structures
-  // and dynamically allocated memory in the backup copy.
+  // these containers (including any dynamically allocated memory) without touching the
+  // structures and dynamically allocated memory in the backup copy.
   containers.persons.clear();
   containers.rooms.clear();
   try {
@@ -352,7 +352,7 @@ Room_c load_rooms(ifstream& ifs, const Person_c& persons_c)
   Room_c rooms_c {};
   for (int num_rooms = read_int_from_file(ifs); num_rooms > 0; --num_rooms) {
     Room* new_room = new Room{ifs, persons_c};
-    rooms_c.insert(make_pair(new_room->get_room_number(), new_room));
+    rooms_c.insert(std::make_pair(new_room->get_room_number(), new_room));
   }
   return rooms_c;
 }
@@ -382,22 +382,22 @@ void print_meeting_all(Containers& containers)
   });
 }
 
-struct meetingSum {
-  void add(int num)
-    { total += num; }
-  
-  int get_total()
-    { return total; }
-  
-  int total {0};
-};
-
 void print_memory(Containers& containers)
 {
   cout << "Memory allocations:" << endl;
   cout << "Persons: " << containers.persons.size() << endl;
+  
+  struct meetingSum {
+    void add(int num)
+      { total += num; }
+    
+    int get_total()
+      { return total; }
+    
+    int total {0};
+  };
 
-  // Sum up number of meetings.
+  // Sum up number of meetings using a custom function object that maintains state.
   meetingSum sumer {};
   for_each(containers.rooms.begin(), containers.rooms.end(), [&sumer] (Room_c::value_type pair) {
     sumer.add(pair.second->get_number_Meetings());
@@ -418,9 +418,10 @@ void print_person_all(Containers& containers)
     cout << "List of people is empty" << endl;
   } else {
     cout << "Information for " << containers.persons.size() << " people:" << endl;
-    for_each(containers.persons.begin(),
-             containers.persons.end(),
-             [] (Person* person_ptr) { cout << *person_ptr << endl; });
+    
+    // Use std::copy with stream iterator to print out the people.
+    std::ostream_iterator<Person*> out_it {cout, "\n"};
+    std::copy(containers.persons.begin(), containers.persons.end(), out_it);
   }
 }
 
@@ -459,7 +460,7 @@ void reschedule_meeting(Containers& containers)
     throw e;
   }
 
-  // Actually insert the new meeting. Should not fail.
+  // Actually insert the new meeting - should never fail.
   new_room->add_Meeting(new_meeting);
 
   // If we get here, we're safe to remove the meeting from the old room.
@@ -489,9 +490,7 @@ void save_data(Containers& containers)
 void save_persons(ofstream& ofs, const Person_c& persons_c)
 {
   ofs << persons_c.size() << endl;
-  for (auto person_ptr : persons_c) {
-    person_ptr->save(ofs);
-  }
+  for_each(persons_c.begin(), persons_c.end(), bind(&Person::save, _1, ref(ofs)));
 }
 
 void save_rooms(ofstream& ofs, const Room_c& rooms_c)

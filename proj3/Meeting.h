@@ -36,10 +36,11 @@ class Meeting {
 	// Throw Error exception if invalid data discovered in file.
 	// No check made for whether the Meeting already exists or not.
 	// Person list is needed to resolve references to meeting participants
+  // Room pointer is needed to tell a Person that they have a commitment
 	// Input for a member variable value is read directly into the member variable.
 	Meeting(std::ifstream& is, const Person_c& persons_c, const Room* room);
   
-  // Only for letting the people know that they no longer have a commitment at this time.
+  // Only for letting the people know that they no longer have a commitment at this time
   ~Meeting();
   
   // Delete the assignment operators and copy/move assignment constructors. Meetings are

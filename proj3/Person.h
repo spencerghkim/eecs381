@@ -7,12 +7,6 @@
 
 class Room;
 class Meeting;
-
-struct Commitment_t {
-  const Room* room;
-  const Meeting* meeting;
-};
-
 class Person {
   public:
   Person(const std::string& firstname_, const std::string& lastname_, const std::string& phoneno_)
@@ -40,7 +34,7 @@ class Person {
   // at the specified time.
   void add_commitment(const Room* room, const Meeting* meeting);
 
-  bool has_commitment(int time);
+  bool has_commitment(int time) const;
   bool has_commitments() const;
 
   void print_commitments() const;
@@ -56,11 +50,19 @@ class Person {
     { return lastname < rhs.lastname; }
 
   friend std::ostream& operator<< (std::ostream& os, const Person& person);
+  friend std::ostream& operator<< (std::ostream& os, const Person* person);
 
   private:
   std::string lastname;
   std::string firstname;
   std::string phoneno;
+  
+  struct Commitment_t {
+    const Room* room;
+    const Meeting* meeting;
+    
+    bool operator< (const Commitment_t commitment) const;
+  };
 
   using Commitment_c = std::list<Commitment_t>;
   Commitment_c commitments;
@@ -68,6 +70,7 @@ class Person {
 
 // output firstname, lastname, phoneno with one separating space, NO endl
 std::ostream& operator<< (std::ostream& os, const Person& person);
+std::ostream& operator<< (std::ostream& os, const Person* person);
 
 #endif
 
