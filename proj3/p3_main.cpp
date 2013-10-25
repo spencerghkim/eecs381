@@ -160,7 +160,13 @@ void add_meeting(Containers& containers)
   int time = read_time();
   string topic;
   cin >> topic;
-  Meeting* new_meeting = new Meeting(time, topic);
+  
+  Meeting* new_meeting = nullptr;
+  try {
+    new_meeting = new Meeting(time, topic);
+  } catch (Error e) {
+    delete new_meeting;
+  }
   room->add_Meeting(new_meeting);
 
   cout << "Meeting added at " << time << endl;
