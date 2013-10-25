@@ -12,11 +12,11 @@
 using Commitment_c = std::list<Commitment_t>;
 
 struct Commitment_comp {
-  bool operator() (const Commitment_t* c_1, const Commitment_t* c_2) {
-    if (!(c_1->room < c_2->room) && !(c_2->room < c_1->room)) {
-      return c_1->meeting->get_time() < c_2->meeting->get_time();
+  bool operator() (const Commitment_t c_1, const Commitment_t c_2) {
+    if (!(c_1.room < c_2.room) && !(c_2.room < c_1.room)) {
+      return c_1.meeting->get_time() < c_2.meeting->get_time();
     }
-    return c_1->room < c_2->room;
+    return c_1.room < c_2.room;
   }
 };
 
@@ -29,23 +29,24 @@ Person::Person(std::ifstream& is)
 
 void Person::add_commitment(const Room* room, const Meeting* meeting)
 {
-  Commitment_t c {room, meeting};
-  
-  Commitment_c::iterator it =
-      std::lower_bound(commitments.begin(), commitments.end(), c, Commitment_comp());
-  if ((it != commitments.end()) && (it->meeting == meeting)) {
+  if (has_commitment(meeting->get_time())) {
     throw Error{"Person is already committed at that time!"};
   }
+  
+  Commitment_t c {room, meeting};
+  Commitment_c::iterator it =
+      std::lower_bound(commitments.begin(), commitments.end(), c, Commitment_comp());
   commitments.insert(it, c);
 }
 
-struct Commitment_finder {
-  void isAtTime
-};
-
 bool Person::has_commitment(int time)
 {
-  return commitments.find(time) != commitments.end();
+  for (Commitment_t c : commitments) {
+    if (c.meeting->get_time() == time) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool Person::has_commitments() const
@@ -56,33 +57,29 @@ bool Person::has_commitments() const
 using commitment_t = Commitment_c::value_type;
 void Person::print_commitments() const
 {
-  // Print the commitments out in the specified order. We trade in poor performance here
-  // (by re-ordering all of the commitments) for good performance when searching commitments
-  // for a specific time (which is quick because commitments is keyed on time).
-  std::set<commitment_t> printable_commitments;
-  for_each(commitments.begin(),
-           commitments.end(),
-           [&printable_commitments] (commitment_t commitment) {
-             printable_commitments.insert(commitment);
-           });
-  
   if (commitments.empty()) {
     std::cout << "No commitments" << std::endl;
     return;
   }
   
-  for_each(printable_commitments.begin(),
-           printable_commitments.end(),
-           [] (commitment_t pair) {
-    std::cout << "Room:" << pair.second.get_room_number();
-    std::cout << " Time: " << pair.first;
-    std::cout << " Topic: " << pair.second.get_Meeting(pair.first)->get_topic() << std::endl;
+  for_each(commitments.begin(),
+           commitments.end(),
+           [] (Commitment_t commitment) {
+    std::cout << "Room:" << commitment.room->get_room_number();
+    std::cout << " Time: " << commitment.meeting->get_time();
+    std::cout << " Topic: " << commitment.meeting->get_topic() << std::endl;
   });
 }
 
 void Person::remove_commitment(int time) noexcept
 {
-  commitments.erase(time);
+  // TODO(wjbillin): Figure out how to do this with for_each or bind or something.
+  for (Commitment_c::iterator it = commitments.begin(); it != commitments.end(); ++it) {
+    if (it->meeting->get_time() == time) {
+      commitments.erase(it);
+      break;
+    }
+  }
 } 
 
 void Person::save(std::ostream& os) const

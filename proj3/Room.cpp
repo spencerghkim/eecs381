@@ -10,8 +10,8 @@
 
 using namespace std::placeholders;
 
-using Person_c = std::set<Person*, Person_comp>;
-using Meetings_c = std::map<int, Meeting*>;
+using Person_c = std::set<Person*, Person_ptr_comp>;
+using Meetings_c = std::map<int, Meeting*, Meeting_map_comp>;
 
 Room::Room(std::ifstream& is, const Person_c& people_list) {
   int num_meetings = 0;
@@ -21,7 +21,7 @@ Room::Room(std::ifstream& is, const Person_c& people_list) {
   }
 
   for (; num_meetings > 0; --num_meetings) {
-    Meeting* meeting = new Meeting(is, people_list, *this);
+    Meeting* meeting = new Meeting(is, people_list, this);
     meetings.insert(std::make_pair(meeting->get_time(), meeting));
   }
 }
@@ -39,7 +39,6 @@ bool Room::is_Meeting_present(int time) const {
 
 Meeting* Room::get_Meeting(int time) const
 {
-  std::cout << "get meeting called with time " << time << std::endl;
   if (meetings.find(time) == meetings.end()) {
     throw Error{"No meeting at that time!"};
   }

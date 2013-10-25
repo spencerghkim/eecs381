@@ -26,6 +26,12 @@ We let the compiler supply the destructor and copy/move constructors and assignm
 #include <map>
 #include <set>
 
+struct Meeting_map_comp {
+  bool operator() (const int time_1, const int time_2) const {
+    return normalized_time(time_1) < normalized_time(time_2);
+  }
+};
+
 class Person;
 class Room {
   public:
@@ -38,7 +44,7 @@ class Room {
 	// No check made for whether the Room already exists or not.
 	// Throw Error exception if invalid data discovered in file.
 	// Input for a member variable value is read directly into the member variable.
-	Room(std::ifstream& is, const std::set<Person*, Person_comp>& people_list);
+	Room(std::ifstream& is, const std::set<Person*, Person_ptr_comp>& people_list);
 
 	// Accessors
 	int get_room_number() const
@@ -78,7 +84,7 @@ class Room {
 
   private:
     int room_number;
-    using Meetings_c = std::map<int, Meeting*>;
+    using Meetings_c = std::map<int, Meeting*, Meeting_map_comp>;
     Meetings_c meetings;
   
     Meetings_c::const_iterator get_Meeting_helper(int time) const;

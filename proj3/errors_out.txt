@@ -63,12 +63,9 @@ Participants:
 Tom Jones 123
 
 Enter command: Memory allocations:
-Strings: 4 with 26 bytes total
 Persons: 1
 Meetings: 1
 Rooms: 1
-Lists: 4
-List Nodes: 4
 
 Enter command: Could not open file!
 
@@ -82,12 +79,9 @@ Participants:
 Tom Jones 123
 
 Enter command: Memory allocations:
-Strings: 4 with 26 bytes total
 Persons: 1
 Meetings: 1
 Rooms: 1
-Lists: 4
-List Nodes: 4
 
 Enter command: Data loaded
 
@@ -111,12 +105,9 @@ Participants: None
 No meetings are scheduled
 
 Enter command: Memory allocations:
-Strings: 14 with 106 bytes total
 Persons: 4
 Meetings: 2
 Rooms: 2
-Lists: 6
-List Nodes: 10
 
 Enter command: Invalid data found in file!
 
@@ -138,12 +129,9 @@ Participants: None
 No meetings are scheduled
 
 Enter command: Memory allocations:
-Strings: 14 with 106 bytes total
 Persons: 4
 Meetings: 2
 Rooms: 2
-Lists: 6
-List Nodes: 10
 
 Enter command: All rooms and meetings deleted
 All persons deleted

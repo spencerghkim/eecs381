@@ -1,11 +1,8 @@
 
 Enter command: Memory allocations:
-Strings: 0 with 0 bytes total
 Persons: 0
 Meetings: 0
 Rooms: 0
-Lists: 2
-List Nodes: 0
 
 Enter command: List of people is empty
 
@@ -55,14 +52,6 @@ Tom Jones 123
 Enter command: Meeting time: 2, Topic: Literature
 Participants: None
 
-Enter command: Memory allocations:
-Strings: 11 with 63 bytes total
-Persons: 3
-Meetings: 2
-Rooms: 2
-Lists: 6
-List Nodes: 9
-
 Enter command: Data saved
 
 Enter command: Data loaded
@@ -79,12 +68,17 @@ Participants: None
 No meetings are scheduled
 
 Enter command: Memory allocations:
-Strings: 11 with 83 bytes total
 Persons: 3
 Meetings: 2
 Rooms: 2
-Lists: 6
-List Nodes: 9
+
+Enter command: No change made to schedule
+
+Enter command: Meeting rescheduled to room 1002 at 10
+
+Enter command: Meeting rescheduled to room 1001 at 10
+
+Enter command: Meeting rescheduled to room 1002 at 11
 
 Enter command: Meeting rescheduled to room 1002 at 3
 
@@ -118,19 +112,24 @@ No meetings are scheduled
 
 Enter command: Room 1001 deleted
 
-Enter command: Memory allocations:
-Strings: 6 with 42 bytes total
-Persons: 2
-Meetings: 0
-Rooms: 1
-Lists: 3
-List Nodes: 3
-
 Enter command: Data saved
 
 Enter command: Data loaded
 
 Enter command: Information for 1 rooms:
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: Data loaded
+
+Enter command: Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Music
+Participants:
+Elton John 789
+Tom Jones 123
+Meeting time: 2, Topic: Literature
+Participants: None
 --- Room 1002 ---
 No meetings are scheduled
 
@@ -142,12 +141,9 @@ Enter command: All rooms and meetings deleted
 All persons deleted
 
 Enter command: Memory allocations:
-Strings: 0 with 0 bytes total
 Persons: 0
 Meetings: 0
 Rooms: 0
-Lists: 2
-List Nodes: 0
 
 Enter command: All rooms and meetings deleted
 All persons deleted

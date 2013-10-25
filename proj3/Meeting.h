@@ -23,7 +23,7 @@ class Person;
 class Room;
 class Meeting {
   using Participants_c = std::vector<Person*>;
-  using Person_c = std::set<Person*, Person_comp>;
+  using Person_c = std::set<Person*, Person_ptr_comp>;
   public:
   
   // construct a Meeting with only a time
@@ -67,7 +67,7 @@ class Meeting {
 	void remove_participant(Person* p);
 
   // Transfer participants from this meeting into a new Meeting.
-  void transfer_participants(Meeting* new_meeting, const Room& new_room);
+  void transfer_participants(Meeting* new_meeting, const Room* new_room);
   
   // Clear all participants.
   void clear_participants();
