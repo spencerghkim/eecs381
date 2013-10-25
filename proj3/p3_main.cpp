@@ -161,13 +161,13 @@ void add_meeting(Containers& containers)
   string topic;
   cin >> topic;
   
-  Meeting* new_meeting = nullptr;
+  Meeting* new_meeting = new Meeting(time, topic);
   try {
-    new_meeting = new Meeting(time, topic);
-  } catch (Error e) {
+    room->add_Meeting(new_meeting);
+  } catch (Error& e) {
     delete new_meeting;
+    throw e;
   }
-  room->add_Meeting(new_meeting);
 
   cout << "Meeting added at " << time << endl;
 }
@@ -465,7 +465,7 @@ void reschedule_meeting(Containers& containers)
   // we never added the meeting to a room.
   try {
     old_Meeting->transfer_participants(new_meeting, new_room);
-  } catch (Error e) {
+  } catch (Error& e) {
     delete new_meeting;
     throw e;
   }
