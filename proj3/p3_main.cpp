@@ -333,6 +333,9 @@ void load_data(Containers& containers)
     ifs.close();
     throw e;
   }
+  
+  // Everything went well. Clear our backup copy.
+  delete_all_no_print(containers_backup);
 
   ifs.close();
   cout << "Data loaded" << endl;
