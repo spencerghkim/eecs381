@@ -351,7 +351,7 @@ Person_c load_persons(ifstream& ifs)
 {
   Person_c persons_c {};
   for (int num_persons = read_int_from_file(ifs); num_persons > 0; --num_persons) {
-    Person* new_person = new Person(ifs);
+    Person* new_person = new Person{ifs};
     persons_c.insert(new_person);
   }
   return persons_c;
@@ -520,6 +520,8 @@ Meeting* read_and_find_meeting(Room_c& rooms_c)
 {
   Room* room = read_and_find_room(rooms_c);
   int time = read_time();
+  
+  // Will throw if meeting doesn't exist at that time.
   return room->get_Meeting(time);
 }
 
@@ -542,7 +544,6 @@ Room* read_and_find_room(Room_c& rooms_c)
   if (room_it == rooms_c.end()) {
     throw Error{"No room with that number!"};
   }
- 
   return room_it->second;
 }
 

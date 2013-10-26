@@ -12,10 +12,10 @@ using namespace std::placeholders;
 
 bool Person::Commitment_t::operator< (const Commitment_t other) const
 {
-  if (!(this->room < other.room) && !(other.room < this->room)) {
-    return this->meeting->get_time() < other.meeting->get_time();
+  if (!(*(this->room) < *(other.room)) && !(*(other.room) < *(this->room))) {
+    return *(this->meeting) < *(other.meeting);
   }
-  return this->room < other.room;
+  return *(this->room) < *(other.room);
 }
 
 Person::Person(std::ifstream& is)
