@@ -3,19 +3,25 @@
 #include "Person.h"
 #include "Utility.h"
 
+#include <algorithm>
 #include <fstream>
+#include <functional>
 #include <iostream>
+#include <iterator>
 #include <list>
 #include <map>
 #include <new>
 #include <set>
 #include <string>
-#include <vector>
 
-using namespace std;
+using namespace std::placeholders;
 
-using Room_c = vector<Room>;
-using Person_c = set<Person *, Person_comp>;
+using std::cout; using std::cin; using std::cerr; using std::endl;
+using std::ifstream; using std::ofstream;
+using std::string;
+
+using Room_c = std::map<int, Room*>;
+using Person_c = std::set<Person *, Person_ptr_comp>;
 
 using Room_it = Room_c::iterator;
 using Person_it = Person_c::iterator;
@@ -26,7 +32,8 @@ struct Containers {
 };
 
 using top_level_func_ptr = void (*)(Containers&);
-using Function_map = map<string, top_level_func_ptr>;
+using Function_map = std::map<string, top_level_func_ptr>;
+void populate_top_level_func_map(Function_map& func_map);
 
 void add_meeting(Containers& containers);
 void add_participant(Containers& containers);
@@ -46,6 +53,7 @@ void load_data(Containers& containers);
 Person_c load_persons(ifstream& is);
 Room_c load_rooms(ifstream& is, const Person_c& persons_c);
 
+void print_commitments(Containers& containers);
 void print_meeting(Containers& containers);
 void print_meeting_all(Containers& containers);
 void print_memory(Containers& containers);
@@ -63,16 +71,14 @@ void save_rooms(ofstream& ofs, const Room_c& rooms_c);
 
 void print_bad_command_and_clear();
 
-Meeting& read_and_find_meeting(const Room_c& rooms_c);
+Meeting* read_and_find_meeting(Room_c& rooms_c);
 Person* read_and_find_person(const Person_c& persons_c);
-Room& read_and_find_room(const Room_c& rooms_c);
+Room* read_and_find_room(Room_c& rooms_c);
 
 int read_int();
 int read_int_from_file(ifstream& ifs);
 int read_room_number();
 int read_time();
-
-void populate_top_level_func_map(Function_map& func_map);
 
 int main() {
   Containers containers {};
@@ -89,11 +95,12 @@ int main() {
 
     try {
 
-      string command = string{first_letter} + string{second_letter};
+      string command = string{&first_letter, 1} + string{&second_letter, 1};
       
       // Explicitly check for the quit command.
       if (command == "qq") {
         delete_all(containers);
+        cout << "Done" << endl;
         return 0;
       }
 
@@ -137,6 +144,7 @@ void populate_top_level_func_map(Function_map& func_map)
   func_map["dr"] = delete_room;
   func_map["ld"] = load_data;
   func_map["pa"] = print_memory;
+  func_map["pc"] = print_commitments;
   func_map["pg"] = print_person_all;
   func_map["pi"] = print_person;
   func_map["pm"] = print_meeting;
@@ -148,29 +156,30 @@ void populate_top_level_func_map(Function_map& func_map)
 
 void add_meeting(Containers& containers)
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
   int time = read_time();
   string topic;
   cin >> topic;
-  Meeting new_meeting(time, topic);
-  room.add_Meeting(new_meeting);
+  
+  Meeting* new_meeting = new Meeting(time, topic);
+  try {
+    room->add_Meeting(new_meeting);
+  } catch (Error& e) {
+    delete new_meeting;
+    throw e;
+  }
 
   cout << "Meeting added at " << time << endl;
 }
 
 void add_participant(Containers& containers) 
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
   int time = read_time();
-  Meeting& meeting = room.get_Meeting(time);
+  Meeting* meeting_ptr = room->get_Meeting(time);
   Person* person_ptr = read_and_find_person(containers.persons);
 
-  if (meeting.is_participant_present(person_ptr)) {
-    throw Error{"This person is already a participant!"};
-  }
-
-  person_ptr->add_commitment(time, room);
-  meeting.add_participant(person_ptr);
+  meeting_ptr->add_participant(person_ptr, room);
 
   cout << "Participant " << person_ptr->get_lastname() << " added" << endl;
 }
@@ -193,12 +202,11 @@ void add_person(Containers& containers)
 void add_room(Containers& containers)
 {
   int room_number = read_room_number();
-  Room room {room_number};
-  Room_c::iterator low = lower_bound(containers.rooms.begin(), containers.rooms.end(), room);
-  if (low != containers.rooms.end() && low->get_room_number() == room_number) {
+  if (containers.rooms.find(room_number) != containers.rooms.end()) {
     throw Error{"There is already a room with this number!"};
   }
-  containers.rooms.insert(low, room);
+  Room* room = new Room{room_number};
+  containers.rooms.insert(std::make_pair(room_number, room));
 
   cout << "Room " << room_number << " added" << endl;
 }
@@ -212,63 +220,88 @@ void delete_person(Containers& containers)
 
   cout << "Person " << person_ptr->get_lastname() << " deleted" << endl;
 
-  delete person_ptr;
   containers.persons.erase(person_ptr);
+  delete person_ptr;
+}
+
+void delete_person_all_helper(Containers& containers)
+{
+  for_each(containers.rooms.begin(), containers.rooms.end(), [] (Room_c::value_type& pair) {
+    if (pair.second->has_Meetings()) {
+      throw Error{"Cannot clear people list unless there are no meetings!"};
+    }
+  });
+  
+  // Before clearing the people, we need to go through and free the pointers.
+  for_each(containers.persons.begin(),
+           containers.persons.end(),
+           [] (Person* person_ptr) { delete person_ptr; });
+  containers.persons.clear();
+}
+
+void delete_person_all(Containers& containers)
+{
+  delete_person_all_helper(containers);
+  cout << "All persons deleted" << endl;
 }
 
 void delete_room(Containers& containers)
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
+  room->clear_Meetings();
 
-  cout << "Room " << room.get_room_number() << " deleted" << endl;
-  containers.rooms.erase(room);
+  cout << "Room " << room->get_room_number() << " deleted" << endl;
+
+  containers.rooms.erase(room->get_room_number());
+  delete room;
+}
+
+void delete_room_all_helper(Room_c& rooms_c)
+{
+  for_each(rooms_c.begin(),
+           rooms_c.end(),
+           [] (Room_c::value_type pair) {
+             pair.second->clear_Meetings();
+             delete pair.second;
+           });
+  rooms_c.clear();
 }
 
 void delete_room_all(Containers& containers)
 {
-  containers.rooms.clear();
+  delete_room_all_helper(containers.rooms);
   cout << "All rooms and meetings deleted" << endl;
 }
 
 void delete_meeting(Containers& containers)
 {
-  Room& room = read_and_find_room(containers.rooms);
+  Room* room = read_and_find_room(containers.rooms);
   int time = read_time();
-  room.remove_Meeting(time);
+  room->remove_Meeting(time);
  
   cout << "Meeting at " << time << " deleted" << endl;
 }
 
+void delete_meeting_all(Containers& containers)
+{
+  for_each(containers.rooms.begin(),
+           containers.rooms.end(),
+           bind(&Room::clear_Meetings, bind(&Room_c::value_type::second, _1)));
+  cout << "All meetings deleted" << endl;
+}
+
 void delete_participant(Containers& containers)
 {
-  Meeting& meeting = read_and_find_meeting(containers.rooms);
+  Meeting* meeting_ptr = read_and_find_meeting(containers.rooms);
   Person* person_ptr = read_and_find_person(containers.persons);
-  meeting.remove_participant(person_ptr);
+  meeting_ptr->remove_participant(person_ptr);
 
   cout << "Participant " << person_ptr->get_lastname() << " deleted" << endl;
 }
 
-void delete_meeting_all(Containers& containers)
-{
-  for (auto& room : containers.rooms) {
-    room.clear_Meetings();
-  }
-  cout << "All meetings deleted" << endl;
-}
-
-void delete_person_all(Containers& containers)
-{
-  for (auto& room : containers.rooms) {
-    if (room.has_Meetings()) {
-      throw Error{"Cannot clear people list unless there are no meetings!"};
-    }
-  }
-
-  // TODO: this
-  // Before clearing the people, we need to go through and free the pointers.
-  containers.persons.clear();
-
-  cout << "All persons deleted" << endl;
+void delete_all_no_print(Containers& containers) {
+  delete_room_all_helper(containers.rooms);
+  delete_person_all_helper(containers);
 }
 
 void delete_all(Containers& containers)
@@ -287,10 +320,12 @@ void load_data(Containers& containers)
     throw Error{"Could not open file!"};
   }
 
-  // We need this inner try block in order to catch any errors and restore the old
-  // copies of Rooms and Persons.
-  Person_c persons_backup {containers.persons};
-  Room_c rooms_backup {containers.rooms};
+  // Store a backup copy of containers.
+  Containers containers_backup = containers;
+  
+  // Clear the containers. If an exception is thrown during data load, we can safely delete
+  // these containers (including any dynamically allocated memory) without touching the
+  // structures and dynamically allocated memory in the backup copy.
   containers.persons.clear();
   containers.rooms.clear();
   try {
@@ -298,19 +333,15 @@ void load_data(Containers& containers)
     containers.rooms = load_rooms(ifs, containers.persons);
 
   } catch (Error& e) {
-    // Make sure to actually delete any added persons - everything else will be taken care
-    // of when we reassign the containers to their backups.
-    //apply(containers.persons.begin(), containers.persons.end(), free_person_ptr);
-
-    containers.persons = persons_backup;
-    containers.rooms = rooms_backup;
+    delete_all_no_print(containers);
+    containers = containers_backup;
 
     ifs.close();
     throw e;
   }
-
-  // Load was successful! Free any person ptr in the backup copies.
-  //apply(persons_backup.begin(), persons_backup.end(), free_person_ptr);
+  
+  // Everything went well. Clear our backup copy.
+  delete_all_no_print(containers_backup);
 
   ifs.close();
   cout << "Data loaded" << endl;
@@ -326,20 +357,26 @@ Person_c load_persons(ifstream& ifs)
   return persons_c;
 }
 
-Room_c load_rooms(ifstream& ifs, const Containers& containers)
+Room_c load_rooms(ifstream& ifs, const Person_c& persons_c)
 {
   Room_c rooms_c {};
   for (int num_rooms = read_int_from_file(ifs); num_rooms > 0; --num_rooms) {
-    Room new_room(ifs, containers.persons);
-    rooms_c.insert(new_room);
+    Room* new_room = new Room{ifs, persons_c};
+    rooms_c.insert(std::make_pair(new_room->get_room_number(), new_room));
   }
   return rooms_c;
-} 
+}
+
+void print_commitments(Containers& containers)
+{
+  Person* person_ptr = read_and_find_person(containers.persons);
+  person_ptr->print_commitments();
+}
 
 void print_meeting(Containers& containers)
 {
-  Meeting& meeting = read_and_find_meeting(containers.rooms);
-  cout << meeting;
+  Meeting* meeting = read_and_find_meeting(containers.rooms);
+  cout << *meeting;
 }
  
 void print_meeting_all(Containers& containers)
@@ -350,68 +387,96 @@ void print_meeting_all(Containers& containers)
   }
 
   cout << "Information for " << containers.rooms.size() << " rooms:" << endl;
-  for (auto& room : containers.rooms) {
-    cout << room;
-  }
+  for_each(containers.rooms.begin(), containers.rooms.end(), [] (Room_c::value_type& pair) {
+    cout << *(pair.second);
+  });
 }
 
 void print_memory(Containers& containers)
 {
   cout << "Memory allocations:" << endl;
   cout << "Persons: " << containers.persons.size() << endl;
+  
+  struct meetingSum {
+    void add(int num)
+      { total += num; }
+    
+    int get_total()
+      { return total; }
+    
+    int total {0};
+  };
 
-  // Sum up number of meetings.
-  int num_meetings = 0;
-  for (auto& room : containers.rooms) {
-    num_meetings += room.get_number_Meetings();
-  }
-  cout << "Meetings: " << num_meetings << endl;
+  // Sum up number of meetings using a custom function object that maintains state.
+  meetingSum sumer {};
+  for_each(containers.rooms.begin(), containers.rooms.end(), [&sumer] (Room_c::value_type pair) {
+    sumer.add(pair.second->get_number_Meetings());
+  });
+  cout << "Meetings: " << sumer.get_total() << endl;
   cout << "Rooms: " << containers.rooms.size() << endl;
 }
 
-void print_person(const Containers& containers)
+void print_person(Containers& containers)
 {
   Person* person_ptr = read_and_find_person(containers.persons);
   cout << *person_ptr << endl;
 }
 
-void print_person_all(const Containers& containers)
+void print_person_all(Containers& containers)
 {
   if (containers.persons.empty()) {
     cout << "List of people is empty" << endl;
   } else {
     cout << "Information for " << containers.persons.size() << " people:" << endl;
-    for (auto person_ptr : containers.persons) {
-      cout << *person_ptr << endl;
-    }
+    
+    // Use std::copy with stream iterator to print out the people.
+    std::ostream_iterator<Person*> out_it {cout, "\n"};
+    std::copy(containers.persons.begin(), containers.persons.end(), out_it);
   }
 }
 
 void print_room(Containers& containers)
 {
-  Room& room = read_and_find_room(containers.rooms);
-  cout << room;
+  Room* room = read_and_find_room(containers.rooms);
+  cout << *room;
 }
 
 void reschedule_meeting(Containers& containers)
 {
-  Room& old_room = read_and_find_room(containers.rooms);
+  Room* old_room = read_and_find_room(containers.rooms);
   int old_time = read_time();
-  Meeting old_Meeting = old_room.get_Meeting(old_time);
+  Meeting* old_Meeting = old_room->get_Meeting(old_time);
 
-  Room& new_room = read_and_find_room(containers.rooms);
+  Room* new_room = read_and_find_room(containers.rooms);
   int new_time = read_time();
+  
+  if (new_room->get_room_number() == old_room->get_room_number() &&
+      old_Meeting->get_time() == new_time) {
+    throw Error{"No change made to schedule"};
+  }
+  
+  if (new_room->is_Meeting_present(new_time)) {
+    throw Error{"There is already a meeting at that time!"};
+  }
 
-  Meeting new_meeting {old_Meeting};
-  new_meeting.set_time(new_time);
+  Meeting* new_meeting = new Meeting{new_time, old_Meeting->get_topic()};
+  
+  // If transfer_participants fails, we are in charge of deleting the pointer, since
+  // we never added the meeting to a room.
+  try {
+    old_Meeting->transfer_participants(new_meeting, new_room);
+  } catch (Error& e) {
+    delete new_meeting;
+    throw e;
+  }
 
-  // Actually insert the new meeting. Will throw if already exists.
-  new_room.add_Meeting(new_meeting);
+  // Actually insert the new meeting - should never fail.
+  new_room->add_Meeting(new_meeting);
 
   // If we get here, we're safe to remove the meeting from the old room.
-  old_room.remove_Meeting(old_time);
+  old_room->remove_Meeting(old_time);
 
-  cout << "Meeting rescheduled to room " << new_room.get_room_number();
+  cout << "Meeting rescheduled to room " << new_room->get_room_number();
   cout << " at " << new_time << endl;
 }
 
@@ -432,20 +497,18 @@ void save_data(Containers& containers)
   cout << "Data saved" << endl;
 }
 
-void save_persons(ofstream& ofs, const Person_c persons_c)
+void save_persons(ofstream& ofs, const Person_c& persons_c)
 {
   ofs << persons_c.size() << endl;
-  for (auto person_ptr : persons_c) {
-    person_ptr->save(ofs);
-  }
+  for_each(persons_c.begin(), persons_c.end(), bind(&Person::save, _1, ref(ofs)));
 }
 
-void save_rooms(ofstream& ofs, const Room_c rooms_c)
+void save_rooms(ofstream& ofs, const Room_c& rooms_c)
 {
   ofs << rooms_c.size() << endl;
-  for (auto& room : rooms_c) {
-    room.save(ofs);
-  }
+  for_each(rooms_c.begin(),
+           rooms_c.end(),
+           bind(&Room::save, bind(&Room_c::value_type::second, _1), ref(ofs)));
 }
 
 void print_bad_command_and_clear() {
@@ -453,11 +516,11 @@ void print_bad_command_and_clear() {
   while (cin.get() != '\n');
 }
 
-Meeting& read_and_find_meeting(const Room_c& rooms_c)
+Meeting* read_and_find_meeting(Room_c& rooms_c)
 {
-  Room& room = read_and_find_room(rooms_c);
+  Room* room = read_and_find_room(rooms_c);
   int time = read_time();
-  return room.get_Meeting(time);
+  return room->get_Meeting(time);
 }
 
 Person* read_and_find_person(const Person_c& persons_c)
@@ -469,18 +532,18 @@ Person* read_and_find_person(const Person_c& persons_c)
   if ((person_it = persons_c.find(&probe)) == persons_c.end()) {
     throw Error{"No person with that name!"};
   }
-  return persons_c[probe];
+  return *person_it;
 }
 
-Room& read_and_find_room(const Room_c& rooms_c)
+Room* read_and_find_room(Room_c& rooms_c)
 {
   int room_number = read_room_number();
-  Room probe {room_number};
-  Rooms_c::iterator low = lower_bound(rooms_c.begin(), rooms_c.end(), probe);
-  if (low == rooms_c.end() || low->get_room_number() != room_number) {
+  auto room_it = rooms_c.find(room_number);
+  if (room_it == rooms_c.end()) {
     throw Error{"No room with that number!"};
   }
-  return *low;
+ 
+  return room_it->second;
 }
 
 int read_int()

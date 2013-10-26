@@ -6,9 +6,13 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <set>
 
-Room::Room(std::ifstream& is,
-           const Ordered_list<const Person*, Less_than_ptr<const Person*> >& people_list) {
+using namespace std::placeholders;
+
+using Person_c = std::set<Person*, Person_ptr_comp>;
+
+Room::Room(std::ifstream& is, const Person_c& people_list) {
   int num_meetings = 0;
 
   if (!(is >> room_number) || !(is >> num_meetings)) {
@@ -16,58 +20,52 @@ Room::Room(std::ifstream& is,
   }
 
   for (; num_meetings > 0; --num_meetings) {
-    Meeting meeting(is, people_list);
-    meetings.push_back(meeting);
+    Meeting* meeting = new Meeting(is, people_list, this);
+    meetings.insert(std::make_pair(meeting->get_time(), meeting));
   }
 }
 
-void Room::add_Meeting(const Meeting& m) {
-  Meetings_c::iterator low = lower_bound(meetings.begin(), meetings.end(), m);
-  if (low != meetings.end() && low->get_time() == m.get_time()) {
+void Room::add_Meeting(Meeting* new_meeting) {
+  if (meetings.find(new_meeting->get_time()) != meetings.end()) {
     throw Error{"There is already a meeting at that time!"};
   }
-  meetings.insert(low, m);
+  meetings.insert(std::make_pair(new_meeting->get_time(), new_meeting));
 }
 
 bool Room::is_Meeting_present(int time) const {
-  Meeting probe{time};
-  return binary_search(meetings.begin(), meetings.end(), probe);
+  return meetings.find(time) != meetings.end();
 }
 
-Meetings_c::iterator get_Meeting_helper(Meetings_c meetings_c, int time)
+Meeting* Room::get_Meeting(int time) const
 {
-  Meetings_c::iterator low = lower_bound(meetings_c.begin(), meetings_c.end(), m);
-  if (low->get_time != time) {
+  if (meetings.find(time) == meetings.end()) {
     throw Error{"No meeting at that time!"};
   }
-  return low;
-}
-
-Meeting& Room::get_Meeting(int time) const {
-  return get_Meeting_helper(meetings, time);
+  return meetings.find(time)->second;
 }
 
 void Room::remove_Meeting(int time) {
-  auto meeting_it = get_Meeting_helper(meetings, time);
+  auto meeting_it = meetings.find(time);
+  if (meeting_it == meetings.end()) {
+    throw Error{"No meeting at that time!"};
+  }
+  
+  delete meeting_it->second;
   meetings.erase(meeting_it);
 }
 
-/*bool Room::is_participant_present(const Person* person_ptr) const {
-  for (auto meeting_it = meetings.begin(); meeting_it != meetings.end(); ++meeting_it) {
-    if (meeting_it->is_participant_present(person_ptr)) {
-      return true;
-    }
-  }
-  return false;
-}*/ 
+void Room::clear_Meetings() {
+  std::for_each(meetings.begin(),
+                meetings.end(),
+                [] (Meeting_c::value_type pair) { delete pair.second; });
+  meetings.clear();
+}
 
 void Room::save(std::ostream& os) const {
   os << room_number << " " << meetings.size() << std::endl;
-  // Find out how to use bind/mem_fn.
-  for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { m.save(os); });
-  /*for (auto meeting_it = meetings.begin(); meeting_it != meetings.end(); ++meeting_it) {
-    meeting_it->save(os);
-  }*/
+  std::for_each(meetings.begin(),
+                meetings.end(),
+                std::bind(&Meeting::save, std::bind(&Meeting_c::value_type::second, _1), ref(os)));
 }
 
 std::ostream& operator<< (std::ostream& os, const Room& room) {
@@ -75,10 +73,9 @@ std::ostream& operator<< (std::ostream& os, const Room& room) {
   if (room.meetings.empty()) {
     os << "No meetings are scheduled" << std::endl;
   } else {
-    for_each(meetings.begin(), meetings.end(), [&os] (Meeting& m) { os << m; });
-/*    for (auto it = room.meetings.begin(); it != room.meetings.end(); ++it) {
-      os << *it;
-    }*/
+    std::for_each(room.meetings.begin(),
+                  room.meetings.end(),
+                  [&os] (Room::Meeting_c::value_type pair) { os << *(pair.second); });
   }
   return os;
 }
