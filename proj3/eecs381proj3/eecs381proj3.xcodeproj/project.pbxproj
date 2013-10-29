@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B364D7F11818AE870046DAA3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B364D7F01818AE870046DAA3 /* main.cpp */; };
 		B364D7F31818AE870046DAA3 /* eecs381proj3.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B364D7F21818AE870046DAA3 /* eecs381proj3.1 */; };
+		B3CA1B8C1818B07B008F0610 /* Meeting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CA1B831818B07B008F0610 /* Meeting.cpp */; };
+		B3CA1B8D1818B07B008F0610 /* p3_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CA1B851818B07B008F0610 /* p3_main.cpp */; };
+		B3CA1B8E1818B07B008F0610 /* Person.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CA1B861818B07B008F0610 /* Person.cpp */; };
+		B3CA1B8F1818B07B008F0610 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CA1B881818B07B008F0610 /* Room.cpp */; };
+		B3CA1B901818B07B008F0610 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3CA1B8A1818B07B008F0610 /* Utility.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +30,16 @@
 
 /* Begin PBXFileReference section */
 		B364D7ED1818AE870046DAA3 /* eecs381proj3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj3; sourceTree = BUILT_PRODUCTS_DIR; };
-		B364D7F01818AE870046DAA3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B364D7F21818AE870046DAA3 /* eecs381proj3.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj3.1; sourceTree = "<group>"; };
+		B3CA1B831818B07B008F0610 /* Meeting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Meeting.cpp; path = ../../Meeting.cpp; sourceTree = "<group>"; };
+		B3CA1B841818B07B008F0610 /* Meeting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Meeting.h; path = ../../Meeting.h; sourceTree = "<group>"; };
+		B3CA1B851818B07B008F0610 /* p3_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = p3_main.cpp; path = ../../p3_main.cpp; sourceTree = "<group>"; };
+		B3CA1B861818B07B008F0610 /* Person.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Person.cpp; path = ../../Person.cpp; sourceTree = "<group>"; };
+		B3CA1B871818B07B008F0610 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = ../../Person.h; sourceTree = "<group>"; };
+		B3CA1B881818B07B008F0610 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Room.cpp; path = ../../Room.cpp; sourceTree = "<group>"; };
+		B3CA1B891818B07B008F0610 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Room.h; path = ../../Room.h; sourceTree = "<group>"; };
+		B3CA1B8A1818B07B008F0610 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = ../../Utility.cpp; sourceTree = "<group>"; };
+		B3CA1B8B1818B07B008F0610 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../Utility.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +72,15 @@
 		B364D7EF1818AE870046DAA3 /* eecs381proj3 */ = {
 			isa = PBXGroup;
 			children = (
-				B364D7F01818AE870046DAA3 /* main.cpp */,
+				B3CA1B831818B07B008F0610 /* Meeting.cpp */,
+				B3CA1B841818B07B008F0610 /* Meeting.h */,
+				B3CA1B851818B07B008F0610 /* p3_main.cpp */,
+				B3CA1B861818B07B008F0610 /* Person.cpp */,
+				B3CA1B871818B07B008F0610 /* Person.h */,
+				B3CA1B881818B07B008F0610 /* Room.cpp */,
+				B3CA1B891818B07B008F0610 /* Room.h */,
+				B3CA1B8A1818B07B008F0610 /* Utility.cpp */,
+				B3CA1B8B1818B07B008F0610 /* Utility.h */,
 				B364D7F21818AE870046DAA3 /* eecs381proj3.1 */,
 			);
 			path = eecs381proj3;
@@ -117,7 +137,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B364D7F11818AE870046DAA3 /* main.cpp in Sources */,
+				B3CA1B901818B07B008F0610 /* Utility.cpp in Sources */,
+				B3CA1B8C1818B07B008F0610 /* Meeting.cpp in Sources */,
+				B3CA1B8E1818B07B008F0610 /* Person.cpp in Sources */,
+				B3CA1B8D1818B07B008F0610 /* p3_main.cpp in Sources */,
+				B3CA1B8F1818B07B008F0610 /* Room.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,9 +220,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libstdc++";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 			};
 			name = Debug;
 		};
@@ -206,9 +232,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libstdc++";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_INPUT_FILETYPE = automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 			};
 			name = Release;
 		};
@@ -231,6 +259,7 @@
 				B364D7F81818AE870046DAA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
