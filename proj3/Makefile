@@ -21,7 +21,7 @@ CFLAGS = -std=c++11 -pedantic -Wall -c
 LFLAGS = 
 
 OBJS = p3_main.o Room.o Person.o Meeting.o Utility.o
-PROG = proj2exe
+PROG = proj3exe
 
 default: $(PROG)
 
