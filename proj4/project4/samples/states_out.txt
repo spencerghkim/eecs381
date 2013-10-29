@@ -1,0 +1,220 @@
+Sim_object Rivendale constructed
+Structure Rivendale constructed
+Farm Rivendale constructed
+Sim_object Sunnybrook constructed
+Structure Sunnybrook constructed
+Farm Sunnybrook constructed
+Sim_object Shire constructed
+Structure Shire constructed
+Town_Hall Shire constructed
+Sim_object Paduca constructed
+Structure Paduca constructed
+Town_Hall Paduca constructed
+Sim_object Pippin constructed
+Agent Pippin constructed
+Peasant Pippin constructed
+Sim_object Merry constructed
+Agent Merry constructed
+Peasant Merry constructed
+Sim_object Zug constructed
+Agent Zug constructed
+Soldier Zug constructed
+Sim_object Bug constructed
+Agent Bug constructed
+Soldier Bug constructed
+
+Time 0: Enter command: Bug: I'm on the way
+
+Time 0: Enter command: Pippin: I'm on the way
+
+Time 0: Enter command: Zug: I'm on the way
+
+Time 0: Enter command: Bug: step...
+Pippin: step...
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: step...
+
+Time 1: Enter command: Bug: I'm there!
+Pippin: step...
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+Zug: step...
+
+Time 2: Enter command: Pippin: step...
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+Zug: I'm there!
+
+Time 3: Enter command: Pippin: I'm there!
+Farm Rivendale now has 58.00
+Farm Sunnybrook now has 58.00
+
+Time 4: Enter command: Zug: I'm attacking!
+
+Time 4: Enter command: Farm Rivendale now has 60.00
+Farm Sunnybrook now has 60.00
+Zug: Clang!
+Pippin: Ouch!
+
+Time 5: Enter command: Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 3
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 60.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 60.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+
+Time 5: Enter command: Bug: I'm attacking!
+
+Time 5: Enter command: Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 3
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 60.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 60.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+
+Time 5: Enter command: Bug: Clang!
+Pippin: Ouch!
+Farm Rivendale now has 62.00
+Farm Sunnybrook now has 62.00
+Zug: Clang!
+Pippin: Arrggh!
+Zug: I triumph!
+
+Time 6: Enter command: Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Is dying
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 62.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 62.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 6: Enter command: Bug: Target is dead
+Farm Rivendale now has 64.00
+Farm Sunnybrook now has 64.00
+
+Time 7: Enter command: Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Is dead
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 64.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 64.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 7: Enter command: Farm Rivendale now has 66.00
+Farm Sunnybrook now has 66.00
+Peasant Pippin destructed
+Agent Pippin destructed
+Sim_object Pippin destructed
+
+Time 8: Enter command: Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 66.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 66.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 8: Enter command: Done
+Soldier Bug destructed
+Agent Bug destructed
+Sim_object Bug destructed
+Peasant Merry destructed
+Agent Merry destructed
+Sim_object Merry destructed
+Town_Hall Paduca destructed
+Structure Paduca destructed
+Sim_object Paduca destructed
+Farm Rivendale destructed
+Structure Rivendale destructed
+Sim_object Rivendale destructed
+Town_Hall Shire destructed
+Structure Shire destructed
+Sim_object Shire destructed
+Farm Sunnybrook destructed
+Structure Sunnybrook destructed
+Sim_object Sunnybrook destructed
+Soldier Zug destructed
+Agent Zug destructed
+Sim_object Zug destructed

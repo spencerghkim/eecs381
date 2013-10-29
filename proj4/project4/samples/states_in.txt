@@ -1,0 +1,14 @@
+Bug move 20 21 Pippin move 20 20 Zug move 20 19
+go go go go
+Zug attack Pippin
+go
+status
+Bug attack Pippin
+status
+go
+status
+go
+status
+go
+status
+quit

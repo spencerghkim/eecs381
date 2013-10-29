@@ -1,0 +1,113 @@
+Sim_object Rivendale constructed
+Structure Rivendale constructed
+Farm Rivendale constructed
+Sim_object Sunnybrook constructed
+Structure Sunnybrook constructed
+Farm Sunnybrook constructed
+Sim_object Shire constructed
+Structure Shire constructed
+Town_Hall Shire constructed
+Sim_object Paduca constructed
+Structure Paduca constructed
+Town_Hall Paduca constructed
+Sim_object Pippin constructed
+Agent Pippin constructed
+Peasant Pippin constructed
+Sim_object Merry constructed
+Agent Merry constructed
+Peasant Merry constructed
+Sim_object Zug constructed
+Agent Zug constructed
+Soldier Zug constructed
+Sim_object Bug constructed
+Agent Bug constructed
+Soldier Bug constructed
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Trying to create agent of unknown type!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Sim_object Camelot1 constructed
+Structure Camelot1 constructed
+Town_Hall Camelot1 constructed
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Trying to create structure of unknown type!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Pippin: I'm on the way
+
+Time 0: Enter command: Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Town_Hall Camelot1 at (25.00, 25.00)
+   Contains 0.00
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Moving at speed 5.00 to (25.00, 25.00)
+   Carrying 0.00
+   Inbound to source Camelot1
+Farm Rivendale at (10.00, 10.00)
+   Food available: 50.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 50.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 0: Enter command: Done
+Soldier Bug destructed
+Agent Bug destructed
+Sim_object Bug destructed
+Town_Hall Camelot1 destructed
+Structure Camelot1 destructed
+Sim_object Camelot1 destructed
+Peasant Merry destructed
+Agent Merry destructed
+Sim_object Merry destructed
+Town_Hall Paduca destructed
+Structure Paduca destructed
+Sim_object Paduca destructed
+Peasant Pippin destructed
+Agent Pippin destructed
+Sim_object Pippin destructed
+Farm Rivendale destructed
+Structure Rivendale destructed
+Sim_object Rivendale destructed
+Town_Hall Shire destructed
+Structure Shire destructed
+Sim_object Shire destructed
+Farm Sunnybrook destructed
+Structure Sunnybrook destructed
+Sim_object Sunnybrook destructed
+Soldier Zug destructed
+Agent Zug destructed
+Sim_object Zug destructed
