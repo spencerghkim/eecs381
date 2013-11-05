@@ -1,6 +1,8 @@
+#include "View.h"
 
-/* *** Use this function to calculate the subscripts for the cell. */
+#include "Geometry.h"
 
+#include <cmath>
 
 
 // Calculate the cell subscripts corresponding to the supplied location parameter, 

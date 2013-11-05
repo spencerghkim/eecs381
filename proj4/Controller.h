@@ -16,4 +16,4 @@ public:
 
 	// create View object, run the program by acccepting user commands, then destroy View object
 	void run();
-	
+};

@@ -26,6 +26,8 @@ If any protected or private members are shown here, then your class must also ha
 You must delete this comment and all other comments that start with "***".
 */
 
+#include "Geometry.h"
+
 class View {
 public:
 	// default constructor sets the default size, scale, and origin
@@ -57,3 +59,14 @@ public:
 	
 	// set the parameters to the default values
 	void set_defaults();
+  
+  // Add private member vars to remember locations/names/etc...
+private:
+  
+  Point origin;
+  double scale;
+  int size;  // Number of rows/columns in the grid
+  
+  bool get_subscripts(int &ix, int &iy, Point location);
+
+};

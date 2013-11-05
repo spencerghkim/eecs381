@@ -1,4 +1,7 @@
-/* 
+#ifndef PEASANT_H_
+#define PEASANT_H_
+
+/*
 A Peasant is an Agent that can move food between Structures. It can be commanded to
 start_working, whereupon it moves to the source, picks up food, returns to destination,
 deposits the food, returns to source.  If picks up zero food at the source, it waits there
@@ -6,13 +9,11 @@ and tries again on the next update.
 If commanded to move_to somewhere, it stops working, and goes there.
 */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+#include "Agent.h"
 
+class Structure;
+
+class Peasant : public Agent {
 public:
 	// *** define these in .cpp; initialize with zero amount being carried
 	Peasant(const std::string& in_name, Point in_location);
@@ -23,7 +24,7 @@ public:
 	void update() override;
 	
 	// overridden to suspend working behavior
-    void move_to(Point dest) override;
+  void move_to(Point dest) override;
 	
 	// stop moving and working
 	void stop() override;
@@ -34,3 +35,22 @@ public:
 
 	// output information about the current state
 	void describe() const override;
+  
+private:
+  typedef enum {
+    NOT_WORKING,
+    INBOUND,
+    COLLECTING,
+    OUTBOUND,
+    DEPOSITING
+  } Peasant_state_e;
+  
+  double food_in_hand;
+  Structure* source;
+  Structure* destination;
+  Peasant_state_e state;
+  
+  void stop_working();
+};
+
+#endif

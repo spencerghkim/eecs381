@@ -1,4 +1,7 @@
-/* 
+#ifndef AGENT_H_
+#define AGENT_H_
+
+/*
 Agents are a kind of Sim_object, and privately inherit from Moving_object.
 Agents can be commanded to move to a destination. Agents have a health, which
 is decreased when they take a hit. If the Agent's health > 0, it is alive.
@@ -6,30 +9,23 @@ If its heath <= 0, it starts dying, then on subsequent updates,
 it becomes dead, and finally disappearing.
 */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
-
+#include "Moving_object.h"
+#include "Sim_object.h"
 
 class Structure;
 
-// *** declare as inheriting from Sim_object and Moving_object, as specified
-
+class Agent : public Sim_object, public Moving_object {
 public:
 	// *** create with initial health is 5, speed is 5, state is Alive
 	Agent(const std::string& in_name, Point in_location);
 	
-	// *** declare and define destructor appropriately
-
- 	// *** Make this an abstract class by making the destructor pure virtual
+  // class is abstract, make destructor pure virtual
+  virtual ~Agent() = 0;
 		
 	// *** provide the definition of the following reader functions here in the class declaration
 	// return true if this agent is Alive or Disappearing
-	bool is_alive() const
-	bool is_disappearing() const
+	bool is_alive() const { return state == ALIVE; }
+	bool is_disappearing() const { return state == DISAPPEARING; }
 	
 	// return this Agent's location
 	Point get_location() const override;
@@ -69,3 +65,18 @@ protected:
 	// calculate loss of health due to hit.
 	// if health decreases to zero or negative, Agent state becomes Dying, and any movement is stopped.
 	void lose_health(int attack_strength);
+  
+private:
+  typedef enum {
+    ALIVE,
+    DYING,
+    DEAD,
+    DISAPPEARING
+  } Agent_state_e;
+  
+  int health;
+  Agent_state_e state;
+};
+
+
+#endif

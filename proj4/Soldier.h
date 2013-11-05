@@ -1,17 +1,16 @@
+#ifndef SOLDIER_H_
+#define SOLDIER_H_
+
 /*
 A Soldier is an Agent that has attack and defense behaviors. It can be commanded
 to start attacking another Agent and will continue the attack as long as 
 it is alive and the target is alive and in range. If attacked, the Soldier will
 start attacking its attacker.
 */
-	
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
 
+#include "Agent.h"
+
+class Soldier : public Agent {
 public:
 	
 	// *** define as specified
@@ -34,3 +33,17 @@ public:
 
 	// output information about the current state
 	void describe() const override;
+  
+private:
+  typedef enum {
+    ATTACKING,
+    NOT_ATTACKING
+  } Soldier_state_e;
+  
+  int attack_strength;
+  double attack_range;
+  Agent* target;
+  Soldier_state_e state;
+};
+
+#endif

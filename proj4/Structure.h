@@ -1,30 +1,38 @@
+#ifndef STRUCTURE_H_
+#define STRUCTURE_H_
 /* A Structure is a Sim_object with a location and interface to derived types */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+#include "Geometry.h"
+#include "Sim_object.h"
 
+#include <iosfwd>
+#include <string>
+
+class Structure : public Sim_object {
 public:
-	// *** provide a constructor and destructor
-	// *** first constructor parameter should be the name, specified as a string, the second should be a Point for the location.
+  Structure(const std::string& name_, Point location_) : Sim_object(name_), location{location_} {}
 	
-	// *** Make this an abstract class by making the destructor pure virtual
+	// Make this an abstract class by making the destructor pure virtual
+  virtual ~Structure() = 0;
 		
 	// *** declare and define here appropriately
-	Point get_location()
+	Point get_location() const { return location; }
 
 	// *** declare and define the following functions as specified
-	void update()
+	void update() override {}
 
 	// output information about the current state
-	void describe()
+	void describe() const override;
 
 	// ask model to notify views of current state
-    void broadcast_current_state()
+  void broadcast_current_state() override;
     
 	// fat interface for derived types	
-	double withdraw(double amount_to_get);
-	void deposit(double amount_to_give);
+	virtual double withdraw(double amount_to_get) { return 0.0; }
+	virtual void deposit(double amount_to_give) {}
+  
+private:
+  Point location;
+};
+
+#endif

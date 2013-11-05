@@ -1,18 +1,19 @@
-/* The Sim_object class provides the interface for all of simulation objects. 
+#ifndef SIM_OBJECT_H_
+#define SIM_OBJECT_H_
+
+/* The Sim_object class provides the interface for all of simulation objects.
 It also stores the object's name, and has pure virtual accessor functions for 
 the object's position and other information. */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+#include "Geometry.h"
+
+#include <string>
 
 class Sim_object {
 public:
 	Sim_object(const std::string& name_);
 	// *** supply the appropriate destructor declaration
+  virtual ~Sim_object() = 0;
 	
 	const std::string& get_name() const
 		{return name;}
@@ -21,11 +22,12 @@ public:
 	// ask model to notify views of current state
     virtual void broadcast_current_state() {}
 // *** declare the following to be pure virtual functions
-	Point get_location() const
-	void describe() const
-	void update()
+	virtual Point get_location() const = 0;
+	virtual void describe() const = 0;
+	virtual void update() = 0;
 
 private:
 	std::string name;
 };
 
+#endif

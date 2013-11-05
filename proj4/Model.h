@@ -15,13 +15,20 @@ Model also provides facilities for looking up objects given their name.
 Notice how only the Standard Library headers need to be included - reduced coupling!
 
 */
+#include <map>
+#include <string>
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
+/* Here provide the appropriate declarations for a global variable named g_Model_ptr of type Model* - follow the Header File Guidelines. */
+// TODO(wjbillin): Is this appropriate to forward declare the class?
+class Model;
+extern Model* g_Model_ptr;
+
+class Agent;
+class Sim_object;
+class Structure;
+class View;
+
+struct Point;
 
 class Model {
 public:
@@ -51,8 +58,6 @@ public:
 	void add_agent(Agent*);
 	// will throw Error("Agent not found!") if no agent of that name
 	Agent* get_agent_ptr(const std::string& name) const;
-	// removes the agent and then deletes it; no error if not found
-//	void remove_agent(Agent*);
 	
 	// tell all objects to describe themselves to the console
 	void describe() const;
@@ -72,9 +77,9 @@ public:
 	void notify_gone(const std::string& name);
 	
 private:
-	// *** declare an int member variable to store the simulated time
-
-
+  int time {0};
+  std::map<std::string, Agent*> agents;
+  std::map<std::string, Structure*> structures;
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;
