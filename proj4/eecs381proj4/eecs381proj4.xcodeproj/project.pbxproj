@@ -13,16 +13,16 @@
 		B303475D1820562200F3313F /* p4_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30347501820562200F3313F /* p4_main.cpp */; };
 		B303475E1820562200F3313F /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B30347581820562200F3313F /* View.cpp */; };
 		B3368E09182053ED009BB268 /* eecs381proj4.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3368E08182053ED009BB268 /* eecs381proj4.1 */; };
-		B39D1767182896250005157B /* Structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1765182896250005157B /* Structure.cpp */; };
-		B39D176A18289DBE0005157B /* Farm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D176818289DBE0005157B /* Farm.cpp */; };
-		B39D176F1828A1F70005157B /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D176D1828A1F70005157B /* Structure_factory.cpp */; };
-		B39D17721828A59A0005157B /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D17701828A59A0005157B /* Sim_object.cpp */; };
-		B39D17751828A97D0005157B /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D17731828A97D0005157B /* Agent.cpp */; };
-		B39D17781828B9980005157B /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D17761828B9980005157B /* Agent_factory.cpp */; };
-		B39D177B1828C0770005157B /* Peasant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D17791828C0770005157B /* Peasant.cpp */; };
-		B39D177E1828C9DD0005157B /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D177C1828C9DD0005157B /* Soldier.cpp */; };
-		B3A7CC801826E280002FDF0E /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A7CC7E1826E280002FDF0E /* Controller.cpp */; };
-		B3A7CC831826E3AB002FDF0E /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A7CC811826E3AB002FDF0E /* Town_Hall.cpp */; };
+		B39D1789182A29360005157B /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D177F182A29360005157B /* Agent.cpp */; };
+		B39D178A182A29360005157B /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1780182A29360005157B /* Controller.cpp */; };
+		B39D178B182A29360005157B /* Structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1781182A29360005157B /* Structure.cpp */; };
+		B39D178C182A29360005157B /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1782182A29360005157B /* Sim_object.cpp */; };
+		B39D178D182A29360005157B /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1783182A29360005157B /* Soldier.cpp */; };
+		B39D178E182A29360005157B /* Peasant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1784182A29360005157B /* Peasant.cpp */; };
+		B39D178F182A29360005157B /* Farm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1785182A29360005157B /* Farm.cpp */; };
+		B39D1790182A29360005157B /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1786182A29360005157B /* Town_Hall.cpp */; };
+		B39D1791182A29360005157B /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1787182A29360005157B /* Agent_factory.cpp */; };
+		B39D1792182A29360005157B /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B39D1788182A29360005157B /* Structure_factory.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,16 +61,16 @@
 		B30347591820562200F3313F /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = View.h; path = ../../View.h; sourceTree = "<group>"; };
 		B3368E03182053ED009BB268 /* eecs381proj4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj4; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3368E08182053ED009BB268 /* eecs381proj4.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj4.1; sourceTree = "<group>"; };
-		B39D1765182896250005157B /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Structure.cpp; sourceTree = "<group>"; };
-		B39D176818289DBE0005157B /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Farm.cpp; sourceTree = "<group>"; };
-		B39D176D1828A1F70005157B /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Structure_factory.cpp; sourceTree = "<group>"; };
-		B39D17701828A59A0005157B /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sim_object.cpp; sourceTree = "<group>"; };
-		B39D17731828A97D0005157B /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
-		B39D17761828B9980005157B /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent_factory.cpp; sourceTree = "<group>"; };
-		B39D17791828C0770005157B /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Peasant.cpp; sourceTree = "<group>"; };
-		B39D177C1828C9DD0005157B /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Soldier.cpp; sourceTree = "<group>"; };
-		B3A7CC7E1826E280002FDF0E /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
-		B3A7CC811826E3AB002FDF0E /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Town_Hall.cpp; sourceTree = "<group>"; };
+		B39D177F182A29360005157B /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = ../../Agent.cpp; sourceTree = "<group>"; };
+		B39D1780182A29360005157B /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../../Controller.cpp; sourceTree = "<group>"; };
+		B39D1781182A29360005157B /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure.cpp; path = ../../Structure.cpp; sourceTree = "<group>"; };
+		B39D1782182A29360005157B /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sim_object.cpp; path = ../../Sim_object.cpp; sourceTree = "<group>"; };
+		B39D1783182A29360005157B /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = ../../Soldier.cpp; sourceTree = "<group>"; };
+		B39D1784182A29360005157B /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Peasant.cpp; path = ../../Peasant.cpp; sourceTree = "<group>"; };
+		B39D1785182A29360005157B /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Farm.cpp; path = ../../Farm.cpp; sourceTree = "<group>"; };
+		B39D1786182A29360005157B /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Town_Hall.cpp; path = ../../Town_Hall.cpp; sourceTree = "<group>"; };
+		B39D1787182A29360005157B /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = ../../Agent_factory.cpp; sourceTree = "<group>"; };
+		B39D1788182A29360005157B /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure_factory.cpp; path = ../../Structure_factory.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				B39D176C1828A1990005157B /* Agent */,
-				B3A7CC7E1826E280002FDF0E /* Controller.cpp */,
+				B39D1780182A29360005157B /* Controller.cpp */,
 				B30347481820562200F3313F /* Controller.h */,
 				B303474A1820562200F3313F /* Geometry.cpp */,
 				B303474B1820562200F3313F /* Geometry.h */,
@@ -113,8 +113,8 @@
 				B303474E1820562200F3313F /* Moving_object.cpp */,
 				B303474F1820562200F3313F /* Moving_object.h */,
 				B30347501820562200F3313F /* p4_main.cpp */,
+				B39D1782182A29360005157B /* Sim_object.cpp */,
 				B30347521820562200F3313F /* Sim_object.h */,
-				B39D17701828A59A0005157B /* Sim_object.cpp */,
 				B39D176B1828A17D0005157B /* Structure */,
 				B30347571820562200F3313F /* Utility.h */,
 				B30347581820562200F3313F /* View.cpp */,
@@ -127,13 +127,13 @@
 		B39D176B1828A17D0005157B /* Structure */ = {
 			isa = PBXGroup;
 			children = (
-				B39D176818289DBE0005157B /* Farm.cpp */,
+				B39D1785182A29360005157B /* Farm.cpp */,
 				B30347491820562200F3313F /* Farm.h */,
-				B39D176D1828A1F70005157B /* Structure_factory.cpp */,
+				B39D1788182A29360005157B /* Structure_factory.cpp */,
 				B30347541820562200F3313F /* Structure_factory.h */,
-				B39D1765182896250005157B /* Structure.cpp */,
+				B39D1781182A29360005157B /* Structure.cpp */,
 				B30347551820562200F3313F /* Structure.h */,
-				B3A7CC811826E3AB002FDF0E /* Town_Hall.cpp */,
+				B39D1786182A29360005157B /* Town_Hall.cpp */,
 				B30347561820562200F3313F /* Town_Hall.h */,
 			);
 			name = Structure;
@@ -142,14 +142,14 @@
 		B39D176C1828A1990005157B /* Agent */ = {
 			isa = PBXGroup;
 			children = (
+				B39D1787182A29360005157B /* Agent_factory.cpp */,
 				B30347461820562200F3313F /* Agent_factory.h */,
-				B39D17761828B9980005157B /* Agent_factory.cpp */,
+				B39D177F182A29360005157B /* Agent.cpp */,
 				B30347471820562200F3313F /* Agent.h */,
-				B39D17731828A97D0005157B /* Agent.cpp */,
+				B39D1784182A29360005157B /* Peasant.cpp */,
 				B30347511820562200F3313F /* Peasant.h */,
-				B39D17791828C0770005157B /* Peasant.cpp */,
+				B39D1783182A29360005157B /* Soldier.cpp */,
 				B30347531820562200F3313F /* Soldier.h */,
-				B39D177C1828C9DD0005157B /* Soldier.cpp */,
 			);
 			name = Agent;
 			sourceTree = "<group>";
@@ -205,21 +205,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B39D176A18289DBE0005157B /* Farm.cpp in Sources */,
 				B303475E1820562200F3313F /* View.cpp in Sources */,
-				B3A7CC801826E280002FDF0E /* Controller.cpp in Sources */,
 				B303475C1820562200F3313F /* Moving_object.cpp in Sources */,
-				B39D176F1828A1F70005157B /* Structure_factory.cpp in Sources */,
+				B39D178C182A29360005157B /* Sim_object.cpp in Sources */,
 				B303475B1820562200F3313F /* Model.cpp in Sources */,
-				B39D17781828B9980005157B /* Agent_factory.cpp in Sources */,
-				B39D17721828A59A0005157B /* Sim_object.cpp in Sources */,
+				B39D1791182A29360005157B /* Agent_factory.cpp in Sources */,
 				B303475D1820562200F3313F /* p4_main.cpp in Sources */,
-				B39D177E1828C9DD0005157B /* Soldier.cpp in Sources */,
+				B39D178E182A29360005157B /* Peasant.cpp in Sources */,
+				B39D178B182A29360005157B /* Structure.cpp in Sources */,
+				B39D1789182A29360005157B /* Agent.cpp in Sources */,
 				B303475A1820562200F3313F /* Geometry.cpp in Sources */,
-				B39D177B1828C0770005157B /* Peasant.cpp in Sources */,
-				B39D17751828A97D0005157B /* Agent.cpp in Sources */,
-				B3A7CC831826E3AB002FDF0E /* Town_Hall.cpp in Sources */,
-				B39D1767182896250005157B /* Structure.cpp in Sources */,
+				B39D178D182A29360005157B /* Soldier.cpp in Sources */,
+				B39D178A182A29360005157B /* Controller.cpp in Sources */,
+				B39D1792182A29360005157B /* Structure_factory.cpp in Sources */,
+				B39D178F182A29360005157B /* Farm.cpp in Sources */,
+				B39D1790182A29360005157B /* Town_Hall.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
