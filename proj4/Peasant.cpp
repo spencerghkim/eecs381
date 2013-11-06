@@ -1,6 +1,9 @@
 #include "Peasant.h"
 
+#include "Agent.h"
 #include "Geometry.h"
+#include "Moving_object.h"
+#include "Sim_object.h"
 #include "Structure.h"
 #include "Utility.h"
 
