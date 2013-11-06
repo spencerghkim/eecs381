@@ -1,6 +1,9 @@
 #include "Soldier.h"
 
+#include "Agent.h"
 #include "Geometry.h"
+#include "Moving_object.h"
+#include "Sim_object.h"
 #include "Utility.h"
 
 #include <iostream>
