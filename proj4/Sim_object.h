@@ -5,7 +5,7 @@
 It also stores the object's name, and has pure virtual accessor functions for 
 the object's position and other information. */
 
-#include "Geometry.h"
+struct Point;
 
 #include <string>
 

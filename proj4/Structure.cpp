@@ -1,5 +1,6 @@
 #include "Structure.h"
 
+#include "Geometry.h"
 #include "Model.h"
 
 #include <iostream>

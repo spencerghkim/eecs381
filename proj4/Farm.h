@@ -6,6 +6,7 @@ by the production rate amount.
 Food can be withdrawn, but no provision is made for depositing any.
 */
 
+#include "Sim_object.h"
 #include "Structure.h"
 
 struct Point;

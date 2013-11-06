@@ -1,5 +1,7 @@
 #include "Sim_object.h"
 
+#include "Geometry.h"
+
 #include <iostream>
 #include <string>
 

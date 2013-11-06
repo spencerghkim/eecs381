@@ -6,6 +6,7 @@ A Town_Hall is a structure that provides for depositing and withdrawing food,
 but does no updating.
 */
 
+#include "Sim_object.h"
 #include "Structure.h"
 
 #include <string>

@@ -10,6 +10,8 @@ If commanded to move_to somewhere, it stops working, and goes there.
 */
 
 #include "Agent.h"
+#include "Moving_object.h"
+#include "Sim_object.h"
 
 class Structure;
 struct Point;
