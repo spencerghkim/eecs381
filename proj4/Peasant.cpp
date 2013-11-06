@@ -94,7 +94,8 @@ void Peasant::stop()
 void Peasant::start_working(Structure * source_, Structure * destination_)
 {
   Agent::stop();
-  stop_working();
+  state = NOT_WORKING;
+  destination = source = nullptr;
   
   if (source_ == destination_) {
     throw Error{ get_name() + ": I can't move food to and from the same place!" };
