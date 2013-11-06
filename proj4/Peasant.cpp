@@ -40,7 +40,7 @@ void Peasant::update()
   
   if (state == INBOUND &&
       !is_moving() &&
-      get_current_location() == source->get_location()) {
+      get_location() == source->get_location()) {
     state = COLLECTING;
   } else if (state == COLLECTING) {
     double request = MAXIMUM_CARRYING_CAPACITY - food_in_hand;
@@ -56,7 +56,7 @@ void Peasant::update()
     }
   } else if (state == OUTBOUND &&
              !is_moving() &&
-             get_current_location() == destination->get_location()) {
+             get_location() == destination->get_location()) {
     state = DEPOSITING;
   } else if (state == DEPOSITING) {
     destination->deposit(food_in_hand);
