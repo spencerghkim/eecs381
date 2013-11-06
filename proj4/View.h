@@ -1,3 +1,6 @@
+#ifndef VIEW_H_
+#define VIEW_H_
+
 /* *** View class ***
 The View class encapsulates the data and functions needed to generate the map
 display, and control its properties. It has a "memory" for the names and locations
@@ -19,14 +22,12 @@ information, immediately calling the draw function will print out a map showing 
 using the new settings.
 */
 
-/* 
-*** This skeleton file shows the required public interface for the class, which you may not modify. 
-If no protected members are shown, there must be none in your version. 
-If any protected or private members are shown here, then your class must also have them and use them as intended.
-You must delete this comment and all other comments that start with "***".
-*/
-
 #include "Geometry.h"
+
+#include <map>
+#include <string>
+
+struct Point;
 
 class View {
 public:
@@ -66,7 +67,10 @@ private:
   Point origin;
   double scale;
   int size;  // Number of rows/columns in the grid
+  std::map<std::string, Point> locations;
   
   bool get_subscripts(int &ix, int &iy, Point location);
 
 };
+
+#endif

@@ -16,6 +16,7 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 
 */
 #include <map>
+#include <set>
 #include <string>
 
 /* Here provide the appropriate declarations for a global variable named g_Model_ptr of type Model* - follow the Header File Guidelines. */
@@ -78,12 +79,17 @@ public:
 	
 private:
   int time {0};
-  std::map<std::string, Agent*> agents;
-  std::map<std::string, Structure*> structures;
+  std::map<std::string, Sim_object *> all_objects;
+  std::map<std::string, Agent *> agents;
+  std::map<std::string, Structure *> structures;
+  std::set<View *> views;
 
 	// disallow copy/move construction or assignment
 	Model(const Model&) = delete;
 	Model& operator= (const Model&)  = delete;
 	Model(Model&&) = delete;
 	Model& operator= (Model&&) = delete;
+  
+  void add_agent_helper(Agent* agent);
+  void add_structure_helper(Structure * structure);
 };

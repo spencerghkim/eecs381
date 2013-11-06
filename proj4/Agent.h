@@ -13,6 +13,7 @@ it becomes dead, and finally disappearing.
 #include "Sim_object.h"
 
 class Structure;
+struct Point;
 
 class Agent : public Sim_object, public Moving_object {
 public:

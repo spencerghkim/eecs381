@@ -6,8 +6,9 @@ by the production rate amount.
 Food can be withdrawn, but no provision is made for depositing any.
 */
 
-#include "Geometry.h"
 #include "Structure.h"
+
+struct Point;
 
 class Farm : public Structure {
 public:

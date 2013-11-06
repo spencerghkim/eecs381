@@ -4,6 +4,11 @@
 
 #include <iostream>
 
+Structure::Structure (const std::string& name_, Point location_) : Sim_object(name_), location{location_}
+{
+  std::cout << "Structure " << get_name() << " constructed" << std::endl;
+}
+
 Structure::~Structure ()
 {
   std::cout << "Structure " << get_name() << " destructed" << std::endl;

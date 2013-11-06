@@ -2,15 +2,15 @@
 #define STRUCTURE_H_
 /* A Structure is a Sim_object with a location and interface to derived types */
 
-#include "Geometry.h"
 #include "Sim_object.h"
 
-#include <iosfwd>
 #include <string>
+
+struct Point;
 
 class Structure : public Sim_object {
 public:
-  Structure(const std::string& name_, Point location_) : Sim_object(name_), location{location_} {}
+  Structure(const std::string& name_, Point location_);
 	
 	// Make this an abstract class by making the destructor pure virtual
   virtual ~Structure() = 0;

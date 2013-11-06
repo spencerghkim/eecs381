@@ -30,7 +30,7 @@ Agent::~Agent()
 // return this Agent's location
 Point Agent::get_location() const
 {
-  return get_location();
+  return get_current_location();
 }
 
 // return true if this Agent is in motion

@@ -12,6 +12,7 @@ If commanded to move_to somewhere, it stops working, and goes there.
 #include "Agent.h"
 
 class Structure;
+struct Point;
 
 class Peasant : public Agent {
 public:

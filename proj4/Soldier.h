@@ -10,6 +10,8 @@ start attacking its attacker.
 
 #include "Agent.h"
 
+struct Point;
+
 class Soldier : public Agent {
 public:
 	
