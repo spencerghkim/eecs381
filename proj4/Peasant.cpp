@@ -31,6 +31,10 @@ void Peasant::update()
 {
   Agent::update();
   
+  if (!is_alive() || state == NOT_WORKING) {
+    return;
+  }
+  
   if (state == INBOUND &&
       !is_moving() &&
       get_current_location() == source->get_location()) {
