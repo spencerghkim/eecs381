@@ -1,0 +1,85 @@
+Time 0: Enter command: Bu move 10 10
+Unrecognized command!
+
+Time 0: Enter command: train X a b c
+Invalid name for new object!
+
+Time 0: Enter command: train $%@! a b c
+Invalid name for new object!
+
+Time 0: Enter command: train M$ a b c
+Invalid name for new object!
+
+Time 0: Enter command: train M42 a b c
+Expected a double!
+
+Time 0: Enter command: train 42 a b c
+Expected a double!
+
+Time 0: Enter command: train Abe a b c
+Expected a double!
+
+Time 0: Enter command: train Absalom Dingbat 25 25
+Trying to create agent of unknown type!
+
+Time 0: Enter command: train Pierre a b c
+Invalid name for new object!
+
+Time 0: Enter command: build Camelot1 Town_Hall x25 25
+Expected a double!
+
+Time 0: Enter command: build Camelot1 Town_Hall 25 25
+Sim_object Camelot1 constructed
+Structure Camelot1 constructed
+Town_Hall Camelot1 constructed
+
+Time 0: Enter command: build Paduca2 Town_Hall 25 30
+Invalid name for new object!
+
+Time 0: Enter command: build Peoria County_Seat 25 30
+Trying to create structure of unknown type!
+
+Time 0: Enter command: train Zug Peasant 25 25
+Invalid name for new object!
+
+Time 0: Enter command: train Bug Peasant 25 25
+Invalid name for new object!
+
+Time 0: Enter command: Pippin work Camelot1 Paduca
+Pippin: I'm on the way
+
+Time 0: Enter command: status
+Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Town_Hall Camelot1 at (25.00, 25.00)
+   Contains 0.00
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Moving at speed 5.00 to (25.00, 25.00)
+   Carrying 0.00
+   Inbound to source Camelot1
+Farm Rivendale at (10.00, 10.00)
+   Food available: 50.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 50.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 0: Enter command: quit
+Done

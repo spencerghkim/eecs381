@@ -1,0 +1,65 @@
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Trying to create agent of unknown type!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: 
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Trying to create structure of unknown type!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Invalid name for new object!
+
+Time 0: Enter command: Pippin: I'm on the way
+
+Time 0: Enter command: Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Town_Hall Camelot1 at (25.00, 25.00)
+   Contains 0.00
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Moving at speed 5.00 to (25.00, 25.00)
+   Carrying 0.00
+   Inbound to source Camelot1
+Farm Rivendale at (10.00, 10.00)
+   Food available: 50.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 50.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 0: Enter command: Done

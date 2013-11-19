@@ -1,0 +1,20 @@
+Bu move 10 10
+train X a b c
+train $%@! a b c
+train M$ a b c
+train M42 a b c
+train 42 a b c
+train Abe a b c
+train Absalom Dingbat 25 25
+train Pierre a b c
+build Camelot1 Town_Hall x25 25
+build Camelot1 Town_Hall 25 25
+build Paduca2 Town_Hall 25 30
+build Peoria County_Seat 25 30
+train Zug Peasant 25 25
+train Bug Peasant 25 25
+Pippin work Camelot1 Paduca
+status
+quit
+
+

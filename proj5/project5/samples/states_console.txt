@@ -1,0 +1,200 @@
+
+Time 0: Enter command: Bug move 20 21 Pippin move 20 20 Zug move 20 19
+Bug: I'm on the way
+
+Time 0: Enter command: Pippin: I'm on the way
+
+Time 0: Enter command: Zug: I'm on the way
+
+Time 0: Enter command: go go go go
+Bug: step...
+Pippin: step...
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: step...
+
+Time 1: Enter command: Bug: I'm there!
+Pippin: step...
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+Zug: step...
+
+Time 2: Enter command: Pippin: step...
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+Zug: I'm there!
+
+Time 3: Enter command: Pippin: I'm there!
+Farm Rivendale now has 58.00
+Farm Sunnybrook now has 58.00
+
+Time 4: Enter command: Zug attack Pippin
+Zug: I'm attacking!
+
+Time 4: Enter command: go
+Farm Rivendale now has 60.00
+Farm Sunnybrook now has 60.00
+Zug: Clang!
+Pippin: Ouch!
+
+Time 5: Enter command: status
+Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 3
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 60.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 60.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+
+Time 5: Enter command: Bug attack Pippin
+Bug: I'm attacking!
+
+Time 5: Enter command: status
+Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 3
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 60.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 60.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+
+Time 5: Enter command: go
+Bug: Clang!
+Pippin: Ouch!
+Farm Rivendale now has 62.00
+Farm Sunnybrook now has 62.00
+Zug: Clang!
+Pippin: Arrggh!
+Zug: I triumph!
+
+Time 6: Enter command: status
+Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Attacking dead target
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 62.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 62.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 6: Enter command: go
+Bug: Target is dead
+Farm Rivendale now has 64.00
+Farm Sunnybrook now has 64.00
+
+Time 7: Enter command: status
+Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 64.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 64.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 7: Enter command: go  
+Farm Rivendale now has 66.00
+Farm Sunnybrook now has 66.00
+
+Time 8: Enter command: status
+Soldier Bug at (20.00, 21.00)
+   Health is 5
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 66.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 66.00
+Soldier Zug at (20.00, 19.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 8: Enter command: quit
+Done
