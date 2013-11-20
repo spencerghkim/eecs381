@@ -2,6 +2,7 @@
 
 #include "Agent.h"
 #include "Geometry.h"
+#include "Model.h"
 #include "Moving_object.h"
 #include "Sim_object.h"
 #include "Structure.h"
@@ -13,12 +14,11 @@
 #define MAXIMUM_CARRYING_CAPACITY 35.0
 
 using std::cout; using std::endl;
+using std::shared_ptr;
 
 Peasant::Peasant(const std::string& in_name, Point in_location)
     : Agent(in_name, in_location),
       food_in_hand{INITIAL_CARRYING_FOOD},
-      source{nullptr},
-      destination{nullptr},
       state{NOT_WORKING}
 {
   cout << "Peasant " << get_name() << " constructed" << endl;
@@ -51,6 +51,9 @@ void Peasant::update()
       cout << get_name() << ": Collected " << withdrawl << endl;
       state = OUTBOUND;
       Agent::move_to(destination->get_location());
+      
+      // Let the Model know we've collected food.
+      Model::getInstance().notify_amount(get_name(), food_in_hand);
     } else {
       cout << get_name() << ": Waiting " << endl;
     }
@@ -64,6 +67,9 @@ void Peasant::update()
     food_in_hand = INITIAL_CARRYING_FOOD;
     Agent::move_to(source->get_location());
     state = INBOUND;
+    
+    // Let the model know we've deposited food.
+    Model::getInstance().notify_amount(get_name(), food_in_hand);
   }
 }
 
@@ -91,7 +97,7 @@ void Peasant::stop()
 
 // starts the working process
 // Throws an exception if the source is the same as the destination.
-void Peasant::start_working(Structure * source_, Structure * destination_)
+void Peasant::start_working(shared_ptr<Structure> source_, shared_ptr<Structure> destination_)
 {
   Agent::stop();
   state = NOT_WORKING;
@@ -136,4 +142,10 @@ void Peasant::describe() const
   } else if (state == DEPOSITING) {
     cout << "   Depositing at destination " << destination->get_name() << endl;
   }
+}
+  
+void Peasant::broadcast_current_state()
+{
+  Agent::broadcast_current_state();
+  Model::getInstance().notify_amount(get_name(), food_in_hand);
 }

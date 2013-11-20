@@ -26,6 +26,9 @@ public:
 
 	// output information about the current state
 	void describe() const override;
+  
+  // ask model to notify the views of our state
+  void broadcast_current_state() override;
 
 private:
   double food_available;

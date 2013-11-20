@@ -34,10 +34,13 @@ public:
 
 	// starts the working process
 	// Throws an exception if the source is the same as the destination.
-	void start_working(Structure * source_, Structure * destination_) override;
+	void start_working(std::shared_ptr<Structure> source_, std::shared_ptr<Structure> destination_) override;
 
 	// output information about the current state
 	void describe() const override;
+  
+  // ask model to broadcast our current state
+  void broadcast_current_state() override;
   
 private:
   typedef enum {
@@ -49,8 +52,8 @@ private:
   } Peasant_state_e;
   
   double food_in_hand;
-  Structure* source;
-  Structure* destination;
+  std::shared_ptr<Structure> source;
+  std::shared_ptr<Structure> destination;
   Peasant_state_e state;
   
   void stop_working();

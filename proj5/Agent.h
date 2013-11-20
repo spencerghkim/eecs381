@@ -15,7 +15,7 @@ it becomes dead, and finally disappearing.
 class Structure;
 struct Point;
 
-class Agent : public Sim_object, public Moving_object {
+class Agent : public Sim_object, public Moving_object, public std::enable_shared_from_this<Agent> {
 public:
 	// *** create with initial health is 5, speed is 5, state is Alive
 	Agent(const std::string& in_name, Point in_location);
@@ -26,7 +26,6 @@ public:
 	// *** provide the definition of the following reader functions here in the class declaration
 	// return true if this agent is Alive or Disappearing
 	bool is_alive() const { return state == ALIVE; }
-	bool is_disappearing() const { return state == DISAPPEARING; }
 	
 	// return this Agent's location
 	Point get_location() const override;
@@ -44,7 +43,7 @@ public:
 	// The attacking Agent identifies itself with its this pointer.
 	// A derived class can override this function.
 	// The function lose_health is called to handle the effect of the attack.
-	virtual void take_hit(int attack_strength, Agent *attacker_ptr);
+	virtual void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr);
 	
 	// update the moving state and Agent state of this object.
 	void update() override;
@@ -57,10 +56,10 @@ public:
 
 	/* Fat Interface for derived classes */
 	// Throws exception that an Agent cannot work.
-	virtual void start_working(Structure *, Structure *);
+	virtual void start_working(std::shared_ptr<Structure>, std::shared_ptr<Structure>);
 
 	// Throws exception that an Agent cannot attack.
-	virtual void start_attacking(Agent *);
+	virtual void start_attacking(std::shared_ptr<Agent>);
 
 protected:
 	// calculate loss of health due to hit.
@@ -70,9 +69,7 @@ protected:
 private:
   typedef enum {
     ALIVE,
-    DYING,
-    DEAD,
-    DISAPPEARING
+    DEAD
   } Agent_state_e;
   
   int health;

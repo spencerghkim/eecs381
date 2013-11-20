@@ -1,6 +1,7 @@
 #include "Town_Hall.h"
 
 #include "Geometry.h"
+#include "Model.h"
 
 #include <iostream>
 #include <string>
@@ -22,6 +23,7 @@ Town_Hall::~Town_Hall()
 void Town_Hall::deposit(double deposit_amount)
 {
   total_food += deposit_amount;
+  Model::getInstance().notify_amount(get_name(), total_food);
 }
 
 double Town_Hall::withdraw(double amount_to_obtain)
@@ -40,6 +42,7 @@ double Town_Hall::withdraw(double amount_to_obtain)
   }
   
   total_food -= withdrawl;
+  Model::getInstance().notify_amount(get_name(), total_food);
   return withdrawl;
 }
 
@@ -47,4 +50,10 @@ void Town_Hall::describe() const {
   std::cout << "Town_Hall ";
   Structure::describe();
   std::cout << "   Contains " << total_food << std::endl;
+}
+  
+void Town_Hall::broadcast_current_state()
+{
+  Structure::broadcast_current_state();
+  Model::getInstance().notify_amount(get_name(), total_food);
 }

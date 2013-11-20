@@ -7,6 +7,7 @@
 #include <iostream>
 
 using std::cout; using std::endl;
+using std::shared_ptr;
 
 #define DEFAULT_SPEED 5.0
 #define INITIAL_HEALTH 5
@@ -64,7 +65,7 @@ void Agent::stop()
 // The attacking Agent identifies itself with its this pointer.
 // A derived class can override this function.
 // The function lose_health is called to handle the effect of the attack.
-void Agent::take_hit(int attack_strength, Agent *attacker_ptr)
+void Agent::take_hit(int attack_strength, shared_ptr<Agent>attacker_ptr)
 {
   lose_health(attack_strength);
 }
@@ -72,7 +73,6 @@ void Agent::take_hit(int attack_strength, Agent *attacker_ptr)
 // update the moving state and Agent state of this object.
 void Agent::update()
 {
-  // TODO(wjbillin): Think about making this a 'switch'.
   if (state == ALIVE && is_currently_moving()) {
     if (update_location()) {
       // We've reached our destination.
@@ -81,12 +81,7 @@ void Agent::update()
       // We're still moving.
       cout << get_name() << ": step..." << endl;
     }
-    g_Model_ptr->notify_location(get_name(), get_location());
-  } else if (state == DYING) {
-    state = DEAD;
-    g_Model_ptr->notify_gone(get_name());
-  } else if (state == DEAD) {
-    state = DISAPPEARING;
+    Model::getInstance().notify_location(get_name(), get_location());
   }
 }
 
@@ -101,30 +96,27 @@ void Agent::describe() const
     } else {
       cout << "   Stopped" << endl;
     }
-  } else if (state == DYING) {
-    cout << "   Is dying" << endl;
-  } else if (state == DEAD) {
-    cout << "   Is dead" << endl;
   } else {
-    cout << "   Is disappearing" << endl; // not expected to be visible in this project
+    cout << "   Is dead" << endl;
   }
 }
 
 // ask Model to broadcast our current state to all Views
 void Agent::broadcast_current_state()
 {
-  g_Model_ptr->notify_location(get_name(), get_location());
+  Model::getInstance().notify_location(get_name(), get_location());
+  Model::getInstance().notify_health(get_name(), health);
 }
 
 /* Fat Interface for derived classes */
 // Throws exception that an Agent cannot work.
-void Agent::start_working(Structure *, Structure *)
+void Agent::start_working(shared_ptr<Structure>, shared_ptr<Structure>)
 {
   throw Error{ get_name() + ": Sorry, I can't work!" };
 }
 
 // Throws exception that an Agent cannot attack.
-void Agent::start_attacking(Agent *)
+void Agent::start_attacking(shared_ptr<Agent>)
 {
   throw Error{ get_name() + ": Sorry, I can't attack!" };
 }
@@ -135,10 +127,12 @@ void Agent::lose_health(int attack_strength)
 {
   health -= attack_strength;
   if (health <= 0) {
-    state = DYING;
-    stop_moving();
+    state = DEAD;
+    Model::getInstance().notify_gone(get_name());
     cout << get_name() << ": Arrggh!" << endl;
+    Model::getInstance().remove_agent(shared_from_this());
   } else {
+    Model::getInstance().notify_health(get_name(), health);
     cout << get_name() << ": Ouch!" << endl;
   }
 }

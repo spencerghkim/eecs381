@@ -15,7 +15,6 @@ class Town_Hall : public Structure {
 public:
 	Town_Hall (const std::string& in_name, Point in_location);
 	
-  // TODO(wjbillin): Should this be virtual, or override?
 	~Town_Hall();
 	
 	// deposit adds in the supplied amount
@@ -28,6 +27,8 @@ public:
 
 	// output information about the current state
 	void describe() const override;
+  
+  void broadcast_current_state() override;
   
 private:
   double total_food;

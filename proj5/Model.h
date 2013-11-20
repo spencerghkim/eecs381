@@ -19,11 +19,6 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 #include <set>
 #include <string>
 
-/* Here provide the appropriate declarations for a global variable named g_Model_ptr of type Model* - follow the Header File Guidelines. */
-// TODO(wjbillin): Is this appropriate to forward declare the class?
-class Model;
-extern Model* g_Model_ptr;
-
 class Agent;
 class Sim_object;
 class Structure;
@@ -33,11 +28,8 @@ struct Point;
 
 class Model {
 public:
-	// create the initial objects
-	Model();
-	
-	// destroy all objects
-	~Model();
+  // Provide the singleton accessor.
+  static Model& getInstance();
 
 	// return the current time
 	int get_time() {return time;}
@@ -49,16 +41,18 @@ public:
 	// is there a structure with this name?
 	bool is_structure_present(const std::string& name) const;
 	// add a new structure; assumes none with the same name
-	void add_structure(Structure*);
+	void add_structure(std::shared_ptr<Structure>);
 	// will throw Error("Structure not found!") if no structure of that name
-	Structure* get_structure_ptr(const std::string& name) const;
+  std::shared_ptr<Structure> get_structure_ptr(const std::string& name) const;
 
 	// is there an agent with this name?
 	bool is_agent_present(const std::string& name) const;
 	// add a new agent; assumes none with the same name
-	void add_agent(Agent*);
+	void add_agent(std::shared_ptr<Agent>);
 	// will throw Error("Agent not found!") if no agent of that name
-	Agent* get_agent_ptr(const std::string& name) const;
+  std::shared_ptr<Agent> get_agent_ptr(const std::string& name) const;
+  // remove Agent from containers
+  void remove_agent(std::shared_ptr<Agent>);
 	
 	// tell all objects to describe themselves to the console
 	void describe() const;
@@ -68,28 +62,39 @@ public:
 	/* View services */
 	// Attaching a View adds it to the container and causes it to be updated
     // with all current objects'location (or other state information.
-	void attach(View*);
+	void attach(std::shared_ptr<View>);
 	// Detach the View by discarding the supplied pointer from the container of Views
     // - no updates sent to it thereafter.
-	void detach(View*);
+	void detach(std::shared_ptr<View>);
     // notify the views about an object's location
 	void notify_location(const std::string& name, Point location);
+  // notify the views that an object has changed health
+  void notify_health(const std::string& name, int health);
+  // notify the views that an object has changed carrying amount
+  void notify_amount(const std::string& name, double amount);
 	// notify the views that an object is now gone
 	void notify_gone(const std::string& name);
 	
 private:
   int time {0};
-  std::map<std::string, Sim_object *> all_objects;
-  std::map<std::string, Agent *> agents;
-  std::map<std::string, Structure *> structures;
-  std::set<View *> views;
-
-	// disallow copy/move construction or assignment
-	Model(const Model&) = delete;
-	Model& operator= (const Model&)  = delete;
-	Model(Model&&) = delete;
-	Model& operator= (Model&&) = delete;
   
-  void add_agent_helper(Agent* agent);
-  void add_structure_helper(Structure * structure);
+  // Sim_object containers.
+  std::map<std::string, std::shared_ptr<Sim_object>> all_objects;
+  std::map<std::string, std::shared_ptr<Agent>> agents;
+  std::map<std::string, std::shared_ptr<Structure>> structures;
+  
+  // View container.
+  std::set<std::shared_ptr<View>> views;
+  
+  // Make constructor private, as this is a singleton.
+  Model();
+
+  // disallow copy/move construction or assignment
+  Model(const Model&) = delete;
+  Model& operator= (const Model&)  = delete;
+  Model(Model&&) = delete;
+  Model& operator= (Model&&) = delete;
+  
+  void add_agent_helper(std::shared_ptr<Agent> agent);
+  void add_structure_helper(std::shared_ptr<Structure> structure);
 };
