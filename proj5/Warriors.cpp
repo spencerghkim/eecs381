@@ -8,28 +8,26 @@
 
 #include <iostream>
 
-#define ATTACK_STRENGTH 2
-#define ATTACK_RANGE 2.0
+#define SOLDIER_ATTACK_STRENGTH 2
+#define SOLDIER_ATTACK_RANGE 2.0
+#define ARCHER_ATTACK_STRENGTH 1
+#define ARCHER_ATTACK_RANGE 6.0
 
+using std::string;
 using std::cout; using std::endl;
 using std::shared_ptr;
 
-Soldier::Soldier(const std::string& name_, Point location_)
+Warrior::Warrior(const string& name_, Point location_, int strength_, double range_)
     : Agent(name_, location_),
-      attack_strength{ATTACK_STRENGTH},
-      attack_range{ATTACK_RANGE},
-      state{NOT_ATTACKING}
-{
-  cout << "Soldier " << name_ << " constructed" << endl;
-}
-  
-Soldier::~Soldier()
-{
-  cout << "Soldier " << get_name() << " destructed" << endl;
-}
+      attack_strength{strength_},
+      attack_range{range_},
+      state{NOT_ATTACKING} {}
+
+// Explicit default destructor for Warrior.
+Warrior::~Warrior() {}
 
 // update implements Soldier behavior
-void Soldier::update()
+void Warrior::update()
 {
   Agent::update();
   
@@ -55,9 +53,9 @@ void Soldier::update()
   }
   
   // Attack!
-  cout << get_name() << ": Clang!" << endl;
+  cout << get_name() << ": " << get_battle_cry() << endl;
   target_ptr->take_hit(attack_strength, shared_from_this());
-      
+  
   // Did we just kill it?
   if (!target_ptr->is_alive()) {
     cout << get_name() << ": I triumph!" << endl;
@@ -69,7 +67,7 @@ void Soldier::update()
 // Make this Soldier start attacking the target Agent.
 // Throws an exception if the target is the same as this Agent,
 // is out of range, or is not alive.
-void Soldier::start_attacking(shared_ptr<Agent> target_ptr)
+void Warrior::start_attacking(shared_ptr<Agent> target_ptr)
 {
   if (target_ptr == shared_from_this()) {
     throw Error{ get_name() + ": I cannot attack myself!" };
@@ -88,35 +86,14 @@ void Soldier::start_attacking(shared_ptr<Agent> target_ptr)
   state = ATTACKING;
 }
 
-// Overrides Agent's take_hit to counterattack when attacked.
-void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
-{
-  Agent::lose_health(attack_strength);
-  
-  // TODO: do I really need to do this? I'm dead!
-  if (state == ATTACKING && !is_alive()) {
-    state = NOT_ATTACKING;
-    target.reset();
-  }
-  
-  if (state == NOT_ATTACKING && is_alive() && attacker_ptr->is_alive()) {
-    // Hit back!
-    state = ATTACKING;
-    target = attacker_ptr;
-    cout << get_name() << ": I'm attacking!" << endl;
-  }
-}
-
-// Overrides Agent's stop to print a message
-void Soldier::stop()
+void Warrior::stop()
 {
   cout << get_name() << ": Don't bother me" << endl;
 }
 
 // output information about the current state
-void Soldier::describe() const
+void Warrior::describe() const
 {
-  cout << "Soldier ";
   Agent::describe();
   
   shared_ptr<Agent> target_ptr = target.lock();
@@ -130,3 +107,69 @@ void Soldier::describe() const
     cout << "   Not attacking" << endl;
   }
 }
+
+Soldier::Soldier(const std::string& name_, Point location_)
+    : Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE)
+{
+  cout << "Soldier " << name_ << " constructed" << endl;
+}
+  
+Soldier::~Soldier()
+{
+  cout << "Soldier " << get_name() << " destructed" << endl;
+}
+
+// Overrides Agent's take_hit to counterattack when attacked.
+void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
+{
+  Agent::take_hit(attack_strength, attacker_ptr);
+  // TODO: do I really need to do this? I'm dead!
+  //if (state == ATTACKING && !is_alive()) {
+  //  state = NOT_ATTACKING;
+  //  target.reset();
+  //}
+  
+  if (is_alive() && !is_attacking() && attacker_ptr->is_alive()) {
+    // Hit back!
+    start_attacking(attacker_ptr);
+    cout << get_name() << ": I'm attacking!" << endl;
+  }
+}
+
+void Soldier::describe() const
+{
+  cout << "Soldier ";
+  Warrior::describe();
+}
+
+string Soldier::get_battle_cry()
+{
+  return "Clang!";
+}
+
+Archer::Archer(const std::string& name_, Point location_)
+    : Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE)
+{
+  cout << "Archer " << name_ << " constructed" << endl;
+}
+
+Archer::~Archer()
+{
+  cout << "Archer " << get_name() << " destructed" << endl;
+}
+
+void Archer::update()
+{
+  bool initially_attacking = is_attacking();
+  
+  // Warrior::update will attack our target if it's alive, in range, etc..
+  Warrior::update();
+  
+  // If we were attacking and now aren't, look for a new target.
+  if (initially_attacking && !is_attacking()) {
+    
+  }
+}
+
+
+

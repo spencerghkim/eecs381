@@ -24,6 +24,27 @@ using Agent_c = map<string, shared_ptr<Agent>>;
 using Structure_c = map<string, shared_ptr<Structure>>;
 using View_c = set<shared_ptr<View>>;
 
+// Returns a boolean indicating whether or not s1 is closer to origin than s2. We deal
+// with self comparison (i.e. one of s1 or s2 is actually the origin object), by pushing
+// origin to the end of the list.
+bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
+                                        const shared_ptr<Sim_object> s1,
+                                        const shared_ptr<Sim_object> s2)
+{
+  // If s1 and origin are the same object, s2 should always come first.
+  if (s1 == origin) {
+    return false;
+  }
+  
+  // Similarly, if s2 and origin are the same object, s1 should always come first.
+  if (s2 == origin) {
+    return true;
+  }
+  
+  return cartesian_distance(s1->get_location(), origin->get_location()) <
+         cartesian_distance(s2->get_location(), origin->get_location());
+}
+
 Model& Model::getInstance() {
   static Model instance;
   return instance;
@@ -84,6 +105,24 @@ shared_ptr<Structure> Model::get_structure_ptr(const std::string& name) const
   return it->second;
 }
 
+shared_ptr<Structure> Model::find_closest_structure(shared_ptr<Agent> agent) const
+{
+  // If we don't have any structures, return an empty shared_ptr.
+  if (structures.empty()) {
+    return shared_ptr<Structure>();
+  }
+  
+  auto comp_func = std::bind(sim_object_min_distance_comparator, agent);
+  auto closest_structure_it =
+      std::min_element(structures.begin(),
+                       structures.end(),
+                       std::bind(comp_func,
+                                 std::bind(&Structure_c::value_type::second, _1),
+                                 std::bind(&Structure_c::value_type::second, _2)));
+  
+  return closest_structure_it->second;
+}
+
 // is there an agent with this name?
 bool Model::is_agent_present(const std::string& name) const
 {
@@ -117,6 +156,25 @@ void Model::remove_agent(shared_ptr<Agent> agent)
 {
   all_objects.erase(agent->get_name());
   agents.erase(agent->get_name());
+}
+
+shared_ptr<Agent> Model::find_closest_agent(std::shared_ptr<Agent> agent) const
+{
+  // If there's only one agent in our container, it must be the same as the 'agent'
+  // argument. Return an empty shared_ptr.
+  if (agents.size() == 1) {
+    return shared_ptr<Agent>();
+  }
+  
+  auto comp_func = std::bind(sim_object_min_distance_comparator, agent);
+  auto closest_agent_it =
+  std::min_element(agents.begin(),
+                   agents.end(),
+                   std::bind(comp_func,
+                             std::bind(&Agent_c::value_type::second, _1),
+                             std::bind(&Agent_c::value_type::second, _2)));
+  
+  return closest_agent_it->second;
 }
 
 // tell all objects to describe themselves to the console
