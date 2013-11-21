@@ -134,8 +134,8 @@ void LocationView::set_origin(Point origin_)
 
 void LocationView::set_center(Point center)
 {
-  origin.x = center.x - (size/2)*scale;
-  origin.y = center.y - (size/2)*scale;
+  origin.x = center.x - (size/2.)*scale;
+  origin.y = center.y - (size/2.)*scale;
 }
 
 // Service for derived views.
@@ -221,6 +221,7 @@ LocalView::LocalView(const string& name_) : LocationView(name_)
 
 void LocalView::update_location(const std::string &name, Point location)
 {
+  LocationView::update_location(name, location);
   if (name == get_name()) {
     set_center(location);
   }

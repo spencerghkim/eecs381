@@ -61,6 +61,7 @@ Model::Model()
   add_agent_helper(create_agent("Merry", "Peasant", Point(0., 25.)));
 	add_agent_helper(create_agent("Zug", "Soldier", Point(20., 30.)));
 	add_agent_helper(create_agent("Bug", "Soldier", Point(15., 20.)));
+  add_agent_helper(create_agent("Iriel", "Archer", Point(20., 38.)));
 }
 
 // is name already in use for either agent or structure?
@@ -112,11 +113,11 @@ shared_ptr<Structure> Model::find_closest_structure(shared_ptr<Agent> agent) con
     return shared_ptr<Structure>();
   }
   
-  auto comp_func = std::bind(sim_object_min_distance_comparator, agent);
   auto closest_structure_it =
       std::min_element(structures.begin(),
                        structures.end(),
-                       std::bind(comp_func,
+                       std::bind(sim_object_min_distance_comparator,
+                                 agent,
                                  std::bind(&Structure_c::value_type::second, _1),
                                  std::bind(&Structure_c::value_type::second, _2)));
   
@@ -166,13 +167,13 @@ shared_ptr<Agent> Model::find_closest_agent(std::shared_ptr<Agent> agent) const
     return shared_ptr<Agent>();
   }
   
-  auto comp_func = std::bind(sim_object_min_distance_comparator, agent);
   auto closest_agent_it =
-  std::min_element(agents.begin(),
-                   agents.end(),
-                   std::bind(comp_func,
-                             std::bind(&Agent_c::value_type::second, _1),
-                             std::bind(&Agent_c::value_type::second, _2)));
+      std::min_element(agents.begin(),
+                       agents.end(),
+                       std::bind(sim_object_min_distance_comparator,
+                                 agent,
+                                 std::bind(&Agent_c::value_type::second, _1),
+                                 std::bind(&Agent_c::value_type::second, _2)));
   
   return closest_agent_it->second;
 }

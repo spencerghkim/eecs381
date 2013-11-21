@@ -39,6 +39,9 @@ protected:
   bool is_attacking()
       { return state == ATTACKING; }
   
+  // Attack the given agent, regardless of if its status (in range, alive, etc.)
+  void attack(std::shared_ptr<Agent> target_ptr);
+  
 private:
   typedef enum {
     ATTACKING,

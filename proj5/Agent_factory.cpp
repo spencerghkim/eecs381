@@ -7,6 +7,7 @@
 
 #include <string>
 
+#define ARCHER_TYPE_NAME "Archer"
 #define PEASANT_TYPE_NAME "Peasant"
 #define SOLDIER_TYPE_NAME "Soldier"
 
@@ -18,6 +19,8 @@ shared_ptr<Agent> create_agent(const std::string& name, const std::string& type,
     return shared_ptr<Agent>(new Peasant(name, location));
   } else if (type == SOLDIER_TYPE_NAME) {
     return shared_ptr<Agent>(new Soldier(name, location));
+  } else if (type == ARCHER_TYPE_NAME) {
+    return shared_ptr<Agent>(new Archer(name, location));
   } else {
     throw Error{"Trying to create agent of unknown type!"};
   }
