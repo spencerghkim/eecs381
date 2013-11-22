@@ -10,6 +10,8 @@ start attacking its attacker.
 
 #include "Agent.h"
 
+#include <memory>
+
 struct Point;
 
 class Warrior : public Agent {

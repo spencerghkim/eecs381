@@ -13,6 +13,8 @@ If commanded to move_to somewhere, it stops working, and goes there.
 #include "Moving_object.h"
 #include "Sim_object.h"
 
+#include <memory>
+
 class Structure;
 struct Point;
 

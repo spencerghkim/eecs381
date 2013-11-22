@@ -12,6 +12,8 @@ it becomes dead, and finally disappearing.
 #include "Moving_object.h"
 #include "Sim_object.h"
 
+#include <memory>
+
 class Structure;
 struct Point;
 

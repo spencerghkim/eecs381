@@ -1,6 +1,7 @@
 #ifndef STRUCTURE_FACTORY_H
 #define STRUCTURE_FACTORY_H
 
+#include <memory>
 #include <string>
 
 struct Point;

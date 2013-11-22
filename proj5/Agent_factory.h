@@ -1,6 +1,7 @@
 #ifndef AGENT_FACTORY_H
 #define AGENT_FACTORY_H
 
+#include <memory>
 #include <string>
 
 struct Point;
