@@ -61,7 +61,6 @@ void Controller::run()
     cin >> word;
     
     if (word == "quit") {
-      // TODO: I don't need to detach views here right?
       cout << "Done" << endl;
       return;
     }

@@ -122,11 +122,6 @@ Soldier::Soldier(const std::string& name_, Point location_)
 void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
 {
   Agent::take_hit(attack_strength, attacker_ptr);
-  // TODO: do I really need to do this? I'm dead!
-  //if (state == ATTACKING && !is_alive()) {
-  //  state = NOT_ATTACKING;
-  //  target.reset();
-  //}
   
   if (is_alive() && !is_attacking() && attacker_ptr->is_alive()) {
     // Hit back!
