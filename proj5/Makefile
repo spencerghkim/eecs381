@@ -4,10 +4,10 @@ LD = g++
 CFLAGS = -c -g -pedantic -std=c++11 -Wall
 LFLAGS = -g
 
-OBJS = p4_main.o Model.o View.o Controller.o 
+OBJS = p4_main.o Model.o Views.o Controller.o 
 OBJS += Sim_object.o Structure.o Moving_object.o Agent.o
 OBJS += Farm.o Town_Hall.o
-OBJS += Peasant.o Soldier.o
+OBJS += Peasant.o Warriors.o
 OBJS += Agent_factory.o Structure_factory.o
 OBJS += Geometry.o Utility.o
 PROG = proj4exe
@@ -20,13 +20,13 @@ $(PROG): $(OBJS)
 p4_main.o: p4_main.cpp Model.h Controller.h
 	$(CC) $(CFLAGS) p4_main.cpp
 
-Model.o: Model.cpp Model.h View.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
+Model.o: Model.cpp Model.h Views.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Model.cpp
 
-View.o: View.cpp View.h Geometry.h Utility.h
-	$(CC) $(CFLAGS) View.cpp
+Views.o: Views.cpp Views.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Views.cpp
 
-Controller.o: Controller.cpp Controller.h Model.h View.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
+Controller.o: Controller.cpp Controller.h Model.h Views.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Controller.cpp
 
 Sim_object.o: Sim_object.cpp Sim_object.h Geometry.h
@@ -47,8 +47,8 @@ Agent.o: Agent.cpp Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 Peasant.o: Peasant.cpp Peasant.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Peasant.cpp
 
-Soldier.o: Soldier.cpp Soldier.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
-	$(CC) $(CFLAGS) Soldier.cpp
+Warriors.o: Warriors.cpp Warriors.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Warriors.cpp
 
 Moving_object.o: Moving_object.cpp Moving_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Moving_object.cpp

@@ -16,6 +16,7 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 
 */
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 
