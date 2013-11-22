@@ -17,16 +17,10 @@ Agent::Agent(const std::string& in_name, Point in_location)
     : Sim_object(in_name),
       Moving_object(in_location, DEFAULT_SPEED),
       health{INITIAL_HEALTH},
-      state(ALIVE)
-{
-  cout << "Agent " << in_name << " constructed" << endl;
-}
+      state(ALIVE) {}
 
-// class is abstract, make destructor pure virtual
-Agent::~Agent()
-{
-  cout << "Agent " << get_name() << " destructed" << endl;
-}
+// Explicit default destructor.
+Agent::~Agent() {}
 
 // return this Agent's location
 Point Agent::get_location() const

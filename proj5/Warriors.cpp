@@ -116,15 +116,7 @@ void Warrior::describe() const
 }
 
 Soldier::Soldier(const std::string& name_, Point location_)
-    : Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE)
-{
-  cout << "Soldier " << name_ << " constructed" << endl;
-}
-  
-Soldier::~Soldier()
-{
-  cout << "Soldier " << get_name() << " destructed" << endl;
-}
+    : Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE) {}
 
 // Overrides Agent's take_hit to counterattack when attacked.
 void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
@@ -154,15 +146,7 @@ string Soldier::get_battle_cry()
 }
 
 Archer::Archer(const std::string& name_, Point location_)
-    : Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE)
-{
-  cout << "Archer " << name_ << " constructed" << endl;
-}
-
-Archer::~Archer()
-{
-  cout << "Archer " << get_name() << " destructed" << endl;
-}
+    : Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE) {}
 
 void Archer::update()
 {

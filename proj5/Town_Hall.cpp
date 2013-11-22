@@ -10,15 +10,7 @@
 #define MINIMUM_FOOD_AMOUNT 1.0
 
 Town_Hall::Town_Hall(const std::string& in_name, Point in_location)
-    : Structure(in_name, in_location), total_food{0}
-{
-  std::cout << "Town_Hall " << in_name << " constructed" << std::endl;
-}
-
-Town_Hall::~Town_Hall()
-{
-  std::cout << "Town_Hall " << get_name() << " destructed" << std::endl;
-}
+    : Structure(in_name, in_location), total_food{0} {}
 
 void Town_Hall::deposit(double deposit_amount)
 {

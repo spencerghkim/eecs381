@@ -19,15 +19,7 @@ using std::shared_ptr;
 Peasant::Peasant(const std::string& in_name, Point in_location)
     : Agent(in_name, in_location),
       food_in_hand{INITIAL_CARRYING_FOOD},
-      state{NOT_WORKING}
-{
-  cout << "Peasant " << get_name() << " constructed" << endl;
-}
-
-Peasant::~Peasant()
-{
-  cout << "Peasant " << get_name() << " destructed" << endl;
-}
+      state{NOT_WORKING} {}
 
 // implement Peasant behavior
 void Peasant::update()

@@ -4,15 +4,11 @@
 
 #include <iostream>
 
-Structure::Structure (const std::string& name_, Point location_) : Sim_object(name_), location{location_}
-{
-  std::cout << "Structure " << get_name() << " constructed" << std::endl;
-}
+Structure::Structure (const std::string& name_, Point location_)
+    : Sim_object(name_), location{location_} {}
 
-Structure::~Structure ()
-{
-  std::cout << "Structure " << get_name() << " destructed" << std::endl;
-}
+// Explicit default destructor.
+Structure::~Structure () {}
 
 void Structure::describe() const
 {

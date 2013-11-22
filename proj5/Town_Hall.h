@@ -14,9 +14,7 @@ but does no updating.
 class Town_Hall : public Structure {
 public:
 	Town_Hall (const std::string& in_name, Point in_location);
-	
-	~Town_Hall();
-	
+
 	// deposit adds in the supplied amount
 	void deposit(double deposit_amount) override;
 

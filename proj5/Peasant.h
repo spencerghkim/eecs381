@@ -23,8 +23,6 @@ public:
 	// *** define these in .cpp; initialize with zero amount being carried
 	Peasant(const std::string& in_name, Point in_location);
 
-	~Peasant();
-
 	// implement Peasant behavior
 	void update() override;
 	

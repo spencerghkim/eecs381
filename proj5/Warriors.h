@@ -62,9 +62,7 @@ private:
 class Soldier : public Warrior {
 public:
 	
-	// *** define as specified
 	Soldier(const std::string& name_, Point location_);
-	~Soldier();
 		
 	// Overrides Agent's take_hit to counterattack when attacked.
 	void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
@@ -80,7 +78,6 @@ class Archer : public Warrior {
 public:
   
   Archer(const std::string& name_, Point location);
-  ~Archer();
   
   // update implements Archer's behavior
   void update() override;

@@ -14,9 +14,7 @@ struct Point;
 class Farm : public Structure {
 public:
 	Farm (const std::string& in_name, Point in_location);
-	
-  ~Farm();
-		
+
 	// returns the specified amount, or the remaining amount, whichever is less,
 	// and deducts that amount from the amount on hand
 	double withdraw(double amount_to_get) override;
