@@ -59,21 +59,6 @@ private:
   virtual std::string get_battle_cry() = 0;
 };
 
-class Soldier : public Warrior {
-public:
-	
-	Soldier(const std::string& name_, Point location_);
-		
-	// Overrides Agent's take_hit to counterattack when attacked.
-	void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
-	
-	// output information specific to soldier
-	void describe() const override;
-  
-  // return the battle cry for a soldier
-  std::string get_battle_cry() override;
-};
-
 class Archer : public Warrior {
 public:
   
@@ -85,10 +70,50 @@ public:
   // Overrides Agent's take_hit to run away to the nearest Structure when attacked.
   void take_hit(int attack_strength, std::shared_ptr<Agent> attacker) override;
   
-  // output information specific to archer
+  // output information specific to Archer
   void describe() const override;
   
   std::string get_battle_cry() override;
 };
+
+class Magician : public Warrior {
+public:
+  
+  Magician(const std::string& name_, Point location_);
+  
+  // update implementes Magician's behavior
+  void update() override;
+  
+  // Overrides Agent's take_hit to see if hit actually lands. If so, the Magician is killed
+  // regardless of attack_strength.
+  void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
+  
+  // output information specific to magician
+  void describe() const override;
+  
+  // return the battle cry for a Magician
+  std::string get_battle_cry() override;
+  
+private:
+  int blessing_strength;
+  double blessing_range;
+};
+
+class Soldier : public Warrior {
+public:
+	
+	Soldier(const std::string& name_, Point location_);
+		
+	// Overrides Agent's take_hit to counterattack when attacked.
+	void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
+	
+	// output information specific to Soldier
+	void describe() const override;
+  
+  // return the battle cry for a Soldier
+  std::string get_battle_cry() override;
+};
+
+
 
 #endif

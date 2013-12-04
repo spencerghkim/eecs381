@@ -35,6 +35,9 @@ public:
 	// starts the working process
 	// Throws an exception if the source is the same as the destination.
 	void start_working(std::shared_ptr<Structure> source_, std::shared_ptr<Structure> destination_) override;
+  
+  // Peasants accept blessings and gain health
+  void accept_blessing(int blessing_strength, std::shared_ptr<Agent> blesser_ptr) override;
 
 	// output information about the current state
 	void describe() const override;

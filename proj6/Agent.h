@@ -19,14 +19,13 @@ struct Point;
 
 class Agent : public Sim_object, public Moving_object, public std::enable_shared_from_this<Agent> {
 public:
-	// *** create with initial health is 5, speed is 5, state is Alive
+	// create with initial health is 5, speed is 5, state is Alive
 	Agent(const std::string& in_name, Point in_location);
 	
   // class is abstract, make destructor pure virtual
   virtual ~Agent() = 0;
 		
-	// *** provide the definition of the following reader functions here in the class declaration
-	// return true if this agent is Alive or Disappearing
+	// return true if this agent is Alive
 	bool is_alive() const { return state == ALIVE; }
 	
 	// return this Agent's location
@@ -46,6 +45,11 @@ public:
 	// A derived class can override this function.
 	// The function lose_health is called to handle the effect of the attack.
 	virtual void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr);
+  
+  // Tell this Agent to accept a blessing from an agent specified by blesser_ptr.
+  // A derived class may override this function, default behavior is nothing.
+  // The function gain_health may be called to handle the effect of the blessing.
+  virtual void accept_blessing(int blessing_strength, std::shared_ptr<Agent> blesser_ptr) {}
 	
 	// update the moving state and Agent state of this object.
 	void update() override;
@@ -67,6 +71,10 @@ protected:
 	// calculate loss of health due to hit.
 	// if health decreases to zero or negative, Agent state becomes Dying, and any movement is stopped.
 	void lose_health(int attack_strength);
+  
+  // calculate gain of health due to blessing. if health is already at full, or this agent is dead,
+  // this method has no effect
+  void gain_health(int blessing_strength);
   
 private:
   typedef enum {

@@ -19,6 +19,7 @@ Notice how only the Standard Library headers need to be included - reduced coupl
 #include <memory>
 #include <set>
 #include <string>
+#include <vector>
 
 class Agent;
 class Sim_object;
@@ -45,8 +46,8 @@ public:
 	void add_structure(std::shared_ptr<Structure>);
 	// will throw Error("Structure not found!") if no structure of that name
   std::shared_ptr<Structure> get_structure_ptr(const std::string& name) const;
-  // find structure closest to given location
-  std::shared_ptr<Structure> find_closest_structure(std::shared_ptr<Agent>) const;
+  // find structure closest to given object
+  std::shared_ptr<Structure> find_closest_structure(std::shared_ptr<Sim_object>) const;
 
 	// is there an agent with this name?
 	bool is_agent_present(const std::string& name) const;
@@ -56,8 +57,11 @@ public:
   std::shared_ptr<Agent> get_agent_ptr(const std::string& name) const;
   // remove Agent from containers
   void remove_agent(std::shared_ptr<Agent>);
-  // find agent closest to given location
-  std::shared_ptr<Agent> find_closest_agent(std::shared_ptr<Agent>) const;
+  // find agent closest to given object
+  std::shared_ptr<Agent> find_closest_agent(std::shared_ptr<Sim_object>) const;
+  // find all agents in the given range around the given object
+  std::vector<std::shared_ptr<Agent>> find_agents_in_range(std::shared_ptr<Sim_object> center,
+                                                           double range);
 	
 	// tell all objects to describe themselves to the console
 	void describe() const;

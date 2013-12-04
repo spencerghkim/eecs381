@@ -118,6 +118,11 @@ void Peasant::start_working(shared_ptr<Structure> source_, shared_ptr<Structure>
   }
 }
 
+void Peasant::accept_blessing(int blessing_strength, shared_ptr<Agent> blesser_ptr)
+{
+  gain_health(blessing_strength);
+}
+
 // output information about the current state
 void Peasant::describe() const
 {

@@ -9,10 +9,9 @@
 using std::cout; using std::endl;
 using std::shared_ptr;
 
-#define DEFAULT_SPEED 5.0
-#define INITIAL_HEALTH 5
+const double DEFAULT_SPEED = 5.0;
+const int INITIAL_HEALTH = 5;
 
-// *** create with initial health is 5, speed is 5, state is Alive
 Agent::Agent(const std::string& in_name, Point in_location)
     : Sim_object(in_name),
       Moving_object(in_location, DEFAULT_SPEED),
@@ -128,6 +127,22 @@ void Agent::lose_health(int attack_strength)
   } else {
     Model::getInstance().notify_health(get_name(), health);
     cout << get_name() << ": Ouch!" << endl;
+  }
+}
+
+// calculate gain of health due to blessing
+void Agent::gain_health(int blessing_strength)
+{
+  if (health == INITIAL_HEALTH) {
+    return;
+  } else {
+    cout << get_name() << ": I am healed!" << endl;
+    health += blessing_strength;
+  }
+  
+  // Make sure no one goes over their initial health.
+  if (health > INITIAL_HEALTH) {
+    health = INITIAL_HEALTH;
   }
 }
 

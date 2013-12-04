@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B31FF021184E9E0000C95972 /* eecs381proj6.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B31FF020184E9E0000C95972 /* eecs381proj6.1 */; };
+		B31FF046184E9E2700C95972 /* p6_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF027184E9E2700C95972 /* p6_main.cpp */; };
+		B31FF047184E9E2700C95972 /* Peasant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF028184E9E2700C95972 /* Peasant.cpp */; };
+		B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02A184E9E2700C95972 /* Sim_object.cpp */; };
+		B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02C184E9E2700C95972 /* Structure_factory.cpp */; };
+		B31FF04A184E9E2700C95972 /* Structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02E184E9E2700C95972 /* Structure.cpp */; };
+		B31FF04B184E9E2700C95972 /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF030184E9E2700C95972 /* Town_Hall.cpp */; };
+		B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF032184E9E2700C95972 /* Utility.cpp */; };
+		B31FF04D184E9E2700C95972 /* Views.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF034184E9E2700C95972 /* Views.cpp */; };
+		B31FF04E184E9E2700C95972 /* Warriors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF036184E9E2700C95972 /* Warriors.cpp */; };
+		B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF038184E9E2700C95972 /* Agent_factory.cpp */; };
+		B31FF050184E9E2700C95972 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03A184E9E2700C95972 /* Agent.cpp */; };
+		B31FF051184E9E2700C95972 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03C184E9E2700C95972 /* Controller.cpp */; };
+		B31FF052184E9E2700C95972 /* Farm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03E184E9E2700C95972 /* Farm.cpp */; };
+		B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF040184E9E2700C95972 /* Geometry.cpp */; };
+		B31FF054184E9E2700C95972 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF042184E9E2700C95972 /* Model.cpp */; };
+		B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF044184E9E2700C95972 /* Moving_object.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B31FF019184E9E0000C95972 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				B31FF021184E9E0000C95972 /* eecs381proj6.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B31FF01B184E9E0000C95972 /* eecs381proj6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj6; sourceTree = BUILT_PRODUCTS_DIR; };
+		B31FF020184E9E0000C95972 /* eecs381proj6.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj6.1; sourceTree = "<group>"; };
+		B31FF027184E9E2700C95972 /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = p6_main.cpp; path = ../../p6_main.cpp; sourceTree = "<group>"; };
+		B31FF028184E9E2700C95972 /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Peasant.cpp; path = ../../Peasant.cpp; sourceTree = "<group>"; };
+		B31FF029184E9E2700C95972 /* Peasant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Peasant.h; path = ../../Peasant.h; sourceTree = "<group>"; };
+		B31FF02A184E9E2700C95972 /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sim_object.cpp; path = ../../Sim_object.cpp; sourceTree = "<group>"; };
+		B31FF02B184E9E2700C95972 /* Sim_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sim_object.h; path = ../../Sim_object.h; sourceTree = "<group>"; };
+		B31FF02C184E9E2700C95972 /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure_factory.cpp; path = ../../Structure_factory.cpp; sourceTree = "<group>"; };
+		B31FF02D184E9E2700C95972 /* Structure_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structure_factory.h; path = ../../Structure_factory.h; sourceTree = "<group>"; };
+		B31FF02E184E9E2700C95972 /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure.cpp; path = ../../Structure.cpp; sourceTree = "<group>"; };
+		B31FF02F184E9E2700C95972 /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structure.h; path = ../../Structure.h; sourceTree = "<group>"; };
+		B31FF030184E9E2700C95972 /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Town_Hall.cpp; path = ../../Town_Hall.cpp; sourceTree = "<group>"; };
+		B31FF031184E9E2700C95972 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Town_Hall.h; path = ../../Town_Hall.h; sourceTree = "<group>"; };
+		B31FF032184E9E2700C95972 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = ../../Utility.cpp; sourceTree = "<group>"; };
+		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../Utility.h; sourceTree = "<group>"; };
+		B31FF034184E9E2700C95972 /* Views.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Views.cpp; path = ../../Views.cpp; sourceTree = "<group>"; };
+		B31FF035184E9E2700C95972 /* Views.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Views.h; path = ../../Views.h; sourceTree = "<group>"; };
+		B31FF036184E9E2700C95972 /* Warriors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Warriors.cpp; path = ../../Warriors.cpp; sourceTree = "<group>"; };
+		B31FF037184E9E2700C95972 /* Warriors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Warriors.h; path = ../../Warriors.h; sourceTree = "<group>"; };
+		B31FF038184E9E2700C95972 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = ../../Agent_factory.cpp; sourceTree = "<group>"; };
+		B31FF039184E9E2700C95972 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent_factory.h; path = ../../Agent_factory.h; sourceTree = "<group>"; };
+		B31FF03A184E9E2700C95972 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = ../../Agent.cpp; sourceTree = "<group>"; };
+		B31FF03B184E9E2700C95972 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent.h; path = ../../Agent.h; sourceTree = "<group>"; };
+		B31FF03C184E9E2700C95972 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../../Controller.cpp; sourceTree = "<group>"; };
+		B31FF03D184E9E2700C95972 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../../Controller.h; sourceTree = "<group>"; };
+		B31FF03E184E9E2700C95972 /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Farm.cpp; path = ../../Farm.cpp; sourceTree = "<group>"; };
+		B31FF03F184E9E2700C95972 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Farm.h; path = ../../Farm.h; sourceTree = "<group>"; };
+		B31FF040184E9E2700C95972 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = ../../Geometry.cpp; sourceTree = "<group>"; };
+		B31FF041184E9E2700C95972 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../Geometry.h; sourceTree = "<group>"; };
+		B31FF042184E9E2700C95972 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = ../../Model.cpp; sourceTree = "<group>"; };
+		B31FF043184E9E2700C95972 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Model.h; sourceTree = "<group>"; };
+		B31FF044184E9E2700C95972 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Moving_object.cpp; path = ../../Moving_object.cpp; sourceTree = "<group>"; };
+		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = ../../Moving_object.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B31FF018184E9E0000C95972 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B31FF012184E9E0000C95972 = {
+			isa = PBXGroup;
+			children = (
+				B31FF01D184E9E0000C95972 /* eecs381proj6 */,
+				B31FF01C184E9E0000C95972 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B31FF01C184E9E0000C95972 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF01B184E9E0000C95972 /* eecs381proj6 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B31FF01D184E9E0000C95972 /* eecs381proj6 */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF056184E9E4300C95972 /* Agent */,
+				B31FF03C184E9E2700C95972 /* Controller.cpp */,
+				B31FF03D184E9E2700C95972 /* Controller.h */,
+				B31FF042184E9E2700C95972 /* Model.cpp */,
+				B31FF043184E9E2700C95972 /* Model.h */,
+				B31FF027184E9E2700C95972 /* p6_main.cpp */,
+				B31FF02A184E9E2700C95972 /* Sim_object.cpp */,
+				B31FF02B184E9E2700C95972 /* Sim_object.h */,
+				B31FF057184E9E5100C95972 /* Structure */,
+				B31FF058184E9E6700C95972 /* Utility */,
+				B31FF034184E9E2700C95972 /* Views.cpp */,
+				B31FF035184E9E2700C95972 /* Views.h */,
+				B31FF020184E9E0000C95972 /* eecs381proj6.1 */,
+			);
+			path = eecs381proj6;
+			sourceTree = "<group>";
+		};
+		B31FF056184E9E4300C95972 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF03A184E9E2700C95972 /* Agent.cpp */,
+				B31FF03B184E9E2700C95972 /* Agent.h */,
+				B31FF038184E9E2700C95972 /* Agent_factory.cpp */,
+				B31FF039184E9E2700C95972 /* Agent_factory.h */,
+				B31FF028184E9E2700C95972 /* Peasant.cpp */,
+				B31FF029184E9E2700C95972 /* Peasant.h */,
+				B31FF036184E9E2700C95972 /* Warriors.cpp */,
+				B31FF037184E9E2700C95972 /* Warriors.h */,
+			);
+			name = Agent;
+			sourceTree = "<group>";
+		};
+		B31FF057184E9E5100C95972 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF03E184E9E2700C95972 /* Farm.cpp */,
+				B31FF03F184E9E2700C95972 /* Farm.h */,
+				B31FF02E184E9E2700C95972 /* Structure.cpp */,
+				B31FF02F184E9E2700C95972 /* Structure.h */,
+				B31FF02C184E9E2700C95972 /* Structure_factory.cpp */,
+				B31FF02D184E9E2700C95972 /* Structure_factory.h */,
+				B31FF030184E9E2700C95972 /* Town_Hall.cpp */,
+				B31FF031184E9E2700C95972 /* Town_Hall.h */,
+			);
+			name = Structure;
+			sourceTree = "<group>";
+		};
+		B31FF058184E9E6700C95972 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF040184E9E2700C95972 /* Geometry.cpp */,
+				B31FF041184E9E2700C95972 /* Geometry.h */,
+				B31FF044184E9E2700C95972 /* Moving_object.cpp */,
+				B31FF045184E9E2700C95972 /* Moving_object.h */,
+				B31FF032184E9E2700C95972 /* Utility.cpp */,
+				B31FF033184E9E2700C95972 /* Utility.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B31FF01A184E9E0000C95972 /* eecs381proj6 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B31FF024184E9E0000C95972 /* Build configuration list for PBXNativeTarget "eecs381proj6" */;
+			buildPhases = (
+				B31FF017184E9E0000C95972 /* Sources */,
+				B31FF018184E9E0000C95972 /* Frameworks */,
+				B31FF019184E9E0000C95972 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = eecs381proj6;
+			productName = eecs381proj6;
+			productReference = B31FF01B184E9E0000C95972 /* eecs381proj6 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B31FF013184E9E0000C95972 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "William Joshua Billingham";
+			};
+			buildConfigurationList = B31FF016184E9E0000C95972 /* Build configuration list for PBXProject "eecs381proj6" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B31FF012184E9E0000C95972;
+			productRefGroup = B31FF01C184E9E0000C95972 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B31FF01A184E9E0000C95972 /* eecs381proj6 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B31FF017184E9E0000C95972 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B31FF04D184E9E2700C95972 /* Views.cpp in Sources */,
+				B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */,
+				B31FF04E184E9E2700C95972 /* Warriors.cpp in Sources */,
+				B31FF052184E9E2700C95972 /* Farm.cpp in Sources */,
+				B31FF047184E9E2700C95972 /* Peasant.cpp in Sources */,
+				B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */,
+				B31FF050184E9E2700C95972 /* Agent.cpp in Sources */,
+				B31FF046184E9E2700C95972 /* p6_main.cpp in Sources */,
+				B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */,
+				B31FF051184E9E2700C95972 /* Controller.cpp in Sources */,
+				B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */,
+				B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */,
+				B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */,
+				B31FF054184E9E2700C95972 /* Model.cpp in Sources */,
+				B31FF04B184E9E2700C95972 /* Town_Hall.cpp in Sources */,
+				B31FF04A184E9E2700C95972 /* Structure.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B31FF022184E9E0000C95972 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B31FF023184E9E0000C95972 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B31FF025184E9E0000C95972 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B31FF026184E9E0000C95972 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B31FF016184E9E0000C95972 /* Build configuration list for PBXProject "eecs381proj6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B31FF022184E9E0000C95972 /* Debug */,
+				B31FF023184E9E0000C95972 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B31FF024184E9E0000C95972 /* Build configuration list for PBXNativeTarget "eecs381proj6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B31FF025184E9E0000C95972 /* Debug */,
+				B31FF026184E9E0000C95972 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B31FF013184E9E0000C95972 /* Project object */;
+}

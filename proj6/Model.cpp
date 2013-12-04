@@ -14,8 +14,9 @@
 #include <map>
 #include <set>
 #include <string>
+#include <vector>
 
-using std::map; using std::string; using std::set;
+using std::map; using std::string; using std::set; using std::vector;
 using std::shared_ptr;
 using namespace std::placeholders;
 
@@ -106,10 +107,10 @@ shared_ptr<Structure> Model::get_structure_ptr(const std::string& name) const
   return it->second;
 }
 
-shared_ptr<Structure> Model::find_closest_structure(shared_ptr<Agent> agent) const
+shared_ptr<Structure> Model::find_closest_structure(shared_ptr<Sim_object> object) const
 {
-  // If we don't have any structures, return an empty shared_ptr.
-  if (structures.empty()) {
+  // Check if the object arg is the only structure.
+  if (structures.size() == 1 && structures.at(object->get_name()) == object) {
     return shared_ptr<Structure>();
   }
   
@@ -117,7 +118,7 @@ shared_ptr<Structure> Model::find_closest_structure(shared_ptr<Agent> agent) con
       std::min_element(structures.begin(),
                        structures.end(),
                        std::bind(sim_object_min_distance_comparator,
-                                 agent,
+                                 object,
                                  std::bind(&Structure_c::value_type::second, _1),
                                  std::bind(&Structure_c::value_type::second, _2)));
   
@@ -159,11 +160,10 @@ void Model::remove_agent(shared_ptr<Agent> agent)
   agents.erase(agent->get_name());
 }
 
-shared_ptr<Agent> Model::find_closest_agent(std::shared_ptr<Agent> agent) const
+shared_ptr<Agent> Model::find_closest_agent(std::shared_ptr<Sim_object> object) const
 {
-  // If there's only one agent in our container, it must be the same as the 'agent'
-  // argument. Return an empty shared_ptr.
-  if (agents.size() == 1) {
+  // Check if the object arg is the only agent we have.
+  if (agents.size() == 1 && agents.at(object->get_name()) == object) {
     return shared_ptr<Agent>();
   }
   
@@ -171,11 +171,25 @@ shared_ptr<Agent> Model::find_closest_agent(std::shared_ptr<Agent> agent) const
       std::min_element(agents.begin(),
                        agents.end(),
                        std::bind(sim_object_min_distance_comparator,
-                                 agent,
+                                 object,
                                  std::bind(&Agent_c::value_type::second, _1),
                                  std::bind(&Agent_c::value_type::second, _2)));
   
   return closest_agent_it->second;
+}
+
+vector<shared_ptr<Agent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
+{
+  vector<shared_ptr<Agent>> agents_in_range;
+  
+  for (Agent_c::value_type agent_pair : agents) {
+    if (agent_pair.second != center &&
+        cartesian_distance(agent_pair.second->get_location(), center->get_location()) < range) {
+      agents_in_range.push_back(agent_pair.second);
+    }
+  }
+  
+  return agents_in_range;
 }
 
 // tell all objects to describe themselves to the console
