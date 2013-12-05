@@ -77,10 +77,10 @@ protected:
   void gain_health(int blessing_strength);
   
 private:
-  typedef enum {
+  using Agent_state_e = enum {
     ALIVE,
     DEAD
-  } Agent_state_e;
+  };
   
   int health;
   Agent_state_e state;

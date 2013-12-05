@@ -45,13 +45,13 @@ public:
   void broadcast_current_state() override;
   
 private:
-  typedef enum {
+  using Peasant_state_e = enum {
     NOT_WORKING,
     INBOUND,
     COLLECTING,
     OUTBOUND,
     DEPOSITING
-  } Peasant_state_e;
+  };
   
   double food_in_hand;
   std::shared_ptr<Structure> source;

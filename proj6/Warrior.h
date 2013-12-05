@@ -38,16 +38,16 @@ public:
 protected:
   
   bool is_attacking()
-  { return state == ATTACKING; }
+    { return state == ATTACKING; }
   
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
   void attack(std::shared_ptr<Agent> target_ptr);
   
 private:
-  typedef enum {
+  using Warrior_state_e = enum {
     ATTACKING,
     NOT_ATTACKING
-  } Warrior_state_e;
+  };
   
   int attack_strength;
   double attack_range;

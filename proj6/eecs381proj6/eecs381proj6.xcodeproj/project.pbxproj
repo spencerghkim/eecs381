@@ -135,14 +135,7 @@
 				B31FF03A184E9E2700C95972 /* Agent.cpp */,
 				B31FF029184E9E2700C95972 /* Peasant.h */,
 				B31FF028184E9E2700C95972 /* Peasant.cpp */,
-				B31FF037184E9E2700C95972 /* Warrior.h */,
-				B31FF036184E9E2700C95972 /* Warrior.cpp */,
-				F5ABDE56185025E6004C31B5 /* Soldier.h */,
-				F5ABDE55185025E6004C31B5 /* Soldier.cpp */,
-				F5ABDE511850251F004C31B5 /* Archer.h */,
-				F5ABDE501850251F004C31B5 /* Archer.cpp */,
-				F5ABDE54185025E6004C31B5 /* Magician.h */,
-				F5ABDE53185025E6004C31B5 /* Magician.cpp */,
+				F5ABDE5918503157004C31B5 /* Warriors */,
 			);
 			name = Agent;
 			sourceTree = "<group>";
@@ -207,6 +200,21 @@
 				B31FF039184E9E2700C95972 /* Agent_factory.h */,
 			);
 			name = Factories;
+			sourceTree = "<group>";
+		};
+		F5ABDE5918503157004C31B5 /* Warriors */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF037184E9E2700C95972 /* Warrior.h */,
+				B31FF036184E9E2700C95972 /* Warrior.cpp */,
+				F5ABDE56185025E6004C31B5 /* Soldier.h */,
+				F5ABDE55185025E6004C31B5 /* Soldier.cpp */,
+				F5ABDE511850251F004C31B5 /* Archer.h */,
+				F5ABDE501850251F004C31B5 /* Archer.cpp */,
+				F5ABDE54185025E6004C31B5 /* Magician.h */,
+				F5ABDE53185025E6004C31B5 /* Magician.cpp */,
+			);
+			name = Warriors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
