@@ -8,7 +8,7 @@
 #include "Structure.h"
 #include "Structure_factory.h"
 #include "Utility.h"
-#include "Views.h"
+#include "View.h"
 
 #include <algorithm>
 #include <functional>
@@ -22,6 +22,8 @@ using std::shared_ptr;
 using std::bind;
 using std::min_element;
 using namespace std::placeholders;
+
+const int UNIQUE_STRING_PREFIX_SIZE = 2;
 
 // Returns a boolean indicating whether or not s1 is closer to origin than s2. We deal
 // with self comparison (i.e. one of s1 or s2 is actually the origin object), by pushing
@@ -68,9 +70,9 @@ Model& Model::get()
 // either the identical name, or identical in first two characters counts as in-use
 bool Model::is_name_in_use(const string& name) const
 {
-  string twochar = name.substr(0,2);
-  auto itr = objects.lower_bound(twochar);
-  return itr != objects.end() && itr->first.find(twochar) == 0;
+  string prefix = name.substr(0,UNIQUE_STRING_PREFIX_SIZE);
+  auto itr = objects.lower_bound(prefix);
+  return itr != objects.end() && itr->first.find(prefix) == 0;
 }
 
 // is there a structure with this name?

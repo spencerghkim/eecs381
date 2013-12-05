@@ -1,5 +1,5 @@
 
-#include "Views.h"
+#include "MapView.h"
 
 #include "Geometry.h"
 #include "Utility.h"
@@ -28,11 +28,7 @@ const double DEFAULT_LOCAL_SCALE = 2.0;
 const int DEFAULT_LOCAL_SIZE = 9;
 const double LOCAL_ORIGIN_OFFSET = (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE; //TODO: is this correct *2/2 ?
 
-const string AMOUNTS_VIEW_NAME = "Amounts";
-const string HEALTH_VIEW_NAME = "Health";
-
-// explicit default dtors
-View::~View() {} //TODO: need?
+// explicit default dtor
 MapView::~MapView() {}
 
 // Save the supplied name and location for future use in a draw() call
@@ -207,6 +203,7 @@ bool MapView::get_subscripts(int &ix, int &iy, Point location) const
 		return true;
 }
 
+
 // default constructor sets the default size, scale, and origin
 FullMapView::FullMapView()
 {
@@ -233,66 +230,4 @@ void LocalView::print_header()
 {
   cout << "Local view for: " << obj_name << endl;
 }
-
-
-/* List View Types */
-
-// Base List View //
-ListView::~ListView() {} // explicit dtor
-
-// Notify for removal of object
-void ListView::update_remove(const string& name)
-{
-  objects.erase(name);
-}
-
-// prints out the view
-void ListView::draw()
-{
-  cout << "Current " << view_name() << ":" << endl;
-  cout << "--------------" << endl;
-  for (auto i : objects) {
-    cout << i.first << ": " << i.second << endl;
-  }
-  cout << "--------------" << endl;
-}
-
-// discards the view's contents
-void ListView::clear()
-{
-  objects.clear();
-}
-
-// update the generic value held by the ListView
-void ListView::update_value(const string& name, double value)
-{
-  objects[name] = value;
-}
-
-// Health View //
-
-// update the unit's health
-void HealthView::update_health(const string& name, int health)
-{
-  update_value(name, health);
-}
-
-string HealthView::view_name()
-{
-  return HEALTH_VIEW_NAME;
-}
-
-// Amounts View //
-
-// update the amount of food
-void AmountsView::update_amount(const string& name, double amount)
-{
-  update_value(name, amount);
-}
-
-string AmountsView::view_name()
-{
-  return AMOUNTS_VIEW_NAME;
-}
-
 

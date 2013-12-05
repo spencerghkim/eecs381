@@ -3,12 +3,14 @@
 #include "Agent.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
+#include "ListView.h"
+#include "MapView.h"
 #include "Model.h"
 #include "Sim_object.h"
 #include "Structure.h"
 #include "Structure_factory.h"
 #include "Utility.h"
-#include "Views.h"
+#include "View.h"
 
 #include <algorithm>
 #include <cassert>

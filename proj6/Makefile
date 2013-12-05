@@ -4,7 +4,7 @@ LD = g++
 CFLAGS = -c -g -pedantic -std=c++11 -Wall
 LFLAGS = -g
 
-OBJS = p6_main.o Model.o Views.o Controller.o 
+OBJS = p6_main.o Model.o View.o MapView.o ListView.o Controller.o
 OBJS += Sim_object.o Structure.o Moving_object.o Agent.o
 OBJS += Farm.o Town_Hall.o
 OBJS += Peasant.o Warrior.o Soldier.o Archer.o Magician.o
@@ -33,13 +33,19 @@ test: $(PROG)
 p6_main.o: p6_main.cpp Model.h Controller.h
 	$(CC) $(CFLAGS) p6_main.cpp
 
-Model.o: Model.cpp Model.h Views.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
+Model.o: Model.cpp Model.h View.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Model.cpp
 
-Views.o: Views.cpp Views.h Geometry.h Utility.h
-	$(CC) $(CFLAGS) Views.cpp
+View.o: View.cpp View.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) View.cpp
 
-Controller.o: Controller.cpp Controller.h Model.h Views.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
+MapView.o: MapView.cpp MapView.h View.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) MapView.cpp
+
+ListView.o: ListView.cpp ListView.h View.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) ListView.cpp
+
+Controller.o: Controller.cpp Controller.h Model.h View.h MapView.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Controller.cpp
 
 Sim_object.o: Sim_object.cpp Sim_object.h Geometry.h

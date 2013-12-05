@@ -1,41 +1,21 @@
-#ifndef VIEWS_H_
-#define VIEWS_H_
+#ifndef MAPVIEW_H_
+#define MAPVIEW_H_
 
 /*
  
- * View class *
+ * MapView class *
  
- The View classes encapsulates the data and functions needed to generate the correct
- displays, and control their properties. It has a "memory" for the names and locations
- of the to-be-plotted objects.
+ TODO: blurb
  
- */
+*/
+
+#include "View.h"
+#include "Geometry.h"
 
 #include <string>
 #include <map>
 #include <vector>
 #include <memory>
-#include "Geometry.h"
-
-class View { //Interface for any type of View
-public:
-  //TODO: check that we need this.
-  virtual ~View() = 0;
-  
-	// Notify for location, health, or amount update
-	virtual void update_location(const std::string& name, Point location) {};
-	virtual void update_health(const std::string& name, int health) {};
-	virtual void update_amount(const std::string& name, double amount) {};
-	
-	// Notify for removal of object
-	virtual void update_remove(const std::string& name) = 0;
-	
-	// prints out the view
-	virtual void draw() = 0;
-	
-	// discards the view's contents
-	virtual void clear() = 0;
-};
 
 class MapView : public View {
 public:
@@ -111,48 +91,6 @@ public:
   
 private:
   std::string obj_name;
-};
-
-/* List View Types */
-
-class ListView : public View {
-public:
-  virtual ~ListView() = 0;
-  
-  // Notify for removal of object
-  void update_remove(const std::string& name) override;
-	
-	// prints out the view
-	void draw() override;
-	
-	// discards the view's contents
-	void clear() override;
-  
-protected:
-  using Objects_t = std::map<std::string, double>;
-  
-  // update the generic value held by the ListView
-  void update_value(const std::string& name, double value);
-  
-private:
-  // get the name of this view type
-  virtual std::string view_name() = 0;
-  
-  Objects_t objects;
-};
-
-class HealthView : public ListView {
-public:
-  // update the unit's health
-  void update_health(const std::string& name, int health) override;
-  std::string view_name() override;
-};
-
-class AmountsView : public ListView {
-public:
-  // update the amount of food
-  void update_amount(const std::string& name, double amount) override;
-  std::string view_name() override;
 };
 
 #endif

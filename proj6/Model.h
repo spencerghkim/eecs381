@@ -2,6 +2,7 @@
 #define MODEL_H_
 
 /*
+ 
  Model is part of a simplified Model-View-Controller pattern.
  Model keeps track of the Sim_objects in our little world. It is the only
  component that knows how many Structures and Agents there are, but it does not
