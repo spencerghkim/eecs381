@@ -3,8 +3,6 @@
 TODO:
 
 Check that all dtors are correct (dont wanna lose dumb points)
-Move Classes into their own files! (no longer need to squish them right?)
-
 Make sure makefile/.cpp's dont have excessive dependancies
 
 Notes:
@@ -16,5 +14,5 @@ From:
 
 
 File Origins:
-    MVC all came from Otto's PA5
+    MVC came from Otto's PA5
     Everything else is Josh's

@@ -9,7 +9,6 @@
 */
 
 #include "View.h"
-#include "Geometry.h"
 
 #include <string>
 #include <map>
