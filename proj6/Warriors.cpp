@@ -14,17 +14,19 @@
 #include <limits>
 #include <vector>
 
-using namespace std::placeholders;
-
 using std::vector;
 using std::string;
 using std::cout; using std::endl;
 using std::shared_ptr;
+using std::for_each;
+using std::bind;
+using std::numeric_limits;
+using namespace std::placeholders;
 
 const int ARCHER_ATTACK_STRENGTH = 1;
 const double ARCHER_ATTACK_RANGE = 6.0;
 const int MAGICIAN_ATTACK_STRENGTH = 4;
-const double MAGICIAN_ATTACK_RANGE = std::numeric_limits<double>::max();
+const double MAGICIAN_ATTACK_RANGE = numeric_limits<double>::max();
 const int MAGICIAN_BLESSING_STRENGTH = 1;
 const double MAGICIAN_BLESSING_RANGE = 10.0;
 const int SOLDIER_ATTACK_STRENGTH = 2;
@@ -126,7 +128,7 @@ void Warrior::describe() const
   }
 }
 
-Archer::Archer(const std::string& name_, Point location_)
+Archer::Archer(const string& name_, Point location_)
 : Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE) {}
 
 void Archer::update()
@@ -186,9 +188,9 @@ void Magician::update()
   if (!is_attacking()) {
     vector<shared_ptr<Agent>> agents_in_range =
     Model::get().find_agents_in_range(shared_from_this(), blessing_range);
-    std::for_each(agents_in_range.begin(),
-                  agents_in_range.end(),
-                  std::bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));
+    for_each(agents_in_range.begin(),
+             agents_in_range.end(),
+             bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));
   }
 }
 
@@ -199,7 +201,7 @@ void Magician::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
   int hit_landed = rand() % 2;
   if (hit_landed == 1) {
     // The hit landed.
-    Agent::take_hit(std::numeric_limits<int>::max(), attacker_ptr);
+    Agent::take_hit(numeric_limits<int>::max(), attacker_ptr);
   } else {
     // The hit missed.
     cout << get_name() << ": Aha! You missed!" << endl;

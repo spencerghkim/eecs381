@@ -10,10 +10,11 @@
 #define FARM_TYPE_NAME "Farm"
 #define TOWN_HALL_TYPE_NAME "Town_Hall"
 
+using std::string;
 using std::shared_ptr;
 
-shared_ptr<Structure> create_structure(const std::string& name,
-                                       const std::string& type,
+shared_ptr<Structure> create_structure(const string& name,
+                                       const string& type,
                                        Point location)
 {
   if (type == FARM_TYPE_NAME) {

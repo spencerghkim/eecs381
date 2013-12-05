@@ -9,8 +9,11 @@
 #define TAX_RATE 0.1
 #define MINIMUM_FOOD_AMOUNT 1.0
 
-Town_Hall::Town_Hall(const std::string& in_name, Point in_location)
-: Structure(in_name, in_location), total_food{0} {}
+using std::string;
+using std::cout; using std::endl;
+
+Town_Hall::Town_Hall(const string& in_name, Point in_location) :
+  Structure(in_name, in_location), total_food{0} {}
 
 void Town_Hall::deposit(double deposit_amount)
 {
@@ -39,9 +42,9 @@ double Town_Hall::withdraw(double amount_to_obtain)
 }
 
 void Town_Hall::describe() const {
-  std::cout << "Town_Hall ";
+  cout << "Town_Hall ";
   Structure::describe();
-  std::cout << "   Contains " << total_food << std::endl;
+  cout << "   Contains " << total_food << endl;
 }
 
 void Town_Hall::broadcast_current_state()

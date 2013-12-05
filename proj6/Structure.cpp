@@ -4,15 +4,18 @@
 
 #include <iostream>
 
-Structure::Structure (const std::string& name_, Point location_)
-: Sim_object(name_), location{location_} {}
+using std::string;
+using std::cout; using std::endl;
+
+Structure::Structure (const string& name_, Point location_) :
+  Sim_object(name_), location{location_} {}
 
 // Explicit default destructor.
 Structure::~Structure () {}
 
 void Structure::describe() const
 {
-  std::cout << get_name() << " at " << location << std::endl;
+  cout << get_name() << " at " << location << endl;
 }
 
 void Structure::broadcast_current_state()

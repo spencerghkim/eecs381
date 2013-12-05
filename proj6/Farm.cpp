@@ -5,10 +5,13 @@
 
 #include <iostream>
 
+using std::string;
+using std::cout; using std::endl;
+
 #define INITIAL_FOOD 50.0
 #define FOOD_PRODUCED_PER_UPDATE 2.0
 
-Farm::Farm(const std::string& in_name, Point in_location)
+Farm::Farm(const string& in_name, Point in_location)
 : Structure(in_name, in_location), food_available{INITIAL_FOOD} {}
 
 double Farm::withdraw(double amount_to_get)
@@ -29,14 +32,14 @@ void Farm::update()
 {
   food_available += FOOD_PRODUCED_PER_UPDATE;
   Model::get().notify_amount(get_name(), food_available);
-  std::cout << "Farm " << get_name() << " now has " << food_available << std::endl;
+  cout << "Farm " << get_name() << " now has " << food_available << endl;
 }
 
 void Farm::describe() const
 {
-  std::cout << "Farm ";
+  cout << "Farm ";
   Structure::describe();
-  std::cout << "   Food available: " << food_available << std::endl;
+  cout << "   Food available: " << food_available << endl;
 }
 
 void Farm::broadcast_current_state()

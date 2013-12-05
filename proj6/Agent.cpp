@@ -6,17 +6,18 @@
 
 #include <iostream>
 
+using std::string;
 using std::cout; using std::endl;
 using std::shared_ptr;
 
 const double DEFAULT_SPEED = 5.0;
 const int INITIAL_HEALTH = 5;
 
-Agent::Agent(const std::string& in_name, Point in_location)
-: Sim_object(in_name),
-Moving_object(in_location, DEFAULT_SPEED),
-health{INITIAL_HEALTH},
-state(ALIVE) {}
+Agent::Agent(const string& in_name, Point in_location) :
+  Sim_object(in_name),
+  Moving_object(in_location, DEFAULT_SPEED),
+  health{INITIAL_HEALTH},
+  state(ALIVE) {}
 
 // Explicit default destructor.
 Agent::~Agent() {}

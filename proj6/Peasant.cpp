@@ -13,10 +13,11 @@
 #define INITIAL_CARRYING_FOOD 0.0
 #define MAXIMUM_CARRYING_CAPACITY 35.0
 
+using std::string;
 using std::cout; using std::endl;
 using std::shared_ptr;
 
-Peasant::Peasant(const std::string& in_name, Point in_location) :
+Peasant::Peasant(const string& in_name, Point in_location) :
   Agent(in_name, in_location),
   food_in_hand{INITIAL_CARRYING_FOOD},
   state{NOT_WORKING} {}

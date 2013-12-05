@@ -10,6 +10,8 @@
 #include "Utility.h"
 #include "Views.h"
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
 #include <memory>
 
@@ -17,6 +19,8 @@ using std::cout; using std::endl;
 using std::string; using std::map; using std::vector;
 using std::make_pair;
 using std::shared_ptr;
+using std::bind;
+using std::min_element;
 using namespace std::placeholders;
 
 // Returns a boolean indicating whether or not s1 is closer to origin than s2. We deal
@@ -107,12 +111,12 @@ shared_ptr<Structure> Model::closest_structure(shared_ptr<Sim_object> object) co
   }
   
   auto closest_structure_it =
-  std::min_element(structures.begin(),
-                   structures.end(),
-                   std::bind(sim_object_min_distance_comparator,
-                             object,
-                             std::bind(&Structures_t::value_type::second, _1),
-                             std::bind(&Structures_t::value_type::second, _2)));
+  min_element(structures.begin(),
+              structures.end(),
+              bind(sim_object_min_distance_comparator,
+                   object,
+                   bind(&Structures_t::value_type::second, _1),
+                   bind(&Structures_t::value_type::second, _2)));
   
   return closest_structure_it->second;
 }
@@ -162,12 +166,12 @@ shared_ptr<Agent> Model::closest_agent(shared_ptr<Sim_object> object) const
   }
   
   auto closest_agent_it =
-  std::min_element(agents.begin(),
-                   agents.end(),
-                   std::bind(sim_object_min_distance_comparator,
-                             object,
-                             std::bind(&Agents_t::value_type::second, _1),
-                             std::bind(&Agents_t::value_type::second, _2)));
+  min_element(agents.begin(),
+              agents.end(),
+              bind(sim_object_min_distance_comparator,
+                   object,
+                   bind(&Agents_t::value_type::second, _1),
+                   bind(&Agents_t::value_type::second, _2)));
   
   return closest_agent_it->second;
 }

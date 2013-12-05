@@ -219,7 +219,7 @@ LocalView::LocalView(string name) : obj_name(name)
   set_size(DEFAULT_LOCAL_SIZE);
 }
 
-void LocalView::update_location(const std::string& name, Point location)
+void LocalView::update_location(const string& name, Point location)
 {
   MapView::update_location(name, location);
   if (name == obj_name) {

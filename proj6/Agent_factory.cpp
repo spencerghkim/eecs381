@@ -8,15 +8,15 @@
 #include <string>
 
 using std::string;
+using std::shared_ptr;
 
 const string ARCHER_TYPE_NAME = "Archer";
 const string MAGICIAN_TYPE_NAME = "Magician";
 const string PEASANT_TYPE_NAME = "Peasant";
 const string SOLDIER_TYPE_NAME = "Soldier";
 
-using std::shared_ptr;
 
-shared_ptr<Agent> create_agent(const std::string& name, const std::string& type, Point location)
+shared_ptr<Agent> create_agent(const string& name, const string& type, Point location)
 {
   if (type == PEASANT_TYPE_NAME) {
     return shared_ptr<Agent>(new Peasant(name, location));
