@@ -1,0 +1,7 @@
+
+samples/
+.DS_Store
+*.o
+*.out
+*exe
+*.junk
