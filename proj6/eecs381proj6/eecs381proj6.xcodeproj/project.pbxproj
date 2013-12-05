@@ -16,7 +16,7 @@
 		B31FF04B184E9E2700C95972 /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF030184E9E2700C95972 /* Town_Hall.cpp */; };
 		B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF032184E9E2700C95972 /* Utility.cpp */; };
 		B31FF04D184E9E2700C95972 /* Views.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF034184E9E2700C95972 /* Views.cpp */; };
-		B31FF04E184E9E2700C95972 /* Warriors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF036184E9E2700C95972 /* Warriors.cpp */; };
+		B31FF04E184E9E2700C95972 /* Warrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF036184E9E2700C95972 /* Warrior.cpp */; };
 		B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF038184E9E2700C95972 /* Agent_factory.cpp */; };
 		B31FF050184E9E2700C95972 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03A184E9E2700C95972 /* Agent.cpp */; };
 		B31FF051184E9E2700C95972 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03C184E9E2700C95972 /* Controller.cpp */; };
@@ -25,6 +25,9 @@
 		B31FF054184E9E2700C95972 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF042184E9E2700C95972 /* Model.cpp */; };
 		B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF044184E9E2700C95972 /* Moving_object.cpp */; };
 		F5ABDE4B18500C08004C31B5 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE4A18500C08004C31B5 /* Makefile */; };
+		F5ABDE521850251F004C31B5 /* Archer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE501850251F004C31B5 /* Archer.cpp */; };
+		F5ABDE57185025E6004C31B5 /* Magician.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE53185025E6004C31B5 /* Magician.cpp */; };
+		F5ABDE58185025E6004C31B5 /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE55185025E6004C31B5 /* Soldier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,8 +61,8 @@
 		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../Utility.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF034184E9E2700C95972 /* Views.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Views.cpp; path = ../../Views.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF035184E9E2700C95972 /* Views.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Views.h; path = ../../Views.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF036184E9E2700C95972 /* Warriors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Warriors.cpp; path = ../../Warriors.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF037184E9E2700C95972 /* Warriors.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Warriors.h; path = ../../Warriors.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF036184E9E2700C95972 /* Warrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Warrior.cpp; path = ../../Warrior.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF037184E9E2700C95972 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Warrior.h; path = ../../Warrior.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF038184E9E2700C95972 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = ../../Agent_factory.cpp; sourceTree = "<group>"; };
 		B31FF039184E9E2700C95972 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent_factory.h; path = ../../Agent_factory.h; sourceTree = "<group>"; };
 		B31FF03A184E9E2700C95972 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = ../../Agent.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -76,6 +79,12 @@
 		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = ../../Moving_object.h; sourceTree = "<group>"; tabWidth = 2; };
 		F5ABDE4A18500C08004C31B5 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../Makefile; sourceTree = "<group>"; };
 		F5ABDE4F185010E4004C31B5 /* NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES; sourceTree = "<group>"; };
+		F5ABDE501850251F004C31B5 /* Archer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Archer.cpp; path = ../../Archer.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE511850251F004C31B5 /* Archer.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Archer.h; path = ../../Archer.h; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE53185025E6004C31B5 /* Magician.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Magician.cpp; path = ../../Magician.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE54185025E6004C31B5 /* Magician.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Magician.h; path = ../../Magician.h; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE55185025E6004C31B5 /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = ../../Soldier.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE56185025E6004C31B5 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Soldier.h; path = ../../Soldier.h; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +135,14 @@
 				B31FF03A184E9E2700C95972 /* Agent.cpp */,
 				B31FF029184E9E2700C95972 /* Peasant.h */,
 				B31FF028184E9E2700C95972 /* Peasant.cpp */,
-				B31FF037184E9E2700C95972 /* Warriors.h */,
-				B31FF036184E9E2700C95972 /* Warriors.cpp */,
+				B31FF037184E9E2700C95972 /* Warrior.h */,
+				B31FF036184E9E2700C95972 /* Warrior.cpp */,
+				F5ABDE56185025E6004C31B5 /* Soldier.h */,
+				F5ABDE55185025E6004C31B5 /* Soldier.cpp */,
+				F5ABDE511850251F004C31B5 /* Archer.h */,
+				F5ABDE501850251F004C31B5 /* Archer.cpp */,
+				F5ABDE54185025E6004C31B5 /* Magician.h */,
+				F5ABDE53185025E6004C31B5 /* Magician.cpp */,
 			);
 			name = Agent;
 			sourceTree = "<group>";
@@ -247,8 +262,10 @@
 			files = (
 				B31FF04D184E9E2700C95972 /* Views.cpp in Sources */,
 				F5ABDE4B18500C08004C31B5 /* Makefile in Sources */,
+				F5ABDE57185025E6004C31B5 /* Magician.cpp in Sources */,
 				B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */,
-				B31FF04E184E9E2700C95972 /* Warriors.cpp in Sources */,
+				B31FF04E184E9E2700C95972 /* Warrior.cpp in Sources */,
+				F5ABDE521850251F004C31B5 /* Archer.cpp in Sources */,
 				B31FF052184E9E2700C95972 /* Farm.cpp in Sources */,
 				B31FF047184E9E2700C95972 /* Peasant.cpp in Sources */,
 				B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */,
@@ -257,6 +274,7 @@
 				B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */,
 				B31FF051184E9E2700C95972 /* Controller.cpp in Sources */,
 				B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */,
+				F5ABDE58185025E6004C31B5 /* Soldier.cpp in Sources */,
 				B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */,
 				B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */,
 				B31FF054184E9E2700C95972 /* Model.cpp in Sources */,

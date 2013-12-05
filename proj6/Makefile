@@ -7,7 +7,7 @@ LFLAGS = -g
 OBJS = p6_main.o Model.o Views.o Controller.o 
 OBJS += Sim_object.o Structure.o Moving_object.o Agent.o
 OBJS += Farm.o Town_Hall.o
-OBJS += Peasant.o Warriors.o
+OBJS += Peasant.o Warrior.o Soldier.o Archer.o Magician.o
 OBJS += Agent_factory.o Structure_factory.o
 OBJS += Geometry.o Utility.o
 PROG = proj6exe
@@ -60,8 +60,17 @@ Agent.o: Agent.cpp Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 Peasant.o: Peasant.cpp Peasant.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Peasant.cpp
 
-Warriors.o: Warriors.cpp Warriors.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
-	$(CC) $(CFLAGS) Warriors.cpp
+Warrior.o: Warrior.cpp Warrior.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Warrior.cpp
+    
+Soldier.o: Soldier.cpp Warrior.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Soldier.cpp
+    
+Archer.o: Archer.cpp Warrior.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Archer.cpp
+    
+Magician.o: Magician.cpp Warrior.h Agent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Magician.cpp
 
 Moving_object.o: Moving_object.cpp Moving_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Moving_object.cpp

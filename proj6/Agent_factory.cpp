@@ -2,7 +2,10 @@
 
 #include "Geometry.h"
 #include "Peasant.h"
-#include "Warriors.h"
+#include "Warrior.h"
+#include "Soldier.h"
+#include "Archer.h"
+#include "Magician.h"
 #include "Utility.h"
 
 #include <string>
