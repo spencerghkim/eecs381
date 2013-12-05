@@ -24,6 +24,7 @@
 		B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF040184E9E2700C95972 /* Geometry.cpp */; };
 		B31FF054184E9E2700C95972 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF042184E9E2700C95972 /* Model.cpp */; };
 		B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF044184E9E2700C95972 /* Moving_object.cpp */; };
+		F5ABDE4B18500C08004C31B5 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE4A18500C08004C31B5 /* Makefile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,7 @@
 		B31FF043184E9E2700C95972 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Model.h; sourceTree = "<group>"; };
 		B31FF044184E9E2700C95972 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Moving_object.cpp; path = ../../Moving_object.cpp; sourceTree = "<group>"; };
 		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = ../../Moving_object.h; sourceTree = "<group>"; };
+		F5ABDE4A18500C08004C31B5 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../Makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,17 +108,18 @@
 			isa = PBXGroup;
 			children = (
 				B31FF056184E9E4300C95972 /* Agent */,
-				B31FF03C184E9E2700C95972 /* Controller.cpp */,
-				B31FF03D184E9E2700C95972 /* Controller.h */,
 				B31FF042184E9E2700C95972 /* Model.cpp */,
 				B31FF043184E9E2700C95972 /* Model.h */,
+				B31FF03C184E9E2700C95972 /* Controller.cpp */,
+				B31FF03D184E9E2700C95972 /* Controller.h */,
+				B31FF034184E9E2700C95972 /* Views.cpp */,
+				B31FF035184E9E2700C95972 /* Views.h */,
 				B31FF027184E9E2700C95972 /* p6_main.cpp */,
 				B31FF02A184E9E2700C95972 /* Sim_object.cpp */,
 				B31FF02B184E9E2700C95972 /* Sim_object.h */,
 				B31FF057184E9E5100C95972 /* Structure */,
 				B31FF058184E9E6700C95972 /* Utility */,
-				B31FF034184E9E2700C95972 /* Views.cpp */,
-				B31FF035184E9E2700C95972 /* Views.h */,
+				F5ABDE4A18500C08004C31B5 /* Makefile */,
 				B31FF020184E9E0000C95972 /* eecs381proj6.1 */,
 			);
 			path = eecs381proj6;
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31FF04D184E9E2700C95972 /* Views.cpp in Sources */,
+				F5ABDE4B18500C08004C31B5 /* Makefile in Sources */,
 				B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */,
 				B31FF04E184E9E2700C95972 /* Warriors.cpp in Sources */,
 				B31FF052184E9E2700C95972 /* Farm.cpp in Sources */,
@@ -339,6 +343,7 @@
 				B31FF026184E9E0000C95972 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

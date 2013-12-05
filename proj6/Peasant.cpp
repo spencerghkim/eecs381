@@ -45,7 +45,7 @@ void Peasant::update()
       Agent::move_to(destination->get_location());
       
       // Let the Model know we've collected food.
-      Model::getInstance().notify_amount(get_name(), food_in_hand);
+      Model::get().notify_amount(get_name(), food_in_hand);
     } else {
       cout << get_name() << ": Waiting " << endl;
     }
@@ -61,7 +61,7 @@ void Peasant::update()
     state = INBOUND;
     
     // Let the model know we've deposited food.
-    Model::getInstance().notify_amount(get_name(), food_in_hand);
+    Model::get().notify_amount(get_name(), food_in_hand);
   }
 }
 
@@ -144,5 +144,5 @@ void Peasant::describe() const
 void Peasant::broadcast_current_state()
 {
   Agent::broadcast_current_state();
-  Model::getInstance().notify_amount(get_name(), food_in_hand);
+  Model::get().notify_amount(get_name(), food_in_hand);
 }

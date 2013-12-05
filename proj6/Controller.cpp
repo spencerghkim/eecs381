@@ -11,288 +11,290 @@
 #include "Views.h"
 
 #include <algorithm>
-#include <functional>
+#include <cassert>
 #include <iostream>
-#include <map>
-#include <string>
+#include <memory>
 
-using std::string;
-using std::cin; using std::cout; using std::endl;
+using std::bad_alloc;
+using std::cout; using std::cin; using std::endl;
+using std::string; using std::all_of;
 using std::shared_ptr;
-using namespace std::placeholders;
+using std::make_shared;
+using std::static_pointer_cast;
+using std::find_if;
 
+// simple helper functions
+void bad_command();
 int read_int();
 double read_double();
-string read_object_name();
 Point read_point();
-bool is_string_alphanumeric(string word);
+shared_ptr<Structure> read_struct();
+shared_ptr<Agent> read_agent();
+string read_object_name();
 
-Controller::Controller()
-{
-  agent_fp_map.insert(std::make_pair("move", &Controller::move));
-  agent_fp_map.insert(std::make_pair("work", &Controller::work));
-  agent_fp_map.insert(std::make_pair("attack", &Controller::attack));
-  agent_fp_map.insert(std::make_pair("stop", &Controller::stop));
-  
-  map_view_fp_map.insert(std::make_pair("default", &Controller::view_reset_defaults));
-  map_view_fp_map.insert(std::make_pair("size", &Controller::view_set_size));
-  map_view_fp_map.insert(std::make_pair("zoom", &Controller::view_set_zoom));
-  map_view_fp_map.insert(std::make_pair("pan", &Controller::view_set_pan));
-  
-  program_fp_map.insert(std::make_pair("status", &Controller::status));
-  program_fp_map.insert(std::make_pair("go", &Controller::update_all_and_go));
-  program_fp_map.insert(std::make_pair("build", &Controller::build));
-  program_fp_map.insert(std::make_pair("train", &Controller::train));
-  program_fp_map.insert(std::make_pair("show", &Controller::show));
-  
-  view_mgmt_fp_map.insert(std::make_pair("open", &Controller::open_view));
-  view_mgmt_fp_map.insert(std::make_pair("close", &Controller::close_view));
+// init control function maps
+Controller::Controller() {
+    view_cmds["open"]       = &Controller::view_open;
+    view_cmds["close"]      = &Controller::view_close;
+    view_cmds["default"]    = &Controller::view_default;
+    view_cmds["size"]       = &Controller::view_size;
+    view_cmds["zoom"]       = &Controller::view_zoom;
+    view_cmds["pan"]        = &Controller::view_pan;
+    
+    program_cmds["status"]  = &Controller::prog_status;
+    program_cmds["show"]    = &Controller::prog_show;
+    program_cmds["go"]      = &Controller::prog_go;
+    program_cmds["build"]   = &Controller::prog_build;
+    program_cmds["train"]   = &Controller::prog_train;
+    
+    agent_cmds["move"]      = &Controller::agent_move;
+    agent_cmds["work"]      = &Controller::agent_work;
+    agent_cmds["attack"]    = &Controller::agent_attack;
+    agent_cmds["stop"]      = &Controller::agent_stop;
 }
 
-void Controller::run()
-{
-
-  while (true) {
-    try {
-
-    cout << "\nTime " << Model::getInstance().get_time() << ": Enter command: ";
-
-    string word;
-    cin >> word;
+// create View object, run the program
+void Controller::run() {
     
-    if (word == "quit") {
-      cout << "Done" << endl;
-      return;
+    while (1) {
+        try {
+            string command;
+            cout << "\nTime " << Model::get().get_time() << ": Enter command: ";
+            cin >> command;
+            
+            if (command == "quit") {
+                cout << "Done" << endl;
+                break;
+            }
+            
+            if (Model::get().is_agent_present(command)) {
+                shared_ptr<Agent> a = Model::get().get_agent_ptr(command);
+                assert(a->is_alive());
+                
+                cin >> command;
+                auto a_itr = agent_cmds.find(command);
+                if (a_itr != agent_cmds.end()) {
+                    a_itr->second(this, a);
+                } else bad_command();
+                
+            } else { // not an agent name
+                auto p_itr = program_cmds.find(command);
+                if (p_itr != program_cmds.end()) {
+                    p_itr->second(this);
+                } else {
+                    auto v_cmd = view_cmds.find(command);
+                    if (v_cmd != view_cmds.end()) {
+                        v_cmd->second(this);
+                    } else  bad_command();
+                }
+            }
+            
+        } catch (Error &e) {
+            cout << e.msg << endl;
+            // clear line
+            cin.clear();
+            while(cin.get() != '\n');
+        } catch (bad_alloc &a) {
+            cout << "Bad allocation" << endl;
+            break;
+        } catch (...) {
+            cout << "Unknown Exception Caught!" << endl;
+            break;
+        }
     }
     
-    auto program_fp_it = program_fp_map.find(word);
-    auto map_view_fp_it = map_view_fp_map.find(word);
-    auto view_mgmt_fp_it = view_mgmt_fp_map.find(word);
+    //Model::get().detach(view);
+    // no need to detach here, dtor does it
+}
 
-    if (Model::getInstance().is_agent_present(word)) {
-      shared_ptr<Agent> agent = Model::getInstance().get_agent_ptr(word);
-      
-      if (!agent->is_alive()) {
-        throw Error{"Agent is not alive!"};
-      }
+// view commands //
 
-      string command;
-      cin >> command;
-      auto it = agent_fp_map.find(command);
-      if (it == agent_fp_map.end()) {
-        throw Error{"Unrecognized command!"};
-      }
-      
-      // WOW, this is ugly.
-      (this->*(it->second))(agent);
-    } else if (program_fp_it != program_fp_map.end()) {
-      (this->*(program_fp_it->second))();
-    } else if (map_view_fp_it != map_view_fp_map.end()) {
-      // Check that we actually have a map view open.
-      if (!open_map_view_ptr) {
-        throw Error{"No map view is open!"};
-      }
-      
-      (this->*(map_view_fp_it->second))(open_map_view_ptr);
-    } else if (view_mgmt_fp_it != view_mgmt_fp_map.end()) {
-      string view_name;
-      cin >> view_name;
-      (this->*(view_mgmt_fp_it->second))(view_name);
+void Controller::view_open() {
+    string name;
+    cin >> name;
+    auto itr = get_view_itr(name);
+    if (itr != views.end()) {
+        throw Error("View of that name already open!");
+    }
+    auto view = create_view(name);
+    // attach to the model
+    Model::get().attach(view);
+    views.push_back({name, view});
+}
+
+void Controller::view_close() {
+    string name;
+    cin >> name;
+    auto itr = get_view_itr(name);
+    if (itr == views.end()) {
+        throw Error("No view of that name is open!");
+    }
+    Model::get().detach(itr->view);
+    views.erase(itr);
+}
+
+void Controller::view_default() {
+    get_map_view()->set_defaults();
+}
+void Controller::view_size() {
+    auto map = get_map_view();
+    map->set_size(read_int());
+}
+void Controller::view_zoom() {
+    auto map = get_map_view();
+    map->set_scale(read_double());
+}
+void Controller::view_pan() {
+    auto map = get_map_view();
+    map->set_origin(read_point());
+}
+
+// return an iterator to the view, or throw
+Controller::Views_t::iterator Controller::get_view_itr(const string &name) {
+    return find_if(views.begin(), views.end(), [&name](Views_t::value_type &v){
+        return v.name == name;
+    });
+}
+
+// return the map view, or throw
+shared_ptr<FullMapView> Controller::get_map_view() {
+    auto itr = get_view_itr("map");
+    if (itr == views.end()) {
+        throw Error("No map view is open!");
+    }
+    return static_pointer_cast<FullMapView>(itr->view);
+}
+
+// view factory
+shared_ptr<View> Controller::create_view(const string& name) {
+    shared_ptr<View> view;
+    if (name == "map"){
+        view = make_shared<FullMapView>();
+    } else if (name == "health") {
+        view = make_shared<HealthView>();
+    } else if (name == "amounts") {
+        view = make_shared<AmountsView>();
     } else {
-      throw Error{"Unrecognized command!"};
+        if (Model::get().is_agent_present(name)) {
+            auto agent = Model::get().get_agent_ptr(name);
+            view = make_shared<LocalView>(agent->get_name());
+        } else if (Model::get().is_structure_present(name)) {
+            auto structure = Model::get().get_structure_ptr(name);
+            view = make_shared<LocalView>(structure->get_name());
+        } else {
+            throw Error("No object of that name!");
+        }
     }
-      
-    } catch (Error& e) {
-      cin.clear();
-      cout << e.msg << endl;
-      while (cin.get() != '\n');
+    return view;
+}
+
+// whole-program commands //
+
+void Controller::prog_status() {
+    Model::get().describe();
+}
+void Controller::prog_show() {
+    for (auto &v : views) {
+        v.view->draw();
     }
-  }
+}
+void Controller::prog_go() {
+    Model::get().update();
+}
+void Controller::prog_build() {
+    // read in a valid name
+    string name = read_object_name();
+    
+    string type;
+    cin >> type;
+    
+    // create/add the structure to the model
+    shared_ptr<Structure>s = create_structure(name, type, read_point());
+    Model::get().add_structure(s);
 }
 
-// Agent commands
-void Controller::move(shared_ptr<Agent> agent)
-{
-  agent->move_to(read_point());
+void Controller::prog_train() {
+    // read in a valid name
+    string name = read_object_name();
+    
+    string type;
+    cin >> type;
+    
+    // create/add the structure to the model
+    shared_ptr<Agent>a = create_agent(name, type, read_point());
+    Model::get().add_agent(a);
 }
 
-void Controller::work(shared_ptr<Agent> agent)
-{
-  string source, destination;
-  cin >> source;
-  shared_ptr<Structure> source_ptr = Model::getInstance().get_structure_ptr(source);
-  cin >> destination;
-  shared_ptr<Structure> destination_ptr = Model::getInstance().get_structure_ptr(destination);
-  
-  agent->start_working(source_ptr, destination_ptr);
+// agent commands //
+
+void Controller::agent_move(shared_ptr<Agent> a) {
+    a->move_to(read_point());
+}
+void Controller::agent_work(shared_ptr<Agent> a) {
+    shared_ptr<Structure>src = read_struct();
+    shared_ptr<Structure>dest = read_struct();
+    a->start_working(src, dest);
+}
+void Controller::agent_attack(shared_ptr<Agent> a) {
+    a->start_attacking(read_agent());
+}
+void Controller::agent_stop(shared_ptr<Agent> a) {
+    a->stop();
 }
 
-void Controller::attack(shared_ptr<Agent> agent)
-{
-  string target_agent;
-  cin >> target_agent;
-  shared_ptr<Agent> target_agent_ptr = Model::getInstance().get_agent_ptr(target_agent);
-  
-  agent->start_attacking(target_agent_ptr);
+// HELPERS //
+
+void bad_command() {
+	throw Error("Unrecognized command!");
 }
 
-void Controller::stop(shared_ptr<Agent> agent)
-{
-  agent->stop();
-}
-
-// Map View commands
-void Controller::view_reset_defaults(shared_ptr<MapView> map_view)
-{
-  map_view->set_defaults();
-}
-
-void Controller::view_set_size(shared_ptr<MapView> map_view)
-{
-  int size = read_int();
-  map_view->set_size(size);
-}
-
-void Controller::view_set_zoom(shared_ptr<MapView> map_view)
-{
-  double scale = read_double();
-  map_view->set_scale(scale);
-}
-
-void Controller::view_set_pan(shared_ptr<MapView> map_view)
-{
-  map_view->set_origin(read_point());
-}
-
-// Whole program commands
-void Controller::status()
-{
-  Model::getInstance().describe();
-}
-
-void Controller::update_all_and_go()
-{
-  Model::getInstance().update();
-}
-
-void Controller::build()
-{
-  string name = read_object_name();
-  string type;
-  cin >> type;
-  Model::getInstance().add_structure(create_structure(name, type, read_point()));
-}
-
-void Controller::train()
-{
-  string name = read_object_name();
-  string type;
-  cin >> type;
-  Model::getInstance().add_agent(create_agent(name, type, read_point()));
-}
-
-void Controller::show()
-{
-  std::for_each(open_views.begin(), open_views.end(), std::bind(&View::draw, _1));
-}
-
-// View management
-void Controller::open_view(const std::string &name)
-{
-  // Check to make sure the view doesn't already exist.
-  for (int i = 0; i < open_views.size(); ++i) {
-    if (open_views[i]->get_name() == name) {
-      throw Error{"View of that name already open!"};
+// read int, error for non-digts
+int read_int() {
+    int num;
+    if(!(cin >> num)) {
+        throw Error("Expected an integer!");
     }
-  }
-  
-  // Check to make sure view type is valid. It can be a type of map or a sim_object name.
-  shared_ptr<View> view_to_add;
-  if (name == "map") {
-    open_map_view_ptr.reset(new MapView("map"));
-    view_to_add = open_map_view_ptr;
-  } else if (name == "health") {
-    view_to_add.reset(new HealthView("health"));
-  } else if (name == "amounts") {
-    view_to_add.reset(new AmountView("amounts"));
-  } else if (Model::getInstance().is_name_in_use(name)) {
-    view_to_add.reset(new LocalView(name));
-  } else {
-    throw Error{"No object of that name!"};
-  }
-  
-  // Add the view to the model and to our open views vector.
-  Model::getInstance().attach(view_to_add);
-  open_views.push_back(view_to_add);
+    return num;
 }
 
-void Controller::close_view(const std::string &name)
-{
-  // Find the view.
-  int index = -1;
-  for (int i = 0; i < open_views.size(); ++i) {
-    if (open_views[i]->get_name() == name) {
-      index = i;
+// checks valid double
+double read_double() {
+    double num;
+    if(!(cin >> num)) {
+        throw Error("Expected a double!");
     }
-  }
-  
-  if (index == -1) {
-    throw Error{"No view of that name is open!"};
-  }
-  
-  // Special check if the map container is going away.
-  if (open_views[index]->get_name() == "map") {
-    open_map_view_ptr.reset();
-  }
-  
-  // Remove from containers.
-  Model::getInstance().detach(open_views[index]);
-  open_views.erase(open_views.begin() + index);
+    return num;
 }
 
-// Utils
-int read_int()
-{
-  int num;
-  if (!(cin >> num)) {
-    throw Error{"Expected an integer!"};
-  }
-  return num;
-}
-
-double read_double()
-{
-  double num;
-  if (!(cin >> num)) {
-    throw Error{"Expected a double!"};
-  }
-  return num;
-}
-
+// read in a point
 Point read_point() {
-  double x = read_double();
-  double y = read_double();
-  return Point(x, y);
+    double x = read_double();
+    double y = read_double();
+    return {x,y};
 }
 
-string read_object_name()
-{
-  string name;
-  cin >> name;
-  if (name.length() < 2 ||
-      !is_string_alphanumeric(name) ||
-      Model::getInstance().is_name_in_use(name)) {
-    throw Error{"Invalid name for new object!"};
-  }
-  return name;
+// get ptr to struct in model
+shared_ptr<Structure> read_struct() {
+    string name;
+    cin >> name;
+    return Model::get().get_structure_ptr(name);
 }
 
-bool is_string_alphanumeric(string word)
-{
-  for (char c : word) {
-    if (!isalnum(c)) {
-      return false;
-    }
-  }
-  return true;
+// get ptr to agent in model
+shared_ptr<Agent> read_agent() {
+    string name;
+    cin >> name;
+    return Model::get().get_agent_ptr(name);
 }
+
+// read valid obj name
+string read_object_name() {
+    string name;
+    cin >> name;
+    bool plain = all_of(name.begin(), name.end(), isalnum);
+    bool in_use = Model::get().is_name_in_use(name);
+    if(name.length() < 2 || !plain || in_use)
+        throw Error("Invalid name for new object!");
+    return name;
+}
+

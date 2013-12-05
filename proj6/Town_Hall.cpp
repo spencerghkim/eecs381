@@ -15,7 +15,7 @@ Town_Hall::Town_Hall(const std::string& in_name, Point in_location)
 void Town_Hall::deposit(double deposit_amount)
 {
   total_food += deposit_amount;
-  Model::getInstance().notify_amount(get_name(), total_food);
+  Model::get().notify_amount(get_name(), total_food);
 }
 
 double Town_Hall::withdraw(double amount_to_obtain)
@@ -34,7 +34,7 @@ double Town_Hall::withdraw(double amount_to_obtain)
   }
   
   total_food -= withdrawl;
-  Model::getInstance().notify_amount(get_name(), total_food);
+  Model::get().notify_amount(get_name(), total_food);
   return withdrawl;
 }
 
@@ -47,5 +47,5 @@ void Town_Hall::describe() const {
 void Town_Hall::broadcast_current_state()
 {
   Structure::broadcast_current_state();
-  Model::getInstance().notify_amount(get_name(), total_food);
+  Model::get().notify_amount(get_name(), total_food);
 }

@@ -74,7 +74,7 @@ void Agent::update()
       // We're still moving.
       cout << get_name() << ": step..." << endl;
     }
-    Model::getInstance().notify_location(get_name(), get_location());
+    Model::get().notify_location(get_name(), get_location());
   }
 }
 
@@ -97,8 +97,8 @@ void Agent::describe() const
 // ask Model to broadcast our current state to all Views
 void Agent::broadcast_current_state()
 {
-  Model::getInstance().notify_location(get_name(), get_location());
-  Model::getInstance().notify_health(get_name(), health);
+  Model::get().notify_location(get_name(), get_location());
+  Model::get().notify_health(get_name(), health);
 }
 
 /* Fat Interface for derived classes */
@@ -121,11 +121,11 @@ void Agent::lose_health(int attack_strength)
   health -= attack_strength;
   if (health <= 0) {
     state = DEAD;
-    Model::getInstance().notify_gone(get_name());
+    Model::get().notify_gone(get_name());
     cout << get_name() << ": Arrggh!" << endl;
-    Model::getInstance().remove_agent(shared_from_this());
+    Model::get().remove_agent(shared_from_this());
   } else {
-    Model::getInstance().notify_health(get_name(), health);
+    Model::get().notify_health(get_name(), health);
     cout << get_name() << ": Ouch!" << endl;
   }
 }

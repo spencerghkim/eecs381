@@ -136,7 +136,7 @@ void Archer::update()
   
   // If we aren't attacking, look for someone to shoot!
   if (!is_attacking()) {
-    auto closest_agent = Model::getInstance().find_closest_agent(shared_from_this());
+    auto closest_agent = Model::get().closest_agent(shared_from_this());
     
     // Validate closest_agent, then make sure closest_agent is within range.
     if (!closest_agent ||
@@ -153,7 +153,7 @@ void Archer::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
   
   if (is_alive() && attacker_ptr->is_alive()) {
     // Run away!
-    auto closest_structure = Model::getInstance().find_closest_structure(shared_from_this());
+    auto closest_structure = Model::get().closest_structure(shared_from_this());
     if (!closest_structure) {
       return;
     }
@@ -185,7 +185,7 @@ void Magician::update()
   // If we aren't attacking, bless the peaceful people.
   if (!is_attacking()) {
     vector<shared_ptr<Agent>> agents_in_range =
-        Model::getInstance().find_agents_in_range(shared_from_this(), blessing_range);
+        Model::get().find_agents_in_range(shared_from_this(), blessing_range);
     std::for_each(agents_in_range.begin(),
                   agents_in_range.end(),
                   std::bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));

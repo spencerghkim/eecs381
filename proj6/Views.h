@@ -1,178 +1,154 @@
-#ifndef VIEW_H_
-#define VIEW_H_
+/*
+ 
+ * View class *
+ 
+ The View classes encapsulates the data and functions needed to generate the correct
+ displays, and control their properties. It has a "memory" for the names and locations
+ of the to-be-plotted objects.
+ 
+ */
 
-/* View is an abstract base class that provides a fat interface for child views. */
+#ifndef VIEWS_H
+#define VIEWS_H
 
+#include <string>
+#include <map>
+#include <vector>
+#include <memory>
 #include "Geometry.h"
 
-#include <map>
-#include <string>
-#include <vector>
-
-struct Point;
-
-class View {
+class View { //Interface for any type of View
 public:
-  
-  View(const std::string& name_) : name{name_} {}
-  
-  // make class abstract
-  virtual ~View() = 0;
+    //TODO: check that we need this.
+    virtual ~View() = 0;
+    
+	// Notify for location, health, or amount update
+	virtual void update_location(const std::string& name, Point location) {};
+	virtual void update_health(const std::string& name, int health) {};
+	virtual void update_amount(const std::string& name, double amount) {};
 	
-	// Empty implmentation for fat interface.
-	virtual void update_location(const std::string& name, Point location) {}
-  
-  // Empty implementation for fat interface.
-  virtual void update_health(const std::string& name, double health) {}
-  
-  // Empty implementation for fat interface.
-  virtual void update_amount(const std::string& name, double amount) {}
-	
-	// Remove the named object from the view.
+	// Notify for removal of object
 	virtual void update_remove(const std::string& name) = 0;
 	
-	// Displays the map on the console.
+	// prints out the view
 	virtual void draw() = 0;
 	
-	// Discard the saved information - drawing will show only a empty pattern
+	// discards the view's contents
 	virtual void clear() = 0;
-  
-  const std::string& get_name() const
-      { return name; }
-  
-private:
-  std::string name;
 };
 
-class LocationView : public View {
+class MapView : public View {
 public:
-  
-  LocationView(const std::string& name_) : View(name_) {}
-  
-  // Make this class abstract.
-  virtual ~LocationView() = 0;
-  
-  // Override to keep track of objects' locations.
-  void update_location(const std::string& name, Point location) override;
-  
-  // Remove a single object from the view.
-  void update_remove(const std::string& name) override;
-  
-  // Draw the view using a grid layout.
-  void draw() override;
-  
-  // Remove all objects.
-  void clear() override;
-  
-protected:
-  
-  // Print the names of the objects that are offscreen.
-  void print_objects_offscreen() const;
-  
-  // Print the map scale, size, origin
-  void print_metrics() const;
-  
-  // Provide setters for subclasses.
-  
-	// if the size is out of bounds will throw Error("New map size is too big!")
-	// or Error("New map size is too small!")
-	void set_size(int size_);
-  
-	// If scale is not postive, will throw Error("New map scale must be positive!");
-	void set_scale(double scale_);
+    virtual ~MapView() = 0;
+    
+  	// Save the supplied name and location for future use in a draw() call
+	// If the name is already present,the new location replaces the previous one.
+	void update_location(const std::string& name, Point location) override;
 	
-	// any values are legal for the origin
-	void set_origin(Point origin_);
-  
-  // set the center of the view to the given point
-  void set_center(Point center);
-  
-private:
-  
-  Point origin;
-  double scale;
-  int size;  // Number of rows/columns in the grid
-  std::map<std::string, Point> locations;
-  
-  bool get_subscripts(int &ix, int &iy, Point location) const;
-};
-
-class MapView : public LocationView {
-public:
-  
-  // Set up scale and such in constructor.
-  MapView(const std::string& name_);
-  
-  void draw() override;
-  
-  // Expose these setters publicly.
-  void set_size(int size_)
-      { LocationView::set_size(size_); }
-  
-  void set_scale(double scale_)
-      { LocationView::set_scale(scale_); }
-  
-  void set_origin(Point origin_)
-      { LocationView::set_origin(origin_); }
-  
-  void set_defaults();
-};
-
-class LocalView : public LocationView {
-public:
-  
-  LocalView(const std::string& name_);
-  
-  // Override the update_location method to update the origin.
-  void update_location(const std::string& name, Point location) override;
-  
-  void draw() override;
-};
-
-class AttributeView : public View {
-public:
-  
-  AttributeView(const std::string name_) : View(name_) {}
-  
-  virtual ~AttributeView() = 0;
-  
-  // Remove a single object from the attributes map.
-  void update_remove(const std::string& name) override;
-  
-  void draw() override;
-  
-  void clear() override;
-  
+	// Remove the name and its location; no error if the name is not present.
+	void update_remove(const std::string& name) override;
+    
+	// Discard the saved information - drawing will show only a empty pattern
+	void clear() override;
+    
 protected:
-  // Let subclasses add/alter an attribute.
-  void set_attribute(const std::string& name, double attribute);
-  
+    using Objects_t = std::map<std::string, Point>;
+    using Grid_t = std::vector<std::vector<std::string>>;
+    
+    // prints out the current map
+	void draw() override;
+    // default header print, called during draw
+    virtual void print_header();
+    // override to handle object out of range of the bounds
+    virtual void print_off_map(std::vector<std::string> &off);
+    
+    // modify the display parameters
+	void set_size(int size_);
+	void set_scale(double scale_);
+	void set_origin(Point origin_);
+	void set_defaults();
+    
 private:
-  
-  std::map<std::string, double> attributes;
-  
-  // Subclasses must return the type of attribute.
-  virtual std::string get_attribute_name() = 0;
+    Grid_t make_grid(int size);
+    void init_grid_data(Grid_t &grid);
+    void print_grid(const Grid_t &grid);
+    bool get_subscripts(int &ix, int &iy, Point location) const;
+    
+    Objects_t objects;
+    int size;
+    double scale;
+    Point origin;
 };
 
-class HealthView : public AttributeView {
+class FullMapView : public MapView {
 public:
-  
-  HealthView(const std::string& name_) : AttributeView(name_) {}
-  
-  void update_health(const std::string& name, double health) override;
+    // default constructor sets the default size, scale, and origin
+	FullMapView();
     
-  std::string get_attribute_name() override;
+    // forward private functions
+	void set_size(int size_) { MapView::set_size(size_); }
+	void set_scale(double scale_) { MapView::set_scale(scale_); }
+    void set_origin(Point origin_) { MapView::set_origin(origin_); }
+	void set_defaults() { MapView::set_defaults(); }
 };
 
-class AmountView : public AttributeView {
+class LocalView : public MapView {
 public:
-  
-  AmountView(const std::string& name_) : AttributeView(name_) {}
+    LocalView(std::string name);
     
-  void update_amount(const std::string& name, double amount) override;
-  
-  std::string get_attribute_name() override;
+    // call MapView update_loc and move center if the name matches
+    void update_location(const std::string& name, Point location) override;
+    
+    // print the headder for the local view
+    void print_header() override;
+    
+    // don't print anything for off map
+    void print_off_map(std::vector<std::string> &off) override {};
+    
+private:
+    std::string obj_name;
+};
+
+/* List View Types */
+
+class ListView : public View {
+public:
+    virtual ~ListView() = 0;
+    
+    // Notify for removal of object
+    void update_remove(const std::string& name) override;
+	
+	// prints out the view
+	void draw() override;
+	
+	// discards the view's contents
+	void clear() override;
+    
+protected:
+    using Objects_t = std::map<std::string, double>;
+    
+    // update the generic value held by the ListView
+    void update_value(const std::string& name, double value);
+    
+private:
+    // get the name of this view type
+    virtual std::string view_name() = 0;
+    
+    Objects_t objects;
+};
+
+class HealthView : public ListView {
+public:
+    // update the unit's health
+    void update_health(const std::string& name, int health) override;
+    std::string view_name() override;
+};
+
+class AmountsView : public ListView {
+public:
+    // update the amount of food
+    void update_amount(const std::string& name, double amount) override;
+    std::string view_name() override;
 };
 
 #endif

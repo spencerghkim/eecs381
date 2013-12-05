@@ -17,6 +17,19 @@ default: $(PROG)
 $(PROG): $(OBJS)
 	$(LD) $(LFLAGS) $(OBJS) -o $(PROG)
 
+tests: $(PROG)
+	make test file=fight
+	make test file=fight_noshow
+	make test file=name_validity
+	make test file=new_features
+	make test file=states
+	make test file=views
+	make test file=workviolence
+	make test file=workviolence_noshow
+test: $(PROG)
+	./proj6exe < samples/$(file)_in.txt > junk.out
+	diff junk.out samples/$(file)_out.txt
+
 p4_main.o: p6_main.cpp Model.h Controller.h
 	$(CC) $(CFLAGS) p6_main.cpp
 

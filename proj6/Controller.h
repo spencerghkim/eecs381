@@ -1,63 +1,75 @@
 /* Controller
-This class is responsible for controlling the Model and View according to interactions
-with the user.
-*/
+ This class is responsible for controlling the Model and View according to interactions
+ with the user.
+ */
+
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 #include <map>
-#include <memory>
+#include <list>
+#include <functional>
 #include <string>
-#include <vector>
+#include <memory>
 
-class Agent;
 class View;
-class MapView;
+class FullMapView;
+class Agent;
 
 class Controller {
-public:	
+public:
 	Controller();
-
-	// create View object, run the program by acccepting user commands, then destroy View object
+    
+	// create View object, run the program by
+    // acccepting user commands, then destroy View object
 	void run();
-  
+    
 private:
-  using agent_command_fp = void (Controller::*)(std::shared_ptr<Agent>);
-  using map_view_command_fp = void (Controller::*)(std::shared_ptr<MapView>);
-  using program_command_fp = void (Controller::*)();
-  using view_mgmt_command_fp = void (Controller::*)(const std::string&);
-  
-  std::map<std::string, agent_command_fp> agent_fp_map;
-  std::map<std::string, map_view_command_fp> map_view_fp_map;
-  std::map<std::string, program_command_fp> program_fp_map;
-  std::map<std::string, view_mgmt_command_fp> view_mgmt_fp_map;
-  
-  // Vector of open views. The order of Views dictates the order in which they were opened.
-  std::vector<std::shared_ptr<View>> open_views;
-  
-  // There can only be one map view. By keeping track of it, we can easily find out if
-  // it has been opened or not, and it prevents us from having to downcast a View to a
-  // Map View to call defaults, scale, etc...
-  std::shared_ptr<MapView> open_map_view_ptr;
-  
-  // Map View commands.
-  void view_reset_defaults(std::shared_ptr<MapView>);
-  void view_set_size(std::shared_ptr<MapView>);
-  void view_set_zoom(std::shared_ptr<MapView>);
-  void view_set_pan(std::shared_ptr<MapView>);
-  
-  // View Management Commands.
-  void open_view(const std::string& name);
-  void close_view(const std::string& name);
-  
-  // Program commands.
-  void status();
-  void update_all_and_go();
-  void build();
-  void train();
-  void show();
-  
-  // Agent commands.
-  void move(std::shared_ptr<Agent> agent);
-  void work(std::shared_ptr<Agent> agent);
-  void attack(std::shared_ptr<Agent> agent);
-  void stop(std::shared_ptr<Agent> agent);
+    using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
+    using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<Agent>)>>;
+    
+    using viewPair_t = struct {
+        std::string name;
+        std::shared_ptr<View> view;
+    };
+    using Views_t = std::list<viewPair_t>;
+    
+    // view commands
+    void view_open();
+    void view_close();
+    void view_default();
+    void view_size();
+    void view_zoom();
+    void view_pan();
+    
+    // return an iterator to the view, or throw
+    Views_t::iterator get_view_itr(const std::string &name);
+    // return the map view, or throw
+    std::shared_ptr<FullMapView> get_map_view();
+    // view factory
+    // static view factory
+    std::shared_ptr<View> create_view(const std::string& name);
+    
+    
+    // whole-program commands
+    void prog_status();
+    void prog_show();
+    void prog_go();
+    void prog_build();
+    void prog_train();
+    
+    // agent commands
+    void agent_move(std::shared_ptr<Agent>);
+    void agent_work(std::shared_ptr<Agent>);
+    void agent_attack(std::shared_ptr<Agent>);
+    void agent_stop(std::shared_ptr<Agent>);
+    
+    
+    // containers
+    CmdFunc_t program_cmds;
+    CmdFunc_Agent_t agent_cmds;
+    CmdFunc_t view_cmds;
+    Views_t views;
 };
+
+#endif

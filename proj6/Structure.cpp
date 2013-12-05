@@ -17,5 +17,5 @@ void Structure::describe() const
 
 void Structure::broadcast_current_state()
 {
-  Model::getInstance().notify_location(get_name(), location);
+  Model::get().notify_location(get_name(), location);
 }
