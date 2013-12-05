@@ -1,0 +1,13 @@
+
+
+TODO:
+
+Remove all #define
+Check that all dtors are correct (dont wanna lose dumb points)
+Move Classes into their own files! (no longer need to squish them right?)
+
+Notes:
+
+File Origins:
+    MVC all came from Otto's PA5
+    Everything else is Josh's

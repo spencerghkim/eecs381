@@ -1,7 +1,7 @@
-/* 
-Geometry.cpp implementation file
-See Geometry.h for comments
-*/
+/*
+ Geometry.cpp implementation file
+ See Geometry.h for comments
+ */
 
 #include "Geometry.h"
 
@@ -21,7 +21,7 @@ bool Point::operator== (const Point& rhs) const
 {
 	return (x == rhs.x && y == rhs.y);
 }
- 
+
 bool Point::operator!= (const Point& rhs) const
 {
 	return (x != rhs.x || y != rhs.y);
@@ -38,7 +38,7 @@ double cartesian_distance (const Point& p1, const Point& p2)
 
 // Cartesian_vector members
 // construct a Cartesian_vector from two Points,
-// showing the vector from p1 to p2 
+// showing the vector from p1 to p2
 // that is, p1 + cv => p2
 Cartesian_vector::Cartesian_vector(const Point& p1, const Point& p2)
 {
@@ -65,7 +65,7 @@ Polar_vector::Polar_vector(const Cartesian_vector& cv)
 }
 
 // construct a Polar_vector from two Points,
-// showing the vector from p1 to p2 
+// showing the vector from p1 to p2
 // that is, p1 + pv => p2
 Polar_vector::Polar_vector(const Point& p1, const Point& p2)
 {
@@ -96,7 +96,7 @@ Point operator+ (const Cartesian_vector& cv, const Point& p)
 {
 	return p + cv;
 }
-	
+
 // Add a Point and a Polar_vector to get the displaced Point
 Point operator+ (const Point& p, const Polar_vector& pv)
 {
@@ -171,7 +171,7 @@ ostream& operator<< (ostream& os, const Point& p)
 	os << '(' << p.x << ", " << p.y << ')';
 	return os;
 }
-	
+
 // output a Cartesian_vector as "<x, y>"
 ostream& operator<< (ostream& os, const Cartesian_vector& cv)
 {

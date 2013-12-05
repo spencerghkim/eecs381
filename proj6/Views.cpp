@@ -35,24 +35,28 @@ MapView::~MapView() {}
 
 // Save the supplied name and location for future use in a draw() call
 // If the name is already present,the new location replaces the previous one.
-void MapView::update_location(const string& name, Point location) {
+void MapView::update_location(const string& name, Point location)
+{
     objects[name] = location;
 }
 
 // Remove the name and its location; no error if the name is not present.
-void MapView::update_remove(const string& name) {
+void MapView::update_remove(const string& name)
+{
     auto itr = objects.find(name);
     if (itr != objects.end()) objects.erase(itr);
 }
 
 // Discard the saved information - drawing will show only a empty pattern
-void MapView::clear() {
+void MapView::clear()
+{
     objects.clear();
 }
 
 // modify the display parameters
 // if the size is out of bounds will throw
-void MapView::set_size(int size_) {
+void MapView::set_size(int size_)
+{
     if (size_ > MAX_SIZE) {
         throw Error("New map size is too big!");
     } else if (size_ <= MIN_SIZE) {
@@ -62,7 +66,8 @@ void MapView::set_size(int size_) {
 }
 
 // If scale is not postive, will throw Error("New map scale must be positive!");
-void MapView::set_scale(double scale_) {
+void MapView::set_scale(double scale_)
+{
     if (scale_ <= 0.0) {
         throw Error("New map scale must be positive!");
     }
@@ -70,30 +75,35 @@ void MapView::set_scale(double scale_) {
 }
 
 // any values are legal for the origin
-void MapView::set_origin(Point origin_) {
+void MapView::set_origin(Point origin_)
+{
     origin = origin_;
 }
 
 // set the parameters to the default values
-void MapView::set_defaults() {
+void MapView::set_defaults()
+{
     size = DEFAULT_SIZE;
     scale = DEFAULT_SCALE;
     origin = DEFAULT_ORIGIN;
 }
 
-void MapView::draw() {
+void MapView::draw()
+{
     Grid_t grid;
     print_header();
     init_grid_data(grid);
     print_grid(grid);
 }
 
-void MapView::print_header() {
+void MapView::print_header()
+{
     cout << "Display size: " << size << ", scale: ";
     cout << scale << ", origin: " << origin << endl;
 }
 
-void MapView::print_off_map(vector<string> &off) {
+void MapView::print_off_map(vector<string> &off)
+{
     for (auto itr = off.begin(); itr != off.end(); itr++) {
         if (itr != off.begin()) {
             cout << ", ";
@@ -105,7 +115,8 @@ void MapView::print_off_map(vector<string> &off) {
     }
 }
 
-MapView::Grid_t MapView::make_grid(int size) {
+MapView::Grid_t MapView::make_grid(int size)
+{
     Grid_t grid(size);
     for (auto &row : grid) {
         row.resize(size);
@@ -141,7 +152,8 @@ void MapView::init_grid_data(Grid_t &grid)
 }
 
 // print the provided grid, regardless of view type
-void MapView::print_grid(const Grid_t &grid) {
+void MapView::print_grid(const Grid_t &grid)
+{
     // dont print decimal points
     auto old_prec = cout.precision();
     cout.precision(0);
@@ -194,17 +206,19 @@ bool MapView::get_subscripts(int &ix, int &iy, Point location) const
 }
 
 // default constructor sets the default size, scale, and origin
-FullMapView::FullMapView() {
+FullMapView::FullMapView()
+{
     set_defaults();
 }
 
-LocalView::LocalView(string name) :
-obj_name(name) {
+LocalView::LocalView(string name) : obj_name(name)
+{
     set_scale(DEFAULT_LOCAL_SCALE);
     set_size(DEFAULT_LOCAL_SIZE);
 }
 
-void LocalView::update_location(const std::string& name, Point location) {
+void LocalView::update_location(const std::string& name, Point location)
+{
     MapView::update_location(name, location);
     if (name == obj_name) {
         location.x -= LOCAL_ORIGIN_OFFSET;
@@ -213,7 +227,8 @@ void LocalView::update_location(const std::string& name, Point location) {
     }
 }
 
-void LocalView::print_header() {
+void LocalView::print_header()
+{
     cout << "Local view for: " << obj_name << endl;
 }
 
@@ -221,16 +236,17 @@ void LocalView::print_header() {
 /* List View Types */
 
 // Base List View //
-
 ListView::~ListView() {} // explicit dtor
 
 // Notify for removal of object
-void ListView::update_remove(const string& name) {
+void ListView::update_remove(const string& name)
+{
     objects.erase(name);
 }
 
 // prints out the view
-void ListView::draw() {
+void ListView::draw()
+{
     cout << "Current " << view_name() << ":" << endl;
     cout << "--------------" << endl;
     for (auto i : objects) {
@@ -240,34 +256,40 @@ void ListView::draw() {
 }
 
 // discards the view's contents
-void ListView::clear() {
+void ListView::clear()
+{
     objects.clear();
 }
 
 // update the generic value held by the ListView
-void ListView::update_value(const string& name, double value) {
+void ListView::update_value(const string& name, double value)
+{
     objects[name] = value;
 }
 
 // Health View //
 
 // update the unit's health
-void HealthView::update_health(const string& name, int health) {
+void HealthView::update_health(const string& name, int health)
+{
     update_value(name, health);
 }
 
-string HealthView::view_name() {
+string HealthView::view_name()
+{
     return HEALTH_VIEW_NAME;
 }
 
 // Amounts View //
 
 // update the amount of food
-void AmountsView::update_amount(const string& name, double amount) {
+void AmountsView::update_amount(const string& name, double amount)
+{
     update_value(name, amount);
 }
 
-string AmountsView::view_name() {
+string AmountsView::view_name()
+{
     return AMOUNTS_VIEW_NAME;
 }
 

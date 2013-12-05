@@ -9,7 +9,7 @@
 #define FOOD_PRODUCED_PER_UPDATE 2.0
 
 Farm::Farm(const std::string& in_name, Point in_location)
-    : Structure(in_name, in_location), food_available{INITIAL_FOOD} {}
+: Structure(in_name, in_location), food_available{INITIAL_FOOD} {}
 
 double Farm::withdraw(double amount_to_get)
 {
@@ -38,7 +38,7 @@ void Farm::describe() const
   Structure::describe();
   std::cout << "   Food available: " << food_available << std::endl;
 }
-  
+
 void Farm::broadcast_current_state()
 {
   Structure::broadcast_current_state();

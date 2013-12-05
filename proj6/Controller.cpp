@@ -33,268 +33,291 @@ shared_ptr<Agent> read_agent();
 string read_object_name();
 
 // init control function maps
-Controller::Controller() {
-    view_cmds["open"]       = &Controller::view_open;
-    view_cmds["close"]      = &Controller::view_close;
-    view_cmds["default"]    = &Controller::view_default;
-    view_cmds["size"]       = &Controller::view_size;
-    view_cmds["zoom"]       = &Controller::view_zoom;
-    view_cmds["pan"]        = &Controller::view_pan;
-    
-    program_cmds["status"]  = &Controller::prog_status;
-    program_cmds["show"]    = &Controller::prog_show;
-    program_cmds["go"]      = &Controller::prog_go;
-    program_cmds["build"]   = &Controller::prog_build;
-    program_cmds["train"]   = &Controller::prog_train;
-    
-    agent_cmds["move"]      = &Controller::agent_move;
-    agent_cmds["work"]      = &Controller::agent_work;
-    agent_cmds["attack"]    = &Controller::agent_attack;
-    agent_cmds["stop"]      = &Controller::agent_stop;
+Controller::Controller()
+{
+  view_cmds["open"]       = &Controller::view_open;
+  view_cmds["close"]      = &Controller::view_close;
+  view_cmds["default"]    = &Controller::view_default;
+  view_cmds["size"]       = &Controller::view_size;
+  view_cmds["zoom"]       = &Controller::view_zoom;
+  view_cmds["pan"]        = &Controller::view_pan;
+  
+  program_cmds["status"]  = &Controller::prog_status;
+  program_cmds["show"]    = &Controller::prog_show;
+  program_cmds["go"]      = &Controller::prog_go;
+  program_cmds["build"]   = &Controller::prog_build;
+  program_cmds["train"]   = &Controller::prog_train;
+  
+  agent_cmds["move"]      = &Controller::agent_move;
+  agent_cmds["work"]      = &Controller::agent_work;
+  agent_cmds["attack"]    = &Controller::agent_attack;
+  agent_cmds["stop"]      = &Controller::agent_stop;
 }
 
 // create View object, run the program
-void Controller::run() {
-    
-    while (1) {
-        try {
-            string command;
-            cout << "\nTime " << Model::get().get_time() << ": Enter command: ";
-            cin >> command;
-            
-            if (command == "quit") {
-                cout << "Done" << endl;
-                break;
-            }
-            
-            if (Model::get().is_agent_present(command)) {
-                shared_ptr<Agent> a = Model::get().get_agent_ptr(command);
-                assert(a->is_alive());
-                
-                cin >> command;
-                auto a_itr = agent_cmds.find(command);
-                if (a_itr != agent_cmds.end()) {
-                    a_itr->second(this, a);
-                } else bad_command();
-                
-            } else { // not an agent name
-                auto p_itr = program_cmds.find(command);
-                if (p_itr != program_cmds.end()) {
-                    p_itr->second(this);
-                } else {
-                    auto v_cmd = view_cmds.find(command);
-                    if (v_cmd != view_cmds.end()) {
-                        v_cmd->second(this);
-                    } else  bad_command();
-                }
-            }
-            
-        } catch (Error &e) {
-            cout << e.msg << endl;
-            // clear line
-            cin.clear();
-            while(cin.get() != '\n');
-        } catch (bad_alloc &a) {
-            cout << "Bad allocation" << endl;
-            break;
-        } catch (...) {
-            cout << "Unknown Exception Caught!" << endl;
-            break;
+void Controller::run()
+{
+  while (1) {
+    try {
+      string command;
+      cout << "\nTime " << Model::get().get_time() << ": Enter command: ";
+      cin >> command;
+      
+      if (command == "quit") {
+        cout << "Done" << endl;
+        break;
+      }
+      
+      if (Model::get().is_agent_present(command)) {
+        shared_ptr<Agent> a = Model::get().get_agent_ptr(command);
+        assert(a->is_alive());
+        
+        cin >> command;
+        auto a_itr = agent_cmds.find(command);
+        if (a_itr != agent_cmds.end()) {
+          a_itr->second(this, a);
+        } else bad_command();
+        
+      } else { // not an agent name
+        auto p_itr = program_cmds.find(command);
+        if (p_itr != program_cmds.end()) {
+          p_itr->second(this);
+        } else {
+          auto v_cmd = view_cmds.find(command);
+          if (v_cmd != view_cmds.end()) {
+            v_cmd->second(this);
+          } else  bad_command();
         }
+      }
+      
+    } catch (Error &e) {
+      cout << e.msg << endl;
+      // clear line
+      cin.clear();
+      while(cin.get() != '\n');
+    } catch (bad_alloc &a) {
+      cout << "Bad allocation" << endl;
+      break;
+    } catch (...) {
+      cout << "Unknown Exception Caught!" << endl;
+      break;
     }
-    
-    //Model::get().detach(view);
-    // no need to detach here, dtor does it
+  }
 }
 
 // view commands //
 
-void Controller::view_open() {
-    string name;
-    cin >> name;
-    auto itr = get_view_itr(name);
-    if (itr != views.end()) {
-        throw Error("View of that name already open!");
-    }
-    auto view = create_view(name);
-    // attach to the model
-    Model::get().attach(view);
-    views.push_back({name, view});
+void Controller::view_open()
+{
+  string name;
+  cin >> name;
+  auto itr = get_view_itr(name);
+  if (itr != views.end()) {
+    throw Error("View of that name already open!");
+  }
+  auto view = create_view(name);
+  // attach to the model
+  Model::get().attach(view);
+  views.push_back({name, view});
 }
 
-void Controller::view_close() {
-    string name;
-    cin >> name;
-    auto itr = get_view_itr(name);
-    if (itr == views.end()) {
-        throw Error("No view of that name is open!");
-    }
-    Model::get().detach(itr->view);
-    views.erase(itr);
+void Controller::view_close()
+{
+  string name;
+  cin >> name;
+  auto itr = get_view_itr(name);
+  if (itr == views.end()) {
+    throw Error("No view of that name is open!");
+  }
+  Model::get().detach(itr->view);
+  views.erase(itr);
 }
 
-void Controller::view_default() {
-    get_map_view()->set_defaults();
+void Controller::view_default()
+{
+  get_map_view()->set_defaults();
 }
-void Controller::view_size() {
-    auto map = get_map_view();
-    map->set_size(read_int());
+void Controller::view_size()
+{
+  auto map = get_map_view();
+  map->set_size(read_int());
 }
-void Controller::view_zoom() {
-    auto map = get_map_view();
-    map->set_scale(read_double());
+void Controller::view_zoom()
+{
+  auto map = get_map_view();
+  map->set_scale(read_double());
 }
-void Controller::view_pan() {
-    auto map = get_map_view();
-    map->set_origin(read_point());
+void Controller::view_pan()
+{
+  auto map = get_map_view();
+  map->set_origin(read_point());
 }
 
 // return an iterator to the view, or throw
-Controller::Views_t::iterator Controller::get_view_itr(const string &name) {
-    return find_if(views.begin(), views.end(), [&name](Views_t::value_type &v){
-        return v.name == name;
-    });
+Controller::Views_t::iterator Controller::get_view_itr(const string &name)
+{
+  return find_if(views.begin(), views.end(), [&name](Views_t::value_type &v){
+    return v.name == name;
+  });
 }
 
 // return the map view, or throw
-shared_ptr<FullMapView> Controller::get_map_view() {
-    auto itr = get_view_itr("map");
-    if (itr == views.end()) {
-        throw Error("No map view is open!");
-    }
-    return static_pointer_cast<FullMapView>(itr->view);
+shared_ptr<FullMapView> Controller::get_map_view()
+{
+  auto itr = get_view_itr("map");
+  if (itr == views.end()) {
+    throw Error("No map view is open!");
+  }
+  return static_pointer_cast<FullMapView>(itr->view);
 }
 
 // view factory
-shared_ptr<View> Controller::create_view(const string& name) {
-    shared_ptr<View> view;
-    if (name == "map"){
-        view = make_shared<FullMapView>();
-    } else if (name == "health") {
-        view = make_shared<HealthView>();
-    } else if (name == "amounts") {
-        view = make_shared<AmountsView>();
+shared_ptr<View> Controller::create_view(const string& name)
+{
+  shared_ptr<View> view;
+  if (name == "map"){
+    view = make_shared<FullMapView>();
+  } else if (name == "health") {
+    view = make_shared<HealthView>();
+  } else if (name == "amounts") {
+    view = make_shared<AmountsView>();
+  } else {
+    if (Model::get().is_agent_present(name)) {
+      auto agent = Model::get().get_agent_ptr(name);
+      view = make_shared<LocalView>(agent->get_name());
+    } else if (Model::get().is_structure_present(name)) {
+      auto structure = Model::get().get_structure_ptr(name);
+      view = make_shared<LocalView>(structure->get_name());
     } else {
-        if (Model::get().is_agent_present(name)) {
-            auto agent = Model::get().get_agent_ptr(name);
-            view = make_shared<LocalView>(agent->get_name());
-        } else if (Model::get().is_structure_present(name)) {
-            auto structure = Model::get().get_structure_ptr(name);
-            view = make_shared<LocalView>(structure->get_name());
-        } else {
-            throw Error("No object of that name!");
-        }
+      throw Error("No object of that name!");
     }
-    return view;
+  }
+  return view;
 }
 
 // whole-program commands //
 
-void Controller::prog_status() {
-    Model::get().describe();
+void Controller::prog_status()
+{
+  Model::get().describe();
 }
-void Controller::prog_show() {
-    for (auto &v : views) {
-        v.view->draw();
-    }
+void Controller::prog_show()
+{
+  for (auto &v : views) {
+    v.view->draw();
+  }
 }
-void Controller::prog_go() {
-    Model::get().update();
+void Controller::prog_go()
+{
+  Model::get().update();
 }
-void Controller::prog_build() {
-    // read in a valid name
-    string name = read_object_name();
-    
-    string type;
-    cin >> type;
-    
-    // create/add the structure to the model
-    shared_ptr<Structure>s = create_structure(name, type, read_point());
-    Model::get().add_structure(s);
+void Controller::prog_build()
+{
+  // read in a valid name
+  string name = read_object_name();
+  
+  string type;
+  cin >> type;
+  
+  // create/add the structure to the model
+  shared_ptr<Structure>s = create_structure(name, type, read_point());
+  Model::get().add_structure(s);
 }
 
-void Controller::prog_train() {
-    // read in a valid name
-    string name = read_object_name();
-    
-    string type;
-    cin >> type;
-    
-    // create/add the structure to the model
-    shared_ptr<Agent>a = create_agent(name, type, read_point());
-    Model::get().add_agent(a);
+void Controller::prog_train()
+{
+  // read in a valid name
+  string name = read_object_name();
+  
+  string type;
+  cin >> type;
+  
+  // create/add the structure to the model
+  shared_ptr<Agent>a = create_agent(name, type, read_point());
+  Model::get().add_agent(a);
 }
 
 // agent commands //
 
-void Controller::agent_move(shared_ptr<Agent> a) {
-    a->move_to(read_point());
+void Controller::agent_move(shared_ptr<Agent> a)
+{
+  a->move_to(read_point());
 }
-void Controller::agent_work(shared_ptr<Agent> a) {
-    shared_ptr<Structure>src = read_struct();
-    shared_ptr<Structure>dest = read_struct();
-    a->start_working(src, dest);
+void Controller::agent_work(shared_ptr<Agent> a)
+{
+  shared_ptr<Structure>src = read_struct();
+  shared_ptr<Structure>dest = read_struct();
+  a->start_working(src, dest);
 }
-void Controller::agent_attack(shared_ptr<Agent> a) {
-    a->start_attacking(read_agent());
+void Controller::agent_attack(shared_ptr<Agent> a)
+{
+  a->start_attacking(read_agent());
 }
-void Controller::agent_stop(shared_ptr<Agent> a) {
-    a->stop();
+void Controller::agent_stop(shared_ptr<Agent> a)
+{
+  a->stop();
 }
 
 // HELPERS //
 
-void bad_command() {
+void bad_command()
+{
 	throw Error("Unrecognized command!");
 }
 
 // read int, error for non-digts
-int read_int() {
-    int num;
-    if(!(cin >> num)) {
-        throw Error("Expected an integer!");
-    }
-    return num;
+int read_int()
+{
+  int num;
+  if(!(cin >> num)) {
+    throw Error("Expected an integer!");
+  }
+  return num;
 }
 
 // checks valid double
-double read_double() {
-    double num;
-    if(!(cin >> num)) {
-        throw Error("Expected a double!");
-    }
-    return num;
+double read_double()
+{
+  double num;
+  if(!(cin >> num)) {
+    throw Error("Expected a double!");
+  }
+  return num;
 }
 
 // read in a point
-Point read_point() {
-    double x = read_double();
-    double y = read_double();
-    return {x,y};
+Point read_point()
+{
+  double x = read_double();
+  double y = read_double();
+  return {x,y};
 }
 
 // get ptr to struct in model
-shared_ptr<Structure> read_struct() {
-    string name;
-    cin >> name;
-    return Model::get().get_structure_ptr(name);
+shared_ptr<Structure> read_struct()
+{
+  string name;
+  cin >> name;
+  return Model::get().get_structure_ptr(name);
 }
 
 // get ptr to agent in model
-shared_ptr<Agent> read_agent() {
-    string name;
-    cin >> name;
-    return Model::get().get_agent_ptr(name);
+shared_ptr<Agent> read_agent()
+{
+  string name;
+  cin >> name;
+  return Model::get().get_agent_ptr(name);
 }
 
 // read valid obj name
-string read_object_name() {
-    string name;
-    cin >> name;
-    bool plain = all_of(name.begin(), name.end(), isalnum);
-    bool in_use = Model::get().is_name_in_use(name);
-    if(name.length() < 2 || !plain || in_use)
-        throw Error("Invalid name for new object!");
-    return name;
+string read_object_name()
+{
+  string name;
+  cin >> name;
+  bool plain = all_of(name.begin(), name.end(), isalnum);
+  bool in_use = Model::get().is_name_in_use(name);
+  if(name.length() < 2 || !plain || in_use)
+    throw Error("Invalid name for new object!");
+  return name;
 }
 

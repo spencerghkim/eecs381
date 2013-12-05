@@ -2,11 +2,11 @@
 #define SOLDIER_H_
 
 /*
-A Soldier is an Agent that has attack and defense behaviors. It can be commanded
-to start attacking another Agent and will continue the attack as long as 
-it is alive and the target is alive and in range. If attacked, the Soldier will
-start attacking its attacker.
-*/
+ A Soldier is an Agent that has attack and defense behaviors. It can be commanded
+ to start attacking another Agent and will continue the attack as long as
+ it is alive and the target is alive and in range. If attacked, the Soldier will
+ start attacking its attacker.
+ */
 
 #include "Agent.h"
 
@@ -35,11 +35,11 @@ public:
   
   // Describe the state of the object.
   void describe() const override;
-
+  
 protected:
-
+  
   bool is_attacking()
-      { return state == ATTACKING; }
+  { return state == ATTACKING; }
   
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
   void attack(std::shared_ptr<Agent> target_ptr);
@@ -103,7 +103,7 @@ class Soldier : public Warrior {
 public:
 	
 	Soldier(const std::string& name_, Point location_);
-		
+  
 	// Overrides Agent's take_hit to counterattack when attacked.
 	void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
 	

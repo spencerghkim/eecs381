@@ -25,6 +25,7 @@ public:
 	void run();
     
 private:
+    //TODO: make sure std::function is Kosher, its much cleaner though
     using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
     using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<Agent>)>>;
     
@@ -47,9 +48,7 @@ private:
     // return the map view, or throw
     std::shared_ptr<FullMapView> get_map_view();
     // view factory
-    // static view factory
     std::shared_ptr<View> create_view(const std::string& name);
-    
     
     // whole-program commands
     void prog_status();
@@ -63,7 +62,6 @@ private:
     void agent_work(std::shared_ptr<Agent>);
     void agent_attack(std::shared_ptr<Agent>);
     void agent_stop(std::shared_ptr<Agent>);
-    
     
     // containers
     CmdFunc_t program_cmds;

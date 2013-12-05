@@ -3,7 +3,6 @@
 
 using std::fabs;
 
-	
 // Tell this object to start moving to location in_destination
 // If it is already at the destination and moving, it stops;
 // if already there and not moving, it stays stopped.
@@ -13,9 +12,9 @@ void Moving_object::start_moving(Point in_destination)
 	if(location == in_destination) {
 		if(moving) {
 			stop_moving();
-			}
+    }
 		return;
-		}
+  }
 	// time to start moving
 	moving = true;
 	destination = in_destination;
@@ -50,7 +49,7 @@ bool Moving_object::update_location()
 		location = destination;
 		stop_moving();
 		return true;
-		}
+  }
 	location = location + delta;
 	return false;
 }
@@ -60,7 +59,3 @@ void Moving_object::compute_delta()
 {
 	delta = (destination - location) * (speed / cartesian_distance(destination, location));
 }
-
-	
-
-

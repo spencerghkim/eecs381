@@ -43,38 +43,39 @@
 /* Begin PBXFileReference section */
 		B31FF01B184E9E0000C95972 /* eecs381proj6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj6; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31FF020184E9E0000C95972 /* eecs381proj6.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj6.1; sourceTree = "<group>"; };
-		B31FF027184E9E2700C95972 /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = p6_main.cpp; path = ../../p6_main.cpp; sourceTree = "<group>"; };
-		B31FF028184E9E2700C95972 /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Peasant.cpp; path = ../../Peasant.cpp; sourceTree = "<group>"; };
-		B31FF029184E9E2700C95972 /* Peasant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Peasant.h; path = ../../Peasant.h; sourceTree = "<group>"; };
-		B31FF02A184E9E2700C95972 /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sim_object.cpp; path = ../../Sim_object.cpp; sourceTree = "<group>"; };
-		B31FF02B184E9E2700C95972 /* Sim_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sim_object.h; path = ../../Sim_object.h; sourceTree = "<group>"; };
+		B31FF027184E9E2700C95972 /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = p6_main.cpp; path = ../../p6_main.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF028184E9E2700C95972 /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Peasant.cpp; path = ../../Peasant.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF029184E9E2700C95972 /* Peasant.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Peasant.h; path = ../../Peasant.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF02A184E9E2700C95972 /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Sim_object.cpp; path = ../../Sim_object.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF02B184E9E2700C95972 /* Sim_object.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Sim_object.h; path = ../../Sim_object.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF02C184E9E2700C95972 /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure_factory.cpp; path = ../../Structure_factory.cpp; sourceTree = "<group>"; };
 		B31FF02D184E9E2700C95972 /* Structure_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structure_factory.h; path = ../../Structure_factory.h; sourceTree = "<group>"; };
-		B31FF02E184E9E2700C95972 /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure.cpp; path = ../../Structure.cpp; sourceTree = "<group>"; };
-		B31FF02F184E9E2700C95972 /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structure.h; path = ../../Structure.h; sourceTree = "<group>"; };
-		B31FF030184E9E2700C95972 /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Town_Hall.cpp; path = ../../Town_Hall.cpp; sourceTree = "<group>"; };
-		B31FF031184E9E2700C95972 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Town_Hall.h; path = ../../Town_Hall.h; sourceTree = "<group>"; };
-		B31FF032184E9E2700C95972 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = ../../Utility.cpp; sourceTree = "<group>"; };
-		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../Utility.h; sourceTree = "<group>"; };
-		B31FF034184E9E2700C95972 /* Views.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Views.cpp; path = ../../Views.cpp; sourceTree = "<group>"; };
-		B31FF035184E9E2700C95972 /* Views.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Views.h; path = ../../Views.h; sourceTree = "<group>"; };
-		B31FF036184E9E2700C95972 /* Warriors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Warriors.cpp; path = ../../Warriors.cpp; sourceTree = "<group>"; };
-		B31FF037184E9E2700C95972 /* Warriors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Warriors.h; path = ../../Warriors.h; sourceTree = "<group>"; };
+		B31FF02E184E9E2700C95972 /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Structure.cpp; path = ../../Structure.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF02F184E9E2700C95972 /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Structure.h; path = ../../Structure.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF030184E9E2700C95972 /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Town_Hall.cpp; path = ../../Town_Hall.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF031184E9E2700C95972 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Town_Hall.h; path = ../../Town_Hall.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF032184E9E2700C95972 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = ../../Utility.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../Utility.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF034184E9E2700C95972 /* Views.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Views.cpp; path = ../../Views.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF035184E9E2700C95972 /* Views.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Views.h; path = ../../Views.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF036184E9E2700C95972 /* Warriors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Warriors.cpp; path = ../../Warriors.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF037184E9E2700C95972 /* Warriors.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Warriors.h; path = ../../Warriors.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF038184E9E2700C95972 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = ../../Agent_factory.cpp; sourceTree = "<group>"; };
 		B31FF039184E9E2700C95972 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent_factory.h; path = ../../Agent_factory.h; sourceTree = "<group>"; };
-		B31FF03A184E9E2700C95972 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = ../../Agent.cpp; sourceTree = "<group>"; };
-		B31FF03B184E9E2700C95972 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent.h; path = ../../Agent.h; sourceTree = "<group>"; };
-		B31FF03C184E9E2700C95972 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../../Controller.cpp; sourceTree = "<group>"; };
-		B31FF03D184E9E2700C95972 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../../Controller.h; sourceTree = "<group>"; };
-		B31FF03E184E9E2700C95972 /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Farm.cpp; path = ../../Farm.cpp; sourceTree = "<group>"; };
-		B31FF03F184E9E2700C95972 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Farm.h; path = ../../Farm.h; sourceTree = "<group>"; };
-		B31FF040184E9E2700C95972 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = ../../Geometry.cpp; sourceTree = "<group>"; };
-		B31FF041184E9E2700C95972 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../Geometry.h; sourceTree = "<group>"; };
-		B31FF042184E9E2700C95972 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = ../../Model.cpp; sourceTree = "<group>"; };
-		B31FF043184E9E2700C95972 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Model.h; sourceTree = "<group>"; };
-		B31FF044184E9E2700C95972 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Moving_object.cpp; path = ../../Moving_object.cpp; sourceTree = "<group>"; };
-		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = ../../Moving_object.h; sourceTree = "<group>"; };
+		B31FF03A184E9E2700C95972 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = ../../Agent.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF03B184E9E2700C95972 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Agent.h; path = ../../Agent.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF03C184E9E2700C95972 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../../Controller.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF03D184E9E2700C95972 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../../Controller.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF03E184E9E2700C95972 /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Farm.cpp; path = ../../Farm.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF03F184E9E2700C95972 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Farm.h; path = ../../Farm.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF040184E9E2700C95972 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = ../../Geometry.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF041184E9E2700C95972 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../Geometry.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF042184E9E2700C95972 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = ../../Model.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF043184E9E2700C95972 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Model.h; path = ../../Model.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF044184E9E2700C95972 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Moving_object.cpp; path = ../../Moving_object.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = ../../Moving_object.h; sourceTree = "<group>"; tabWidth = 2; };
 		F5ABDE4A18500C08004C31B5 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../../Makefile; sourceTree = "<group>"; };
+		F5ABDE4F185010E4004C31B5 /* NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +108,7 @@
 		B31FF01D184E9E0000C95972 /* eecs381proj6 */ = {
 			isa = PBXGroup;
 			children = (
+				F5ABDE4F185010E4004C31B5 /* NOTES */,
 				F5ABDE4C18500FAF004C31B5 /* MVC */,
 				F5ABDE4D18500FE2004C31B5 /* Objects */,
 				B31FF058184E9E6700C95972 /* Utility */,

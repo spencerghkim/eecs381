@@ -30,11 +30,11 @@ const double MAGICIAN_BLESSING_RANGE = 10.0;
 const int SOLDIER_ATTACK_STRENGTH = 2;
 const double SOLDIER_ATTACK_RANGE = 2.0;
 
-Warrior::Warrior(const string& name_, Point location_, int strength_, double range_)
-    : Agent(name_, location_),
-      attack_strength{strength_},
-      attack_range{range_},
-      state{NOT_ATTACKING} {}
+Warrior::Warrior(const string& name_, Point location_, int strength_, double range_) :
+  Agent(name_, location_),
+  attack_strength{strength_},
+  attack_range{range_},
+  state{NOT_ATTACKING} {}
 
 // Explicit default destructor for Warrior.
 Warrior::~Warrior() {}
@@ -127,7 +127,7 @@ void Warrior::describe() const
 }
 
 Archer::Archer(const std::string& name_, Point location_)
-    : Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE) {}
+: Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE) {}
 
 void Archer::update()
 {
@@ -173,10 +173,10 @@ string Archer::get_battle_cry()
   return "Twang!";
 }
 
-Magician::Magician(const string& name_, Point location_)
-    : Warrior(name_, location_, MAGICIAN_ATTACK_STRENGTH, MAGICIAN_ATTACK_RANGE),
-      blessing_strength(MAGICIAN_BLESSING_STRENGTH),
-      blessing_range(MAGICIAN_BLESSING_RANGE) {}
+Magician::Magician(const string& name_, Point location_) :
+  Warrior(name_, location_, MAGICIAN_ATTACK_STRENGTH, MAGICIAN_ATTACK_RANGE),
+  blessing_strength(MAGICIAN_BLESSING_STRENGTH),
+  blessing_range(MAGICIAN_BLESSING_RANGE) {}
 
 void Magician::update()
 {
@@ -185,7 +185,7 @@ void Magician::update()
   // If we aren't attacking, bless the peaceful people.
   if (!is_attacking()) {
     vector<shared_ptr<Agent>> agents_in_range =
-        Model::get().find_agents_in_range(shared_from_this(), blessing_range);
+    Model::get().find_agents_in_range(shared_from_this(), blessing_range);
     std::for_each(agents_in_range.begin(),
                   agents_in_range.end(),
                   std::bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));
@@ -218,7 +218,7 @@ string Magician::get_battle_cry()
 }
 
 Soldier::Soldier(const string& name_, Point location_)
-    : Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE) {}
+: Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE) {}
 
 // Overrides Agent's take_hit to counterattack when attacked.
 void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)

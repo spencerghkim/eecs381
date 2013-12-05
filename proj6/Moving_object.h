@@ -1,26 +1,26 @@
 #ifndef MOVING_OBJECT
 #define MOVING_OBJECT
 #include "Geometry.h"
-/* Moving_object encapsulates the calculations needed to make an object move 
-from one point to another, moving a specified distance on each update_location call.
-*/
+/* Moving_object encapsulates the calculations needed to make an object move
+ from one point to another, moving a specified distance on each update_location call.
+ */
 
 class Moving_object {
 public:
 	Moving_object() :
-		moving(false) {}
+    moving(false) {}
 	Moving_object(Point init_location, double init_speed) :
-		moving(false), location(init_location), speed(init_speed) {}
-
+    moving(false), location(init_location), speed(init_speed) {}
+  
 	// readers
 	bool is_currently_moving() const
-		{return moving;}
+  {return moving;}
 	Point get_current_location() const
-		{return location;}
+  {return location;}
 	double get_current_speed() const
-		{return speed;}
+  {return speed;}
 	Point get_current_destination() const
-		{return destination;}
+  {return destination;}
 	
 	// Tell this object to start moving to location destination.
 	// If it is already at the destination and moving, it stops;
@@ -34,7 +34,7 @@ public:
 	// update this object's location using current location, speed, and destination
 	// returns true if arrived at destination, false if not
 	bool update_location();
-
+  
 private:
 	bool moving;			// true if this object is moving
 	Point location;			// current location

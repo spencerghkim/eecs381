@@ -16,10 +16,10 @@
 using std::cout; using std::endl;
 using std::shared_ptr;
 
-Peasant::Peasant(const std::string& in_name, Point in_location)
-    : Agent(in_name, in_location),
-      food_in_hand{INITIAL_CARRYING_FOOD},
-      state{NOT_WORKING} {}
+Peasant::Peasant(const std::string& in_name, Point in_location) :
+  Agent(in_name, in_location),
+  food_in_hand{INITIAL_CARRYING_FOOD},
+  state{NOT_WORKING} {}
 
 // implement Peasant behavior
 void Peasant::update()
@@ -65,7 +65,8 @@ void Peasant::update()
   }
 }
 
-void Peasant::stop_working() {
+void Peasant::stop_working()
+{
   if (state != NOT_WORKING) {
     cout << get_name() << ": I'm stopping work" << endl;
     state = NOT_WORKING;
@@ -140,7 +141,7 @@ void Peasant::describe() const
     cout << "   Depositing at destination " << destination->get_name() << endl;
   }
 }
-  
+
 void Peasant::broadcast_current_state()
 {
   Agent::broadcast_current_state();

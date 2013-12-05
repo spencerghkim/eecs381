@@ -4,24 +4,24 @@
 #include <iosfwd>
 
 /*
-This set of simple classes is used to compute positions and directions in the plane, 
-in both cartesian and polar coordinates.
-
-These classes are defined with "struct" to make all members public by default.
-
-These classes make no assumptions about units of measurement of distance. Angles
-can be specified in radians, but radians can be converted to and from 
-trigonometry degrees in which 0 degrees corresponds to (x > 0, y = 0), 
-and 90 degrees corresponds to (x = 0, y > 0).
-
-Point is a set of (x, y) coordinates. 
-
-A Cartesian_vector is (delta_x, delta_y) - a displacement in Cartesian coordinates.
-
-A Polar_vector is (r, theta) - a displacement in polar coordinates using radians.
-
-Various overloaded operators support computations of positions and directions.
-*/
+ This set of simple classes is used to compute positions and directions in the plane,
+ in both cartesian and polar coordinates.
+ 
+ These classes are defined with "struct" to make all members public by default.
+ 
+ These classes make no assumptions about units of measurement of distance. Angles
+ can be specified in radians, but radians can be converted to and from
+ trigonometry degrees in which 0 degrees corresponds to (x > 0, y = 0),
+ and 90 degrees corresponds to (x = 0, y > 0).
+ 
+ Point is a set of (x, y) coordinates.
+ 
+ A Cartesian_vector is (delta_x, delta_y) - a displacement in Cartesian coordinates.
+ 
+ A Polar_vector is (r, theta) - a displacement in polar coordinates using radians.
+ 
+ Various overloaded operators support computations of positions and directions.
+ */
 
 // angle units conversion functions
 double to_radians(double theta_d);
@@ -41,12 +41,12 @@ struct Point
 	double y;
 	
 	Point (double in_x = 0., double in_y = 0.) :
-		x(in_x), y(in_y)
-		{}
-
+  x(in_x), y(in_y)
+  {}
+  
 	// compare two Points
 	bool operator== (const Point& rhs) const;
-	bool operator!= (const Point& rhs) const;	
+	bool operator!= (const Point& rhs) const;
 };
 
 // return the distance between two Points
@@ -58,16 +58,16 @@ struct Cartesian_vector
 {
 	double delta_x;
 	double delta_y;
-
-	Cartesian_vector (double in_delta_x = 0., double in_delta_y = 0.) : 
-		delta_x(in_delta_x), delta_y(in_delta_y)
+  
+	Cartesian_vector (double in_delta_x = 0., double in_delta_y = 0.) :
+  delta_x(in_delta_x), delta_y(in_delta_y)
 	{}
-
+  
 	// construct a Cartesian_vector from two Points,
-	// showing the vector from p1 to p2 
+	// showing the vector from p1 to p2
 	// that is, p1 + cv => p2
 	Cartesian_vector(const Point& p1, const Point& p2);
-
+  
 	// construct a Cartesian_vector from a Polar_vector
 	Cartesian_vector(const Polar_vector& pv);
 };
@@ -80,19 +80,19 @@ struct Polar_vector
 {
 	double r;
 	double theta;
-
-	Polar_vector (double in_r = 0., double in_theta = 0.) : 
-		r(in_r), theta(in_theta)
+  
+	Polar_vector (double in_r = 0., double in_theta = 0.) :
+  r(in_r), theta(in_theta)
 	{}
-
+  
 	// construct a Polar_vector from two Points,
-	// showing the vector from p1 to p2 
+	// showing the vector from p1 to p2
 	// that is, p1 + pv => p2
 	Polar_vector(const Point& p1, const Point& p2);
-
+  
 	// construct a Polar_vector from a Cartesian_vector
 	Polar_vector(const Cartesian_vector& cv);
-
+  
 };
 
 // *** Overloaded Operators ***
@@ -104,7 +104,7 @@ Cartesian_vector operator- (const Point& p1, const Point& p2);
 // Add a Point and a Cartesian_vector to get the displaced Point
 Point operator+ (const Point& p, const Cartesian_vector& cv);
 Point operator+ (const Cartesian_vector& cv, const Point& p);
-	
+
 // Add a Point and a Polar_vector to get the displaced Point
 Point operator+ (const Point& p, const Polar_vector& pv);
 Point operator+ (const Polar_vector& pv, const Point& p);
