@@ -1,11 +1,13 @@
 
 #include "Views.h"
-#include "Utility.h"
+
 #include "Geometry.h"
+#include "Utility.h"
+
+#include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <memory>
-#include <iomanip>
-#include <cmath>
 
 #define DEFAULT_SIZE 25
 #define MAX_SIZE 30.0

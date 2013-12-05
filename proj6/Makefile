@@ -30,7 +30,7 @@ test: $(PROG)
 	./proj6exe < samples/$(file)_in.txt > junk.out
 	diff junk.out samples/$(file)_out.txt
 
-p4_main.o: p6_main.cpp Model.h Controller.h
+p6_main.o: p6_main.cpp Model.h Controller.h
 	$(CC) $(CFLAGS) p6_main.cpp
 
 Model.o: Model.cpp Model.h Views.h Sim_object.h Structure.h Agent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h

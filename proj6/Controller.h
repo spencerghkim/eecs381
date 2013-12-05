@@ -6,11 +6,11 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <map>
-#include <list>
 #include <functional>
-#include <string>
+#include <list>
+#include <map>
 #include <memory>
+#include <string>
 
 class View;
 class FullMapView;
