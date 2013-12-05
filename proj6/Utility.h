@@ -1,9 +1,7 @@
-#ifndef UTILITY_H
-#define UTILITY_H
+#ifndef UTILITY_H_
+#define UTILITY_H_
 
 #include <string>
-
-#define UNIQUE_STRING_PREFIX_SIZE 2
 
 /* Utility functions and classes used by other modules */
 

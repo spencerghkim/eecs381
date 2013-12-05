@@ -8,8 +8,8 @@
 using std::string;
 using std::cout; using std::endl;
 
-#define INITIAL_FOOD 50.0
-#define FOOD_PRODUCED_PER_UPDATE 2.0
+const double INITIAL_FOOD = 50.0;
+const double FOOD_PRODUCED_PER_UPDATE = 2.0;
 
 Farm::Farm(const string& in_name, Point in_location)
 : Structure(in_name, in_location), food_available{INITIAL_FOOD} {}

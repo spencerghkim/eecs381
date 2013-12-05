@@ -1,5 +1,6 @@
 #ifndef STRUCTURE_H_
 #define STRUCTURE_H_
+
 /* A Structure is a Sim_object with a location and interface to derived types */
 
 #include "Geometry.h"

@@ -2,11 +2,10 @@
 
 TODO:
 
-Remove all #define
 Check that all dtors are correct (dont wanna lose dumb points)
 Move Classes into their own files! (no longer need to squish them right?)
 
-Make sure make file doesnt have too many dependancies
+Make sure makefile/.cpp's dont have excessive dependancies
 
 Notes:
 

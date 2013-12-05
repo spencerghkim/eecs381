@@ -6,11 +6,11 @@
 #include <iostream>
 #include <string>
 
-#define TAX_RATE 0.1
-#define MINIMUM_FOOD_AMOUNT 1.0
-
 using std::string;
 using std::cout; using std::endl;
+
+const double TAX_RATE = 0.1;
+const double MINIMUM_FOOD_AMOUNT = 1.0;
 
 Town_Hall::Town_Hall(const string& in_name, Point in_location) :
   Structure(in_name, in_location), total_food{0} {}

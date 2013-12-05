@@ -9,27 +9,27 @@
 #include <iostream>
 #include <memory>
 
-#define DEFAULT_SIZE 25
-#define MAX_SIZE 30.0
-#define MIN_SIZE 6.0
-#define DEFAULT_SCALE 2.0
-#define DEFAULT_ORIGIN {-10.0,-10.0}
-
-#define BLANK_CORDINATE ". "
-#define MULTI_CORDINATE "* "
-
-#define DEFAULT_LOCAL_SCALE 2.0
-#define DEFAULT_LOCAL_SIZE 9
-#define LOCAL_ORIGIN_OFFSET (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE
-
-#define AMOUNTS_VIEW_NAME "Amounts"
-#define HEALTH_VIEW_NAME "Health"
-
 using std::cout; using std::endl;
 using std::setw; using std::setprecision;
 using std::string; using std::vector;
 using std::shared_ptr;
 using std::make_shared;
+
+const int DEFAULT_SIZE = 25;
+const double MAX_SIZE = 30.0;
+const double MIN_SIZE = 6.0;
+const double DEFAULT_SCALE = 2.0;
+const Point DEFAULT_ORIGIN {-10.0,-10.0};
+
+const string BLANK_CORDINATE = ". ";
+const string MULTI_CORDINATE = "* ";
+
+const double DEFAULT_LOCAL_SCALE = 2.0;
+const int DEFAULT_LOCAL_SIZE = 9;
+const double LOCAL_ORIGIN_OFFSET = (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE; //TODO: is this correct *2/2 ?
+
+const string AMOUNTS_VIEW_NAME = "Amounts";
+const string HEALTH_VIEW_NAME = "Health";
 
 // explicit default dtors
 View::~View() {} //TODO: need?

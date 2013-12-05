@@ -1,3 +1,6 @@
+#ifndef VIEWS_H_
+#define VIEWS_H_
+
 /*
  
  * View class *
@@ -7,9 +10,6 @@
  of the to-be-plotted objects.
  
  */
-
-#ifndef VIEWS_H
-#define VIEWS_H
 
 #include <string>
 #include <map>

@@ -7,11 +7,11 @@
 
 #include <string>
 
-#define FARM_TYPE_NAME "Farm"
-#define TOWN_HALL_TYPE_NAME "Town_Hall"
-
 using std::string;
 using std::shared_ptr;
+
+const string FARM_TYPE_NAME = "Farm";
+const string TOWN_HALL_TYPE_NAME = "Town_Hall";
 
 shared_ptr<Structure> create_structure(const string& name,
                                        const string& type,

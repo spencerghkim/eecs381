@@ -10,12 +10,12 @@
 
 #include <iostream>
 
-#define INITIAL_CARRYING_FOOD 0.0
-#define MAXIMUM_CARRYING_CAPACITY 35.0
-
 using std::string;
 using std::cout; using std::endl;
 using std::shared_ptr;
+
+const double INITIAL_CARRYING_FOOD = 0.0;
+const double MAXIMUM_CARRYING_CAPACITY = 35.0;
 
 Peasant::Peasant(const string& in_name, Point in_location) :
   Agent(in_name, in_location),

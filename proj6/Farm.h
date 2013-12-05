@@ -1,5 +1,6 @@
 #ifndef FARM_H_
 #define FARM_H_
+
 /*
  A Farm is a Structure that when updated, increments the amount of food on hand
  by the production rate amount.

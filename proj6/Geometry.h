@@ -1,5 +1,5 @@
-#ifndef GEOMETRY_H
-#define GEOMETRY_H
+#ifndef GEOMETRY_H_
+#define GEOMETRY_H_
 
 #include <iosfwd>
 
