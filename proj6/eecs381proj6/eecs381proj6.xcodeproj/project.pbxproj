@@ -33,6 +33,7 @@
 		F5ABDE661850DD5A004C31B5 /* FullMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */; };
 		F5ABDE6D1850E689004C31B5 /* HealthView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE6A1850E689004C31B5 /* HealthView.cpp */; };
 		F5ABDE6E1850E689004C31B5 /* AmountsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */; };
+		F5ABDE711850F423004C31B5 /* AttackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE6F1850F423004C31B5 /* AttackView.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +103,8 @@
 		F5ABDE6A1850E689004C31B5 /* HealthView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HealthView.cpp; path = ../../HealthView.cpp; sourceTree = "<group>"; };
 		F5ABDE6B1850E689004C31B5 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmountsView.h; path = ../../AmountsView.h; sourceTree = "<group>"; };
 		F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AmountsView.cpp; path = ../../AmountsView.cpp; sourceTree = "<group>"; };
+		F5ABDE6F1850F423004C31B5 /* AttackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = AttackView.cpp; path = ../../../../../../../../../../Applications/AttackView.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE701850F423004C31B5 /* AttackView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = AttackView.h; path = /Applications/AttackView.h; sourceTree = "<absolute>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 				B31FF034184E9E2700C95972 /* View.cpp */,
 				F5ABDE671850DEC5004C31B5 /* Maps */,
 				F5ABDE681850E5C5004C31B5 /* Lists */,
+				F5ABDE701850F423004C31B5 /* AttackView.h */,
+				F5ABDE6F1850F423004C31B5 /* AttackView.cpp */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */,
 				F5ABDE6E1850E689004C31B5 /* AmountsView.cpp in Sources */,
 				F5ABDE58185025E6004C31B5 /* Soldier.cpp in Sources */,
+				F5ABDE711850F423004C31B5 /* AttackView.cpp in Sources */,
 				B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */,
 				B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */,
 				B31FF054184E9E2700C95972 /* Model.cpp in Sources */,

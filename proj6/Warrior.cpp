@@ -5,6 +5,7 @@
 #include "Utility.h"
 
 #include <iostream>
+#include <cassert>
 
 using std::string;
 using std::cout; using std::endl;
@@ -33,15 +34,14 @@ void Warrior::update()
   shared_ptr<Agent> target_ptr = target.lock();
   if (!target_ptr || !target_ptr->is_alive()) {
     cout << get_name() << ": Target is dead" << endl;
-    state = NOT_ATTACKING;
-    target.reset();
+    clear_attack();
     return;
   }
   
   // Check if the target is still in range.
   if (cartesian_distance(get_location(), target_ptr->get_location()) > attack_range) {
     cout << get_name() << ": Target is now out of range" << endl;
-    state = NOT_ATTACKING;
+    clear_attack();
     return;
   }
   
@@ -52,8 +52,7 @@ void Warrior::update()
   // Did we just kill it?
   if (!target_ptr->is_alive()) {
     cout << get_name() << ": I triumph!" << endl;
-    state = NOT_ATTACKING;
-    target.reset();
+    clear_attack();
   }
 }
 
@@ -77,11 +76,21 @@ void Warrior::start_attacking(shared_ptr<Agent> target_ptr)
   attack(target_ptr);
 }
 
+// Attack the given agent, regardless of if its status (in range, alive, etc.)
 void Warrior::attack(shared_ptr<Agent> target_ptr)
 {
+  Model::get().notify_attack(get_name(), target_ptr->get_name());
   cout << get_name() << ": I'm attacking!" << endl;
   target = target_ptr;
   state = ATTACKING;
+}
+
+// attack is over, clear target and set state
+void Warrior::clear_attack()
+{
+  Model::get().notify_end_attack(get_name());
+  state = NOT_ATTACKING;
+  target.reset();
 }
 
 void Warrior::stop()
@@ -103,5 +112,15 @@ void Warrior::describe() const
     }
   } else {
     cout << "   Not attacking" << endl;
+  }
+}
+
+void Warrior::broadcast_current_state()
+{
+  Agent::broadcast_current_state();
+  if (is_attacking()) {
+    shared_ptr<Agent> t = target.lock();
+    assert(t);
+    Model::get().notify_attack(get_name(), t->get_name());
   }
 }

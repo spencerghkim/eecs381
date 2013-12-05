@@ -3,9 +3,10 @@
 #include "Agent.h"
 #include "Agent_factory.h"
 #include "AmountsView.h"
+#include "AttackView.h"
 #include "FullMapView.h"
 #include "Geometry.h"
-#include "HealthView.h" //TODO: make a separate view factory???
+#include "HealthView.h"
 #include "ListView.h"
 #include "LocalMapView.h"
 #include "MapView.h"
@@ -20,6 +21,8 @@
 #include <cassert>
 #include <iostream>
 #include <memory>
+
+//BIG TODO: make a separate view factory so we dont have 6 View Includes...
 
 using std::bad_alloc;
 using std::cout; using std::cin; using std::endl;
@@ -187,6 +190,8 @@ shared_ptr<View> Controller::create_view(const string& name)
     view = make_shared<HealthView>();
   } else if (name == "amounts") {
     view = make_shared<AmountsView>();
+  } else if (name == "attack") {
+    view = make_shared<AttackView>();
   } else {
     if (Model::get().is_agent_present(name)) {
       auto agent = Model::get().get_agent_ptr(name);

@@ -35,6 +35,9 @@ public:
   // Describe the state of the object.
   void describe() const override;
   
+  // ask Model to broadcast our current state to all Views
+  void broadcast_current_state() override;
+  
 protected:
   
   bool is_attacking()
@@ -42,6 +45,8 @@ protected:
   
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
   void attack(std::shared_ptr<Agent> target_ptr);
+  // attack is over, clear target and set state
+  void clear_attack();
   
 private:
   using Warrior_state_e = enum {

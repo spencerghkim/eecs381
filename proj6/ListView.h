@@ -13,8 +13,6 @@
 #include <string>
 #include <map>
 
-/* List View Types */
-
 class ListView : public View {
 public:
   virtual ~ListView() = 0;

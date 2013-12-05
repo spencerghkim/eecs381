@@ -20,9 +20,13 @@ public:
   virtual ~View() = 0;
   
 	// Notify for location, health, or amount update
-	virtual void update_location(const std::string& name, Point location) {};
+	virtual void update_location(const std::string& name, Point location) {}; //TODO: by ref?
 	virtual void update_health(const std::string& name, int health) {};
 	virtual void update_amount(const std::string& name, double amount) {};
+  
+  // Notify for begin or end of an attack
+	virtual void update_attack(const std::string& name, const std::string& target) {};
+	virtual void update_end_attack(const std::string& name) {};
 	
 	// Notify for removal of object
 	virtual void update_remove(const std::string& name) = 0;
