@@ -107,18 +107,10 @@
 		B31FF01D184E9E0000C95972 /* eecs381proj6 */ = {
 			isa = PBXGroup;
 			children = (
-				B31FF056184E9E4300C95972 /* Agent */,
-				B31FF042184E9E2700C95972 /* Model.cpp */,
-				B31FF043184E9E2700C95972 /* Model.h */,
-				B31FF03C184E9E2700C95972 /* Controller.cpp */,
-				B31FF03D184E9E2700C95972 /* Controller.h */,
-				B31FF034184E9E2700C95972 /* Views.cpp */,
-				B31FF035184E9E2700C95972 /* Views.h */,
-				B31FF027184E9E2700C95972 /* p6_main.cpp */,
-				B31FF02A184E9E2700C95972 /* Sim_object.cpp */,
-				B31FF02B184E9E2700C95972 /* Sim_object.h */,
-				B31FF057184E9E5100C95972 /* Structure */,
+				F5ABDE4C18500FAF004C31B5 /* MVC */,
+				F5ABDE4D18500FE2004C31B5 /* Objects */,
 				B31FF058184E9E6700C95972 /* Utility */,
+				B31FF027184E9E2700C95972 /* p6_main.cpp */,
 				F5ABDE4A18500C08004C31B5 /* Makefile */,
 				B31FF020184E9E0000C95972 /* eecs381proj6.1 */,
 			);
@@ -128,14 +120,12 @@
 		B31FF056184E9E4300C95972 /* Agent */ = {
 			isa = PBXGroup;
 			children = (
-				B31FF03A184E9E2700C95972 /* Agent.cpp */,
 				B31FF03B184E9E2700C95972 /* Agent.h */,
-				B31FF038184E9E2700C95972 /* Agent_factory.cpp */,
-				B31FF039184E9E2700C95972 /* Agent_factory.h */,
-				B31FF028184E9E2700C95972 /* Peasant.cpp */,
+				B31FF03A184E9E2700C95972 /* Agent.cpp */,
 				B31FF029184E9E2700C95972 /* Peasant.h */,
-				B31FF036184E9E2700C95972 /* Warriors.cpp */,
+				B31FF028184E9E2700C95972 /* Peasant.cpp */,
 				B31FF037184E9E2700C95972 /* Warriors.h */,
+				B31FF036184E9E2700C95972 /* Warriors.cpp */,
 			);
 			name = Agent;
 			sourceTree = "<group>";
@@ -143,14 +133,12 @@
 		B31FF057184E9E5100C95972 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
-				B31FF03E184E9E2700C95972 /* Farm.cpp */,
-				B31FF03F184E9E2700C95972 /* Farm.h */,
-				B31FF02E184E9E2700C95972 /* Structure.cpp */,
 				B31FF02F184E9E2700C95972 /* Structure.h */,
-				B31FF02C184E9E2700C95972 /* Structure_factory.cpp */,
-				B31FF02D184E9E2700C95972 /* Structure_factory.h */,
-				B31FF030184E9E2700C95972 /* Town_Hall.cpp */,
+				B31FF02E184E9E2700C95972 /* Structure.cpp */,
+				B31FF03F184E9E2700C95972 /* Farm.h */,
+				B31FF03E184E9E2700C95972 /* Farm.cpp */,
 				B31FF031184E9E2700C95972 /* Town_Hall.h */,
+				B31FF030184E9E2700C95972 /* Town_Hall.cpp */,
 			);
 			name = Structure;
 			sourceTree = "<group>";
@@ -158,14 +146,50 @@
 		B31FF058184E9E6700C95972 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				B31FF040184E9E2700C95972 /* Geometry.cpp */,
 				B31FF041184E9E2700C95972 /* Geometry.h */,
-				B31FF044184E9E2700C95972 /* Moving_object.cpp */,
-				B31FF045184E9E2700C95972 /* Moving_object.h */,
-				B31FF032184E9E2700C95972 /* Utility.cpp */,
+				B31FF040184E9E2700C95972 /* Geometry.cpp */,
 				B31FF033184E9E2700C95972 /* Utility.h */,
+				B31FF032184E9E2700C95972 /* Utility.cpp */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		F5ABDE4C18500FAF004C31B5 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF043184E9E2700C95972 /* Model.h */,
+				B31FF042184E9E2700C95972 /* Model.cpp */,
+				B31FF035184E9E2700C95972 /* Views.h */,
+				B31FF034184E9E2700C95972 /* Views.cpp */,
+				B31FF03D184E9E2700C95972 /* Controller.h */,
+				B31FF03C184E9E2700C95972 /* Controller.cpp */,
+			);
+			name = MVC;
+			sourceTree = "<group>";
+		};
+		F5ABDE4D18500FE2004C31B5 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF057184E9E5100C95972 /* Structure */,
+				B31FF056184E9E4300C95972 /* Agent */,
+				F5ABDE4E18501021004C31B5 /* Factories */,
+				B31FF02B184E9E2700C95972 /* Sim_object.h */,
+				B31FF02A184E9E2700C95972 /* Sim_object.cpp */,
+				B31FF045184E9E2700C95972 /* Moving_object.h */,
+				B31FF044184E9E2700C95972 /* Moving_object.cpp */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		F5ABDE4E18501021004C31B5 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				B31FF02C184E9E2700C95972 /* Structure_factory.cpp */,
+				B31FF02D184E9E2700C95972 /* Structure_factory.h */,
+				B31FF038184E9E2700C95972 /* Agent_factory.cpp */,
+				B31FF039184E9E2700C95972 /* Agent_factory.h */,
+			);
+			name = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
