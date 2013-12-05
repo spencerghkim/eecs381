@@ -41,18 +41,4 @@ private:
   Objects_t objects;
 };
 
-class HealthView : public ListView {
-public:
-  // update the unit's health
-  void update_health(const std::string& name, int health) override;
-  std::string view_name() override;
-};
-
-class AmountsView : public ListView {
-public:
-  // update the amount of food
-  void update_amount(const std::string& name, double amount) override;
-  std::string view_name() override;
-};
-
 #endif

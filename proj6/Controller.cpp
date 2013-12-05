@@ -2,8 +2,12 @@
 
 #include "Agent.h"
 #include "Agent_factory.h"
+#include "AmountsView.h"
+#include "FullMapView.h"
 #include "Geometry.h"
+#include "HealthView.h" //TODO: make a separate view factory???
 #include "ListView.h"
+#include "LocalMapView.h"
 #include "MapView.h"
 #include "Model.h"
 #include "Sim_object.h"
@@ -186,10 +190,10 @@ shared_ptr<View> Controller::create_view(const string& name)
   } else {
     if (Model::get().is_agent_present(name)) {
       auto agent = Model::get().get_agent_ptr(name);
-      view = make_shared<LocalView>(agent->get_name());
+      view = make_shared<LocalMapView>(agent->get_name());
     } else if (Model::get().is_structure_present(name)) {
       auto structure = Model::get().get_structure_ptr(name);
-      view = make_shared<LocalView>(structure->get_name());
+      view = make_shared<LocalMapView>(structure->get_name());
     } else {
       throw Error("No object of that name!");
     }

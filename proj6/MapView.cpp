@@ -24,10 +24,6 @@ const Point DEFAULT_ORIGIN {-10.0,-10.0};
 const string BLANK_CORDINATE = ". ";
 const string MULTI_CORDINATE = "* ";
 
-const double DEFAULT_LOCAL_SCALE = 2.0;
-const int DEFAULT_LOCAL_SIZE = 9;
-const double LOCAL_ORIGIN_OFFSET = (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE; //TODO: is this correct *2/2 ?
-
 // explicit default dtor
 MapView::~MapView() {}
 
@@ -202,32 +198,3 @@ bool MapView::get_subscripts(int &ix, int &iy, Point location) const
   } else
 		return true;
 }
-
-
-// default constructor sets the default size, scale, and origin
-FullMapView::FullMapView()
-{
-  set_defaults();
-}
-
-LocalView::LocalView(string name) : obj_name(name)
-{
-  set_scale(DEFAULT_LOCAL_SCALE);
-  set_size(DEFAULT_LOCAL_SIZE);
-}
-
-void LocalView::update_location(const string& name, Point location)
-{
-  MapView::update_location(name, location);
-  if (name == obj_name) {
-    location.x -= LOCAL_ORIGIN_OFFSET;
-    location.y -= LOCAL_ORIGIN_OFFSET;
-    set_origin(location);
-  }
-}
-
-void LocalView::print_header()
-{
-  cout << "Local view for: " << obj_name << endl;
-}
-

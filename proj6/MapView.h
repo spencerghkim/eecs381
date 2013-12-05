@@ -60,37 +60,4 @@ private:
   Point origin;
 };
 
-class FullMapView : public MapView {
-public:
-  // default constructor sets the default size, scale, and origin
-	FullMapView();
-  
-  // forward private functions
-	void set_size(int size_)
-    { MapView::set_size(size_); }
-	void set_scale(double scale_)
-    { MapView::set_scale(scale_); }
-  void set_origin(Point origin_)
-    { MapView::set_origin(origin_); }
-	void set_defaults()
-    { MapView::set_defaults(); }
-};
-
-class LocalView : public MapView {
-public:
-  LocalView(std::string name);
-  
-  // call MapView update_loc and move center if the name matches
-  void update_location(const std::string& name, Point location) override;
-  
-  // print the headder for the local view
-  void print_header() override;
-  
-  // don't print anything for off map
-  void print_off_map(std::vector<std::string> &off) override {};
-  
-private:
-  std::string obj_name;
-};
-
 #endif
