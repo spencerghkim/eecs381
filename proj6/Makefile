@@ -4,13 +4,14 @@ LD = g++
 CFLAGS = -c -g -pedantic -std=c++11 -Wall
 LFLAGS = -g
 
-OBJS = p6_main.o Model.o View.o MapView.o LocalMapView.o FullMapView.o ListView.o Controller.o
+OBJS = p6_main.o Model.o View.o Controller.o
+OBJS += MapView.o LocalMapView.o FullMapView.o ListView.o HealthView.o AmountsView.o AttackView.o
 OBJS += Sim_object.o Structure.o Moving_object.o Agent.o
 OBJS += Farm.o Town_Hall.o
 OBJS += Peasant.o Warrior.o Soldier.o Archer.o Magician.o
 OBJS += Agent_factory.o Structure_factory.o
 OBJS += Geometry.o Utility.o
-PROG = proj6exe
+PROG = p6exe
 
 default: $(PROG)
 
@@ -27,7 +28,7 @@ tests: $(PROG)
 	make test file=workviolence
 	make test file=workviolence_noshow
 test: $(PROG)
-	./proj6exe < samples/$(file)_in.txt > junk.out
+	./p6exe < samples/$(file)_in.txt > junk.out
 	diff junk.out samples/$(file)_out.txt
 
 p6_main.o: p6_main.cpp Model.h Controller.h
@@ -42,6 +43,9 @@ View.o: View.cpp View.h Geometry.h Utility.h
 MapView.o: MapView.cpp MapView.h View.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) MapView.cpp
   
+AttackView.o: AttackView.cpp View.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) AttackView.cpp
+
 FullMapView.o: FullMapView.cpp MapView.h View.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) FullMapView.cpp
 
@@ -105,6 +109,9 @@ Geometry.o: Geometry.cpp Geometry.h
 Utility.o: Utility.cpp Utility.h
 	$(CC) $(CFLAGS) Utility.cpp
 
+submit: $(PROG)
+	submit381 6 Makefile *.h *.cpp *.txt
+  
 clean:
 	rm -f *.o
 real_clean:

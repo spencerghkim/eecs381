@@ -1,0 +1,11 @@
+
+open attack
+show
+Zug move 20 32
+go
+go
+show
+Zug move 20 38
+go
+show
+quit
