@@ -5,7 +5,11 @@ Zug move 20 32
 go
 go
 show
-Zug move 20 38
+Zug move 20 36
+go
+show
+go
+show
 go
 show
 quit

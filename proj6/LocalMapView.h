@@ -5,7 +5,10 @@
  
  * LocalMapView class *
  
- TODO: blurb
+ This class overrides virtual methods in the MapView class
+ in order to render the grid system around a single object.
+ This view overrides update_location in order to move
+ the origin as the observed object moves.
  
 */
 

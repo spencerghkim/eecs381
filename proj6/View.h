@@ -5,9 +5,8 @@
  
  * View class *
  
- The View classes encapsulates the data and functions needed to generate the correct
- displays, and control their properties. It has a "memory" for the names and locations
- of the to-be-plotted objects.
+ The View class is an interface class which a view of a specific
+ type must follow in order to render correctly.
  
 */
 

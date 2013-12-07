@@ -5,7 +5,10 @@
  
  * MapView class *
  
- TODO: blurb
+ The map view is an abstract class which has all of the capabilities
+ for keeping track of agents and plotting a grid built in. It has
+ virtual methods, called in draw, which can be overriden to customize
+ the way the grid is printed.
  
 */
 

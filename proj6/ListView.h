@@ -5,7 +5,10 @@
  
  * ListView class *
  
- TODO: blurb
+ This view is capable of rendering a list of doubles
+ which correspond to some statistic about an observed 
+ object.
+ 
 */
 
 #include "View.h"

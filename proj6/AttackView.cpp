@@ -11,11 +11,10 @@ using std::string;
 using std::set;
 
 // number of dots per unit of distance
-const int DISTANCE_MULT = 4;
+const int DISTANCE_MULT = 3;
 const string DOT = ". ";
 const string ATTACK_SYMBOL_LEFT = " > ";
 const string ATTACK_SYMBOL_RIGHT = "< ";
-
 
 // a new attack has started, keep track of it
 void AttackView::update_attack(const std::string& name, const std::string& target)

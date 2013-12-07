@@ -5,15 +5,18 @@
  
  * AttackView class *
  
- TODO: blurb
- */
+ This view will display a list of active duels. For 
+ each agent the health and name will be displayed. The 
+ distance between the agents is shown as well.
+ 
+*/
 
 #include "View.h"
 
 #include <string>
 #include <map>
 
-class AttackView : public View { //TODO: design though, is it worth trying to inherit from ListView?
+class AttackView : public View { //TODO: is it worth trying to inherit from ListView?
 public:
   
   // a new attack has started, keep track of it

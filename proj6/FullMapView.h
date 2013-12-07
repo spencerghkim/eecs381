@@ -5,7 +5,8 @@
  
  * FullMapView class *
  
- TODO: blurb
+ This class sets the size, scale, and origin defaults and uses 
+ all of the default implementations provided by the MapView.
  
 */
 

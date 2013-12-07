@@ -5,7 +5,10 @@
  
  * AmountsView class *
  
- TODO: blurb
+ This class overrides the update_amount method in order
+ to save data in the ListView. It will also set the view
+ name to "Amounts"
+ 
 */
 
 #include "ListView.h"
@@ -15,8 +18,9 @@ public:
   
   // update the amount of food
   void update_amount(const std::string& name, double amount) override;
-  std::string view_name() override;
   
+  // return the appropriate view name type
+  std::string view_name() override;
 };
 
 #endif
