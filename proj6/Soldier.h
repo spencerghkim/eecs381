@@ -1,6 +1,14 @@
 #ifndef SOLDIER_H_
 #define SOLDIER_H_
 
+/*
+ 
+ A Soldier is an Warrior which will automatically
+ counterattack its attacker. It has a range of 2 and a 
+ strength of 2 by default.
+ 
+*/
+
 #include "Warrior.h"
 
 #include <memory>

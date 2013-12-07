@@ -2,10 +2,11 @@
 #define WARRIOR_H_
 
 /*
+ 
  A Warior is an Agent that has attack and defense behaviors. It can be commanded
- to start attacking another Agent and will continue the attack as long as
- it is alive and the target is alive and in range.
- */
+ to start attacking another Agent and to move to a certain location.
+
+*/
 
 #include "Agent.h"
 

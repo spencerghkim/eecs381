@@ -1,6 +1,15 @@
 #ifndef MAGICIAN_H_
 #define MAGICIAN_H_
 
+/*
+ 
+ A Magician is a type of Warrior. It has an infinite attack range and
+ an attack strength of 4 by default. A Magician can also bless nearby
+ peasants within a range of 10. When attacked, a Magicain as a 50/50
+ chance of survival.
+ 
+*/
+
 #include "Warrior.h"
 
 #include <memory>

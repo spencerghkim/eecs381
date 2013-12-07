@@ -1,6 +1,14 @@
 #ifndef ARCHER_H_
 #define ARCHER_H_
 
+/*
+ 
+ An Archer is an Warrior which will automatically
+ counterattack its attacker. It has a range of 6 and a
+ strength of 1 by default.
+ 
+*/
+
 #include "Warrior.h"
 
 #include <memory>
