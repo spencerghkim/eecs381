@@ -181,8 +181,9 @@ shared_ptr<View> Controller::create_view(const string& name)
 {
   shared_ptr<View> view;
   if (name == "map"){
-    map_view = make_shared<FullMapView>();
-    view = map_view.lock();
+    auto new_view = make_shared<FullMapView>();
+    map_view = new_view;
+    view = new_view;
   } else if (name == "health") {
     view = make_shared<HealthView>();
   } else if (name == "amounts") {

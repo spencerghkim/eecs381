@@ -12,7 +12,7 @@ using std::cout; using std::endl;
 using std::shared_ptr;
 
 Warrior::Warrior(const string& name_, Point location_, int strength_, double range_) :
-  Agent(name_, location_),
+  Agent{name_, location_},
   attack_strength{strength_},
   attack_range{range_},
   state{NOT_ATTACKING} {}

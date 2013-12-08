@@ -17,7 +17,7 @@ const int ARCHER_ATTACK_STRENGTH = 1;
 const double ARCHER_ATTACK_RANGE = 6.0;
 
 Archer::Archer(const string& name_, Point location_) :
-  Warrior(name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE) {}
+  Warrior{name_, location_, ARCHER_ATTACK_STRENGTH, ARCHER_ATTACK_RANGE} {}
 
 void Archer::update()
 {
