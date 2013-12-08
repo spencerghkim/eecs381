@@ -6,83 +6,116 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B3A37F161854F983002DAA14 /* eecs381proj6.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3A37F151854F983002DAA14 /* eecs381proj6.1 */; };
+		B3A37F571854FA0A002DAA14 /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */; };
+		B3A37F581854FA0A002DAA14 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F1E1854FA0A002DAA14 /* Agent.cpp */; };
+		B3A37F591854FA0A002DAA14 /* AmountsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F201854FA0A002DAA14 /* AmountsView.cpp */; };
+		B3A37F5A1854FA0A002DAA14 /* Archer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F221854FA0A002DAA14 /* Archer.cpp */; };
+		B3A37F5B1854FA0A002DAA14 /* AttackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F241854FA0A002DAA14 /* AttackView.cpp */; };
+		B3A37F5C1854FA0A002DAA14 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F261854FA0A002DAA14 /* Controller.cpp */; };
+		B3A37F5D1854FA0A002DAA14 /* Farm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F2E1854FA0A002DAA14 /* Farm.cpp */; };
+		B3A37F5E1854FA0A002DAA14 /* FullMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F301854FA0A002DAA14 /* FullMapView.cpp */; };
+		B3A37F5F1854FA0A002DAA14 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F321854FA0A002DAA14 /* Geometry.cpp */; };
+		B3A37F601854FA0A002DAA14 /* HealthView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F341854FA0A002DAA14 /* HealthView.cpp */; };
+		B3A37F611854FA0A002DAA14 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F361854FA0A002DAA14 /* ListView.cpp */; };
+		B3A37F621854FA0A002DAA14 /* LocalMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F381854FA0A002DAA14 /* LocalMapView.cpp */; };
+		B3A37F631854FA0A002DAA14 /* Magician.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3A1854FA0A002DAA14 /* Magician.cpp */; };
+		B3A37F641854FA0A002DAA14 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3C1854FA0A002DAA14 /* Makefile */; };
+		B3A37F651854FA0A002DAA14 /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3D1854FA0A002DAA14 /* MapView.cpp */; };
+		B3A37F661854FA0A002DAA14 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3F1854FA0A002DAA14 /* Model.cpp */; };
+		B3A37F671854FA0A002DAA14 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F411854FA0A002DAA14 /* Moving_object.cpp */; };
+		B3A37F681854FA0A002DAA14 /* p6_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F441854FA0A002DAA14 /* p6_main.cpp */; };
+		B3A37F691854FA0A002DAA14 /* Peasant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F451854FA0A002DAA14 /* Peasant.cpp */; };
+		B3A37F6A1854FA0A002DAA14 /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F471854FA0A002DAA14 /* Sim_object.cpp */; };
+		B3A37F6B1854FA0A002DAA14 /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F491854FA0A002DAA14 /* Soldier.cpp */; };
+		B3A37F6C1854FA0A002DAA14 /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F4B1854FA0A002DAA14 /* Structure_factory.cpp */; };
+		B3A37F6D1854FA0A002DAA14 /* Structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F4D1854FA0A002DAA14 /* Structure.cpp */; };
+		B3A37F6E1854FA0A002DAA14 /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F4F1854FA0A002DAA14 /* Town_Hall.cpp */; };
+		B3A37F6F1854FA0A002DAA14 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F511854FA0A002DAA14 /* Utility.cpp */; };
+		B3A37F701854FA0A002DAA14 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F531854FA0A002DAA14 /* View.cpp */; };
+		B3A37F711854FA0A002DAA14 /* Warrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F551854FA0A002DAA14 /* Warrior.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		B31FF019184E9E0000C95972 /* CopyFiles */ = {
+		B3A37F0E1854F983002DAA14 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+				B3A37F161854F983002DAA14 /* eecs381proj6.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B31FF01B184E9E0000C95972 /* eecs381proj6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj6; sourceTree = BUILT_PRODUCTS_DIR; };
-		B31FF027184E9E2700C95972 /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = p6_main.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF028184E9E2700C95972 /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Peasant.cpp; path = eecs381proj6/Peasant.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF029184E9E2700C95972 /* Peasant.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Peasant.h; path = eecs381proj6/Peasant.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF02A184E9E2700C95972 /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Sim_object.cpp; path = eecs381proj6/Sim_object.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF02B184E9E2700C95972 /* Sim_object.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Sim_object.h; path = eecs381proj6/Sim_object.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF02C184E9E2700C95972 /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Structure_factory.cpp; path = eecs381proj6/Structure_factory.cpp; sourceTree = "<group>"; };
-		B31FF02D184E9E2700C95972 /* Structure_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Structure_factory.h; path = eecs381proj6/Structure_factory.h; sourceTree = "<group>"; };
-		B31FF02E184E9E2700C95972 /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Structure.cpp; path = eecs381proj6/Structure.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF02F184E9E2700C95972 /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Structure.h; path = eecs381proj6/Structure.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF030184E9E2700C95972 /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Town_Hall.cpp; path = eecs381proj6/Town_Hall.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF031184E9E2700C95972 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Town_Hall.h; path = eecs381proj6/Town_Hall.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF032184E9E2700C95972 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = eecs381proj6/Utility.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = eecs381proj6/Utility.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF034184E9E2700C95972 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = View.cpp; path = eecs381proj6/View.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF035184E9E2700C95972 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = View.h; path = eecs381proj6/View.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF036184E9E2700C95972 /* Warrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Warrior.cpp; path = eecs381proj6/Warrior.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF037184E9E2700C95972 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Warrior.h; path = eecs381proj6/Warrior.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF038184E9E2700C95972 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = eecs381proj6/Agent_factory.cpp; sourceTree = "<group>"; };
-		B31FF039184E9E2700C95972 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agent_factory.h; path = eecs381proj6/Agent_factory.h; sourceTree = "<group>"; };
-		B31FF03A184E9E2700C95972 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Agent.cpp; path = eecs381proj6/Agent.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF03B184E9E2700C95972 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Agent.h; path = eecs381proj6/Agent.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF03C184E9E2700C95972 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = eecs381proj6/Controller.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF03D184E9E2700C95972 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = eecs381proj6/Controller.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF03E184E9E2700C95972 /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Farm.cpp; path = eecs381proj6/Farm.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF03F184E9E2700C95972 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Farm.h; path = eecs381proj6/Farm.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF040184E9E2700C95972 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = eecs381proj6/Geometry.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF041184E9E2700C95972 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = eecs381proj6/Geometry.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF042184E9E2700C95972 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = eecs381proj6/Model.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF043184E9E2700C95972 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Model.h; path = eecs381proj6/Model.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF044184E9E2700C95972 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Moving_object.cpp; path = eecs381proj6/Moving_object.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF045184E9E2700C95972 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Moving_object.h; path = eecs381proj6/Moving_object.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE4A18500C08004C31B5 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		F5ABDE501850251F004C31B5 /* Archer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Archer.cpp; path = eecs381proj6/Archer.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE511850251F004C31B5 /* Archer.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Archer.h; path = eecs381proj6/Archer.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE53185025E6004C31B5 /* Magician.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Magician.cpp; path = eecs381proj6/Magician.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE54185025E6004C31B5 /* Magician.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Magician.h; path = eecs381proj6/Magician.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE55185025E6004C31B5 /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = eecs381proj6/Soldier.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE56185025E6004C31B5 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Soldier.h; path = eecs381proj6/Soldier.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5A185040F7004C31B5 /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = MapView.cpp; path = eecs381proj6/MapView.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5B185040F7004C31B5 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = MapView.h; path = eecs381proj6/MapView.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5E1850453F004C31B5 /* ListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ListView.cpp; path = eecs381proj6/ListView.cpp; sourceTree = "<group>"; };
-		F5ABDE5F1850453F004C31B5 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListView.h; path = eecs381proj6/ListView.h; sourceTree = "<group>"; };
-		F5ABDE611850DD5A004C31B5 /* LocalMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMapView.h; path = eecs381proj6/LocalMapView.h; sourceTree = "<group>"; };
-		F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalMapView.cpp; path = eecs381proj6/LocalMapView.cpp; sourceTree = "<group>"; };
-		F5ABDE631850DD5A004C31B5 /* FullMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullMapView.h; path = eecs381proj6/FullMapView.h; sourceTree = "<group>"; };
-		F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FullMapView.cpp; path = eecs381proj6/FullMapView.cpp; sourceTree = "<group>"; };
-		F5ABDE691850E689004C31B5 /* HealthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthView.h; path = eecs381proj6/HealthView.h; sourceTree = "<group>"; };
-		F5ABDE6A1850E689004C31B5 /* HealthView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HealthView.cpp; path = eecs381proj6/HealthView.cpp; sourceTree = "<group>"; };
-		F5ABDE6B1850E689004C31B5 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmountsView.h; path = eecs381proj6/AmountsView.h; sourceTree = "<group>"; };
-		F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AmountsView.cpp; path = eecs381proj6/AmountsView.cpp; sourceTree = "<group>"; };
-		F5BFDB291852FCC7006D2037 /* demo1_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo1_in.txt; path = eecs381proj6/demo1_in.txt; sourceTree = "<group>"; };
-		F5BFDB321853D0D8006D2037 /* AttackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttackView.h; path = eecs381proj6/AttackView.h; sourceTree = "<group>"; };
-		F5BFDB331853D0D8006D2037 /* AttackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttackView.cpp; path = eecs381proj6/AttackView.cpp; sourceTree = "<group>"; };
-		F5BFDB351853D1AF006D2037 /* demo3_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo3_out.txt; path = eecs381proj6/demo3_out.txt; sourceTree = "<group>"; };
-		F5BFDB361853D1AF006D2037 /* demo3_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo3_in.txt; path = eecs381proj6/demo3_in.txt; sourceTree = "<group>"; };
-		F5BFDB371853D1AF006D2037 /* demo2_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo2_out.txt; path = eecs381proj6/demo2_out.txt; sourceTree = "<group>"; };
-		F5BFDB381853D1AF006D2037 /* demo2_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo2_in.txt; path = eecs381proj6/demo2_in.txt; sourceTree = "<group>"; };
-		F5BFDB391853D1AF006D2037 /* demo1_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo1_out.txt; path = eecs381proj6/demo1_out.txt; sourceTree = "<group>"; };
-		F5BFDB3A1853D1FC006D2037 /* NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES; sourceTree = "<group>"; };
+		B3A37F101854F983002DAA14 /* eecs381proj6 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eecs381proj6; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3A37F151854F983002DAA14 /* eecs381proj6.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj6.1; sourceTree = "<group>"; };
+		B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent_factory.cpp; sourceTree = "<group>"; };
+		B3A37F1D1854FA0A002DAA14 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent_factory.h; sourceTree = "<group>"; };
+		B3A37F1E1854FA0A002DAA14 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
+		B3A37F1F1854FA0A002DAA14 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		B3A37F201854FA0A002DAA14 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AmountsView.cpp; sourceTree = "<group>"; };
+		B3A37F211854FA0A002DAA14 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmountsView.h; sourceTree = "<group>"; };
+		B3A37F221854FA0A002DAA14 /* Archer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Archer.cpp; sourceTree = "<group>"; };
+		B3A37F231854FA0A002DAA14 /* Archer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Archer.h; sourceTree = "<group>"; };
+		B3A37F241854FA0A002DAA14 /* AttackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackView.cpp; sourceTree = "<group>"; };
+		B3A37F251854FA0A002DAA14 /* AttackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackView.h; sourceTree = "<group>"; };
+		B3A37F261854FA0A002DAA14 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
+		B3A37F271854FA0A002DAA14 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		B3A37F281854FA0A002DAA14 /* demo1_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo1_in.txt; sourceTree = "<group>"; };
+		B3A37F291854FA0A002DAA14 /* demo1_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo1_out.txt; sourceTree = "<group>"; };
+		B3A37F2A1854FA0A002DAA14 /* demo2_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo2_in.txt; sourceTree = "<group>"; };
+		B3A37F2B1854FA0A002DAA14 /* demo2_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo2_out.txt; sourceTree = "<group>"; };
+		B3A37F2C1854FA0A002DAA14 /* demo3_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo3_in.txt; sourceTree = "<group>"; };
+		B3A37F2D1854FA0A002DAA14 /* demo3_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo3_out.txt; sourceTree = "<group>"; };
+		B3A37F2E1854FA0A002DAA14 /* Farm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Farm.cpp; sourceTree = "<group>"; };
+		B3A37F2F1854FA0A002DAA14 /* Farm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Farm.h; sourceTree = "<group>"; };
+		B3A37F301854FA0A002DAA14 /* FullMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FullMapView.cpp; sourceTree = "<group>"; };
+		B3A37F311854FA0A002DAA14 /* FullMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullMapView.h; sourceTree = "<group>"; };
+		B3A37F321854FA0A002DAA14 /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geometry.cpp; sourceTree = "<group>"; };
+		B3A37F331854FA0A002DAA14 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		B3A37F341854FA0A002DAA14 /* HealthView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealthView.cpp; sourceTree = "<group>"; };
+		B3A37F351854FA0A002DAA14 /* HealthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthView.h; sourceTree = "<group>"; };
+		B3A37F361854FA0A002DAA14 /* ListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListView.cpp; sourceTree = "<group>"; };
+		B3A37F371854FA0A002DAA14 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
+		B3A37F381854FA0A002DAA14 /* LocalMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalMapView.cpp; sourceTree = "<group>"; };
+		B3A37F391854FA0A002DAA14 /* LocalMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMapView.h; sourceTree = "<group>"; };
+		B3A37F3A1854FA0A002DAA14 /* Magician.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Magician.cpp; sourceTree = "<group>"; };
+		B3A37F3B1854FA0A002DAA14 /* Magician.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Magician.h; sourceTree = "<group>"; };
+		B3A37F3C1854FA0A002DAA14 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		B3A37F3D1854FA0A002DAA14 /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapView.cpp; sourceTree = "<group>"; };
+		B3A37F3E1854FA0A002DAA14 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		B3A37F3F1854FA0A002DAA14 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		B3A37F401854FA0A002DAA14 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		B3A37F411854FA0A002DAA14 /* Moving_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Moving_object.cpp; sourceTree = "<group>"; };
+		B3A37F421854FA0A002DAA14 /* Moving_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moving_object.h; sourceTree = "<group>"; };
+		B3A37F431854FA0A002DAA14 /* NOTES */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTES; sourceTree = "<group>"; };
+		B3A37F441854FA0A002DAA14 /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p6_main.cpp; sourceTree = "<group>"; };
+		B3A37F451854FA0A002DAA14 /* Peasant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Peasant.cpp; sourceTree = "<group>"; };
+		B3A37F461854FA0A002DAA14 /* Peasant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peasant.h; sourceTree = "<group>"; };
+		B3A37F471854FA0A002DAA14 /* Sim_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sim_object.cpp; sourceTree = "<group>"; };
+		B3A37F481854FA0A002DAA14 /* Sim_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sim_object.h; sourceTree = "<group>"; };
+		B3A37F491854FA0A002DAA14 /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Soldier.cpp; sourceTree = "<group>"; };
+		B3A37F4A1854FA0A002DAA14 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soldier.h; sourceTree = "<group>"; };
+		B3A37F4B1854FA0A002DAA14 /* Structure_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Structure_factory.cpp; sourceTree = "<group>"; };
+		B3A37F4C1854FA0A002DAA14 /* Structure_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structure_factory.h; sourceTree = "<group>"; };
+		B3A37F4D1854FA0A002DAA14 /* Structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Structure.cpp; sourceTree = "<group>"; };
+		B3A37F4E1854FA0A002DAA14 /* Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structure.h; sourceTree = "<group>"; };
+		B3A37F4F1854FA0A002DAA14 /* Town_Hall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Town_Hall.cpp; sourceTree = "<group>"; };
+		B3A37F501854FA0A002DAA14 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Town_Hall.h; sourceTree = "<group>"; };
+		B3A37F511854FA0A002DAA14 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utility.cpp; sourceTree = "<group>"; };
+		B3A37F521854FA0A002DAA14 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		B3A37F531854FA0A002DAA14 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
+		B3A37F541854FA0A002DAA14 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		B3A37F551854FA0A002DAA14 /* Warrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warrior.cpp; sourceTree = "<group>"; };
+		B3A37F561854FA0A002DAA14 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warrior.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B31FF018184E9E0000C95972 /* Frameworks */ = {
+		B3A37F0D1854F983002DAA14 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,222 +125,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B31FF012184E9E0000C95972 = {
+		B3A37F071854F983002DAA14 = {
 			isa = PBXGroup;
 			children = (
-				B31FF01D184E9E0000C95972 /* eecs381proj6 */,
-				B31FF01C184E9E0000C95972 /* Products */,
+				B3A37F121854F983002DAA14 /* eecs381proj6 */,
+				B3A37F111854F983002DAA14 /* Products */,
 			);
-			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 2;
 		};
-		B31FF01C184E9E0000C95972 /* Products */ = {
+		B3A37F111854F983002DAA14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B31FF01B184E9E0000C95972 /* eecs381proj6 */,
+				B3A37F101854F983002DAA14 /* eecs381proj6 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B31FF01D184E9E0000C95972 /* eecs381proj6 */ = {
+		B3A37F121854F983002DAA14 /* eecs381proj6 */ = {
 			isa = PBXGroup;
 			children = (
-				F5BFDB3A1853D1FC006D2037 /* NOTES */,
-				F5BFDB251852FC2C006D2037 /* Examples */,
-				F5ABDE4C18500FAF004C31B5 /* MVC */,
-				F5ABDE4D18500FE2004C31B5 /* Objects */,
-				B31FF058184E9E6700C95972 /* Utility */,
-				B31FF027184E9E2700C95972 /* p6_main.cpp */,
-				F5ABDE4A18500C08004C31B5 /* Makefile */,
+				B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */,
+				B3A37F1D1854FA0A002DAA14 /* Agent_factory.h */,
+				B3A37F1E1854FA0A002DAA14 /* Agent.cpp */,
+				B3A37F1F1854FA0A002DAA14 /* Agent.h */,
+				B3A37F201854FA0A002DAA14 /* AmountsView.cpp */,
+				B3A37F211854FA0A002DAA14 /* AmountsView.h */,
+				B3A37F221854FA0A002DAA14 /* Archer.cpp */,
+				B3A37F231854FA0A002DAA14 /* Archer.h */,
+				B3A37F241854FA0A002DAA14 /* AttackView.cpp */,
+				B3A37F251854FA0A002DAA14 /* AttackView.h */,
+				B3A37F261854FA0A002DAA14 /* Controller.cpp */,
+				B3A37F271854FA0A002DAA14 /* Controller.h */,
+				B3A37F281854FA0A002DAA14 /* demo1_in.txt */,
+				B3A37F291854FA0A002DAA14 /* demo1_out.txt */,
+				B3A37F2A1854FA0A002DAA14 /* demo2_in.txt */,
+				B3A37F2B1854FA0A002DAA14 /* demo2_out.txt */,
+				B3A37F2C1854FA0A002DAA14 /* demo3_in.txt */,
+				B3A37F2D1854FA0A002DAA14 /* demo3_out.txt */,
+				B3A37F2E1854FA0A002DAA14 /* Farm.cpp */,
+				B3A37F2F1854FA0A002DAA14 /* Farm.h */,
+				B3A37F301854FA0A002DAA14 /* FullMapView.cpp */,
+				B3A37F311854FA0A002DAA14 /* FullMapView.h */,
+				B3A37F321854FA0A002DAA14 /* Geometry.cpp */,
+				B3A37F331854FA0A002DAA14 /* Geometry.h */,
+				B3A37F341854FA0A002DAA14 /* HealthView.cpp */,
+				B3A37F351854FA0A002DAA14 /* HealthView.h */,
+				B3A37F361854FA0A002DAA14 /* ListView.cpp */,
+				B3A37F371854FA0A002DAA14 /* ListView.h */,
+				B3A37F381854FA0A002DAA14 /* LocalMapView.cpp */,
+				B3A37F391854FA0A002DAA14 /* LocalMapView.h */,
+				B3A37F3A1854FA0A002DAA14 /* Magician.cpp */,
+				B3A37F3B1854FA0A002DAA14 /* Magician.h */,
+				B3A37F3C1854FA0A002DAA14 /* Makefile */,
+				B3A37F3D1854FA0A002DAA14 /* MapView.cpp */,
+				B3A37F3E1854FA0A002DAA14 /* MapView.h */,
+				B3A37F3F1854FA0A002DAA14 /* Model.cpp */,
+				B3A37F401854FA0A002DAA14 /* Model.h */,
+				B3A37F411854FA0A002DAA14 /* Moving_object.cpp */,
+				B3A37F421854FA0A002DAA14 /* Moving_object.h */,
+				B3A37F431854FA0A002DAA14 /* NOTES */,
+				B3A37F441854FA0A002DAA14 /* p6_main.cpp */,
+				B3A37F451854FA0A002DAA14 /* Peasant.cpp */,
+				B3A37F461854FA0A002DAA14 /* Peasant.h */,
+				B3A37F471854FA0A002DAA14 /* Sim_object.cpp */,
+				B3A37F481854FA0A002DAA14 /* Sim_object.h */,
+				B3A37F491854FA0A002DAA14 /* Soldier.cpp */,
+				B3A37F4A1854FA0A002DAA14 /* Soldier.h */,
+				B3A37F4B1854FA0A002DAA14 /* Structure_factory.cpp */,
+				B3A37F4C1854FA0A002DAA14 /* Structure_factory.h */,
+				B3A37F4D1854FA0A002DAA14 /* Structure.cpp */,
+				B3A37F4E1854FA0A002DAA14 /* Structure.h */,
+				B3A37F4F1854FA0A002DAA14 /* Town_Hall.cpp */,
+				B3A37F501854FA0A002DAA14 /* Town_Hall.h */,
+				B3A37F511854FA0A002DAA14 /* Utility.cpp */,
+				B3A37F521854FA0A002DAA14 /* Utility.h */,
+				B3A37F531854FA0A002DAA14 /* View.cpp */,
+				B3A37F541854FA0A002DAA14 /* View.h */,
+				B3A37F551854FA0A002DAA14 /* Warrior.cpp */,
+				B3A37F561854FA0A002DAA14 /* Warrior.h */,
+				B3A37F151854F983002DAA14 /* eecs381proj6.1 */,
 			);
 			path = eecs381proj6;
-			sourceTree = "<group>";
-		};
-		B31FF056184E9E4300C95972 /* Agent */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF03B184E9E2700C95972 /* Agent.h */,
-				B31FF03A184E9E2700C95972 /* Agent.cpp */,
-				B31FF029184E9E2700C95972 /* Peasant.h */,
-				B31FF028184E9E2700C95972 /* Peasant.cpp */,
-				F5ABDE5918503157004C31B5 /* Warriors */,
-			);
-			name = Agent;
-			path = eecs381proj6/Agent;
-			sourceTree = "<group>";
-		};
-		B31FF057184E9E5100C95972 /* Structure */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF02F184E9E2700C95972 /* Structure.h */,
-				B31FF02E184E9E2700C95972 /* Structure.cpp */,
-				B31FF03F184E9E2700C95972 /* Farm.h */,
-				B31FF03E184E9E2700C95972 /* Farm.cpp */,
-				B31FF031184E9E2700C95972 /* Town_Hall.h */,
-				B31FF030184E9E2700C95972 /* Town_Hall.cpp */,
-			);
-			name = Structure;
-			path = eecs381proj6/Structure;
-			sourceTree = "<group>";
-		};
-		B31FF058184E9E6700C95972 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF041184E9E2700C95972 /* Geometry.h */,
-				B31FF040184E9E2700C95972 /* Geometry.cpp */,
-				B31FF033184E9E2700C95972 /* Utility.h */,
-				B31FF032184E9E2700C95972 /* Utility.cpp */,
-			);
-			path = Utility;
-			sourceTree = "<group>";
-		};
-		F5ABDE4C18500FAF004C31B5 /* MVC */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF043184E9E2700C95972 /* Model.h */,
-				B31FF042184E9E2700C95972 /* Model.cpp */,
-				F5ABDE5D18504326004C31B5 /* Views */,
-				B31FF03D184E9E2700C95972 /* Controller.h */,
-				B31FF03C184E9E2700C95972 /* Controller.cpp */,
-			);
-			path = MVC;
-			sourceTree = "<group>";
-		};
-		F5ABDE4D18500FE2004C31B5 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF057184E9E5100C95972 /* Structure */,
-				B31FF056184E9E4300C95972 /* Agent */,
-				F5ABDE4E18501021004C31B5 /* Factories */,
-				B31FF02B184E9E2700C95972 /* Sim_object.h */,
-				B31FF02A184E9E2700C95972 /* Sim_object.cpp */,
-				B31FF045184E9E2700C95972 /* Moving_object.h */,
-				B31FF044184E9E2700C95972 /* Moving_object.cpp */,
-			);
-			path = Objects;
-			sourceTree = "<group>";
-		};
-		F5ABDE4E18501021004C31B5 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF02C184E9E2700C95972 /* Structure_factory.cpp */,
-				B31FF02D184E9E2700C95972 /* Structure_factory.h */,
-				B31FF038184E9E2700C95972 /* Agent_factory.cpp */,
-				B31FF039184E9E2700C95972 /* Agent_factory.h */,
-			);
-			name = Factories;
-			path = eecs381proj6/Factories;
-			sourceTree = "<group>";
-		};
-		F5ABDE5918503157004C31B5 /* Warriors */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF037184E9E2700C95972 /* Warrior.h */,
-				B31FF036184E9E2700C95972 /* Warrior.cpp */,
-				F5ABDE56185025E6004C31B5 /* Soldier.h */,
-				F5ABDE55185025E6004C31B5 /* Soldier.cpp */,
-				F5ABDE511850251F004C31B5 /* Archer.h */,
-				F5ABDE501850251F004C31B5 /* Archer.cpp */,
-				F5ABDE54185025E6004C31B5 /* Magician.h */,
-				F5ABDE53185025E6004C31B5 /* Magician.cpp */,
-			);
-			name = Warriors;
-			path = eecs381proj6/Warriors;
-			sourceTree = "<group>";
-		};
-		F5ABDE5D18504326004C31B5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B31FF035184E9E2700C95972 /* View.h */,
-				B31FF034184E9E2700C95972 /* View.cpp */,
-				F5ABDE671850DEC5004C31B5 /* Maps */,
-				F5ABDE681850E5C5004C31B5 /* Lists */,
-				F5BFDB321853D0D8006D2037 /* AttackView.h */,
-				F5BFDB331853D0D8006D2037 /* AttackView.cpp */,
-			);
-			name = Views;
-			path = eecs381proj6/Views;
-			sourceTree = "<group>";
-		};
-		F5ABDE671850DEC5004C31B5 /* Maps */ = {
-			isa = PBXGroup;
-			children = (
-				F5ABDE5B185040F7004C31B5 /* MapView.h */,
-				F5ABDE5A185040F7004C31B5 /* MapView.cpp */,
-				F5ABDE631850DD5A004C31B5 /* FullMapView.h */,
-				F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */,
-				F5ABDE611850DD5A004C31B5 /* LocalMapView.h */,
-				F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */,
-			);
-			name = Maps;
-			path = eecs381proj6/Maps;
-			sourceTree = "<group>";
-		};
-		F5ABDE681850E5C5004C31B5 /* Lists */ = {
-			isa = PBXGroup;
-			children = (
-				F5ABDE5F1850453F004C31B5 /* ListView.h */,
-				F5ABDE5E1850453F004C31B5 /* ListView.cpp */,
-				F5ABDE691850E689004C31B5 /* HealthView.h */,
-				F5ABDE6A1850E689004C31B5 /* HealthView.cpp */,
-				F5ABDE6B1850E689004C31B5 /* AmountsView.h */,
-				F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */,
-			);
-			name = Lists;
-			path = eecs381proj6/Lists;
-			sourceTree = "<group>";
-		};
-		F5BFDB251852FC2C006D2037 /* Examples */ = {
-			isa = PBXGroup;
-			children = (
-				F5BFDB271852FC42006D2037 /* Magician - S1 */,
-				F5BFDB261852FC38006D2037 /* Attack View - S2 */,
-				F5BFDB281852FC5F006D2037 /* Group View - M2 */,
-			);
-			path = Examples;
-			sourceTree = "<group>";
-		};
-		F5BFDB261852FC38006D2037 /* Attack View - S2 */ = {
-			isa = PBXGroup;
-			children = (
-				F5BFDB381853D1AF006D2037 /* demo2_in.txt */,
-				F5BFDB371853D1AF006D2037 /* demo2_out.txt */,
-				F5BFDB361853D1AF006D2037 /* demo3_in.txt */,
-				F5BFDB351853D1AF006D2037 /* demo3_out.txt */,
-			);
-			name = "Attack View - S2";
-			path = "eecs381proj6/Attack View - S2";
-			sourceTree = "<group>";
-		};
-		F5BFDB271852FC42006D2037 /* Magician - S1 */ = {
-			isa = PBXGroup;
-			children = (
-				F5BFDB291852FCC7006D2037 /* demo1_in.txt */,
-				F5BFDB391853D1AF006D2037 /* demo1_out.txt */,
-			);
-			name = "Magician - S1";
-			path = "eecs381proj6/Magician - S1";
-			sourceTree = "<group>";
-		};
-		F5BFDB281852FC5F006D2037 /* Group View - M2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Group View - M2";
-			path = "eecs381proj6/Group View - M2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B31FF01A184E9E0000C95972 /* eecs381proj6 */ = {
+		B3A37F0F1854F983002DAA14 /* eecs381proj6 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B31FF024184E9E0000C95972 /* Build configuration list for PBXNativeTarget "eecs381proj6" */;
+			buildConfigurationList = B3A37F191854F983002DAA14 /* Build configuration list for PBXNativeTarget "eecs381proj6" */;
 			buildPhases = (
-				B31FF017184E9E0000C95972 /* Sources */,
-				B31FF018184E9E0000C95972 /* Frameworks */,
-				B31FF019184E9E0000C95972 /* CopyFiles */,
+				B3A37F0C1854F983002DAA14 /* Sources */,
+				B3A37F0D1854F983002DAA14 /* Frameworks */,
+				B3A37F0E1854F983002DAA14 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -315,47 +225,74 @@
 			);
 			name = eecs381proj6;
 			productName = eecs381proj6;
-			productReference = B31FF01B184E9E0000C95972 /* eecs381proj6 */;
+			productReference = B3A37F101854F983002DAA14 /* eecs381proj6 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B31FF013184E9E0000C95972 /* Project object */ = {
+		B3A37F081854F983002DAA14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "William Joshua Billingham";
 			};
-			buildConfigurationList = B31FF016184E9E0000C95972 /* Build configuration list for PBXProject "eecs381proj6" */;
+			buildConfigurationList = B3A37F0B1854F983002DAA14 /* Build configuration list for PBXProject "eecs381proj6" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B31FF012184E9E0000C95972;
-			productRefGroup = B31FF01C184E9E0000C95972 /* Products */;
+			mainGroup = B3A37F071854F983002DAA14;
+			productRefGroup = B3A37F111854F983002DAA14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B31FF01A184E9E0000C95972 /* eecs381proj6 */,
+				B3A37F0F1854F983002DAA14 /* eecs381proj6 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B31FF017184E9E0000C95972 /* Sources */ = {
+		B3A37F0C1854F983002DAA14 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3A37F701854FA0A002DAA14 /* View.cpp in Sources */,
+				B3A37F641854FA0A002DAA14 /* Makefile in Sources */,
+				B3A37F601854FA0A002DAA14 /* HealthView.cpp in Sources */,
+				B3A37F5A1854FA0A002DAA14 /* Archer.cpp in Sources */,
+				B3A37F581854FA0A002DAA14 /* Agent.cpp in Sources */,
+				B3A37F5B1854FA0A002DAA14 /* AttackView.cpp in Sources */,
+				B3A37F651854FA0A002DAA14 /* MapView.cpp in Sources */,
+				B3A37F671854FA0A002DAA14 /* Moving_object.cpp in Sources */,
+				B3A37F6C1854FA0A002DAA14 /* Structure_factory.cpp in Sources */,
+				B3A37F6F1854FA0A002DAA14 /* Utility.cpp in Sources */,
+				B3A37F621854FA0A002DAA14 /* LocalMapView.cpp in Sources */,
+				B3A37F611854FA0A002DAA14 /* ListView.cpp in Sources */,
+				B3A37F571854FA0A002DAA14 /* Agent_factory.cpp in Sources */,
+				B3A37F661854FA0A002DAA14 /* Model.cpp in Sources */,
+				B3A37F711854FA0A002DAA14 /* Warrior.cpp in Sources */,
+				B3A37F5E1854FA0A002DAA14 /* FullMapView.cpp in Sources */,
+				B3A37F591854FA0A002DAA14 /* AmountsView.cpp in Sources */,
+				B3A37F5C1854FA0A002DAA14 /* Controller.cpp in Sources */,
+				B3A37F6D1854FA0A002DAA14 /* Structure.cpp in Sources */,
+				B3A37F6A1854FA0A002DAA14 /* Sim_object.cpp in Sources */,
+				B3A37F6E1854FA0A002DAA14 /* Town_Hall.cpp in Sources */,
+				B3A37F681854FA0A002DAA14 /* p6_main.cpp in Sources */,
+				B3A37F5F1854FA0A002DAA14 /* Geometry.cpp in Sources */,
+				B3A37F691854FA0A002DAA14 /* Peasant.cpp in Sources */,
+				B3A37F6B1854FA0A002DAA14 /* Soldier.cpp in Sources */,
+				B3A37F631854FA0A002DAA14 /* Magician.cpp in Sources */,
+				B3A37F5D1854FA0A002DAA14 /* Farm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B31FF022184E9E0000C95972 /* Debug */ = {
+		B3A37F171854F983002DAA14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -392,7 +329,7 @@
 			};
 			name = Debug;
 		};
-		B31FF023184E9E0000C95972 /* Release */ = {
+		B3A37F181854F983002DAA14 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -423,14 +360,14 @@
 			};
 			name = Release;
 		};
-		B31FF025184E9E0000C95972 /* Debug */ = {
+		B3A37F1A1854F983002DAA14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		B31FF026184E9E0000C95972 /* Release */ = {
+		B3A37F1B1854F983002DAA14 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -440,25 +377,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B31FF016184E9E0000C95972 /* Build configuration list for PBXProject "eecs381proj6" */ = {
+		B3A37F0B1854F983002DAA14 /* Build configuration list for PBXProject "eecs381proj6" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B31FF022184E9E0000C95972 /* Debug */,
-				B31FF023184E9E0000C95972 /* Release */,
+				B3A37F171854F983002DAA14 /* Debug */,
+				B3A37F181854F983002DAA14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B31FF024184E9E0000C95972 /* Build configuration list for PBXNativeTarget "eecs381proj6" */ = {
+		B3A37F191854F983002DAA14 /* Build configuration list for PBXNativeTarget "eecs381proj6" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B31FF025184E9E0000C95972 /* Debug */,
-				B31FF026184E9E0000C95972 /* Release */,
+				B3A37F1A1854F983002DAA14 /* Debug */,
+				B3A37F1B1854F983002DAA14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B31FF013184E9E0000C95972 /* Project object */;
+	rootObject = B3A37F081854F983002DAA14 /* Project object */;
 }
