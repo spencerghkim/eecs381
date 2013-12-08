@@ -8,7 +8,7 @@ using std::string;
 using std::cout; using std::endl;
 
 Structure::Structure (const string& name_, Point location_) :
-  Sim_object(name_), location{location_} {}
+  Sim_object{name_}, location{location_} {}
 
 // Explicit default destructor.
 Structure::~Structure () {}

@@ -18,7 +18,7 @@ const double INITIAL_CARRYING_FOOD = 0.0;
 const double MAXIMUM_CARRYING_CAPACITY = 35.0;
 
 Peasant::Peasant(const string& in_name, Point in_location) :
-  Agent(in_name, in_location),
+  Agent{in_name, in_location},
   food_in_hand{INITIAL_CARRYING_FOOD},
   state{NOT_WORKING} {}
 

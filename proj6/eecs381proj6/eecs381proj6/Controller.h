@@ -64,6 +64,7 @@ private:
   void agent_attack(std::shared_ptr<Agent>);
   void agent_stop(std::shared_ptr<Agent>);
   
+  // weak pointer to prevent 
   std::weak_ptr<FullMapView> map_view;
   
   // containers

@@ -26,9 +26,9 @@ const int MAGICIAN_BLESSING_STRENGTH = 1;
 const double MAGICIAN_BLESSING_RANGE = 10.0;
 
 Magician::Magician(const string& name_, Point location_) :
-  Warrior(name_, location_, MAGICIAN_ATTACK_STRENGTH, MAGICIAN_ATTACK_RANGE),
-  blessing_strength(MAGICIAN_BLESSING_STRENGTH),
-  blessing_range(MAGICIAN_BLESSING_RANGE) {}
+  Warrior{name_, location_, MAGICIAN_ATTACK_STRENGTH, MAGICIAN_ATTACK_RANGE},
+  blessing_strength{MAGICIAN_BLESSING_STRENGTH},
+  blessing_range{MAGICIAN_BLESSING_RANGE} {}
 
 void Magician::update()
 {

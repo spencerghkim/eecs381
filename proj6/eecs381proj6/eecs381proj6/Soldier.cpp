@@ -14,7 +14,7 @@ const int SOLDIER_ATTACK_STRENGTH = 2;
 const double SOLDIER_ATTACK_RANGE = 2.0;
 
 Soldier::Soldier(const string& name_, Point location_) :
-  Warrior(name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE) {}
+  Warrior{name_, location_, SOLDIER_ATTACK_STRENGTH, SOLDIER_ATTACK_RANGE} {}
 
 // Overrides Agent's take_hit to counterattack when attacked.
 void Soldier::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
