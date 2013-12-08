@@ -107,13 +107,13 @@ void Agent::broadcast_current_state()
 // Throws exception that an Agent cannot work.
 void Agent::start_working(shared_ptr<Structure>, shared_ptr<Structure>)
 {
-  throw Error{ get_name() + ": Sorry, I can't work!" };
+  throw Error( get_name() + ": Sorry, I can't work!" );
 }
 
 // Throws exception that an Agent cannot attack.
 void Agent::start_attacking(shared_ptr<Agent>)
 {
-  throw Error{ get_name() + ": Sorry, I can't attack!" };
+  throw Error( get_name() + ": Sorry, I can't attack!" );
 }
 
 // calculate loss of health due to hit.
