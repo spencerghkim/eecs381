@@ -62,8 +62,8 @@
 		B31FF031184E9E2700C95972 /* Town_Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Town_Hall.h; path = eecs381proj6/Town_Hall.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF032184E9E2700C95972 /* Utility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Utility.cpp; path = eecs381proj6/Utility.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF033184E9E2700C95972 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = eecs381proj6/Utility.h; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF034184E9E2700C95972 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = View.cpp; path = ../../View.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		B31FF035184E9E2700C95972 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = View.h; path = ../../View.h; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF034184E9E2700C95972 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = View.cpp; path = eecs381proj6/View.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		B31FF035184E9E2700C95972 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = View.h; path = eecs381proj6/View.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF036184E9E2700C95972 /* Warrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Warrior.cpp; path = eecs381proj6/Warrior.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF037184E9E2700C95972 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Warrior.h; path = eecs381proj6/Warrior.h; sourceTree = "<group>"; tabWidth = 2; };
 		B31FF038184E9E2700C95972 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Agent_factory.cpp; path = eecs381proj6/Agent_factory.cpp; sourceTree = "<group>"; };
@@ -87,21 +87,21 @@
 		F5ABDE54185025E6004C31B5 /* Magician.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Magician.h; path = eecs381proj6/Magician.h; sourceTree = "<group>"; tabWidth = 2; };
 		F5ABDE55185025E6004C31B5 /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = eecs381proj6/Soldier.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		F5ABDE56185025E6004C31B5 /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = Soldier.h; path = eecs381proj6/Soldier.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5A185040F7004C31B5 /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = MapView.cpp; path = ../../MapView.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5B185040F7004C31B5 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = MapView.h; path = ../../MapView.h; sourceTree = "<group>"; tabWidth = 2; };
-		F5ABDE5E1850453F004C31B5 /* ListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ListView.cpp; path = ../../ListView.cpp; sourceTree = "<group>"; };
-		F5ABDE5F1850453F004C31B5 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListView.h; path = ../../ListView.h; sourceTree = "<group>"; };
-		F5ABDE611850DD5A004C31B5 /* LocalMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMapView.h; path = ../../LocalMapView.h; sourceTree = "<group>"; };
-		F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalMapView.cpp; path = ../../LocalMapView.cpp; sourceTree = "<group>"; };
-		F5ABDE631850DD5A004C31B5 /* FullMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullMapView.h; path = ../../FullMapView.h; sourceTree = "<group>"; };
-		F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FullMapView.cpp; path = ../../FullMapView.cpp; sourceTree = "<group>"; };
-		F5ABDE691850E689004C31B5 /* HealthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthView.h; path = ../../HealthView.h; sourceTree = "<group>"; };
-		F5ABDE6A1850E689004C31B5 /* HealthView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HealthView.cpp; path = ../../HealthView.cpp; sourceTree = "<group>"; };
-		F5ABDE6B1850E689004C31B5 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmountsView.h; path = ../../AmountsView.h; sourceTree = "<group>"; };
-		F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AmountsView.cpp; path = ../../AmountsView.cpp; sourceTree = "<group>"; };
+		F5ABDE5A185040F7004C31B5 /* MapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = MapView.cpp; path = eecs381proj6/MapView.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE5B185040F7004C31B5 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = MapView.h; path = eecs381proj6/MapView.h; sourceTree = "<group>"; tabWidth = 2; };
+		F5ABDE5E1850453F004C31B5 /* ListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ListView.cpp; path = eecs381proj6/ListView.cpp; sourceTree = "<group>"; };
+		F5ABDE5F1850453F004C31B5 /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListView.h; path = eecs381proj6/ListView.h; sourceTree = "<group>"; };
+		F5ABDE611850DD5A004C31B5 /* LocalMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalMapView.h; path = eecs381proj6/LocalMapView.h; sourceTree = "<group>"; };
+		F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LocalMapView.cpp; path = eecs381proj6/LocalMapView.cpp; sourceTree = "<group>"; };
+		F5ABDE631850DD5A004C31B5 /* FullMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullMapView.h; path = eecs381proj6/FullMapView.h; sourceTree = "<group>"; };
+		F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FullMapView.cpp; path = eecs381proj6/FullMapView.cpp; sourceTree = "<group>"; };
+		F5ABDE691850E689004C31B5 /* HealthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthView.h; path = eecs381proj6/HealthView.h; sourceTree = "<group>"; };
+		F5ABDE6A1850E689004C31B5 /* HealthView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HealthView.cpp; path = eecs381proj6/HealthView.cpp; sourceTree = "<group>"; };
+		F5ABDE6B1850E689004C31B5 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmountsView.h; path = eecs381proj6/AmountsView.h; sourceTree = "<group>"; };
+		F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AmountsView.cpp; path = eecs381proj6/AmountsView.cpp; sourceTree = "<group>"; };
 		F5BFDB291852FCC7006D2037 /* demo1_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo1_in.txt; path = eecs381proj6/demo1_in.txt; sourceTree = "<group>"; };
-		F5BFDB321853D0D8006D2037 /* AttackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttackView.h; path = ../../AttackView.h; sourceTree = "<group>"; };
-		F5BFDB331853D0D8006D2037 /* AttackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttackView.cpp; path = ../../AttackView.cpp; sourceTree = "<group>"; };
+		F5BFDB321853D0D8006D2037 /* AttackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttackView.h; path = eecs381proj6/AttackView.h; sourceTree = "<group>"; };
+		F5BFDB331853D0D8006D2037 /* AttackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AttackView.cpp; path = eecs381proj6/AttackView.cpp; sourceTree = "<group>"; };
 		F5BFDB351853D1AF006D2037 /* demo3_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo3_out.txt; path = eecs381proj6/demo3_out.txt; sourceTree = "<group>"; };
 		F5BFDB361853D1AF006D2037 /* demo3_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo3_in.txt; path = eecs381proj6/demo3_in.txt; sourceTree = "<group>"; };
 		F5BFDB371853D1AF006D2037 /* demo2_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo2_out.txt; path = eecs381proj6/demo2_out.txt; sourceTree = "<group>"; };
@@ -270,6 +270,7 @@
 				F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */,
 			);
 			name = Maps;
+			path = eecs381proj6/Maps;
 			sourceTree = "<group>";
 		};
 		F5ABDE681850E5C5004C31B5 /* Lists */ = {
@@ -283,6 +284,7 @@
 				F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */,
 			);
 			name = Lists;
+			path = eecs381proj6/Lists;
 			sourceTree = "<group>";
 		};
 		F5BFDB251852FC2C006D2037 /* Examples */ = {
