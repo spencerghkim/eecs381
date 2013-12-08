@@ -246,18 +246,18 @@ void Model::notify_amount(const string& name, double amount)
     i->update_amount(name, amount);
 }
 
-// notify the views about an attack
-void Model::notify_attack(const std::string& name, const std::string& target)
-{
-  for (auto &i : views)
-    i->update_attack(name, target);
-}
-
 // notify the views that an object is now gone
 void Model::notify_gone(const string& name)
 {
   for (auto &i : views)
     i->update_remove(name);
+}
+
+// notify the views about an attack
+void Model::notify_attack(const std::string& name, const std::string& target)
+{
+  for (auto &i : views)
+    i->update_attack(name, target);
 }
 
 // notify the views about the end of an attack

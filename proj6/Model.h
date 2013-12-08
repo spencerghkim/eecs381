@@ -79,6 +79,7 @@ public:
 	void update();
 	
 	/* View services */
+  
 	// Attaching a View adds it to the container and causes it to be updated
   // with all current objects'location (or other state information.
 	void attach(std::shared_ptr<View>);
@@ -92,11 +93,10 @@ public:
   void notify_health(const std::string& name, int health);
   // notify the views about an object's amount
   void notify_amount(const std::string& name, double amount);
-  // notify the views about an attack
-  void notify_attack(const std::string& name, const std::string& target);
-  
   // notify the views that an object is now gone
 	void notify_gone(const std::string& name);
+  // notify the views about an attack
+  void notify_attack(const std::string& name, const std::string& target);
   // notify the views about the end of an attack
   void notify_end_attack(const std::string& name);
 
