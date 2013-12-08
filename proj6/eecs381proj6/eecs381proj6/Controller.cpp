@@ -22,8 +22,6 @@
 #include <iostream>
 #include <memory>
 
-//BIG TODO: make a separate view factory so we dont have 6 View Includes...
-
 using std::bad_alloc;
 using std::cout; using std::cin; using std::endl;
 using std::string; using std::all_of;

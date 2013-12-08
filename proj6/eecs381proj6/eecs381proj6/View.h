@@ -19,7 +19,7 @@ public:
   virtual ~View() = 0;
   
 	// Notify for location, health, or amount update
-	virtual void update_location(const std::string& name, Point location) {}; //TODO: by ref?
+	virtual void update_location(const std::string& name, Point location) {};
 	virtual void update_health(const std::string& name, int health) {};
 	virtual void update_amount(const std::string& name, double amount) {};
   
