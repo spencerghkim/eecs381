@@ -49,6 +49,8 @@ public:
 	// is name already in use for either agent or structure?
   // either the identical name, or identical in first two characters counts as in-use
 	bool is_name_in_use(const std::string& name) const;
+  // check if the full name given matches an existing object
+  bool object_fullname_exists(const std::string &name) const;
   
 	// is there a structure with this name?
 	bool is_structure_present(const std::string& name) const;

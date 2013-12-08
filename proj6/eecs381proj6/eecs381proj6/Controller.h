@@ -28,6 +28,7 @@ private:
   //TODO: make sure std::function is Kosher, its much cleaner though
   using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
   using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<Agent>)>>;
+  using CmdFunc_Map_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<FullMapView>)>>;
   
   using viewPair_t = struct {
     std::string name;
@@ -35,18 +36,18 @@ private:
   };
   using Views_t = std::list<viewPair_t>;
   
-  // view commands
+  // control view commands
   void view_open();
   void view_close();
-  void view_default();
-  void view_size();
-  void view_zoom();
-  void view_pan();
+  
+  // map view command
+  void view_default(std::shared_ptr<FullMapView> map);
+  void view_size(std::shared_ptr<FullMapView> map);
+  void view_zoom(std::shared_ptr<FullMapView> map);
+  void view_pan(std::shared_ptr<FullMapView> map);
   
   // return an iterator to the view, or throw
   Views_t::iterator get_view_itr(const std::string &name);
-  // return the map view, or throw
-  std::shared_ptr<FullMapView> get_map_view();
   // view factory
   std::shared_ptr<View> create_view(const std::string& name);
   
@@ -63,10 +64,13 @@ private:
   void agent_attack(std::shared_ptr<Agent>);
   void agent_stop(std::shared_ptr<Agent>);
   
+  std::weak_ptr<FullMapView> map_view;
+  
   // containers
   CmdFunc_t program_cmds;
   CmdFunc_Agent_t agent_cmds;
-  CmdFunc_t view_cmds;
+  CmdFunc_t ctrl_view_cmds;
+  CmdFunc_Map_t map_view_cmds;
   Views_t views;
 };
 

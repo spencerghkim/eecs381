@@ -44,23 +44,24 @@ string read_object_name();
 // init control function maps
 Controller::Controller()
 {
-  view_cmds["open"]       = &Controller::view_open;
-  view_cmds["close"]      = &Controller::view_close;
-  view_cmds["default"]    = &Controller::view_default;
-  view_cmds["size"]       = &Controller::view_size;
-  view_cmds["zoom"]       = &Controller::view_zoom;
-  view_cmds["pan"]        = &Controller::view_pan;
+  ctrl_view_cmds["open"]    = &Controller::view_open;
+  ctrl_view_cmds["close"]   = &Controller::view_close;
   
-  program_cmds["status"]  = &Controller::prog_status;
-  program_cmds["show"]    = &Controller::prog_show;
-  program_cmds["go"]      = &Controller::prog_go;
-  program_cmds["build"]   = &Controller::prog_build;
-  program_cmds["train"]   = &Controller::prog_train;
+  map_view_cmds["default"]  = &Controller::view_default;
+  map_view_cmds["size"]     = &Controller::view_size;
+  map_view_cmds["zoom"]     = &Controller::view_zoom;
+  map_view_cmds["pan"]      = &Controller::view_pan;
   
-  agent_cmds["move"]      = &Controller::agent_move;
-  agent_cmds["work"]      = &Controller::agent_work;
-  agent_cmds["attack"]    = &Controller::agent_attack;
-  agent_cmds["stop"]      = &Controller::agent_stop;
+  program_cmds["status"]    = &Controller::prog_status;
+  program_cmds["show"]      = &Controller::prog_show;
+  program_cmds["go"]        = &Controller::prog_go;
+  program_cmds["build"]     = &Controller::prog_build;
+  program_cmds["train"]     = &Controller::prog_train;
+  
+  agent_cmds["move"]        = &Controller::agent_move;
+  agent_cmds["work"]        = &Controller::agent_work;
+  agent_cmds["attack"]      = &Controller::agent_attack;
+  agent_cmds["stop"]        = &Controller::agent_stop;
 }
 
 // create View object, run the program
@@ -92,9 +93,16 @@ void Controller::run()
         if (p_itr != program_cmds.end()) {
           p_itr->second(this);
         } else {
-          auto v_cmd = view_cmds.find(command);
-          if (v_cmd != view_cmds.end()) {
-            v_cmd->second(this);
+          auto cv_cmd = ctrl_view_cmds.find(command);
+          auto mv_cmd = map_view_cmds.find(command);
+          if (cv_cmd != ctrl_view_cmds.end()) {
+            cv_cmd->second(this);
+          } else if(mv_cmd != map_view_cmds.end()) {
+            auto map = map_view.lock();
+            if(!map) {
+              throw Error("No map view is open!");
+            }
+            mv_cmd->second(this, map);
           } else  bad_command();
         }
       }
@@ -142,23 +150,20 @@ void Controller::view_close()
   views.erase(itr);
 }
 
-void Controller::view_default()
+void Controller::view_default(std::shared_ptr<FullMapView> map)
 {
-  get_map_view()->set_defaults();
+  map->set_defaults();
 }
-void Controller::view_size()
+void Controller::view_size(std::shared_ptr<FullMapView> map)
 {
-  auto map = get_map_view();
   map->set_size(read_int());
 }
-void Controller::view_zoom()
+void Controller::view_zoom(std::shared_ptr<FullMapView> map)
 {
-  auto map = get_map_view();
   map->set_scale(read_double());
 }
-void Controller::view_pan()
+void Controller::view_pan(std::shared_ptr<FullMapView> map)
 {
-  auto map = get_map_view();
   map->set_origin(read_point());
 }
 
@@ -170,38 +175,23 @@ Controller::Views_t::iterator Controller::get_view_itr(const string &name)
   });
 }
 
-// return the map view, or throw
-shared_ptr<FullMapView> Controller::get_map_view()
-{
-  auto itr = get_view_itr("map");
-  if (itr == views.end()) {
-    throw Error("No map view is open!");
-  }
-  return static_pointer_cast<FullMapView>(itr->view);
-}
-
 // view factory
 shared_ptr<View> Controller::create_view(const string& name)
 {
   shared_ptr<View> view;
   if (name == "map"){
-    view = make_shared<FullMapView>();
+    map_view = make_shared<FullMapView>();
+    view = map_view.lock();
   } else if (name == "health") {
     view = make_shared<HealthView>();
   } else if (name == "amounts") {
     view = make_shared<AmountsView>();
   } else if (name == "attack") {
     view = make_shared<AttackView>();
+  } else if (Model::get().object_fullname_exists(name)) {
+    view = make_shared<LocalMapView>(name);
   } else {
-    if (Model::get().is_agent_present(name)) {
-      auto agent = Model::get().get_agent_ptr(name);
-      view = make_shared<LocalMapView>(agent->get_name());
-    } else if (Model::get().is_structure_present(name)) {
-      auto structure = Model::get().get_structure_ptr(name);
-      view = make_shared<LocalMapView>(structure->get_name());
-    } else {
-      throw Error("No object of that name!");
-    }
+    throw Error("No object of that name!");
   }
   return view;
 }

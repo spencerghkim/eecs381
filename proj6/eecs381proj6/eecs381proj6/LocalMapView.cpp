@@ -8,8 +8,7 @@ using std::string;
 
 const double DEFAULT_LOCAL_SCALE = 2.0;
 const int DEFAULT_LOCAL_SIZE = 9;
-const double LOCAL_ORIGIN_OFFSET = (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE; //TODO: is this correct *2/2 ?
-
+const double LOCAL_ORIGIN_OFFSET = (DEFAULT_LOCAL_SIZE / 2.0) * DEFAULT_LOCAL_SCALE;
 LocalMapView::LocalMapView(string name) : obj_name(name)
 {
   set_scale(DEFAULT_LOCAL_SCALE);

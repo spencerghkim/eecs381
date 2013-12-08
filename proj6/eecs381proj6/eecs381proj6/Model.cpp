@@ -75,6 +75,12 @@ bool Model::is_name_in_use(const string& name) const
   return itr != objects.end() && itr->first.find(prefix) == 0;
 }
 
+// check if the full name given matches an existing object
+bool Model::object_fullname_exists(const std::string &name) const {
+  auto itr = objects.find(name);
+  return itr != objects.end();
+}
+
 // is there a structure with this name?
 bool Model::is_structure_present(const string& name) const
 {

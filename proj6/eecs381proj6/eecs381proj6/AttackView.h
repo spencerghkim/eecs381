@@ -16,7 +16,7 @@
 #include <string>
 #include <map>
 
-class AttackView : public View { //TODO: is it worth trying to inherit from ListView?
+class AttackView : public View {
 public:
   
   // a new attack has started, keep track of it
