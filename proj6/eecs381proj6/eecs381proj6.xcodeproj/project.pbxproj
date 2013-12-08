@@ -6,35 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		B31FF046184E9E2700C95972 /* p6_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF027184E9E2700C95972 /* p6_main.cpp */; };
-		B31FF047184E9E2700C95972 /* Peasant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF028184E9E2700C95972 /* Peasant.cpp */; };
-		B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02A184E9E2700C95972 /* Sim_object.cpp */; };
-		B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02C184E9E2700C95972 /* Structure_factory.cpp */; };
-		B31FF04A184E9E2700C95972 /* Structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF02E184E9E2700C95972 /* Structure.cpp */; };
-		B31FF04B184E9E2700C95972 /* Town_Hall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF030184E9E2700C95972 /* Town_Hall.cpp */; };
-		B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF032184E9E2700C95972 /* Utility.cpp */; };
-		B31FF04D184E9E2700C95972 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF034184E9E2700C95972 /* View.cpp */; };
-		B31FF04E184E9E2700C95972 /* Warrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF036184E9E2700C95972 /* Warrior.cpp */; };
-		B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF038184E9E2700C95972 /* Agent_factory.cpp */; };
-		B31FF050184E9E2700C95972 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03A184E9E2700C95972 /* Agent.cpp */; };
-		B31FF051184E9E2700C95972 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03C184E9E2700C95972 /* Controller.cpp */; };
-		B31FF052184E9E2700C95972 /* Farm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF03E184E9E2700C95972 /* Farm.cpp */; };
-		B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF040184E9E2700C95972 /* Geometry.cpp */; };
-		B31FF054184E9E2700C95972 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF042184E9E2700C95972 /* Model.cpp */; };
-		B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B31FF044184E9E2700C95972 /* Moving_object.cpp */; };
-		F5ABDE521850251F004C31B5 /* Archer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE501850251F004C31B5 /* Archer.cpp */; };
-		F5ABDE57185025E6004C31B5 /* Magician.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE53185025E6004C31B5 /* Magician.cpp */; };
-		F5ABDE58185025E6004C31B5 /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE55185025E6004C31B5 /* Soldier.cpp */; };
-		F5ABDE5C185040F7004C31B5 /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE5A185040F7004C31B5 /* MapView.cpp */; };
-		F5ABDE601850453F004C31B5 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE5E1850453F004C31B5 /* ListView.cpp */; };
-		F5ABDE651850DD5A004C31B5 /* LocalMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE621850DD5A004C31B5 /* LocalMapView.cpp */; };
-		F5ABDE661850DD5A004C31B5 /* FullMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE641850DD5A004C31B5 /* FullMapView.cpp */; };
-		F5ABDE6D1850E689004C31B5 /* HealthView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE6A1850E689004C31B5 /* HealthView.cpp */; };
-		F5ABDE6E1850E689004C31B5 /* AmountsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5ABDE6C1850E689004C31B5 /* AmountsView.cpp */; };
-		F5BFDB341853D0D8006D2037 /* AttackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5BFDB331853D0D8006D2037 /* AttackView.cpp */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		B31FF019184E9E0000C95972 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -378,32 +349,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5ABDE601850453F004C31B5 /* ListView.cpp in Sources */,
-				B31FF04D184E9E2700C95972 /* View.cpp in Sources */,
-				F5ABDE57185025E6004C31B5 /* Magician.cpp in Sources */,
-				F5ABDE661850DD5A004C31B5 /* FullMapView.cpp in Sources */,
-				B31FF04C184E9E2700C95972 /* Utility.cpp in Sources */,
-				B31FF04E184E9E2700C95972 /* Warrior.cpp in Sources */,
-				F5ABDE521850251F004C31B5 /* Archer.cpp in Sources */,
-				F5ABDE5C185040F7004C31B5 /* MapView.cpp in Sources */,
-				F5ABDE6D1850E689004C31B5 /* HealthView.cpp in Sources */,
-				B31FF052184E9E2700C95972 /* Farm.cpp in Sources */,
-				B31FF047184E9E2700C95972 /* Peasant.cpp in Sources */,
-				B31FF04F184E9E2700C95972 /* Agent_factory.cpp in Sources */,
-				B31FF050184E9E2700C95972 /* Agent.cpp in Sources */,
-				F5ABDE651850DD5A004C31B5 /* LocalMapView.cpp in Sources */,
-				B31FF046184E9E2700C95972 /* p6_main.cpp in Sources */,
-				B31FF055184E9E2700C95972 /* Moving_object.cpp in Sources */,
-				B31FF051184E9E2700C95972 /* Controller.cpp in Sources */,
-				B31FF049184E9E2700C95972 /* Structure_factory.cpp in Sources */,
-				F5ABDE6E1850E689004C31B5 /* AmountsView.cpp in Sources */,
-				F5ABDE58185025E6004C31B5 /* Soldier.cpp in Sources */,
-				F5BFDB341853D0D8006D2037 /* AttackView.cpp in Sources */,
-				B31FF048184E9E2700C95972 /* Sim_object.cpp in Sources */,
-				B31FF053184E9E2700C95972 /* Geometry.cpp in Sources */,
-				B31FF054184E9E2700C95972 /* Model.cpp in Sources */,
-				B31FF04B184E9E2700C95972 /* Town_Hall.cpp in Sources */,
-				B31FF04A184E9E2700C95972 /* Structure.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
