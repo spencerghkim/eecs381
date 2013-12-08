@@ -15,4 +15,8 @@ show
 go
 go
 show
+train Orx Soldier 2 8
+Orx attack Gandalf
+go
+go
 quit

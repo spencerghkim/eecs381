@@ -36,8 +36,7 @@ void Magician::update()
   
   // If we aren't attacking, bless the peaceful people.
   if (!is_attacking()) {
-    vector<shared_ptr<Agent>> agents_in_range =
-    Model::get().find_agents_in_range(shared_from_this(), blessing_range);
+    auto agents_in_range = Model::get().find_agents_in_range(shared_from_this(), blessing_range);
     for_each(agents_in_range.begin(),
              agents_in_range.end(),
              bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));
@@ -48,10 +47,13 @@ void Magician::update()
 // if it does, it kills the Magician immediately, regardless of attack_strength.
 void Magician::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
 {
-  // Remove this line for non-deterministic random numbers
-  srand(0);
-
-  int hit_landed = rand() % 2;
+  // "random" simulation
+  // ideally we'd use a *real* random number here
+  static int rand = 0;
+  
+  // change to rand() % 2 and remove the static int
+  int hit_landed = rand++ % 2;
+  
   if (hit_landed == 1) {
     // The hit landed.
     Agent::take_hit(numeric_limits<int>::max(), attacker_ptr);
@@ -69,5 +71,5 @@ void Magician::describe() const
 
 string Magician::get_battle_cry()
 {
-  return "Cast!";
+  return "Zap!";
 }

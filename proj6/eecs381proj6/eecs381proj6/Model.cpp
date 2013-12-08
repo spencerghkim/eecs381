@@ -47,6 +47,9 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
 
 Model::Model() : time{0}
 {
+  // want deterministic 'random' numbers!
+  srand(0);
+  
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
   insert_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
@@ -57,6 +60,7 @@ Model::Model() : time{0}
   insert_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
   insert_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
   insert_agent(create_agent("Iriel", "Archer", Point(20, 38.)));
+  
 }
 
 // return singleton instance of model
