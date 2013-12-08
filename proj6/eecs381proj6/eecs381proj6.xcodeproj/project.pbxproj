@@ -144,68 +144,140 @@
 		B3A37F121854F983002DAA14 /* eecs381proj6 */ = {
 			isa = PBXGroup;
 			children = (
-				B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */,
-				B3A37F1D1854FA0A002DAA14 /* Agent_factory.h */,
-				B3A37F1E1854FA0A002DAA14 /* Agent.cpp */,
-				B3A37F1F1854FA0A002DAA14 /* Agent.h */,
-				B3A37F201854FA0A002DAA14 /* AmountsView.cpp */,
-				B3A37F211854FA0A002DAA14 /* AmountsView.h */,
-				B3A37F221854FA0A002DAA14 /* Archer.cpp */,
-				B3A37F231854FA0A002DAA14 /* Archer.h */,
-				B3A37F241854FA0A002DAA14 /* AttackView.cpp */,
-				B3A37F251854FA0A002DAA14 /* AttackView.h */,
+				B3A37F721854FB28002DAA14 /* Object */,
+				B3A37F731854FB4D002DAA14 /* MVC */,
+				B3A37F751854FB74002DAA14 /* Examples */,
+				B3A37F741854FB64002DAA14 /* Utility */,
+				B3A37F3C1854FA0A002DAA14 /* Makefile */,
+				B3A37F431854FA0A002DAA14 /* NOTES */,
+				B3A37F441854FA0A002DAA14 /* p6_main.cpp */,
+				B3A37F151854F983002DAA14 /* eecs381proj6.1 */,
+			);
+			path = eecs381proj6;
+			sourceTree = "<group>";
+		};
+		B3A37F721854FB28002DAA14 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F791854FBF9002DAA14 /* Agent */,
+				B3A37F7A1854FC1F002DAA14 /* Structure */,
+				B3A37F411854FA0A002DAA14 /* Moving_object.cpp */,
+				B3A37F421854FA0A002DAA14 /* Moving_object.h */,
+				B3A37F471854FA0A002DAA14 /* Sim_object.cpp */,
+				B3A37F481854FA0A002DAA14 /* Sim_object.h */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
+		B3A37F731854FB4D002DAA14 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
 				B3A37F261854FA0A002DAA14 /* Controller.cpp */,
 				B3A37F271854FA0A002DAA14 /* Controller.h */,
+				B3A37F3F1854FA0A002DAA14 /* Model.cpp */,
+				B3A37F401854FA0A002DAA14 /* Model.h */,
+				B3A37F761854FB86002DAA14 /* Views */,
+			);
+			name = MVC;
+			sourceTree = "<group>";
+		};
+		B3A37F741854FB64002DAA14 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F321854FA0A002DAA14 /* Geometry.cpp */,
+				B3A37F331854FA0A002DAA14 /* Geometry.h */,
+				B3A37F511854FA0A002DAA14 /* Utility.cpp */,
+				B3A37F521854FA0A002DAA14 /* Utility.h */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		B3A37F751854FB74002DAA14 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
 				B3A37F281854FA0A002DAA14 /* demo1_in.txt */,
 				B3A37F291854FA0A002DAA14 /* demo1_out.txt */,
 				B3A37F2A1854FA0A002DAA14 /* demo2_in.txt */,
 				B3A37F2B1854FA0A002DAA14 /* demo2_out.txt */,
 				B3A37F2C1854FA0A002DAA14 /* demo3_in.txt */,
 				B3A37F2D1854FA0A002DAA14 /* demo3_out.txt */,
-				B3A37F2E1854FA0A002DAA14 /* Farm.cpp */,
-				B3A37F2F1854FA0A002DAA14 /* Farm.h */,
-				B3A37F301854FA0A002DAA14 /* FullMapView.cpp */,
-				B3A37F311854FA0A002DAA14 /* FullMapView.h */,
-				B3A37F321854FA0A002DAA14 /* Geometry.cpp */,
-				B3A37F331854FA0A002DAA14 /* Geometry.h */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		B3A37F761854FB86002DAA14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F241854FA0A002DAA14 /* AttackView.cpp */,
+				B3A37F251854FA0A002DAA14 /* AttackView.h */,
+				B3A37F771854FB98002DAA14 /* List Views */,
+				B3A37F781854FBA9002DAA14 /* Map Views */,
+				B3A37F531854FA0A002DAA14 /* View.cpp */,
+				B3A37F541854FA0A002DAA14 /* View.h */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B3A37F771854FB98002DAA14 /* List Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F201854FA0A002DAA14 /* AmountsView.cpp */,
+				B3A37F211854FA0A002DAA14 /* AmountsView.h */,
 				B3A37F341854FA0A002DAA14 /* HealthView.cpp */,
 				B3A37F351854FA0A002DAA14 /* HealthView.h */,
 				B3A37F361854FA0A002DAA14 /* ListView.cpp */,
 				B3A37F371854FA0A002DAA14 /* ListView.h */,
+			);
+			name = "List Views";
+			sourceTree = "<group>";
+		};
+		B3A37F781854FBA9002DAA14 /* Map Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F301854FA0A002DAA14 /* FullMapView.cpp */,
+				B3A37F311854FA0A002DAA14 /* FullMapView.h */,
 				B3A37F381854FA0A002DAA14 /* LocalMapView.cpp */,
 				B3A37F391854FA0A002DAA14 /* LocalMapView.h */,
-				B3A37F3A1854FA0A002DAA14 /* Magician.cpp */,
-				B3A37F3B1854FA0A002DAA14 /* Magician.h */,
-				B3A37F3C1854FA0A002DAA14 /* Makefile */,
 				B3A37F3D1854FA0A002DAA14 /* MapView.cpp */,
 				B3A37F3E1854FA0A002DAA14 /* MapView.h */,
-				B3A37F3F1854FA0A002DAA14 /* Model.cpp */,
-				B3A37F401854FA0A002DAA14 /* Model.h */,
-				B3A37F411854FA0A002DAA14 /* Moving_object.cpp */,
-				B3A37F421854FA0A002DAA14 /* Moving_object.h */,
-				B3A37F431854FA0A002DAA14 /* NOTES */,
-				B3A37F441854FA0A002DAA14 /* p6_main.cpp */,
+			);
+			name = "Map Views";
+			sourceTree = "<group>";
+		};
+		B3A37F791854FBF9002DAA14 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F1E1854FA0A002DAA14 /* Agent.cpp */,
+				B3A37F1F1854FA0A002DAA14 /* Agent.h */,
+				B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */,
+				B3A37F1D1854FA0A002DAA14 /* Agent_factory.h */,
+				B3A37F221854FA0A002DAA14 /* Archer.cpp */,
+				B3A37F231854FA0A002DAA14 /* Archer.h */,
+				B3A37F3A1854FA0A002DAA14 /* Magician.cpp */,
+				B3A37F3B1854FA0A002DAA14 /* Magician.h */,
 				B3A37F451854FA0A002DAA14 /* Peasant.cpp */,
 				B3A37F461854FA0A002DAA14 /* Peasant.h */,
-				B3A37F471854FA0A002DAA14 /* Sim_object.cpp */,
-				B3A37F481854FA0A002DAA14 /* Sim_object.h */,
 				B3A37F491854FA0A002DAA14 /* Soldier.cpp */,
 				B3A37F4A1854FA0A002DAA14 /* Soldier.h */,
-				B3A37F4B1854FA0A002DAA14 /* Structure_factory.cpp */,
-				B3A37F4C1854FA0A002DAA14 /* Structure_factory.h */,
-				B3A37F4D1854FA0A002DAA14 /* Structure.cpp */,
-				B3A37F4E1854FA0A002DAA14 /* Structure.h */,
-				B3A37F4F1854FA0A002DAA14 /* Town_Hall.cpp */,
-				B3A37F501854FA0A002DAA14 /* Town_Hall.h */,
-				B3A37F511854FA0A002DAA14 /* Utility.cpp */,
-				B3A37F521854FA0A002DAA14 /* Utility.h */,
-				B3A37F531854FA0A002DAA14 /* View.cpp */,
-				B3A37F541854FA0A002DAA14 /* View.h */,
 				B3A37F551854FA0A002DAA14 /* Warrior.cpp */,
 				B3A37F561854FA0A002DAA14 /* Warrior.h */,
-				B3A37F151854F983002DAA14 /* eecs381proj6.1 */,
 			);
-			path = eecs381proj6;
+			name = Agent;
+			sourceTree = "<group>";
+		};
+		B3A37F7A1854FC1F002DAA14 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F2E1854FA0A002DAA14 /* Farm.cpp */,
+				B3A37F2F1854FA0A002DAA14 /* Farm.h */,
+				B3A37F4D1854FA0A002DAA14 /* Structure.cpp */,
+				B3A37F4E1854FA0A002DAA14 /* Structure.h */,
+				B3A37F4B1854FA0A002DAA14 /* Structure_factory.cpp */,
+				B3A37F4C1854FA0A002DAA14 /* Structure_factory.h */,
+				B3A37F4F1854FA0A002DAA14 /* Town_Hall.cpp */,
+				B3A37F501854FA0A002DAA14 /* Town_Hall.h */,
+			);
+			name = Structure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
