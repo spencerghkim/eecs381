@@ -78,11 +78,11 @@ void AttackView::draw()
       cout << DOT;
     }
     
-    auto itr = attackers.find(target);
+    auto target_itr = attackers.find(target);
     // check if our target is attacking us back
-    if (itr != attackers.end() && itr->second == attacker) {
+    if (target_itr != attackers.end() && target_itr->second == attacker) {
       // remember the attacking targets we've already printed
-      printed.insert(itr->first);
+      printed.insert(target_itr->first);
       cout << ATTACK_SYMBOL_RIGHT;
     }
     cout << target << " (" << t_health << ")"  << endl;
