@@ -42,10 +42,10 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
   }
   
   return cartesian_distance(s1->get_location(), origin->get_location()) <
-  cartesian_distance(s2->get_location(), origin->get_location());
+         cartesian_distance(s2->get_location(), origin->get_location());
 }
 
-Model::Model() : time(0)
+Model::Model() : time{0}
 {
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
