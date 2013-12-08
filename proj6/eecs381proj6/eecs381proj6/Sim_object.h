@@ -15,7 +15,7 @@ public:
   virtual ~Sim_object() = 0;
 	
 	const std::string& get_name() const
-  {return name;}
+    {return name;}
   
 	// ask model to notify views of current state
   virtual void broadcast_current_state() {}

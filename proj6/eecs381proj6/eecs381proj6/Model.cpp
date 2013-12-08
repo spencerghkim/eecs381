@@ -267,5 +267,3 @@ void Model::notify_end_attack(const std::string &name)
     i->update_end_attack(name);
 }
 
-
-

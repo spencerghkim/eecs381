@@ -16,13 +16,13 @@ public:
   
 	// readers
 	bool is_currently_moving() const
-  {return moving;}
+    {return moving;}
 	Point get_current_location() const
-  {return location;}
+    {return location;}
 	double get_current_speed() const
-  {return speed;}
+    {return speed;}
 	Point get_current_destination() const
-  {return destination;}
+    {return destination;}
 	
 	// Tell this object to start moving to location destination.
 	// If it is already at the destination and moving, it stops;
