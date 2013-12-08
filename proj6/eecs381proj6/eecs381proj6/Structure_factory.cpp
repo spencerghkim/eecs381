@@ -22,6 +22,6 @@ shared_ptr<Structure> create_structure(const string& name,
   } else if (type == TOWN_HALL_TYPE_NAME) {
     return shared_ptr<Structure>(new Town_Hall(name, location));
   } else {
-    throw Error{"Trying to create structure of unknown type!"};
+    throw Error("Trying to create structure of unknown type!");
   }
 }

@@ -28,7 +28,7 @@ private:
   //TODO: make sure std::function is Kosher, its much cleaner though
   using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
   using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<Agent>)>>;
-  using CmdFunc_Map_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<FullMapView>)>>;
+  using CmdFunc_Map_View_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<FullMapView>)>>;
   
   using viewPair_t = struct {
     std::string name;
@@ -46,8 +46,6 @@ private:
   void view_zoom(std::shared_ptr<FullMapView> map);
   void view_pan(std::shared_ptr<FullMapView> map);
   
-  // return an iterator to the view, or throw
-  Views_t::iterator get_view_itr(const std::string &name);
   // view factory
   std::shared_ptr<View> create_view(const std::string& name);
   
@@ -69,8 +67,8 @@ private:
   // containers
   CmdFunc_t program_cmds;
   CmdFunc_Agent_t agent_cmds;
-  CmdFunc_t ctrl_view_cmds;
-  CmdFunc_Map_t map_view_cmds;
+  CmdFunc_t view_mgmt_cmds;
+  CmdFunc_Map_View_t map_view_cmds;
   Views_t views;
 };
 

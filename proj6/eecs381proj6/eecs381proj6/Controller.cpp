@@ -37,15 +37,13 @@ void bad_command();
 int read_int();
 double read_double();
 Point read_point();
-shared_ptr<Structure> read_struct();
-shared_ptr<Agent> read_agent();
 string read_object_name();
 
 // init control function maps
 Controller::Controller()
 {
-  ctrl_view_cmds["open"]    = &Controller::view_open;
-  ctrl_view_cmds["close"]   = &Controller::view_close;
+  view_mgmt_cmds["open"]    = &Controller::view_open;
+  view_mgmt_cmds["close"]   = &Controller::view_close;
   
   map_view_cmds["default"]  = &Controller::view_default;
   map_view_cmds["size"]     = &Controller::view_size;
@@ -78,33 +76,35 @@ void Controller::run()
         break;
       }
       
+      CmdFunc_t::iterator program_cmd;
+      CmdFunc_t::iterator view_mgmt_cmd;
+      CmdFunc_Map_View_t::iterator map_view_cmd;
+      
+      // Call the correct function based on the command word.
       if (Model::get().is_agent_present(command)) {
-        shared_ptr<Agent> a = Model::get().get_agent_ptr(command);
-        assert(a->is_alive());
+        shared_ptr<Agent> agent = Model::get().get_agent_ptr(command);
+        assert(agent->is_alive());
         
+        // Check that the agent command is valid.
         cin >> command;
-        auto a_itr = agent_cmds.find(command);
-        if (a_itr != agent_cmds.end()) {
-          a_itr->second(this, a);
-        } else bad_command();
-        
-      } else { // not an agent name
-        auto p_itr = program_cmds.find(command);
-        if (p_itr != program_cmds.end()) {
-          p_itr->second(this);
-        } else {
-          auto cv_cmd = ctrl_view_cmds.find(command);
-          auto mv_cmd = map_view_cmds.find(command);
-          if (cv_cmd != ctrl_view_cmds.end()) {
-            cv_cmd->second(this);
-          } else if(mv_cmd != map_view_cmds.end()) {
-            auto map = map_view.lock();
-            if(!map) {
-              throw Error("No map view is open!");
-            }
-            mv_cmd->second(this, map);
-          } else  bad_command();
+        auto agent_command = agent_cmds.find(command);
+        if (agent_command == agent_cmds.end()) {
+          throw Error("Unrecognized command!");
         }
+        
+        agent_command->second(this, agent);
+      } else if ((program_cmd = program_cmds.find(command)) != program_cmds.end()) {
+        program_cmd->second(this);
+      } else if ((view_mgmt_cmd = view_mgmt_cmds.find(command)) != view_mgmt_cmds.end()) {
+        view_mgmt_cmd->second(this);
+      } else if ((map_view_cmd = map_view_cmds.find(command)) != map_view_cmds.end()) {
+        auto map = map_view.lock();
+        if (!map) {
+          throw Error("No map view is open!");
+        }
+        map_view_cmd->second(this, map);
+      } else {
+        throw Error("Unrecognized command!");
       }
       
     } catch (Error &e) {
@@ -128,12 +128,16 @@ void Controller::view_open()
 {
   string name;
   cin >> name;
-  auto itr = get_view_itr(name);
-  if (itr != views.end()) {
+  
+  // Check to see if view already exists.
+  auto open_view_itr =
+      find_if(views.begin(), views.end(), [&] (Views_t::value_type& view) { return view.name == name; });
+  if (open_view_itr != views.end()) {
     throw Error("View of that name already open!");
   }
+  
+  // Create new view and attach to model.
   auto view = create_view(name);
-  // attach to the model
   Model::get().attach(view);
   views.push_back({name, view});
 }
@@ -142,12 +146,17 @@ void Controller::view_close()
 {
   string name;
   cin >> name;
-  auto itr = get_view_itr(name);
-  if (itr == views.end()) {
+  
+  // Check that the view is open.
+  auto open_view_itr =
+      find_if(views.begin(), views.end(), [&] (Views_t::value_type& view) { return view.name == name; });
+  if (open_view_itr == views.end()) {
     throw Error("No view of that name is open!");
   }
-  Model::get().detach(itr->view);
-  views.erase(itr);
+  
+  // Detach view from Model and destroy it.
+  Model::get().detach(open_view_itr->view);
+  views.erase(open_view_itr);
 }
 
 void Controller::view_default(std::shared_ptr<FullMapView> map)
@@ -165,14 +174,6 @@ void Controller::view_zoom(std::shared_ptr<FullMapView> map)
 void Controller::view_pan(std::shared_ptr<FullMapView> map)
 {
   map->set_origin(read_point());
-}
-
-// return an iterator to the view, or throw
-Controller::Views_t::iterator Controller::get_view_itr(const string &name)
-{
-  return find_if(views.begin(), views.end(), [&name](Views_t::value_type &v){
-    return v.name == name;
-  });
 }
 
 // view factory
@@ -214,9 +215,8 @@ void Controller::prog_go()
 }
 void Controller::prog_build()
 {
-  // read in a valid name
+  // read in a valid name and type
   string name = read_object_name();
-  
   string type;
   cin >> type;
   
@@ -227,50 +227,48 @@ void Controller::prog_build()
 
 void Controller::prog_train()
 {
-  // read in a valid name
+  // read in a valid name and type
   string name = read_object_name();
-  
   string type;
   cin >> type;
   
-  // create/add the structure to the model
-  shared_ptr<Agent>a = create_agent(name, type, read_point());
-  Model::get().add_agent(a);
+  // create/add the agent to the model
+  shared_ptr<Agent> agent = create_agent(name, type, read_point());
+  Model::get().add_agent(agent);
 }
 
 // agent commands //
 
-void Controller::agent_move(shared_ptr<Agent> a)
+void Controller::agent_move(shared_ptr<Agent> agent)
 {
-  a->move_to(read_point());
+  agent->move_to(read_point());
 }
-void Controller::agent_work(shared_ptr<Agent> a)
+void Controller::agent_work(shared_ptr<Agent> agent)
 {
-  shared_ptr<Structure>src = read_struct();
-  shared_ptr<Structure>dest = read_struct();
-  a->start_working(src, dest);
+  string source, destination;
+  cin >> source >> destination;
+  shared_ptr<Structure> src = Model::get().get_structure_ptr(source);
+  shared_ptr<Structure> dest = Model::get().get_structure_ptr(destination);
+  agent->start_working(src, dest);
 }
-void Controller::agent_attack(shared_ptr<Agent> a)
+void Controller::agent_attack(shared_ptr<Agent> attacker)
 {
-  a->start_attacking(read_agent());
+  string agent_name;
+  cin >> agent_name;
+  attacker->start_attacking(Model::get().get_agent_ptr(agent_name));
 }
-void Controller::agent_stop(shared_ptr<Agent> a)
+void Controller::agent_stop(shared_ptr<Agent> agent)
 {
-  a->stop();
+  agent->stop();
 }
 
 // HELPERS //
-
-void bad_command()
-{
-	throw Error("Unrecognized command!");
-}
 
 // read int, error for non-digts
 int read_int()
 {
   int num;
-  if(!(cin >> num)) {
+  if (!(cin >> num)) {
     throw Error("Expected an integer!");
   }
   return num;
@@ -280,7 +278,7 @@ int read_int()
 double read_double()
 {
   double num;
-  if(!(cin >> num)) {
+  if (!(cin >> num)) {
     throw Error("Expected a double!");
   }
   return num;
@@ -317,8 +315,9 @@ string read_object_name()
   cin >> name;
   bool plain = all_of(name.begin(), name.end(), isalnum);
   bool in_use = Model::get().is_name_in_use(name);
-  if(name.length() < 2 || !plain || in_use)
+  if (name.length() < 2 || !plain || in_use) {
     throw Error("Invalid name for new object!");
+  }
   return name;
 }
 

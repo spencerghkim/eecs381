@@ -62,15 +62,15 @@ void Warrior::update()
 void Warrior::start_attacking(shared_ptr<Agent> target_ptr)
 {
   if (target_ptr == shared_from_this()) {
-    throw Error{ get_name() + ": I cannot attack myself!" };
+    throw Error( get_name() + ": I cannot attack myself!" );
   }
   
   if (!target_ptr->is_alive()) {
-    throw Error{ get_name() + ": Target is not alive!" };
+    throw Error( get_name() + ": Target is not alive!" );
   }
   
   if (cartesian_distance(get_location(), target_ptr->get_location()) > attack_range) {
-    throw Error{ get_name() + ": Target is out of range!" };
+    throw Error( get_name() + ": Target is out of range!" );
   }
   
   attack(target_ptr);

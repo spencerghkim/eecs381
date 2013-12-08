@@ -30,7 +30,7 @@ shared_ptr<Agent> create_agent(const string& name, const string& type, Point loc
   } else if (type == MAGICIAN_TYPE_NAME ) {
     return shared_ptr<Agent>(new Magician(name, location));
   } else {
-    throw Error{"Trying to create agent of unknown type!"};
+    throw Error("Trying to create agent of unknown type!");
   }
 }
 
