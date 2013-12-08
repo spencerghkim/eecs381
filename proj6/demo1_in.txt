@@ -1,0 +1,18 @@
+
+open health
+train Orx Soldier 3 10
+Orx attack Pippin
+go
+train Gandalf Magician 2 6
+Gandalf attack Orx
+show
+go
+show
+go 
+go
+go
+show
+go
+go
+show
+quit

@@ -295,6 +295,8 @@
 			children = (
 				F5BFDB381853D1AF006D2037 /* demo2_in.txt */,
 				F5BFDB371853D1AF006D2037 /* demo2_out.txt */,
+				F5BFDB361853D1AF006D2037 /* demo3_in.txt */,
+				F5BFDB351853D1AF006D2037 /* demo3_out.txt */,
 			);
 			name = "Attack View - S2";
 			sourceTree = "<group>";
@@ -311,8 +313,6 @@
 		F5BFDB281852FC5F006D2037 /* Group View - M2 */ = {
 			isa = PBXGroup;
 			children = (
-				F5BFDB361853D1AF006D2037 /* demo3_in.txt */,
-				F5BFDB351853D1AF006D2037 /* demo3_out.txt */,
 			);
 			name = "Group View - M2";
 			sourceTree = "<group>";
