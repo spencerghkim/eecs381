@@ -146,10 +146,10 @@
 		B3A37F121854F983002DAA14 /* eecs381proj6 */ = {
 			isa = PBXGroup;
 			children = (
+				B3A37F751854FB74002DAA14 /* Examples */,
 				B3A37F721854FB28002DAA14 /* Object */,
 				B3A37F731854FB4D002DAA14 /* MVC */,
 				F5BFE19C1854FE0E0077BE52 /* Factories */,
-				B3A37F751854FB74002DAA14 /* Examples */,
 				B3A37F741854FB64002DAA14 /* Utility */,
 				B3A37F3C1854FA0A002DAA14 /* Makefile */,
 				B3A37F431854FA0A002DAA14 /* NOTES */,
@@ -198,8 +198,9 @@
 		B3A37F751854FB74002DAA14 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				F5BFE19D1854FE6F0077BE52 /* Magician Examples */,
-				F5BFE19E1854FE7D0077BE52 /* Attack View Examples */,
+				F5BFE19D1854FE6F0077BE52 /* Magician */,
+				F5BFE19E1854FE7D0077BE52 /* Attack View */,
+				F5BFE1A018551A0F0077BE52 /* Group */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
@@ -286,16 +287,16 @@
 			name = Factories;
 			sourceTree = "<group>";
 		};
-		F5BFE19D1854FE6F0077BE52 /* Magician Examples */ = {
+		F5BFE19D1854FE6F0077BE52 /* Magician */ = {
 			isa = PBXGroup;
 			children = (
 				B3A37F281854FA0A002DAA14 /* demo1_in.txt */,
 				B3A37F291854FA0A002DAA14 /* demo1_out.txt */,
 			);
-			name = "Magician Examples";
+			name = Magician;
 			sourceTree = "<group>";
 		};
-		F5BFE19E1854FE7D0077BE52 /* Attack View Examples */ = {
+		F5BFE19E1854FE7D0077BE52 /* Attack View */ = {
 			isa = PBXGroup;
 			children = (
 				B3A37F2A1854FA0A002DAA14 /* demo2_in.txt */,
@@ -303,7 +304,14 @@
 				B3A37F2C1854FA0A002DAA14 /* demo3_in.txt */,
 				B3A37F2D1854FA0A002DAA14 /* demo3_out.txt */,
 			);
-			name = "Attack View Examples";
+			name = "Attack View";
+			sourceTree = "<group>";
+		};
+		F5BFE1A018551A0F0077BE52 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Group;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

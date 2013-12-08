@@ -15,7 +15,7 @@ Warrior::Warrior(const string& name_, Point location_, int strength_, double ran
   Agent{name_, location_},
   attack_strength{strength_},
   attack_range{range_},
-  state{NOT_ATTACKING} {}
+  attacking{false} {}
 
 // Explicit default destructor for Warrior.
 Warrior::~Warrior() {}
@@ -26,7 +26,7 @@ void Warrior::update()
   Agent::update();
   
   // Do nothing if we aren't attacking.
-  if (state == NOT_ATTACKING) {
+  if (!is_attacking()) {
     return;
   }
   
@@ -82,14 +82,14 @@ void Warrior::attack(shared_ptr<Agent> target_ptr)
   Model::get().notify_attack(get_name(), target_ptr->get_name());
   cout << get_name() << ": I'm attacking!" << endl;
   target = target_ptr;
-  state = ATTACKING;
+  attacking = true;
 }
 
 // attack is over, clear target and set state
 void Warrior::clear_attack()
 {
   Model::get().notify_end_attack(get_name());
-  state = NOT_ATTACKING;
+  attacking = false;
   target.reset();
 }
 
@@ -104,7 +104,7 @@ void Warrior::describe() const
   Agent::describe();
   
   shared_ptr<Agent> target_ptr = target.lock();
-  if (state == ATTACKING) {
+  if (is_attacking()) {
     if (target_ptr) {
       cout << "   Attacking " << target_ptr->get_name() << endl;
     } else {

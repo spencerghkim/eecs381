@@ -41,8 +41,8 @@ public:
   
 protected:
   
-  bool is_attacking()
-    { return state == ATTACKING; }
+  bool is_attacking() const
+    { return attacking; }
   
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
   void attack(std::shared_ptr<Agent> target_ptr);
@@ -50,14 +50,11 @@ protected:
   void clear_attack();
   
 private:
-  using Warrior_state_e = enum {
-    ATTACKING,
-    NOT_ATTACKING
-  };
   
   int attack_strength;
   double attack_range;
-  Warrior_state_e state;
+  bool attacking;
+  
   std::weak_ptr<Agent> target;
   
   // Ask subclasses for their battle cry.

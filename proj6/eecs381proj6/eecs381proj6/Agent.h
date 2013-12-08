@@ -26,7 +26,7 @@ public:
   virtual ~Agent() = 0;
   
 	// return true if this agent is Alive
-	bool is_alive() const { return state == ALIVE; }
+	bool is_alive() const { return alive; }
 	
 	// return this Agent's location
 	Point get_location() const override;
@@ -47,7 +47,7 @@ public:
 	virtual void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr);
   
   // Tell this Agent to accept a blessing from an agent specified by blesser_ptr.
-  // A derived class may override this function, default behavior is nothing.
+  // A derived class may override this function, default behavior is empty.
   // The function gain_health may be called to handle the effect of the blessing.
   virtual void accept_blessing(int blessing_strength, std::shared_ptr<Agent> blesser_ptr) {}
 	
@@ -77,13 +77,9 @@ protected:
   void gain_health(int blessing_strength);
   
 private:
-  using Agent_state_e = enum {
-    ALIVE,
-    DEAD
-  };
   
   int health;
-  Agent_state_e state;
+  bool alive;
 };
 
 

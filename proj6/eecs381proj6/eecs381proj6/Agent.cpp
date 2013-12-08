@@ -18,7 +18,7 @@ Agent::Agent(const string& in_name, Point in_location) :
   Sim_object{in_name},
   Moving_object{in_location, DEFAULT_SPEED},
   health{INITIAL_HEALTH},
-  state{ALIVE} {}
+  alive{true} {}
 
 // Explicit default destructor.
 Agent::~Agent() {}
@@ -68,7 +68,7 @@ void Agent::take_hit(int attack_strength, shared_ptr<Agent>attacker_ptr)
 // update the moving state and Agent state of this object.
 void Agent::update()
 {
-  if (state == ALIVE && is_currently_moving()) {
+  if (is_alive() && is_currently_moving()) {
     if (update_location()) {
       // We've reached our destination.
       cout << get_name() << ": I'm there!" << endl;
@@ -84,7 +84,7 @@ void Agent::update()
 void Agent::describe() const
 {
   cout << get_name() << " at " << get_location() << endl;
-  if (state == ALIVE) {
+  if (is_alive()) {
     cout << "   Health is " << health << endl;
     if (is_currently_moving()) {
       cout << "   Moving at speed " << get_current_speed() << " to " << get_current_destination() << endl;
@@ -122,7 +122,7 @@ void Agent::lose_health(int attack_strength)
 {
   health -= attack_strength;
   if (health <= 0) {
-    state = DEAD;
+    alive = false;
     Model::get().notify_gone(get_name());
     cout << get_name() << ": Arrggh!" << endl;
     Model::get().remove_agent(shared_from_this());
