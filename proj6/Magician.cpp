@@ -48,6 +48,9 @@ void Magician::update()
 // if it does, it kills the Magician immediately, regardless of attack_strength.
 void Magician::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
 {
+  // Remove this line for non-deterministic random numbers
+  srand(0);
+
   int hit_landed = rand() % 2;
   if (hit_landed == 1) {
     // The hit landed.
