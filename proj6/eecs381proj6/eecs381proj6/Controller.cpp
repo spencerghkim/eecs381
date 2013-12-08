@@ -293,22 +293,6 @@ Point read_point()
   return {x,y};
 }
 
-// get ptr to struct in model
-shared_ptr<Structure> read_struct()
-{
-  string name;
-  cin >> name;
-  return Model::get().get_structure_ptr(name);
-}
-
-// get ptr to agent in model
-shared_ptr<Agent> read_agent()
-{
-  string name;
-  cin >> name;
-  return Model::get().get_agent_ptr(name);
-}
-
 // read valid obj name
 string read_object_name()
 {
