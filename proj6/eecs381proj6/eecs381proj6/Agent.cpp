@@ -135,12 +135,16 @@ void Agent::lose_health(int attack_strength)
 // calculate gain of health due to blessing
 void Agent::gain_health(int blessing_strength)
 {
-  assert(health <= INITIAL_HEALTH);
   if (health == INITIAL_HEALTH) {
     return;
   } else {
     cout << get_name() << ": I am healed!" << endl;
     health += blessing_strength;
+    
+    // If we've gone over our initial health, reset it.
+    if (health > INITIAL_HEALTH) {
+      health = INITIAL_HEALTH;
+    }
     Model::get().notify_health(get_name(), health);
   }
 }
