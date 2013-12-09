@@ -1,7 +1,6 @@
 #include "Controller.h"
 
 #include "AgentComponent.h"
-#include "AgentGroup.h" //TODO: rm this?
 #include "Agent_factory.h"
 #include "AmountsView.h"
 #include "AttackView.h"
@@ -275,7 +274,7 @@ void Controller::group_create()
 {
   string agent_name;
   cin >> agent_name;
-  Model::get().add_new_group(make_shared<AgentGroup>(agent_name));
+  Model::get().create_new_group(agent_name);
 }
 
 void Controller::group_add(std::shared_ptr<AgentComponent> group)

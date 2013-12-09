@@ -5,7 +5,9 @@
  
  AgentGroup
  
- TODO:
+ This class represents the composite state of an Agent Component.
+ All actions taken on this component will be applied to each of the 
+ components it holds, recursively.
  
 */
 

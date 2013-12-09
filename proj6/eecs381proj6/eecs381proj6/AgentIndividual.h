@@ -2,7 +2,10 @@
 #define AGENTINDV_H_
 
 /*
- AgentIndividuals are a kind of Sim_object, and privately inherit from Moving_object.
+ AgentIndividuals 
+ 
+ This class represents and individal component and is the base class for all Agent types.
+ It also inherits from Sim_object, and privately inherits from Moving_object.
  AgentIndividuals can be commanded to move to a destination. AgentIndividuals have a health, which
  is decreased when they take a hit. If the AgentIndividual's health > 0, it is alive.
  If its heath <= 0, it starts dying, then on subsequent updates,

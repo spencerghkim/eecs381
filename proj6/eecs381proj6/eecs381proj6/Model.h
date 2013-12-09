@@ -68,7 +68,7 @@ public:
 	// add a new individual agent; assumes none with the same name
 	void add_new_agent(std::shared_ptr<AgentIndividual> new_agent);
   // add a new group agent; assumes none with the same name
-  void add_new_group(std::shared_ptr<AgentGroup> new_group);
+  void create_new_group(const std::string &new_group);
   // remove an agent
   void remove_agent(std::shared_ptr<AgentComponent>);
   

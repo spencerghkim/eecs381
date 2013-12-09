@@ -28,7 +28,7 @@ void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
     try {
       func(component.second.get());
     } catch (Error &e) {
-      //TODO: handle
+      //TODO: handle clear line?
       cout << e.msg << endl;
     }
   }
