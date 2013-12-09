@@ -21,8 +21,10 @@ public:
   
   AgentGroup(const std::string &name_);
   
-  const std::string get_name() const override
-    { return "Group " + name; };
+  const std::string &get_name() const override
+    { return name; }
+  const std::string get_printed_name() const override
+    { return "Group " + name; }
   
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);

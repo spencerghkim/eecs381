@@ -16,7 +16,7 @@ public:
 	
 	const std::string& get_name() const
     {return name;}
-  
+    
 	// ask model to notify views of current state
   virtual void broadcast_current_state() {}
 	virtual Point get_location() const = 0;
