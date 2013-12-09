@@ -28,7 +28,7 @@ public:
   // all individuals and groups must have a name
   virtual const std::string &get_name() const = 0;
 
-  // get the nearest agent in the group or the single agent
+  // get the nearest agent in the group (by default the single agent for individuals)
   virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
   
   // get the nearest agents in range
@@ -55,10 +55,12 @@ public:
   virtual void add_component(std::shared_ptr<AgentComponent>) {}
   
   // remove component, does nothing for individuals
-  virtual void remove_component(std::shared_ptr<AgentComponent>) {}
+  virtual void remove_component(const std::string& name_) {}
   
   // return the component of the specified name, empty if component does not exist
-  virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_);
+  virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_)
+    {return {nullptr};}
+  
 };
 
 #endif

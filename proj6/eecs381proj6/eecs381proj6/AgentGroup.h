@@ -50,13 +50,11 @@ public:
 	// Throws exception that an AgentComponent cannot attack.
 	void start_attacking(std::shared_ptr<AgentComponent>) override;
 
-  //Point get_location() const =delete; //TODO: hmm....
-  
   // add component
   void add_component(std::shared_ptr<AgentComponent>) override;
   
   // remove component
-  void remove_component(std::shared_ptr<AgentComponent>) override;
+  void remove_component(const std::string& name_) override;
   
   // return the component of the specified name, empty if component does not exist
   std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;

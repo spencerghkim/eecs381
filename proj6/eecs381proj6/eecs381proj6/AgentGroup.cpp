@@ -97,13 +97,32 @@ void AgentGroup::start_attacking(std::shared_ptr<AgentComponent> target)
 
 void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
 {
-  assert(group_members.find(agent->get_name()) == group_members.end());
   group_members[agent->get_name()] = agent;
 }
 
-void AgentGroup::remove_component(std::shared_ptr<AgentComponent>) override;
+void AgentGroup::remove_component(const std::string& name_)
+{
+  //TODO: throw if nothing was removed?
+  group_members.erase(name_);
+  for (auto& component : group_members) {
+    component.second->remove_component(name_);
+  }
+}
 
-std::shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_) override;
+shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_)
+{
+  for (auto& component : group_members) {
+    if (component.second->get_name() == name_) {
+      return component.second;
+    }
+    auto found_component = component.second->get_component(name_);
+    if (found_component) {
+      return found_component;
+    }
+  }
+  // return empty shared_ptr
+  return shared_ptr<AgentComponent>();
+}
 
 
 

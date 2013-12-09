@@ -110,12 +110,12 @@ private:
   
   // Insert into containters w/o broadcasting
   void insert_structure(std::shared_ptr<Structure>);
-  void insert_agent(std::shared_ptr<AgentComponent>);
+  void insert_new_agent(std::shared_ptr<AgentComponent>);
   
   int time;
   Objects_t objects;
   Structures_t structures;
-  AgentComponents_t agents;
+  std::unique_ptr<AgentComponent> all_agents;
   
   std::set<std::shared_ptr<View>> views;
   

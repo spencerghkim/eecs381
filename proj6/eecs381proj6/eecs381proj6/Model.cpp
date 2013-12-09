@@ -2,6 +2,7 @@
 #include "Model.h"
 
 #include "AgentComponent.h"
+#include "AgentGroup.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
 #include "Sim_object.h"
@@ -18,7 +19,7 @@
 using std::cout; using std::endl;
 using std::string; using std::map; using std::vector;
 using std::make_pair;
-using std::shared_ptr;
+using std::shared_ptr; using std::unique_ptr;
 using std::bind;
 using std::min_element;
 using namespace std::placeholders;
@@ -45,7 +46,7 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
          cartesian_distance(s2->get_location(), origin->get_location());
 }
 
-Model::Model() : time{0}
+Model::Model() : time{0}, all_agents{unique_ptr<AgentComponent>()}
 {
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
@@ -136,10 +137,9 @@ bool Model::is_agent_present(const string& name) const
   return agents.find(name) != agents.end();
 }
 
-void Model::insert_agent(shared_ptr<AgentComponent> a)
+void Model::insert_new_agent(shared_ptr<AgentComponent> component)
 {
-  auto apair = make_pair(a->get_name(), a);
-  objects.insert(apair);
+  all_agents->add_component(component);
   agents.insert(apair);
 }
 
@@ -169,20 +169,7 @@ shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 // returns the closest agent to the provided object (but not the same agent)
 shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) const
 {
-  auto closest_agent_it =
-  min_element(agents.begin(),
-              agents.end(),
-              bind(sim_object_min_distance_comparator,
-                   object,
-                   bind(&AgentComponents_t::value_type::second, _1),
-                   bind(&AgentComponents_t::value_type::second, _2)));
-  
-  
-  for (auto& agent_pair : agents) {
-    
-  }
-  
-  return closest_agent_it->second;
+  return all_agents->get_nearest(object);
 }
 
 vector<shared_ptr<AgentComponent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
