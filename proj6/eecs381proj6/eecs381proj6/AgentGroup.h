@@ -28,6 +28,12 @@ public:
   const std::string get_printed_name() const override
     { return "Group " + name; }
   
+  // does any one in the group have this full name?
+  bool has_name(const std::string& name_) override;
+  
+  // does any one in the group have this prefix?
+  bool has_prefix(const std::string& prefix) override;
+  
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
@@ -67,6 +73,12 @@ public:
  
   // remove component, but dont throw
   void remove_component_if_present(const std::string& name_) override;
+  
+  // is the provided component a top-level component?
+  bool is_top_level_component(const std::string& name_);
+  
+  // is the given prefix in use?
+  bool is_name_prefix_in_use(const std::string& name_prefix);
   
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;

@@ -1,6 +1,8 @@
 #include "Controller.h"
 
 #include "AgentComponent.h"
+#include "AgentGroup.h"
+#include "AgentIndividual.h"
 #include "Agent_factory.h"
 #include "AmountsView.h"
 #include "AttackView.h"
@@ -87,8 +89,8 @@ void Controller::run()
       CmdFunc_t::iterator group_mgmt_cmd;
       
       // Call the correct function based on the command word.
-      if (Model::get().is_agent_present(command)) {
-        shared_ptr<AgentComponent> agent = Model::get().get_agent_ptr(command);
+      if (Model::get().is_agent_component_present(command)) {
+        shared_ptr<AgentComponent> agent = Model::get().get_agent_comp_ptr(command);
         
         // Check that the agent command is valid.
         cin >> command;
@@ -261,7 +263,7 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 {
   string agent_name;
   cin >> agent_name;
-  attacker->start_attacking(Model::get().get_agent_ptr(agent_name));
+  attacker->start_attacking(Model::get().get_agent_comp_ptr(agent_name));
 }
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 {
@@ -272,18 +274,25 @@ void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 
 void Controller::group_create()
 {
-  string agent_name;
-  cin >> agent_name;
-  Model::get().create_new_group(agent_name);
+  string group_name;
+  cin >> group_name;
+  Model::get().add_agent_component(make_shared<AgentGroup>(group_name));
 }
 
 void Controller::group_add(std::shared_ptr<AgentComponent> group)
 {
   string agent_name;
   cin >> agent_name;
-  auto agent = Model::get().get_agent_ptr(agent_name);
-  Model::get().remove_agent(agent);
-  group->add_component(agent);
+  
+  // Check that the component to add exists.
+  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
+  
+  // Check that the the component to add isn't already in a group.
+  if (Model::get().is_agent_component_in_group(component)) {
+    throw Error("That component is already in a group!");
+  }
+  Model::get().remove_agent_component(component->get_name());
+  group->add_component(component);
 }
 
 void Controller::group_remove(std::shared_ptr<AgentComponent> group)

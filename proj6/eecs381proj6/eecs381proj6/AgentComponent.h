@@ -30,6 +30,12 @@ public:
   // all individuals and groups must have a name
   virtual const std::string &get_name() const = 0;
   
+  // does any one in this component have this full name?
+  virtual bool has_name(const std::string& name_) = 0;
+  
+  // does any one in this component have this prefix?
+  virtual bool has_prefix(const std::string& prefix) = 0;
+  
   virtual const std::string get_printed_name() const
       { return get_name(); }
 
@@ -71,6 +77,7 @@ public:
   virtual void remove_component(const std::string& name_)
     { throw Error("This agent component cannot remove components!"); }
   
+  // TODO: fix this shit
   // remove component, but dont throw
   virtual void remove_component_if_present(const std::string& name_) {};
 };

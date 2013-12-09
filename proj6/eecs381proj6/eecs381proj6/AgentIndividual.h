@@ -35,7 +35,13 @@ public:
     
   const std::string &get_name() const override
     { return Sim_object::get_name(); }
-  
+
+  // does this individual have this full name?
+  bool has_name(const std::string& name_) override;
+
+  // does this individual have this prefix?
+  bool has_prefix(const std::string& prefix) override;
+
   // get shared_from_this
   std::shared_ptr<AgentIndividual> get_nearest_in_range(std::shared_ptr<const Sim_object> origin,
                                                         double range) override;

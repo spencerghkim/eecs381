@@ -24,6 +24,17 @@ AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
 // Explicit default destructor.
 AgentIndividual::~AgentIndividual() {}
 
+// does this individual have this full name?
+bool AgentIndividual::has_name(const std::string& name_)
+{
+  return get_name() == name_;
+}
+
+bool AgentIndividual::has_prefix(const std::string &prefix)
+{
+  return get_name().substr(0, prefix.size()) == prefix;
+}
+
 bool in_range(Point p1, Point p2, double range)
 {
   if (cartesian_distance(p1, p2) > range) {
@@ -155,7 +166,7 @@ void AgentIndividual::lose_health(int attack_strength)
     alive = false;
     Model::get().notify_gone(get_name());
     cout << get_name() << ": Arrggh!" << endl;
-    Model::get().remove_agent(shared_from_this());
+    Model::get().remove_agent(get_name());
   } else {
     Model::get().notify_health(get_name(), health);
     cout << get_name() << ": Ouch!" << endl;
