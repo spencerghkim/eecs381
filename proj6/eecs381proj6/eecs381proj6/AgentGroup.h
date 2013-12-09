@@ -28,14 +28,12 @@ public:
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
   // get the nearest agent individual
-  std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin) override;
+  std::shared_ptr<AgentIndividual> get_nearest_in_range(std::shared_ptr<const Sim_object> origin,
+                                                        double range) override;
   
   // get the nearest agent component within a range
   std::shared_ptr<AgentComponent> get_all_in_range(std::shared_ptr<const Sim_object> origin,
                                                    double range) override;
-  
-  // is anyone in this group in range?
-  bool in_range(Point point, double range) override;
   
 	// tell this AgentComponent to start moving to location destination_
 	void move_to(Point destination_) override;

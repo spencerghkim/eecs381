@@ -38,10 +38,9 @@ void Warrior::update()
     return;
   }
   
-  auto closest_indv = target_ptr->get_nearest(shared_from_this());
-  
   // Check if the target is still in range.
-  if (!closest_indv || cartesian_distance(get_location(), closest_indv->get_location()) > attack_range) {
+  auto closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
+  if (!closest_indv) {
     cout << get_name() << ": Target is now out of range" << endl;
     clear_attack();
     return;
@@ -72,12 +71,9 @@ void Warrior::start_attacking(shared_ptr<AgentComponent> target_ptr)
     throw Error( get_name() + ": I cannot attack myself!" );
   }
   
-  auto closest_indv = target_ptr->get_nearest(shared_from_this());
-  
-  // cant have empty group, must be alive
-  assert(closest_indv && closest_indv->is_alive());
-  
-  if (cartesian_distance(get_location(), closest_indv->get_location()) > attack_range) {
+  // Check that there is anyone in range.
+  auto closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
+  if (!closest_indv) {
     throw Error( get_name() + ": Target is out of range!" );
   }
   
@@ -114,9 +110,9 @@ void Warrior::describe() const
   if (is_attacking()) {
     shared_ptr<AgentComponent> target_ptr = target.lock();
     if (target_ptr) {
-      auto closest = target_ptr->get_nearest(shared_from_this());
+      auto closest_in_range = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
       //TODO: fix this too!
-      cout << "   Attacking " << closest->get_name() << endl;
+      cout << "   Attacking " << closest_in_range->get_name() << endl;
     } else {
       cout << "   Attacking dead target" << endl;
     }
@@ -132,9 +128,9 @@ void Warrior::broadcast_current_state()
     auto target_ptr = target.lock();
     assert(target_ptr);
     
-    auto closest = target_ptr->get_nearest(shared_from_this());
-    if(closest) { //TODO: is this always right?
-      Model::get().notify_attack(get_name(), closest->get_name());
+    auto closest_in_range = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
+    if (closest_in_range) { //TODO: is this always right?
+      Model::get().notify_attack(get_name(), closest_in_range->get_name());
     }
   }
 }

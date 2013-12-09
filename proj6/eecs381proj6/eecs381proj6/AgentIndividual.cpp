@@ -24,10 +24,22 @@ AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
 // Explicit default destructor.
 AgentIndividual::~AgentIndividual() {}
 
-// get shared_from_this
-shared_ptr<AgentIndividual> AgentIndividual::get_nearest(std::shared_ptr<const Sim_object> origin)
+bool in_range(Point p1, Point p2, double range)
 {
-  return shared_from_this();
+  if (cartesian_distance(p1, p2) > range) {
+    return false;
+  }
+  return true;
+}
+
+// get shared_from_this
+shared_ptr<AgentIndividual> AgentIndividual::get_nearest_in_range(shared_ptr<const Sim_object> origin,
+                                                                  double range)
+{
+  if (in_range(origin->get_location(), get_location(), range)) {
+    return {shared_from_this()};
+  }
+  return {};
 }
 
 // return a vector of only this object
@@ -39,11 +51,6 @@ shared_ptr<AgentComponent> AgentIndividual::get_all_in_range(shared_ptr<const Si
     return {shared_from_this()};
   }
   return {};
-}
-
-// is this individual in range of annother point
-bool AgentIndividual::in_range(Point point, double range) {
-  return cartesian_distance(point, get_location()) <= range;
 }
 
 // return this AgentIndividual's location

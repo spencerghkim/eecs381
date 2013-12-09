@@ -44,6 +44,9 @@ protected:
   bool is_attacking() const
     { return attacking; }
   
+  double get_attack_range() const
+    { return attack_range; }
+  
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
   void attack(std::shared_ptr<AgentComponent> target_ptr);
   // attack is over, clear target and set state

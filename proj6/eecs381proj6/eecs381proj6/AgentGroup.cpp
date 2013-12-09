@@ -35,19 +35,24 @@ void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
 }
 
 // get the nearest agent individual in the group
-shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object> origin) {
+shared_ptr<AgentIndividual> AgentGroup::get_nearest_in_range(shared_ptr<const Sim_object> origin,
+                                                             double range) {
   shared_ptr<AgentIndividual> best;
   for (auto& component : group_components) {
-    auto cur = component.second->get_nearest(origin);
-    if (origin->get_name() == cur->get_name()) continue;
+    auto cur = component.second->get_nearest_in_range(origin, range);
+    
+    // Make sure cur is valid and different than our origin argument.
+    if (!cur || origin->get_name() == cur->get_name()) {
+      continue;
+    }
+    
+    // If best is not set, set it to cur, which is in range.
     if (!best) {
       best = cur;
     } else {
-      auto cur_dist = cartesian_distance(origin->get_location(), cur->get_location());
-      auto best_dist = cartesian_distance(origin->get_location(), best->get_location());
-      
-      // set the closest agent when in range, and not the calling agent
-      if (cur_dist < best_dist) {
+      // Otherwise, compare distances to see who is closer.     
+      if (cartesian_distance(origin->get_location(), cur->get_location()) <
+          cartesian_distance(origin->get_location(), best->get_location())) {
         best = cur;
       }
     }
@@ -67,17 +72,6 @@ shared_ptr<AgentComponent> AgentGroup::get_all_in_range(shared_ptr<const Sim_obj
     }
   }
   return agents_in_range;
-}
-
-// is anyone in this group in range?
-bool AgentGroup::in_range(Point point, double range)
-{
-  for (auto& component : group_components) {
-    if (component.second->in_range(point, range)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 // tell this AgentComponent to start moving to location destination_
