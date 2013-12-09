@@ -52,9 +52,9 @@ shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object>
 
 
 // get the nearest agents in range
-vector<shared_ptr<AgentIndividual>> AgentGroup::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
+vector<shared_ptr<AgentComponent>> AgentGroup::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
 {
-  vector<shared_ptr<AgentIndividual>> agents;
+  vector<shared_ptr<AgentComponent>> agents;
   for (auto& component : group_members) {
     auto arr = component.second->get_nearest_in_range(origin, range);
     agents.insert(agents.end(), arr.begin(), arr.end());

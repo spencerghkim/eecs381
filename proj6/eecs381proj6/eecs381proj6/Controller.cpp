@@ -1,6 +1,7 @@
 #include "Controller.h"
 
 #include "AgentComponent.h"
+#include "AgentGroup.h" //TODO: rm this?
 #include "Agent_factory.h"
 #include "AmountsView.h"
 #include "AttackView.h"
@@ -58,6 +59,13 @@ Controller::Controller()
   agent_cmds["work"]        = &Controller::agent_work;
   agent_cmds["attack"]      = &Controller::agent_attack;
   agent_cmds["stop"]        = &Controller::agent_stop;
+  
+  // add new group commands
+  program_cmds["create"]    = &Controller::group_create;
+  agent_cmds["add"]         = &Controller::group_add;
+  agent_cmds["remove"]      = &Controller::group_remove;
+  agent_cmds["empty"]       = &Controller::group_empty;
+
 }
 
 // create View object, run the program
@@ -77,6 +85,7 @@ void Controller::run()
       CmdFunc_t::iterator program_cmd;
       CmdFunc_t::iterator view_mgmt_cmd;
       CmdFunc_Map_View_t::iterator map_view_cmd;
+      CmdFunc_t::iterator group_mgmt_cmd;
       
       // Call the correct function based on the command word.
       if (Model::get().is_agent_present(command)) {
@@ -258,6 +267,36 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 {
   agent->stop();
+}
+
+// group commands //
+
+void Controller::group_create()
+{
+  string agent_name;
+  cin >> agent_name;
+  Model::get().add_agent(make_shared<AgentGroup>(agent_name));
+}
+
+void Controller::group_add(std::shared_ptr<AgentComponent> group)
+{
+  string agent_name;
+  cin >> agent_name;
+  auto agent = Model::get().get_agent_ptr(agent_name);
+  Model::get().remove_agent(agent);
+  group->add_component(agent);
+}
+
+void Controller::group_remove(std::shared_ptr<AgentComponent> group)
+{
+  string agent_name;
+  cin >> agent_name;
+  group->remove_component(agent_name);
+}
+
+void Controller::group_empty(std::shared_ptr<AgentComponent> group)
+{
+  
 }
 
 // HELPERS //

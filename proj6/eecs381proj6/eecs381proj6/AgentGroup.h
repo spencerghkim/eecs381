@@ -31,7 +31,8 @@ public:
   virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
   
   // get the nearest agents in range
-  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
+  std::vector<std::shared_ptr<AgentComponent>>
+    get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
   
   // is anyone in this group in range?
   bool in_range(Point point, double range) override;

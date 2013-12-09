@@ -2,6 +2,7 @@
 #include "Model.h"
 
 #include "AgentComponent.h"
+#include "AgentIndividual.h"
 #include "AgentGroup.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
@@ -48,17 +49,18 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
 
 Model::Model() : time{0}, all_agents{unique_ptr<AgentComponent>()}
 {
+  all_agents = unique_ptr<AgentGroup>(new AgentGroup(""));
+  
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
   insert_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
   insert_structure(create_structure("Paduca", "Town_Hall", Point(30., 30.)));
   
-  insert_agent(create_agent("Pippin", "Peasant", Point(5., 10.)));
-  insert_agent(create_agent("Merry", "Peasant", Point(0., 25.)));
-  insert_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
-  insert_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
-  insert_agent(create_agent("Iriel", "Archer", Point(20, 38.)));
-  
+  insert_new_agent(create_agent("Pippin", "Peasant", Point(5., 10.)));
+  insert_new_agent(create_agent("Merry", "Peasant", Point(0., 25.)));
+  insert_new_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
+  insert_new_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
+  insert_new_agent(create_agent("Iriel", "Archer", Point(20, 38.)));
 }
 
 // return singleton instance of model
@@ -134,56 +136,51 @@ shared_ptr<Structure> Model::closest_structure(shared_ptr<Sim_object> object) co
 // is there an agent with this name?
 bool Model::is_agent_present(const string& name) const
 {
-  return agents.find(name) != agents.end();
+  if (all_agents->get_component(name)) {
+    return true;
+  }
+  return false;
 }
 
 void Model::insert_new_agent(shared_ptr<AgentComponent> component)
 {
   all_agents->add_component(component);
-  agents.insert(apair);
 }
 
 // add a new agent; assumes none with the same name
 void Model::add_agent(shared_ptr<AgentComponent> a)
 {
-  insert_agent(a);
-  a->broadcast_current_state();
+  insert_new_agent(a);
+  //TODO: fix broadcasting
+  //a->broadcast_current_state();
 }
 
 // remove an agent
 void Model::remove_agent(shared_ptr<AgentComponent> a)
 {
   objects.erase(a->get_name());
-  agents.erase(a->get_name());
+  all_agents->remove_component(a->get_name());
 }
 
 // will throw Error("AgentComponent not found!") if no agent component of that name
 shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 {
   if (!is_agent_present(name)) {
-    throw Error("AgentComponent not found!"); //TODO?
+    throw Error("Agent not found!"); //TODO?
   }
-  return agents.find(name)->second;
+  return all_agents->get_component(name);
 }
 
 // returns the closest agent to the provided object (but not the same agent)
 shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) const
 {
-  return all_agents->get_nearest(object);
+ return all_agents->get_nearest(object);
+  //NOTE!: need to included AgentIndividual cause of this...
 }
 
 vector<shared_ptr<AgentComponent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
 {
-  vector<shared_ptr<AgentComponent>> agents_in_range;
-  
-  for (auto &agent_pair : agents) {
-    if (agent_pair.second != center &&
-        cartesian_distance(agent_pair.second->get_location(), center->get_location()) < range) {
-      agents_in_range.push_back(agent_pair.second);
-    }
-  }
-  
-  return agents_in_range;
+  return all_agents->get_nearest_in_range(center, range);
 }
 
 // tell all objects to describe themselves to the console
