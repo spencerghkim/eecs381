@@ -29,6 +29,7 @@
 class Sim_object;
 class Structure;
 class AgentComponent;
+class AgentIndividual;
 class View;
 struct Point;
 class Model;
@@ -63,8 +64,8 @@ public:
   
 	// is there an agent with this name?
 	bool is_agent_present(const std::string& name) const;
-	// add a new agent; assumes none with the same name
-	void add_agent(std::shared_ptr<AgentComponent>);
+	// add a new individual agent; assumes none with the same name
+	void add_new_agent(std::shared_ptr<AgentIndividual>);
   // remove an agent
   void remove_agent(std::shared_ptr<AgentComponent>);
   
@@ -110,7 +111,7 @@ private:
   
   // Insert into containters w/o broadcasting
   void insert_structure(std::shared_ptr<Structure>);
-  void insert_new_agent(std::shared_ptr<AgentComponent>);
+  void insert_new_agent(std::shared_ptr<AgentIndividual>);
   
   int time;
   Objects_t objects;
