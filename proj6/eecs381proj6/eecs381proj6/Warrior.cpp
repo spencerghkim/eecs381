@@ -57,6 +57,7 @@ void Warrior::update()
     auto old_target = target_ptr;
     Model::get().notify_end_attack(get_name());
     //TODO: test this, should we pick a new target here first - we cant throw!
+    
   }
 }
 

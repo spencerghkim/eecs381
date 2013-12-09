@@ -114,16 +114,7 @@ void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
   group_components[agent->get_name()] = agent;
 }
 
-void AgentGroup::remove_component(const std::string& name_)
-{
-  //TODO: throw if nothing was removed?
-  group_components.erase(name_);
-  for (auto& component : group_components) {
-    component.second->remove_component(name_);
-  }
-}
-
-shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_)
+shared_ptr<AgentComponent> AgentGroup::get_component(const string& name_)
 {
   for (auto& component : group_components) {
     if (component.second->get_name() == name_) {
@@ -138,5 +129,17 @@ shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_)
   return shared_ptr<AgentComponent>();
 }
 
+void AgentGroup::remove_component(const string& name_)
+{
+  remove_component_if_present(name);
+}
+
+// remove component, but dont throw
+void AgentGroup::remove_component_if_present(const string& name_) {
+  group_components.erase(name_);
+  for (auto& component : group_components) {
+    component.second->remove_component_if_present(name_);
+  }
+}
 
 

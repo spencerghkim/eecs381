@@ -57,11 +57,14 @@ public:
   // add component
   void add_component(std::shared_ptr<AgentComponent>) override;
   
-  // remove component
-  void remove_component(const std::string& name_) override;
-  
   // return the component of the specified name, empty if component does not exist
   std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;
+  
+  // remove component
+  void remove_component(const std::string& name_) override;
+ 
+  // remove component, but dont throw
+  virtual void remove_component_if_present(const std::string& name_);
   
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
