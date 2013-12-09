@@ -77,8 +77,8 @@ public:
 	// returns the closest agent to the provided agent (not the same agent)
 	std::shared_ptr<AgentIndividual> closest_agent(std::shared_ptr<Sim_object> object) const;
   // find all agents in the given range around the given object
-  std::vector<std::shared_ptr<AgentComponent>> find_agents_in_range(std::shared_ptr<Sim_object> center,
-                                                                    double range);
+  std::shared_ptr<AgentComponent> find_agents_in_range(std::shared_ptr<Sim_object> center,
+                                                       double range);
   
 	// tell all objects to describe themselves to the console
 	void describe() const;

@@ -17,14 +17,14 @@ using namespace std::placeholders; using std::bind;
 using std::vector; using std::map; using std::string;
 using std::cout; using std::endl;
 using std::function;
-using std::shared_ptr;
+using std::shared_ptr; using std::make_shared;
 
 AgentGroup::AgentGroup(const std::string &name_) :
   name{name_} {}
 
 // iterate over the contained components and handle errors
 void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
-  for (auto& component : group_members) {
+  for (auto& component : group_components) {
     try {
       func(component.second.get());
     } catch (Error &e) {
@@ -34,10 +34,10 @@ void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
   }
 }
 
-// get the nearest agent in the group or the single agent
+// get the nearest agent individual in the group
 shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object> origin) {
   shared_ptr<AgentIndividual> best;
-  for (auto& component : group_members) {
+  for (auto& component : group_components) {
     auto cur = component.second->get_nearest(origin);
     if (origin->get_name() == cur->get_name()) continue;
     if (!best) {
@@ -55,21 +55,24 @@ shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object>
   return best;
 }
 
-// get the nearest agents in range
-vector<shared_ptr<AgentComponent>> AgentGroup::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
+// get the nearest agents in range, excluding the 'origin' sim_object
+shared_ptr<AgentComponent> AgentGroup::get_all_in_range(shared_ptr<const Sim_object> origin,
+                                                        double range)
 {
-  vector<shared_ptr<AgentComponent>> agents;
-  for (auto& component : group_members) {
-    auto arr = component.second->get_nearest_in_range(origin, range);
-    agents.insert(agents.end(), arr.begin(), arr.end());
+  auto agents_in_range = make_shared<AgentGroup>("temp");
+  for (auto& component : group_components) {
+    auto component_in_range = component.second->get_all_in_range(origin, range);
+    if (component_in_range && component_in_range->get_name() != origin->get_name()) {
+      agents_in_range->add_component(component_in_range);
+    }
   }
-  return agents;
+  return agents_in_range;
 }
 
 // is anyone in this group in range?
 bool AgentGroup::in_range(Point point, double range)
 {
-  for (auto& component : group_members) {
+  for (auto& component : group_components) {
     if (component.second->in_range(point, range)) {
       return true;
     }
@@ -99,23 +102,30 @@ void AgentGroup::start_attacking(std::shared_ptr<AgentComponent> target)
   iterate_and_catch(bind(&AgentComponent::start_attacking, _1, target));
 }
 
+// Call accept blessing for everyone.
+void AgentGroup::accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr)
+{
+  iterate_and_catch(bind(&AgentComponent::accept_blessing, _1, blessing_strength, blesser_ptr));
+}
+
 void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
 {
-  group_members[agent->get_name()] = agent;
+  assert(!get_component(agent->get_name()));
+  group_components[agent->get_name()] = agent;
 }
 
 void AgentGroup::remove_component(const std::string& name_)
 {
   //TODO: throw if nothing was removed?
-  group_members.erase(name_);
-  for (auto& component : group_members) {
+  group_components.erase(name_);
+  for (auto& component : group_components) {
     component.second->remove_component(name_);
   }
 }
 
 shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_)
 {
-  for (auto& component : group_members) {
+  for (auto& component : group_components) {
     if (component.second->get_name() == name_) {
       return component.second;
     }
