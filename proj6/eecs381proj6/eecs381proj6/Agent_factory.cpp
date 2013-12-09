@@ -20,7 +20,7 @@ const string MAGICIAN_TYPE_NAME = "Magician";
 const string PEASANT_TYPE_NAME = "Peasant";
 const string SOLDIER_TYPE_NAME = "Soldier";
 
-shared_ptr<AgentComponent> create_agent(const string& name, const string& type, Point location)
+shared_ptr<AgentIndividual> create_agent(const string& name, const string& type, Point location)
 {
   if (type == PEASANT_TYPE_NAME) {
     return make_shared<Peasant>(name,location);

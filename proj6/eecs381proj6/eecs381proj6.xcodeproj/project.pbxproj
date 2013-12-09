@@ -21,7 +21,6 @@
 		B3A37F611854FA0A002DAA14 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F361854FA0A002DAA14 /* ListView.cpp */; };
 		B3A37F621854FA0A002DAA14 /* LocalMapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F381854FA0A002DAA14 /* LocalMapView.cpp */; };
 		B3A37F631854FA0A002DAA14 /* Magician.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3A1854FA0A002DAA14 /* Magician.cpp */; };
-		B3A37F641854FA0A002DAA14 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3C1854FA0A002DAA14 /* Makefile */; };
 		B3A37F651854FA0A002DAA14 /* MapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3D1854FA0A002DAA14 /* MapView.cpp */; };
 		B3A37F661854FA0A002DAA14 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F3F1854FA0A002DAA14 /* Model.cpp */; };
 		B3A37F671854FA0A002DAA14 /* Moving_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F411854FA0A002DAA14 /* Moving_object.cpp */; };
@@ -392,7 +391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3A37F701854FA0A002DAA14 /* View.cpp in Sources */,
-				B3A37F641854FA0A002DAA14 /* Makefile in Sources */,
 				B3A37F601854FA0A002DAA14 /* HealthView.cpp in Sources */,
 				B3A37F5A1854FA0A002DAA14 /* Archer.cpp in Sources */,
 				B3A37F581854FA0A002DAA14 /* AgentComponent.cpp in Sources */,

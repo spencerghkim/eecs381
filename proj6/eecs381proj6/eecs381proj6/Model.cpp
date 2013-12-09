@@ -4,6 +4,7 @@
 #include "AgentComponent.h"
 #include "AgentIndividual.h"
 #include "AgentGroup.h"
+#include "AgentIndividual.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
 #include "Sim_object.h"
@@ -61,6 +62,7 @@ Model::Model() : time{0}, all_agents{unique_ptr<AgentComponent>()}
   insert_new_agent(create_agent("Zug", "Soldier", Point(20., 30.)));
   insert_new_agent(create_agent("Bug", "Soldier", Point(15., 20.)));
   insert_new_agent(create_agent("Iriel", "Archer", Point(20, 38.)));
+
 }
 
 // return singleton instance of model
@@ -136,30 +138,35 @@ shared_ptr<Structure> Model::closest_structure(shared_ptr<Sim_object> object) co
 // is there an agent with this name?
 bool Model::is_agent_present(const string& name) const
 {
-  if (all_agents->get_component(name)) {
-    return true;
-  }
-  return false;
+  return all_agents->get_component(name) != nullptr; //TODO: that work?
 }
 
-void Model::insert_new_agent(shared_ptr<AgentComponent> component)
+void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
-  all_agents->add_component(component);
+  all_agents->add_component(new_agent);
+  objects[new_agent->get_name()] = new_agent; // TODO: error check for double add?
 }
 
 // add a new agent; assumes none with the same name
-void Model::add_agent(shared_ptr<AgentComponent> a)
+void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
-  insert_new_agent(a);
-  //TODO: fix broadcasting
-  //a->broadcast_current_state();
+  insert_new_agent(new_agent);
+  new_agent->broadcast_current_state();
+}
+
+//TODO: name check here and above?
+
+// add a new group agent; assumes none with the same name
+void Model::add_new_group(shared_ptr<AgentGroup> new_group)
+{
+  all_agents->add_component(new_group);
 }
 
 // remove an agent
-void Model::remove_agent(shared_ptr<AgentComponent> a)
+void Model::remove_agent(shared_ptr<AgentComponent> agent)
 {
-  objects.erase(a->get_name());
-  all_agents->remove_component(a->get_name());
+  objects.erase(agent->get_name());
+  all_agents->remove_component(agent->get_name());
 }
 
 // will throw Error("AgentComponent not found!") if no agent component of that name

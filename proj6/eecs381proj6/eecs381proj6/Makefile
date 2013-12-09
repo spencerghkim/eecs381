@@ -6,10 +6,10 @@ LFLAGS = -g
 
 OBJS = p6_main.o Model.o View.o Controller.o
 OBJS += MapView.o LocalMapView.o FullMapView.o ListView.o HealthView.o AmountsView.o AttackView.o
-OBJS += Sim_object.o Structure.o Moving_object.o AgentComponent.o
+OBJS += Sim_object.o Structure.o Moving_object.o AgentComponent.o AgentGroup.o AgentIndividual.o
 OBJS += Farm.o Town_Hall.o
 OBJS += Peasant.o Warrior.o Soldier.o Archer.o Magician.o
-OBJS += AgentComponent_factory.o Structure_factory.o
+OBJS += Agent_factory.o Structure_factory.o
 OBJS += Geometry.o Utility.o
 PROG = p6exe
 
@@ -34,7 +34,7 @@ test: $(PROG)
 p6_main.o: p6_main.cpp Model.h Controller.h
 	$(CC) $(CFLAGS) p6_main.cpp
 
-Model.o: Model.cpp Model.h View.h Sim_object.h Structure.h AgentComponent.h AgentComponent_factory.h Structure_factory.h Geometry.h Utility.h
+Model.o: Model.cpp Model.h View.h Sim_object.h Structure.h AgentComponent.h AgentGroup.h AgentIndividual.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Model.cpp
 
 View.o: View.cpp View.h Geometry.h Utility.h
@@ -61,7 +61,7 @@ HealthView.o: HealthView.cpp ListView.h View.h Geometry.h Utility.h
 AmountsView.o: AmountsView.cpp ListView.h View.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) AmountsView.cpp
 
-Controller.o: Controller.cpp Controller.h Model.h View.h MapView.h Sim_object.h Structure.h AgentComponent.h AgentComponent_factory.h Structure_factory.h Geometry.h Utility.h
+Controller.o: Controller.cpp Controller.h Model.h View.h MapView.h Sim_object.h Structure.h AgentComponent.h Agent_factory.h Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Controller.cpp
 
 Sim_object.o: Sim_object.cpp Sim_object.h Geometry.h
@@ -76,29 +76,35 @@ Farm.o: Farm.cpp Farm.h Structure.h Sim_object.h Geometry.h
 Town_Hall.o: Town_Hall.cpp Town_Hall.h Structure.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Town_Hall.cpp
 
-AgentComponent.o: AgentComponent.cpp AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+AgentComponent.o: AgentComponent.cpp AgentComponent.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) AgentComponent.cpp
 
-Peasant.o: Peasant.cpp Peasant.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+AgentGroup.o: AgentGroup.cpp AgentGroup.h AgentIndividual.h AgentComponent.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) AgentGroup.cpp
+
+AgentIndividual.o: AgentIndividual.cpp AgentGroup.h AgentIndividual.h AgentComponent.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) AgentIndividual.cpp
+
+Peasant.o: Peasant.cpp Peasant.h AgentIndividual.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Peasant.cpp
 
-Warrior.o: Warrior.cpp Warrior.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+Warrior.o: Warrior.cpp Warrior.h AgentIndividual.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Warrior.cpp
     
-Soldier.o: Soldier.cpp Warrior.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+Soldier.o: Soldier.cpp Warrior.h AgentIndividual.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Soldier.cpp
     
-Archer.o: Archer.cpp Warrior.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+Archer.o: Archer.cpp Warrior.h AgentIndividual.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Archer.cpp
     
-Magician.o: Magician.cpp Warrior.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
+Magician.o: Magician.cpp Warrior.h AgentIndividual.h AgentComponent.h Moving_object.h Sim_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Magician.cpp
 
 Moving_object.o: Moving_object.cpp Moving_object.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Moving_object.cpp
 
-AgentComponent_factory.o: AgentComponent_factory.cpp AgentComponent_factory.h Geometry.h Utility.h
-	$(CC) $(CFLAGS) AgentComponent_factory.cpp
+Agent_factory.o: Agent_factory.cpp Agent_factory.h Geometry.h Utility.h
+	$(CC) $(CFLAGS) Agent_factory.cpp
 
 Structure_factory.o: Structure_factory.cpp Structure_factory.h Geometry.h Utility.h
 	$(CC) $(CFLAGS) Structure_factory.cpp

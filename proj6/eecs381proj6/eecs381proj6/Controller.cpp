@@ -240,8 +240,8 @@ void Controller::prog_train()
   cin >> type;
   
   // create/add the agent to the model
-  shared_ptr<AgentComponent> agent = create_agent(name, type, read_point());
-  Model::get().add_agent(agent);
+  shared_ptr<AgentIndividual> agent = create_agent(name, type, read_point());
+  Model::get().add_new_agent(agent);
 }
 
 // agent commands //
@@ -275,7 +275,7 @@ void Controller::group_create()
 {
   string agent_name;
   cin >> agent_name;
-  Model::get().add_agent(make_shared<AgentGroup>(agent_name));
+  Model::get().add_new_group(make_shared<AgentGroup>(agent_name));
 }
 
 void Controller::group_add(std::shared_ptr<AgentComponent> group)
@@ -296,7 +296,7 @@ void Controller::group_remove(std::shared_ptr<AgentComponent> group)
 
 void Controller::group_empty(std::shared_ptr<AgentComponent> group)
 {
-  
+  //TODO:
 }
 
 // HELPERS //
