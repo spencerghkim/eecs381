@@ -25,7 +25,6 @@ public:
 	void run();
   
 private:
-  //TODO: make sure std::function is Kosher, its much cleaner though
   using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
   using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<AgentComponent>)>>;
   using CmdFunc_Map_View_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<FullMapView>)>>;

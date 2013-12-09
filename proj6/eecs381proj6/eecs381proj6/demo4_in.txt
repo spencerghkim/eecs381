@@ -1,4 +1,15 @@
 
 group Mean
+open map
+open health
+show
 Mean add Zug
 Mean add Bug
+Mean move 8 10
+show
+go go go
+show
+Mean attack Pippin
+go go
+show
+quit

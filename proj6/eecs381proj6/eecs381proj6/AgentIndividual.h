@@ -10,7 +10,7 @@
  is decreased when they take a hit. If the AgentIndividual's health > 0, it is alive.
  If its heath <= 0, it starts dying, then on subsequent updates,
  it becomes dead, and finally disappearing.
- */
+*/
 
 #include "AgentComponent.h"
 #include "Moving_object.h"

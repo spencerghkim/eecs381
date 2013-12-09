@@ -116,7 +116,6 @@ void Warrior::describe() const
   if (is_attacking()) {
     shared_ptr<AgentComponent> target_ptr = target.lock();
     if (target_ptr) {
-      //TODO: fix this too!
       cout << "   Attacking " << target_ptr->get_printed_name() << endl;
     } else {
       cout << "   Attacking dead target" << endl;

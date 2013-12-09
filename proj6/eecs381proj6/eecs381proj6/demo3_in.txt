@@ -4,3 +4,4 @@ train Otto Archer 6 0
 train Avery Archer 12 0
 go
 show
+quit

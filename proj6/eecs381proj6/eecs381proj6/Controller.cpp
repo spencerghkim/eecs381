@@ -60,10 +60,10 @@ Controller::Controller()
   agent_cmds["stop"]        = &Controller::agent_stop;
   
   // add new group commands
-  program_cmds["group"]    = &Controller::group_create;
+  program_cmds["group"]     = &Controller::group_create;
   agent_cmds["add"]         = &Controller::group_add;
   agent_cmds["remove"]      = &Controller::group_remove;
-  agent_cmds["disband"]       = &Controller::group_disband;
+  agent_cmds["disband"]     = &Controller::group_disband;
 
 }
 

@@ -119,6 +119,8 @@
 		F5BFE1A718554A170077BE52 /* AgentGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentGroup.h; sourceTree = "<group>"; };
 		F5BFE1AC185631DE0077BE52 /* demo4_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo4_in.txt; sourceTree = "<group>"; };
 		F5BFE1AD185631DE0077BE52 /* demo4_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo4_out.txt; sourceTree = "<group>"; };
+		F5BFE1AE18564B170077BE52 /* demo5_in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo5_in.txt; sourceTree = "<group>"; };
+		F5BFE1AF18564B170077BE52 /* demo5_out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo5_out.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,8 @@
 			children = (
 				F5BFE1AC185631DE0077BE52 /* demo4_in.txt */,
 				F5BFE1AD185631DE0077BE52 /* demo4_out.txt */,
+				F5BFE1AE18564B170077BE52 /* demo5_in.txt */,
+				F5BFE1AF18564B170077BE52 /* demo5_out.txt */,
 			);
 			name = Group;
 			sourceTree = "<group>";

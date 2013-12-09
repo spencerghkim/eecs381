@@ -1,1 +1,16 @@
-TODO:
+
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: Avery: I'm attacking!
+Otto: I'm attacking!
+Farm Rivendale now has 52.00
+Sam: I'm attacking!
+Farm Sunnybrook now has 52.00
+
+Time 1: Enter command: Current Duels:
+(5) Avery > . . . . . . . . . . . . . . . . . . < Otto (5)
+(5) Sam > . . . . . . . . . . . . . . . . . . Otto (5)
+
+Time 1: Enter command: Done
