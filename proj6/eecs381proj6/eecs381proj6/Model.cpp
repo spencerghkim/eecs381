@@ -147,6 +147,11 @@ bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> componen
   return !all_agents->is_top_level_component(component->get_name());
 }
 
+bool Model::are_in_same_group(shared_ptr<AgentComponent>, shared_ptr<AgentComponent>)
+{
+
+}
+
 // add a new agent component, does nothing with sim_objects
 void Model::add_agent_component(shared_ptr<AgentComponent> component)
 {
@@ -187,7 +192,7 @@ void Model::remove_agent(const string& name)
 shared_ptr<AgentComponent> Model::get_agent_comp_ptr(const string& name) const
 {
   if (!is_agent_component_present(name)) {
-    throw Error("Agent not found!"); //TODO?
+    throw Error("Agent not found!");
   }
   return all_agents->get_component(name);
 }

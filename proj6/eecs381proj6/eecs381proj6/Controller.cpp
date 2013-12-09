@@ -263,6 +263,13 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 {
   string agent_name;
   cin >> agent_name;
+  
+  // Check to see if target is in the same group as attacker.
+  shared_ptr<AgentComponent> target = Model::get().get_agent_comp_ptr(agent_name);
+  if (!target) {
+    throw Error("No agent component ")
+  }
+  
   attacker->start_attacking(Model::get().get_agent_comp_ptr(agent_name));
 }
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)

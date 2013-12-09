@@ -63,10 +63,12 @@ public:
 	// returns the closest structure to the provided agent
 	std::shared_ptr<Structure> closest_structure(std::shared_ptr<Sim_object> object) const;
   
-	// is there an agent with this name?
+	// is there an agent component with this name?
 	bool is_agent_component_present(const std::string& name) const;
-  // is this component in a group?
+  // is this agent component in a group?
   bool is_agent_component_in_group(std::shared_ptr<AgentComponent>) const;
+  // are these two agent components in the same group?
+  bool are_in_same_group(std::shared_ptr<AgentComponent>, std::shared_ptr<AgentComponent>);
 	// add a new agent component; throws if name is already in use
 	void add_agent_component(std::shared_ptr<AgentComponent>);
   // removes the specified agent component, throws if doesn't exist
