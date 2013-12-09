@@ -40,6 +40,10 @@ shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object>
   for (auto& component : group_members) {
     auto cur = component.second->get_nearest(origin);
     auto cur_dist = cartesian_distance(origin->get_location(), cur->get_location());
+    if (!best) {
+      cur = best;
+      continue;
+    }
     auto best_dist = cartesian_distance(origin->get_location(), best->get_location());
     
     // set the closest agent when in range, and not the calling agent

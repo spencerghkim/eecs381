@@ -35,7 +35,9 @@ void Archer::update()
      }*/
     
     //TODO: fix this use new way
-    start_attacking(closest_agent);
+    if (closest_agent) { //TODO: added, may not be needed later
+      start_attacking(closest_agent);
+    }
   }
 }
 
