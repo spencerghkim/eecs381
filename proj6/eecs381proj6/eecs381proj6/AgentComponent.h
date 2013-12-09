@@ -13,6 +13,7 @@
 
 #include <string>
 #include <memory>
+#include <vector>
 
 class AgentIndividual;
 class Structure;
@@ -23,10 +24,15 @@ public:
   // class is abstract, make destructor pure virtual
   virtual ~AgentComponent() = 0;
   
+  // all individuals and groups must have a name
   virtual const std::string &get_name() const = 0;
 
-  virtual std::shared_ptr<AgentIndividual> get_closest(Point origin) = 0; //TODO: protected _h?
-  virtual void get_closest_h(Point origin, std::shared_ptr<AgentIndividual> &best) = 0;
+  // get the nearest agent in the group or the single agent
+  virtual std::shared_ptr<AgentIndividual> get_nearest(Point origin);
+  
+  // get the nearest agents in range
+  virtual std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(Point origin);
+  
   
   // is this component in range?
   virtual bool in_range(Point point, double range) = 0;

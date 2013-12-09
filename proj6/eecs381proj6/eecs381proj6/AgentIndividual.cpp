@@ -23,17 +23,9 @@ AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
 // Explicit default destructor.
 AgentIndividual::~AgentIndividual() {}
 
-std::shared_ptr<AgentIndividual> AgentIndividual::get_closest(Point origin)
+std::shared_ptr<AgentIndividual> AgentIndividual::get_nearest(Point origin)
 {
   return shared_from_this();
-}
-
-void AgentIndividual::get_closest_h(Point origin, std::shared_ptr<AgentIndividual> &best) {
-  auto best_dist = cartesian_distance(best->get_location(), origin);
-  auto cur_dist = cartesian_distance(get_location(), origin);
-  if (cur_dist < best_dist) {
-    best = shared_from_this();
-  }
 }
 
 // is this individual in range of annother point

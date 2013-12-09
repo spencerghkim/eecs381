@@ -27,8 +27,11 @@ public:
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
-  std::shared_ptr<AgentIndividual> get_closest(Point origin) override;
-  void get_closest_h(Point origin, std::shared_ptr<AgentIndividual> &best) override;
+  // get the nearest agent in the group
+  std::shared_ptr<AgentIndividual> get_nearest(Point origin) override;
+  
+  // get the nearest agents in range
+  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(Point origin) override;
   
   // is anyone in this group in range?
   bool in_range(Point point, double range) override;

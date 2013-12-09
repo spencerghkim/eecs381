@@ -1,5 +1,7 @@
 #include "AgentGroup.h"
 
+#include "AgentIndividual.h"
+#include "Geometry.h"
 #include "Utility.h"
 
 #include <algorithm>
@@ -30,18 +32,17 @@ void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
   }
 }
 
-shared_ptr<AgentIndividual> AgentGroup::get_closest(Point origin)
-{
+shared_ptr<AgentIndividual> AgentGroup::get_nearest(Point origin) {
   shared_ptr<AgentIndividual> best;
-  get_closest_h(origin, best);
-  return best;
-}
-
-void AgentGroup::get_closest_h(Point origin, shared_ptr<AgentIndividual> &best)
-{
   for (auto& component : group_members) {
-    component.second->get_closest_h(origin, best);
+    auto cur = component.second->get_nearest(origin);
+    auto cur_dist = cartesian_distance(origin, cur->get_location());
+    auto best_dist = cartesian_distance(origin, best->get_location());
+    if (cur_dist < best_dist) {
+      best = cur;
+    }
   }
+  return best;
 }
 
 // is anyone in this group in range?
