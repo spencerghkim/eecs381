@@ -157,6 +157,11 @@ void AgentIndividual::start_attacking(shared_ptr<AgentComponent>)
   throw Error( get_name() + ": Sorry, I can't attack!" );
 }
 
+// adds individual back to model's base group
+void AgentIndividual::disband_from_group()  {
+  Model::get().add_agent_component(shared_from_this());
+}
+
 // calculate loss of health due to hit.
 // if health decreases to zero or negative, AgentIndividual state becomes Dying, and any movement is stopped.
 void AgentIndividual::lose_health(int attack_strength)
@@ -189,4 +194,5 @@ void AgentIndividual::gain_health(int blessing_strength)
     Model::get().notify_health(get_name(), health);
   }
 }
+
 

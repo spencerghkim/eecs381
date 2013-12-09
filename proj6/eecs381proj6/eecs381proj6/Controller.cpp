@@ -291,6 +291,10 @@ void Controller::group_add(std::shared_ptr<AgentComponent> group)
   string agent_name;
   cin >> agent_name;
   
+  if (agent_name == group->get_name()) {
+    throw Error("Cannot add a group to itself!");
+  }
+  
   // Check that the component to add exists.
   shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
   
@@ -311,7 +315,10 @@ void Controller::group_remove(std::shared_ptr<AgentComponent> group)
 
 void Controller::group_disband(std::shared_ptr<AgentComponent> group)
 {
-  //TODO:
+  // remove all members from the group
+  group->disband();
+  // remove the group from the model
+  Model::get().remove_agent(group->get_name());
 }
 
 // HELPERS //

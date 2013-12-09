@@ -20,7 +20,7 @@ using std::function;
 using std::shared_ptr; using std::make_shared;
 
 AgentGroup::AgentGroup(const std::string &name_) :
-  name{name_} {}
+  group_name{name_} {}
 
 // does any one in the group have this full name?
 bool AgentGroup::has_name(const std::string& name_)
@@ -38,6 +38,17 @@ bool AgentGroup::has_prefix(const std::string& prefix)
 {
   for (auto& component: group_components) {
     if (component.second->has_prefix(prefix)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// is the given name a top level component? (i.e. not inside another group?)
+bool AgentGroup::is_top_level_component(const std::string& name_)
+{
+  for (auto& component : group_components) {
+    if (component.second->get_name() == name_) {
       return true;
     }
   }
@@ -126,7 +137,8 @@ void AgentGroup::accept_blessing(int blessing_strength, std::shared_ptr<AgentInd
 
 void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
 {
-  assert(!get_component(agent->get_name()));
+  // TODO: need this?
+  //assert(!get_component(agent->get_name()));
   group_components[agent->get_name()] = agent;
 }
 
@@ -158,13 +170,15 @@ void AgentGroup::remove_component_if_present(const string& name_) {
   }
 }
 
-// is the given name a top level component? (i.e. not inside another group?)
-bool AgentGroup::is_top_level_component(const std::string& name_)
-{
+// emptys the group, default is an error
+void AgentGroup::disband() {
+  disband_from_group();
+}
+
+// adds all individuals back to model's base
+void AgentGroup::disband_from_group() {
   for (auto& component : group_components) {
-    if (component.second->get_name() == name_) {
-      return true;
-    }
+    component.second->disband_from_group();
   }
-  return false;
+  group_components.clear();
 }
