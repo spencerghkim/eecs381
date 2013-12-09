@@ -74,6 +74,8 @@ Model& Model::get()
 
 // is name already in use for either agent or structure?
 // either the identical name, or identical in first two characters counts as in-use
+
+// TODO: check group names here too
 bool Model::is_name_in_use(const string& name) const
 {
   string prefix = name.substr(0,UNIQUE_STRING_PREFIX_SIZE);

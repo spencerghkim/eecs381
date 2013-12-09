@@ -70,6 +70,7 @@ public:
   virtual void remove_component(const std::string& name_)
     { throw Error("This agent component cannot remove components!"); }
   
+  // TODO: fix this shit
   // remove component, but dont throw
   virtual void remove_component_if_present(const std::string& name_) {};
 };
