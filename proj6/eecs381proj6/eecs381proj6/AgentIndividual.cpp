@@ -6,8 +6,9 @@
 
 #include <cassert>
 #include <iostream>
+#include <vector>
 
-using std::string;
+using std::string; using std::vector;
 using std::cout; using std::endl;
 using std::shared_ptr;
 
@@ -23,9 +24,20 @@ AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
 // Explicit default destructor.
 AgentIndividual::~AgentIndividual() {}
 
-std::shared_ptr<AgentIndividual> AgentIndividual::get_nearest(Point origin)
+// get shared_from_this
+shared_ptr<AgentIndividual> AgentIndividual::get_nearest(std::shared_ptr<const Sim_object> origin)
 {
   return shared_from_this();
+}
+
+// return a vector of only this object
+vector<shared_ptr<AgentIndividual>> AgentIndividual::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
+{
+  auto dist = cartesian_distance(origin->get_location(), get_location());
+  if (dist <= range) {
+    return {shared_from_this()};
+  }
+  return {};
 }
 
 // is this individual in range of annother point

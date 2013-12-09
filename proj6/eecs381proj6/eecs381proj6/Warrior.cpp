@@ -38,7 +38,7 @@ void Warrior::update()
     return;
   }
   
-  auto closest_indv = target_ptr->get_closest(get_location());
+  auto closest_indv = target_ptr->get_nearest(shared_from_this());
   
   // Check if the target is still in range.
   if (cartesian_distance(get_location(), closest_indv->get_location()) > attack_range) {
@@ -71,7 +71,7 @@ void Warrior::start_attacking(shared_ptr<AgentComponent> target_ptr)
     throw Error( get_name() + ": I cannot attack myself!" );
   }
   
-  auto closest_indv = target_ptr->get_closest(get_location());
+  auto closest_indv = target_ptr->get_nearest(shared_from_this());
   
   // cant have empty group, must be alive
   assert(closest_indv && closest_indv->is_alive());
@@ -110,10 +110,10 @@ void Warrior::describe() const
 {
   AgentIndividual::describe();
   
-  shared_ptr<AgentComponent> target_ptr = target.lock();
   if (is_attacking()) {
+    shared_ptr<AgentComponent> target_ptr = target.lock();
     if (target_ptr) {
-      auto closest = target_ptr->get_closest(get_location());
+      auto closest = target_ptr->get_nearest(shared_from_this());
       //TODO: fix this too!
       cout << "   Attacking " << closest->get_name() << endl;
     } else {
@@ -131,7 +131,7 @@ void Warrior::broadcast_current_state()
     auto target_ptr = target.lock();
     assert(target_ptr);
     
-    auto closest = target_ptr->get_closest(get_location());
+    auto closest = target_ptr->get_nearest(shared_from_this());
     if(closest) { //TODO: is this always right?
       Model::get().notify_attack(get_name(), closest->get_name());
     }

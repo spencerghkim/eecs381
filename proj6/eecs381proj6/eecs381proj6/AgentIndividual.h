@@ -33,11 +33,11 @@ public:
   const std::string &get_name() const override
     { return Sim_object::get_name(); }
   
-  // get a shared pointer to this.
-  std::shared_ptr<AgentIndividual> get_nearest(Point origin) override;
+  // get shared_from_this
+  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
 
-  // get a vector containing only this agent
-  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(Point origin) override;
+  // return a vector of only this object
+  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
 
   // is this individual in range of annother point
   virtual bool in_range(Point point, double range) override;
