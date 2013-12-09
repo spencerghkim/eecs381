@@ -19,6 +19,11 @@
 class AgentGroup : public AgentComponent {
 public:
   
+  AgentGroup(const std::string &name_);
+  
+  const std::string &get_name() const override
+    { return name; };
+  
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
@@ -48,6 +53,7 @@ private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
   
   Group_t group_members;
+  std::string name;
 };
 
 #endif

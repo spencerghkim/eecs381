@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B3A37F161854F983002DAA14 /* eecs381proj6.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3A37F151854F983002DAA14 /* eecs381proj6.1 */; };
 		B3A37F571854FA0A002DAA14 /* Agent_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */; };
-		B3A37F581854FA0A002DAA14 /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F1E1854FA0A002DAA14 /* Agent.cpp */; };
+		B3A37F581854FA0A002DAA14 /* AgentComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F1E1854FA0A002DAA14 /* AgentComponent.cpp */; };
 		B3A37F591854FA0A002DAA14 /* AmountsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F201854FA0A002DAA14 /* AmountsView.cpp */; };
 		B3A37F5A1854FA0A002DAA14 /* Archer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F221854FA0A002DAA14 /* Archer.cpp */; };
 		B3A37F5B1854FA0A002DAA14 /* AttackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F241854FA0A002DAA14 /* AttackView.cpp */; };
@@ -35,6 +35,8 @@
 		B3A37F6F1854FA0A002DAA14 /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F511854FA0A002DAA14 /* Utility.cpp */; };
 		B3A37F701854FA0A002DAA14 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F531854FA0A002DAA14 /* View.cpp */; };
 		B3A37F711854FA0A002DAA14 /* Warrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3A37F551854FA0A002DAA14 /* Warrior.cpp */; };
+		F5BFE1A5185536A90077BE52 /* AgentIndividual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5BFE1A3185536A90077BE52 /* AgentIndividual.cpp */; };
+		F5BFE1A818554A170077BE52 /* AgentGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5BFE1A618554A170077BE52 /* AgentGroup.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,8 +57,8 @@
 		B3A37F151854F983002DAA14 /* eecs381proj6.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = eecs381proj6.1; sourceTree = "<group>"; };
 		B3A37F1C1854FA0A002DAA14 /* Agent_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent_factory.cpp; sourceTree = "<group>"; };
 		B3A37F1D1854FA0A002DAA14 /* Agent_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent_factory.h; sourceTree = "<group>"; };
-		B3A37F1E1854FA0A002DAA14 /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
-		B3A37F1F1854FA0A002DAA14 /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		B3A37F1E1854FA0A002DAA14 /* AgentComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentComponent.cpp; sourceTree = "<group>"; };
+		B3A37F1F1854FA0A002DAA14 /* AgentComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentComponent.h; sourceTree = "<group>"; };
 		B3A37F201854FA0A002DAA14 /* AmountsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AmountsView.cpp; sourceTree = "<group>"; };
 		B3A37F211854FA0A002DAA14 /* AmountsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmountsView.h; sourceTree = "<group>"; };
 		B3A37F221854FA0A002DAA14 /* Archer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Archer.cpp; sourceTree = "<group>"; };
@@ -112,6 +114,10 @@
 		B3A37F541854FA0A002DAA14 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
 		B3A37F551854FA0A002DAA14 /* Warrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warrior.cpp; sourceTree = "<group>"; };
 		B3A37F561854FA0A002DAA14 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warrior.h; sourceTree = "<group>"; };
+		F5BFE1A3185536A90077BE52 /* AgentIndividual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentIndividual.cpp; sourceTree = "<group>"; };
+		F5BFE1A4185536A90077BE52 /* AgentIndividual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentIndividual.h; sourceTree = "<group>"; };
+		F5BFE1A618554A170077BE52 /* AgentGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AgentGroup.cpp; sourceTree = "<group>"; };
+		F5BFE1A718554A170077BE52 /* AgentGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgentGroup.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,18 +253,14 @@
 		B3A37F791854FBF9002DAA14 /* Agent */ = {
 			isa = PBXGroup;
 			children = (
-				B3A37F1E1854FA0A002DAA14 /* Agent.cpp */,
-				B3A37F1F1854FA0A002DAA14 /* Agent.h */,
-				B3A37F451854FA0A002DAA14 /* Peasant.cpp */,
-				B3A37F461854FA0A002DAA14 /* Peasant.h */,
-				B3A37F551854FA0A002DAA14 /* Warrior.cpp */,
-				B3A37F561854FA0A002DAA14 /* Warrior.h */,
-				B3A37F221854FA0A002DAA14 /* Archer.cpp */,
-				B3A37F231854FA0A002DAA14 /* Archer.h */,
-				B3A37F491854FA0A002DAA14 /* Soldier.cpp */,
-				B3A37F4A1854FA0A002DAA14 /* Soldier.h */,
-				B3A37F3A1854FA0A002DAA14 /* Magician.cpp */,
-				B3A37F3B1854FA0A002DAA14 /* Magician.h */,
+				B3A37F1E1854FA0A002DAA14 /* AgentComponent.cpp */,
+				B3A37F1F1854FA0A002DAA14 /* AgentComponent.h */,
+				F5BFE1A618554A170077BE52 /* AgentGroup.cpp */,
+				F5BFE1A718554A170077BE52 /* AgentGroup.h */,
+				F5BFE1A3185536A90077BE52 /* AgentIndividual.cpp */,
+				F5BFE1A4185536A90077BE52 /* AgentIndividual.h */,
+				F5BFE1A1185533490077BE52 /* Peasant */,
+				F5BFE1A21855335A0077BE52 /* Warriors */,
 			);
 			name = Agent;
 			sourceTree = "<group>";
@@ -312,6 +314,30 @@
 			children = (
 			);
 			name = Group;
+			sourceTree = "<group>";
+		};
+		F5BFE1A1185533490077BE52 /* Peasant */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F451854FA0A002DAA14 /* Peasant.cpp */,
+				B3A37F461854FA0A002DAA14 /* Peasant.h */,
+			);
+			name = Peasant;
+			sourceTree = "<group>";
+		};
+		F5BFE1A21855335A0077BE52 /* Warriors */ = {
+			isa = PBXGroup;
+			children = (
+				B3A37F551854FA0A002DAA14 /* Warrior.cpp */,
+				B3A37F561854FA0A002DAA14 /* Warrior.h */,
+				B3A37F221854FA0A002DAA14 /* Archer.cpp */,
+				B3A37F231854FA0A002DAA14 /* Archer.h */,
+				B3A37F491854FA0A002DAA14 /* Soldier.cpp */,
+				B3A37F4A1854FA0A002DAA14 /* Soldier.h */,
+				B3A37F3A1854FA0A002DAA14 /* Magician.cpp */,
+				B3A37F3B1854FA0A002DAA14 /* Magician.h */,
+			);
+			name = Warriors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,7 +395,7 @@
 				B3A37F641854FA0A002DAA14 /* Makefile in Sources */,
 				B3A37F601854FA0A002DAA14 /* HealthView.cpp in Sources */,
 				B3A37F5A1854FA0A002DAA14 /* Archer.cpp in Sources */,
-				B3A37F581854FA0A002DAA14 /* Agent.cpp in Sources */,
+				B3A37F581854FA0A002DAA14 /* AgentComponent.cpp in Sources */,
 				B3A37F5B1854FA0A002DAA14 /* AttackView.cpp in Sources */,
 				B3A37F651854FA0A002DAA14 /* MapView.cpp in Sources */,
 				B3A37F671854FA0A002DAA14 /* Moving_object.cpp in Sources */,
@@ -377,6 +403,7 @@
 				B3A37F6F1854FA0A002DAA14 /* Utility.cpp in Sources */,
 				B3A37F621854FA0A002DAA14 /* LocalMapView.cpp in Sources */,
 				B3A37F611854FA0A002DAA14 /* ListView.cpp in Sources */,
+				F5BFE1A5185536A90077BE52 /* AgentIndividual.cpp in Sources */,
 				B3A37F571854FA0A002DAA14 /* Agent_factory.cpp in Sources */,
 				B3A37F661854FA0A002DAA14 /* Model.cpp in Sources */,
 				B3A37F711854FA0A002DAA14 /* Warrior.cpp in Sources */,
@@ -389,6 +416,7 @@
 				B3A37F681854FA0A002DAA14 /* p6_main.cpp in Sources */,
 				B3A37F5F1854FA0A002DAA14 /* Geometry.cpp in Sources */,
 				B3A37F691854FA0A002DAA14 /* Peasant.cpp in Sources */,
+				F5BFE1A818554A170077BE52 /* AgentGroup.cpp in Sources */,
 				B3A37F6B1854FA0A002DAA14 /* Soldier.cpp in Sources */,
 				B3A37F631854FA0A002DAA14 /* Magician.cpp in Sources */,
 				B3A37F5D1854FA0A002DAA14 /* Farm.cpp in Sources */,

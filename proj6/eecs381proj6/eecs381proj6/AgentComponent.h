@@ -11,22 +11,20 @@
 
 #include "Geometry.h"
 
-#include "Sim_object.h"
-
 #include <string>
 #include <memory>
 
 class AgentIndividual;
 class Structure;
 
-class AgentComponent : public Sim_object {
+class AgentComponent {
 public:
-  
-  AgentComponent(const std::string& in_name);
-	
+
   // class is abstract, make destructor pure virtual
   virtual ~AgentComponent() = 0;
   
+  virtual const std::string &get_name() const = 0;
+
   virtual std::shared_ptr<AgentIndividual> get_closest(Point origin) = 0; //TODO: protected _h?
   virtual void get_closest_h(Point origin, std::shared_ptr<AgentIndividual> &best) = 0;
   

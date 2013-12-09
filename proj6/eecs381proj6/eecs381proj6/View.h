@@ -15,7 +15,6 @@
 
 class View { //Interface for any type of View
 public:
-  //TODO: check that we need this.
   virtual ~View() = 0;
   
 	// Notify for location, health, or amount update

@@ -15,6 +15,8 @@ using std::cout; using std::endl;
 using std::function;
 using std::shared_ptr;
 
+AgentGroup::AgentGroup(const std::string &name_) :
+  name{name_} {}
 
 // iterate over the contained components and handle errors
 void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {

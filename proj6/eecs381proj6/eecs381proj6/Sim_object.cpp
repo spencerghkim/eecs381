@@ -7,7 +7,8 @@
 
 using std::string;
 
-Sim_object::Sim_object(const string& name_) : name{name_} {}
+Sim_object::Sim_object(const string& name_) :
+  name{name_} {}
 
 // Explicit default destructor.
 Sim_object::~Sim_object() {}

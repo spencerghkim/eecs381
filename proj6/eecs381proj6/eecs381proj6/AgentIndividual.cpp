@@ -15,7 +15,7 @@ const double DEFAULT_SPEED = 5.0;
 const int INITIAL_HEALTH = 5;
 
 AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
-  AgentComponent{in_name},
+  Sim_object{in_name},
   Moving_object{in_location, DEFAULT_SPEED},
   health{INITIAL_HEALTH},
   alive{true} {}

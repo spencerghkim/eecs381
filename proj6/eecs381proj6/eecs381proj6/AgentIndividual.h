@@ -11,6 +11,7 @@
 
 #include "AgentComponent.h"
 #include "Moving_object.h"
+#include "Sim_object.h"
 
 #include <memory>
 
@@ -18,15 +19,19 @@ class Structure;
 struct Point;
 
 class AgentIndividual :
-  public AgentComponent, public Moving_object,
+  public AgentComponent, public Sim_object, public Moving_object,
   public std::enable_shared_from_this<AgentIndividual> {
     
 public:
-	// create with initial health is 5, speed is 5, state is Alive
+	
+  // create with initial health is 5, speed is 5, state is Alive
 	AgentIndividual(const std::string& in_name, Point in_location);
 	
   // class is abstract, make destructor pure virtual
   virtual ~AgentIndividual() = 0;
+    
+  const std::string &get_name() const override
+    { return Sim_object::get_name(); }
   
   std::shared_ptr<AgentIndividual> get_closest(Point origin) override;
   void get_closest_h(Point origin, std::shared_ptr<AgentIndividual> &best) override;
