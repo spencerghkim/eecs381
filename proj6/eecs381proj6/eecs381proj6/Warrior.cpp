@@ -41,7 +41,7 @@ void Warrior::update()
   auto closest_indv = target_ptr->get_nearest(shared_from_this());
   
   // Check if the target is still in range.
-  if (cartesian_distance(get_location(), closest_indv->get_location()) > attack_range) {
+  if (!closest_indv || cartesian_distance(get_location(), closest_indv->get_location()) > attack_range) {
     cout << get_name() << ": Target is now out of range" << endl;
     clear_attack();
     return;
@@ -55,8 +55,8 @@ void Warrior::update()
   if (!closest_indv->is_alive()) {
     cout << get_name() << ": I triumph!" << endl;
     auto old_target = target_ptr;
-    clear_attack();
-    start_attacking(old_target);
+    Model::get().notify_end_attack(get_name());
+    //TODO: test this, should we pick a new target here first - we cant throw!
   }
 }
 

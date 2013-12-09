@@ -29,15 +29,12 @@ void Archer::update()
     auto closest_agent = Model::get().closest_agent(shared_from_this());
     
     // Validate closest_agent, then make sure closest_agent is within range.
-    /*if (!closest_agent ||
+    if (!closest_agent ||
         cartesian_distance(closest_agent->get_location(), get_location()) > ARCHER_ATTACK_RANGE) {
       return;
-     }*/
-    
-    //TODO: fix this use new way
-    if (closest_agent) { //TODO: added, may not be needed later
-      start_attacking(closest_agent);
     }
+    
+    start_attacking(closest_agent); // perhaps we need a no-throw version of attack
   }
 }
 

@@ -169,7 +169,7 @@ void Model::remove_agent(shared_ptr<AgentComponent> agent)
   all_agents->remove_component(agent->get_name());
 }
 
-// will throw Error("AgentComponent not found!") if no agent component of that name
+// will throw Error("Agent/Component not found!") if no agent component of that name
 shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 {
   if (!is_agent_present(name)) {
@@ -179,8 +179,8 @@ shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 }
 
 // returns the closest agent to the provided object (but not the same agent)
-shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) const
-{
+shared_ptr<AgentIndividual> Model::closest_agent(shared_ptr<Sim_object> object) const
+{ //TODO: move this back to a component if possible!
  return all_agents->get_nearest(object);
   //NOTE!: need to included AgentIndividual cause of this...
 }

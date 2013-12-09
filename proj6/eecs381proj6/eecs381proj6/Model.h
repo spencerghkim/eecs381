@@ -75,7 +75,7 @@ public:
 	// will throw Error("AgentComponent not found!") if no agent of that name
 	std::shared_ptr<AgentComponent> get_agent_ptr(const std::string& name) const;
 	// returns the closest agent to the provided agent (not the same agent)
-	std::shared_ptr<AgentComponent> closest_agent(std::shared_ptr<Sim_object> object) const;
+	std::shared_ptr<AgentIndividual> closest_agent(std::shared_ptr<Sim_object> object) const;
   // find all agents in the given range around the given object
   std::vector<std::shared_ptr<AgentComponent>> find_agents_in_range(std::shared_ptr<Sim_object> center,
                                                                     double range);
