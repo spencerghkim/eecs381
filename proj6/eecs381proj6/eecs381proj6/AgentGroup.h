@@ -24,15 +24,18 @@ public:
   AgentGroup(const std::string &name_);
   
   const std::string &get_name() const override
-    { return name; }
+    { return group_name; }
   const std::string get_printed_name() const override
-    { return "Group " + name; }
+    { return "Group " + group_name; }
   
   // does any one in the group have this full name?
   bool has_name(const std::string& name_) override;
   
   // does any one in the group have this prefix?
   bool has_prefix(const std::string& prefix) override;
+  
+  // is the provided component a top-level component?
+  bool is_top_level_component(const std::string& name_);
   
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
@@ -74,17 +77,17 @@ public:
   // remove component, but dont throw
   void remove_component_if_present(const std::string& name_) override;
   
-  // is the provided component a top-level component?
-  bool is_top_level_component(const std::string& name_);
+  // emptys the group, default is an error
+  void disband() override;
   
-  // is the given prefix in use?
-  bool is_name_prefix_in_use(const std::string& name_prefix);
+  // adds all individuals back to model's base
+  void disband_from_group() override;
   
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
   
   Group_t group_components;
-  std::string name;
+  std::string group_name;
 };
 
 #endif

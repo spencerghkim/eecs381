@@ -90,7 +90,10 @@ public:
   
 	// Throws exception that an AgentIndividual cannot attack.
 	void start_attacking(std::shared_ptr<AgentComponent>) override;
-  
+
+  // adds individual back to model's base group
+  void disband_from_group() override;
+
 protected:
 	// calculate loss of health due to hit.
 	// if health decreases to zero or negative, AgentIndividual state becomes Dying, and any movement is stopped.

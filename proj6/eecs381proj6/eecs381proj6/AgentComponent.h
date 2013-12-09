@@ -77,9 +77,17 @@ public:
   virtual void remove_component(const std::string& name_)
     { throw Error("This agent component cannot remove components!"); }
   
-  // TODO: fix this shit
+  // TODO: fix this shit, protect it...
   // remove component, but dont throw
   virtual void remove_component_if_present(const std::string& name_) {};
+  
+  // emptys the group, default is an error
+  virtual void disband()
+    { throw Error("This agent component cannot be disbanded"); };
+  
+  // TODO: fix this shit, protect it...
+  // adds all individuals back to model's base group
+  virtual void disband_from_group() = 0;
 };
 
 #endif
