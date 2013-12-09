@@ -28,10 +28,10 @@ public:
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
   // get the nearest agent in the group
-  std::shared_ptr<AgentIndividual> get_nearest(Point origin) override;
+  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
   
   // get the nearest agents in range
-  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(Point origin) override;
+  std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
   
   // is anyone in this group in range?
   bool in_range(Point point, double range) override;

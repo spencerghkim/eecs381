@@ -11,9 +11,10 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 using namespace std::placeholders; using std::bind;
-using std::map; using std::string;
+using std::vector; using std::map; using std::string;
 using std::cout; using std::endl;
 using std::function;
 using std::shared_ptr;
@@ -33,17 +34,32 @@ void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
   }
 }
 
-shared_ptr<AgentIndividual> AgentGroup::get_nearest(Point origin) {
+// get the nearest agent in the group or the single agent
+shared_ptr<AgentIndividual> AgentGroup::get_nearest(shared_ptr<const Sim_object> origin) {
   shared_ptr<AgentIndividual> best;
   for (auto& component : group_members) {
     auto cur = component.second->get_nearest(origin);
-    auto cur_dist = cartesian_distance(origin, cur->get_location());
-    auto best_dist = cartesian_distance(origin, best->get_location());
-    if (cur_dist < best_dist) {
+    auto cur_dist = cartesian_distance(origin->get_location(), cur->get_location());
+    auto best_dist = cartesian_distance(origin->get_location(), best->get_location());
+    
+    // set the closest agent when in range, and not the calling agent
+    if (cur_dist < best_dist && origin->get_name() != best->get_name()) {
       best = cur;
     }
   }
   return best;
+}
+
+
+// get the nearest agents in range
+vector<shared_ptr<AgentIndividual>> AgentGroup::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
+{
+  vector<shared_ptr<AgentIndividual>> agents;
+  for (auto& component : group_members) {
+    auto arr = component.second->get_nearest_in_range(origin, range);
+    agents.insert(agents.end(), arr.begin(), arr.end());
+  }
+  return agents;
 }
 
 // is anyone in this group in range?

@@ -16,6 +16,7 @@
 #include <vector>
 
 class AgentIndividual;
+class Sim_object;
 class Structure;
 
 class AgentComponent {
@@ -28,11 +29,10 @@ public:
   virtual const std::string &get_name() const = 0;
 
   // get the nearest agent in the group or the single agent
-  virtual std::shared_ptr<AgentIndividual> get_nearest(Point origin);
+  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
   
   // get the nearest agents in range
-  virtual std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(Point origin);
-  
+  virtual std::vector<std::shared_ptr<AgentIndividual>> get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range);
   
   // is this component in range?
   virtual bool in_range(Point point, double range) = 0;
