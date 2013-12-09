@@ -34,11 +34,11 @@ public:
     { return Sim_object::get_name(); }
   
   // get shared_from_this
-  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
+  std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin) override;
 
   // return a vector of only this object
-  std::vector<std::shared_ptr<AgentComponent>>
-    get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
+  std::shared_ptr<AgentComponent> get_all_in_range(std::shared_ptr<const Sim_object> origin,
+                                                   double range) override;
 
   // is this individual in range of annother point
   virtual bool in_range(Point point, double range) override;
@@ -63,12 +63,12 @@ public:
 	// A derived class can override this function.
 	// The function lose_health is called to handle the effect of the attack.
 	virtual void take_hit(int attack_strength, std::shared_ptr<AgentIndividual> attacker_ptr);
-  
-  // Tell this AgentIndividual to accept a blessing from an agent specified by blesser_ptr.
-  // A derived class may override this function, default behavior is empty.
-  // The function gain_health may be called to handle the effect of the blessing.
-  virtual void accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr) {}
-	
+
+  // Tell this AgentIndividual to accept a blessing.
+  // Subclasses may override, default implmentation is to do nothing.
+  // Subclasses may use the gain_health method to handle the effects of a blessing.
+  void accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr) override {}
+
 	// update the moving state and AgentIndividual state of this object.
 	void update() override;
 	

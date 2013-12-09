@@ -27,12 +27,12 @@ public:
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);
   
-  // get the nearest agent in the group
-  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin);
+  // get the nearest agent individual
+  std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin) override;
   
-  // get the nearest agents in range
-  std::vector<std::shared_ptr<AgentComponent>>
-    get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) override;
+  // get the nearest agent component within a range
+  std::shared_ptr<AgentComponent> get_all_in_range(std::shared_ptr<const Sim_object> origin,
+                                                   double range) override;
   
   // is anyone in this group in range?
   bool in_range(Point point, double range) override;
@@ -51,6 +51,9 @@ public:
 	// Throws exception that an AgentComponent cannot attack.
 	void start_attacking(std::shared_ptr<AgentComponent>) override;
 
+  // Accept a blessing. Calls accept_blessing for all group members.
+  void accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr) override;
+
   // add component
   void add_component(std::shared_ptr<AgentComponent>) override;
   
@@ -63,7 +66,7 @@ public:
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
   
-  Group_t group_members;
+  Group_t group_components;
   std::string name;
 };
 

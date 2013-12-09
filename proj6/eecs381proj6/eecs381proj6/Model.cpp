@@ -185,9 +185,9 @@ shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) c
   //NOTE!: need to included AgentIndividual cause of this...
 }
 
-vector<shared_ptr<AgentComponent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
+shared_ptr<AgentComponent> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
 {
-  return all_agents->get_nearest_in_range(center, range);
+  return all_agents->get_all_in_range(center, range);
 }
 
 // tell all objects to describe themselves to the console

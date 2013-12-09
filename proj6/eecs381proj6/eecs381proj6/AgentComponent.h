@@ -9,6 +9,7 @@
  
 */
 
+#include "Utility.h"
 #include "Geometry.h"
 
 #include <string>
@@ -32,8 +33,8 @@ public:
   virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin) = 0;
   
   // get the nearest agents in range
-  virtual std::vector<std::shared_ptr<AgentComponent>>
-    get_nearest_in_range(std::shared_ptr<const Sim_object> origin, double range) = 0;
+  virtual std::shared_ptr<AgentComponent> get_all_in_range(std::shared_ptr<const Sim_object> origin,
+                                                           double range) = 0;
   
   // is this component in range?
   virtual bool in_range(Point point, double range) = 0;
@@ -46,21 +47,27 @@ public:
   
 	/* Fat Interface for derived classes */
   
-	// Throws exception that an AgentComponent cannot work.
+	// tell the component to start working
 	virtual void start_working(std::shared_ptr<Structure>, std::shared_ptr<Structure>) = 0;
   
 	// tell the component to start attacking
 	virtual void start_attacking(std::shared_ptr<AgentComponent>) = 0;
   
-  // add component, does nothing for individuals
-  virtual void add_component(std::shared_ptr<AgentComponent>) {}
+  // Tell this AgentComponent to accept a blessing from an agent specified by blesser_ptr.
+  // A derived class must override this function.
+  virtual void accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr) = 0;
   
-  // remove component, does nothing for individuals
-  virtual void remove_component(const std::string& name_) {}
+  // add component, throws "Cannot add" Error as default
+  virtual void add_component(std::shared_ptr<AgentComponent>)
+    { throw Error("Agent Component cannot add component."); }
   
-  // return the component of the specified name, empty if component does not exist
+  // remove component, throws "Cannot remove" Error as default
+  virtual void remove_component(const std::string& name_)
+    { throw Error("Agent Component cannot remove component."); }
+  
+  // return the component of the specified name, returns nullptr as default
   virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_)
-    {return {nullptr};}
+    { return {nullptr}; }
   
 };
 

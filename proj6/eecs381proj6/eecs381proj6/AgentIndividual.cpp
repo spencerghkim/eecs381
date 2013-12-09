@@ -31,7 +31,8 @@ shared_ptr<AgentIndividual> AgentIndividual::get_nearest(std::shared_ptr<const S
 }
 
 // return a vector of only this object
-vector<shared_ptr<AgentComponent>> AgentIndividual::get_nearest_in_range(shared_ptr<const Sim_object> origin, double range)
+shared_ptr<AgentComponent> AgentIndividual::get_all_in_range(shared_ptr<const Sim_object> origin,
+                                                             double range)
 {
   auto dist = cartesian_distance(origin->get_location(), get_location());
   if (dist <= range) {

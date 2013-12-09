@@ -37,10 +37,7 @@ void Magician::update()
   // If we aren't attacking, bless the peaceful people.
   if (!is_attacking()) {
     auto agents_in_range = Model::get().find_agents_in_range(shared_from_this(), blessing_range);
-    //TODO: fix this shitshow
-    /*for_each(agents_in_range.begin(),
-             agents_in_range.end(),
-             bind(&AgentIndividual::accept_blessing, _1, blessing_strength, shared_from_this()));*/
+    agents_in_range->accept_blessing(blessing_strength, shared_from_this());
   }
 }
 
