@@ -47,10 +47,8 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
          cartesian_distance(s2->get_location(), origin->get_location());
 }
 
-Model::Model() : time{0}, all_agents{unique_ptr<AgentComponent>()}
+Model::Model() : time{0}, all_agents{new AgentGroup("all_agents")}
 {
-  all_agents = unique_ptr<AgentGroup>(new AgentGroup(""));
-  
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
   insert_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
@@ -71,15 +69,17 @@ Model& Model::get()
   return m;
 }
 
-// is name already in use for either agent or structure?
+// is name already in use for either an AgentComponent or a Structure?
 // either the identical name, or identical in first two characters counts as in-use
 
-// TODO: check group names here too
 bool Model::is_name_in_use(const string& name) const
 {
-  string prefix = name.substr(0,UNIQUE_STRING_PREFIX_SIZE);
+  string prefix = name.substr(0, UNIQUE_STRING_PREFIX_SIZE);
   auto itr = objects.lower_bound(prefix);
-  return itr != objects.end() && itr->first.find(prefix) == 0;
+  bool is_object_name = (itr != objects.end() && itr->first.find(prefix) == 0);
+  bool is_agent_comp_name = all_agents->has_prefix(prefix);
+  
+  return is_object_name || is_agent_comp_name;
 }
 
 // check if the full name given matches an existing object
@@ -137,43 +137,56 @@ shared_ptr<Structure> Model::closest_structure(shared_ptr<Sim_object> object) co
 }
 
 // is there an agent with this name?
-bool Model::is_agent_present(const string& name) const
+bool Model::is_agent_component_present(const string& name) const
 {
   return all_agents->get_component(name) != nullptr; //TODO: that work?
 }
 
-void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
+bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> component) const
 {
-  all_agents->add_component(new_agent);
-  objects[new_agent->get_name()] = new_agent; // TODO: error check for double add?
+  return !all_agents->is_top_level_component(component->get_name());
 }
 
-// add a new agent; assumes none with the same name
+// add a new agent component, does nothing with sim_objects
+void Model::add_agent_component(shared_ptr<AgentComponent> component)
+{
+  all_agents->add_component(component);
+}
+
+// removes an existing agent component, does nothing with sim_objects
+void Model::remove_agent_component(const string& name)
+{
+  // TODO: the most efficient? seems like two finds
+  if (!is_agent_component_present(name)) {
+    throw Error("No Agent or Group of that name!");
+  }
+  all_agents->remove_component(name);
+}
+
+void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
+{
+  add_agent_component(new_agent);
+  objects[new_agent->get_name()] = new_agent;
+}
+
+// add agent individual
 void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
-  insert_new_agent(new_agent);
+  insert_new_agent(new_agent); // TODO: error check for double add?
   new_agent->broadcast_current_state();
 }
 
-//TODO: name check here and above?
-
-// add a new group agent; assumes none with the same name
-void Model::create_new_group(const string &new_group)
+// remove an individual agent
+void Model::remove_agent(const string& name)
 {
-  all_agents->add_component(make_shared<AgentGroup>(new_group));
-}
-
-// remove an agent
-void Model::remove_agent(shared_ptr<AgentComponent> agent)
-{
-  objects.erase(agent->get_name());
-  all_agents->remove_component(agent->get_name());
+  remove_agent_component(name);
+  objects.erase(name);
 }
 
 // will throw Error("Agent/Component not found!") if no agent component of that name
-shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
+shared_ptr<AgentComponent> Model::get_agent_comp_ptr(const string& name) const
 {
-  if (!is_agent_present(name)) {
+  if (!is_agent_component_present(name)) {
     throw Error("Agent not found!"); //TODO?
   }
   return all_agents->get_component(name);

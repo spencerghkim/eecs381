@@ -22,6 +22,28 @@ using std::shared_ptr; using std::make_shared;
 AgentGroup::AgentGroup(const std::string &name_) :
   name{name_} {}
 
+// does any one in the group have this full name?
+bool AgentGroup::has_name(const std::string& name_)
+{
+  for (auto& component : group_components) {
+    if (component.second->has_name(name_)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// does any one in the group have this prefix?
+bool AgentGroup::has_prefix(const std::string& prefix)
+{
+  for (auto& component: group_components) {
+    if (component.second->has_prefix(prefix)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // iterate over the contained components and handle errors
 void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
   for (auto& component : group_components) {
@@ -136,4 +158,13 @@ void AgentGroup::remove_component_if_present(const string& name_) {
   }
 }
 
-
+// is the given name a top level component? (i.e. not inside another group?)
+bool AgentGroup::is_top_level_component(const std::string& name_)
+{
+  for (auto& component : group_components) {
+    if (component.second->get_name() == name_) {
+      return true;
+    }
+  }
+  return false;
+}

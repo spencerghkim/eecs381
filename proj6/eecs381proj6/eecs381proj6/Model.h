@@ -64,16 +64,21 @@ public:
 	std::shared_ptr<Structure> closest_structure(std::shared_ptr<Sim_object> object) const;
   
 	// is there an agent with this name?
-	bool is_agent_present(const std::string& name) const;
-	// add a new individual agent; assumes none with the same name
-	void add_new_agent(std::shared_ptr<AgentIndividual> new_agent);
-  // add a new group agent; assumes none with the same name
-  void create_new_group(const std::string &new_group);
-  // remove an agent
-  void remove_agent(std::shared_ptr<AgentComponent>);
+	bool is_agent_component_present(const std::string& name) const;
+  // is this component in a group?
+  bool is_agent_component_in_group(std::shared_ptr<AgentComponent>) const;
+	// add a new agent component; throws if name is already in use
+	void add_agent_component(std::shared_ptr<AgentComponent>);
+  // removes the specified agent component, throws if doesn't exist
+  void remove_agent_component(const std::string& name);
+
+  // add a new individual agent, throws if name is in use
+  void add_new_agent(std::shared_ptr<AgentIndividual>);
+  // removes an agent from Views, Sim_objects, and AgentComponents; throws if doesn't exist
+  void remove_agent(const std::string& name);
   
 	// will throw Error("AgentComponent not found!") if no agent of that name
-	std::shared_ptr<AgentComponent> get_agent_ptr(const std::string& name) const;
+	std::shared_ptr<AgentComponent> get_agent_comp_ptr(const std::string& name) const;
 	// returns the closest agent to the provided agent (not the same agent)
 	std::shared_ptr<AgentComponent> closest_agent_in_range(std::shared_ptr<Sim_object> object,
                                                           double range) const;
@@ -120,7 +125,7 @@ private:
   int time;
   Objects_t objects;
   Structures_t structures;
-  std::unique_ptr<AgentComponent> all_agents;
+  std::unique_ptr<AgentGroup> all_agents;
   
   std::set<std::shared_ptr<View>> views;
   
