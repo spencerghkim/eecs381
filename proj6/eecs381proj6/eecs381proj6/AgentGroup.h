@@ -64,7 +64,7 @@ public:
   void remove_component(const std::string& name_) override;
  
   // remove component, but dont throw
-  virtual void remove_component_if_present(const std::string& name_);
+  void remove_component_if_present(const std::string& name_) override;
   
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;

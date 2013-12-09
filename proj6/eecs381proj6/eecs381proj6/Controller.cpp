@@ -61,10 +61,10 @@ Controller::Controller()
   agent_cmds["stop"]        = &Controller::agent_stop;
   
   // add new group commands
-  program_cmds["create"]    = &Controller::group_create;
+  program_cmds["group"]    = &Controller::group_create;
   agent_cmds["add"]         = &Controller::group_add;
   agent_cmds["remove"]      = &Controller::group_remove;
-  agent_cmds["empty"]       = &Controller::group_empty;
+  agent_cmds["disband"]       = &Controller::group_disband;
 
 }
 
@@ -294,7 +294,7 @@ void Controller::group_remove(std::shared_ptr<AgentComponent> group)
   group->remove_component(agent_name);
 }
 
-void Controller::group_empty(std::shared_ptr<AgentComponent> group)
+void Controller::group_disband(std::shared_ptr<AgentComponent> group)
 {
   //TODO:
 }

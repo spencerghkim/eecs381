@@ -30,7 +30,7 @@ public:
   virtual const std::string &get_name() const = 0;
   
   virtual const std::string get_printed_name() const
-  {return get_name();};
+      { return get_name(); }
 
   // get the nearest agent in the group, or none if no one is in range
   virtual std::shared_ptr<AgentIndividual> get_nearest_in_range(std::shared_ptr<const Sim_object> origin,
@@ -60,7 +60,7 @@ public:
   
   // add component, throws "Cannot add" Error as default
   virtual void add_component(std::shared_ptr<AgentComponent>)
-    { throw Error("Agent Component cannot add component."); }
+    { throw Error("This agent component cannot add components!"); }
 
   // return the component of the specified name, returns nullptr as default
   virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_)
@@ -68,7 +68,7 @@ public:
 
   // remove component, throws "Cannot remove" Error as default
   virtual void remove_component(const std::string& name_)
-    { throw Error("Agent Component cannot remove component."); }
+    { throw Error("This agent component cannot remove components!"); }
   
   // remove component, but dont throw
   virtual void remove_component_if_present(const std::string& name_) {};
