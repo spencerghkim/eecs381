@@ -29,15 +29,13 @@ public:
   // all individuals and groups must have a name
   virtual const std::string &get_name() const = 0;
 
-  // get the nearest agent in the group (by default the single agent for individuals)
-  virtual std::shared_ptr<AgentIndividual> get_nearest(std::shared_ptr<const Sim_object> origin) = 0;
+  // get the nearest agent in the group, or none if no one is in range
+  virtual std::shared_ptr<AgentIndividual> get_nearest_in_range(std::shared_ptr<const Sim_object> origin,
+                                                                double range) = 0;
   
   // get the nearest agents in range
   virtual std::shared_ptr<AgentComponent> get_all_in_range(std::shared_ptr<const Sim_object> origin,
                                                            double range) = 0;
-  
-  // is this component in range?
-  virtual bool in_range(Point point, double range) = 0;
   
 	// tell this AgentComponent to start moving to location destination_
 	virtual void move_to(Point destination_) = 0;

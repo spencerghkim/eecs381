@@ -26,11 +26,10 @@ void Archer::update()
   
   // If we aren't attacking, look for someone to shoot!
   if (!is_attacking()) {
-    auto closest_agent = Model::get().closest_agent(shared_from_this());
+    auto closest_agent = Model::get().closest_agent_in_range(shared_from_this(), get_attack_range());
     
-    // Validate closest_agent, then make sure closest_agent is within range.
-    if (!closest_agent ||
-        cartesian_distance(closest_agent->get_location(), get_location()) > ARCHER_ATTACK_RANGE) {
+    // Validate closest_agent. If he's not nullptr, then he is in range.
+    if (!closest_agent) {
       return;
     }
     

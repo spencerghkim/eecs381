@@ -178,14 +178,16 @@ shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
   return all_agents->get_component(name);
 }
 
-// returns the closest agent to the provided object (but not the same agent)
-shared_ptr<AgentIndividual> Model::closest_agent(shared_ptr<Sim_object> object) const
-{ //TODO: move this back to a component if possible!
- return all_agents->get_nearest(object);
-  //NOTE!: need to included AgentIndividual cause of this...
+// returns the closest agent to the provided object (excluding 'object' itself)
+shared_ptr<AgentComponent> Model::closest_agent_in_range(shared_ptr<Sim_object> object,
+                                                          double range) const
+{
+  return all_agents->get_nearest_in_range(object, range);
 }
 
-shared_ptr<AgentComponent> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
+// returns all agents within a certain range (excluding 'center' sim_object
+shared_ptr<AgentComponent> Model::find_agents_in_range(shared_ptr<Sim_object> center,
+                                                       double range) const
 {
   return all_agents->get_all_in_range(center, range);
 }
