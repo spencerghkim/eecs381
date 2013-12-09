@@ -48,9 +48,17 @@ public:
 	// Throws exception that an AgentComponent cannot work.
 	virtual void start_working(std::shared_ptr<Structure>, std::shared_ptr<Structure>) = 0;
   
-	// returns true if 
+	// tell the component to start attacking
 	virtual void start_attacking(std::shared_ptr<AgentComponent>) = 0;
-
+  
+  // add component, does nothing for individuals
+  virtual void add_component(std::shared_ptr<AgentComponent>) {}
+  
+  // remove component, does nothing for individuals
+  virtual void remove_component(std::shared_ptr<AgentComponent>) {}
+  
+  // return the component of the specified name, empty if component does not exist
+  virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_);
 };
 
 #endif

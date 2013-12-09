@@ -47,9 +47,6 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
 
 Model::Model() : time{0}
 {
-  // want deterministic 'random' numbers!
-  srand(0);
-  
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
   insert_structure(create_structure("Shire", "Town_Hall", Point(20., 20.)));
@@ -160,7 +157,7 @@ void Model::remove_agent(shared_ptr<AgentComponent> a)
   agents.erase(a->get_name());
 }
 
-// will throw Error("AgentComponent not found!") if no agent of that name
+// will throw Error("AgentComponent not found!") if no agent component of that name
 shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 {
   if (!is_agent_present(name)) {
@@ -169,14 +166,9 @@ shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
   return agents.find(name)->second;
 }
 
-// returns the closest agent to the provided agent (not the same agent)
+// returns the closest agent to the provided object (but not the same agent)
 shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) const
 {
-  // Check if the object arg is the only agent we have.
-  if (agents.size() == 1 && agents.at(object->get_name()) == object) {
-    return shared_ptr<AgentComponent>();
-  }
-  
   auto closest_agent_it =
   min_element(agents.begin(),
               agents.end(),
@@ -184,6 +176,11 @@ shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) c
                    object,
                    bind(&AgentComponents_t::value_type::second, _1),
                    bind(&AgentComponents_t::value_type::second, _2)));
+  
+  
+  for (auto& agent_pair : agents) {
+    
+  }
   
   return closest_agent_it->second;
 }

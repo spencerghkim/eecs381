@@ -5,6 +5,7 @@
 #include "Utility.h"
 
 #include <algorithm>
+#include <cassert>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -77,4 +78,16 @@ void AgentGroup::start_attacking(std::shared_ptr<AgentComponent> target)
 {
   iterate_and_catch(bind(&AgentComponent::start_attacking, _1, target));
 }
+
+void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
+{
+  assert(group_members.find(agent->get_name()) == group_members.end());
+  group_members[agent->get_name()] = agent;
+}
+
+void AgentGroup::remove_component(std::shared_ptr<AgentComponent>) override;
+
+std::shared_ptr<AgentComponent> AgentGroup::get_component(const std::string& name_) override;
+
+
 

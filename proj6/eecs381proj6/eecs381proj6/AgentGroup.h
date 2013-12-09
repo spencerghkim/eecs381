@@ -52,6 +52,15 @@ public:
 
   //Point get_location() const =delete; //TODO: hmm....
   
+  // add component
+  void add_component(std::shared_ptr<AgentComponent>) override;
+  
+  // remove component
+  void remove_component(std::shared_ptr<AgentComponent>) override;
+  
+  // return the component of the specified name, empty if component does not exist
+  std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;
+  
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
   
