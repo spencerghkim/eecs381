@@ -30,7 +30,7 @@ public:
   // class is abstract, make destructor pure virtual
   virtual ~AgentIndividual() = 0;
     
-  const std::string &get_name() const override
+  const std::string get_name() const override
     { return Sim_object::get_name(); }
   
   // get shared_from_this

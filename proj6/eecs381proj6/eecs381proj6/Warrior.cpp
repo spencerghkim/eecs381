@@ -56,7 +56,13 @@ void Warrior::update()
     auto old_target = target_ptr;
     Model::get().notify_end_attack(get_name());
     //TODO: test this, should we pick a new target here first - we cant throw!
-    
+    closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
+    if (!closest_indv || !closest_indv->is_alive()) {
+      // nobody in group in range
+      clear_attack();
+    } else {
+      attack(old_target);
+    }
   }
 }
 
@@ -110,9 +116,8 @@ void Warrior::describe() const
   if (is_attacking()) {
     shared_ptr<AgentComponent> target_ptr = target.lock();
     if (target_ptr) {
-      auto closest_in_range = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
       //TODO: fix this too!
-      cout << "   Attacking " << closest_in_range->get_name() << endl;
+      cout << "   Attacking " << target_ptr->get_name() << endl;
     } else {
       cout << "   Attacking dead target" << endl;
     }

@@ -125,7 +125,7 @@ shared_ptr<AgentComponent> AgentGroup::get_component(const string& name_)
 
 void AgentGroup::remove_component(const string& name_)
 {
-  remove_component_if_present(name);
+  remove_component_if_present(name_);
 }
 
 // remove component, but dont throw
