@@ -20,8 +20,8 @@ public:
 	
 	Soldier(const std::string& name_, Point location_);
   
-	// Overrides Agent's take_hit to counterattack when attacked.
-	void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
+	// Overrides AgentComponent's take_hit to counterattack when attacked.
+	void take_hit(int attack_strength, std::shared_ptr<AgentIndividual> attacker_ptr) override;
 	
 	// output information specific to Soldier
 	void describe() const override;

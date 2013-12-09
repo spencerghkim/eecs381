@@ -5,11 +5,11 @@
  
  Model is part of a simplified Model-View-Controller pattern.
  Model keeps track of the Sim_objects in our little world. It is the only
- component that knows how many Structures and Agents there are, but it does not
- know about any of their derived classes, nor which Agents are of what kind of Agent.
- It has facilities for looking up objects by name, and removing Agents.  When
- created, it creates an initial group of Structures and Agents using the Structure_factory
- and Agent_factory.
+ component that knows how many Structures and AgentComponents there are, but it does not
+ know about any of their derived classes, nor which AgentComponents are of what kind of AgentComponent.
+ It has facilities for looking up objects by name, and removing AgentComponents.  When
+ created, it creates an initial group of Structures and AgentComponents using the Structure_factory
+ and AgentComponent_factory.
  Finally, it keeps the system's time.
  
  Controller tells Model what to do; Model in turn tells the objects what do, and
@@ -28,7 +28,7 @@
 
 class Sim_object;
 class Structure;
-class Agent;
+class AgentComponent;
 class View;
 struct Point;
 class Model;
@@ -64,16 +64,16 @@ public:
 	// is there an agent with this name?
 	bool is_agent_present(const std::string& name) const;
 	// add a new agent; assumes none with the same name
-	void add_agent(std::shared_ptr<Agent>);
+	void add_agent(std::shared_ptr<AgentComponent>);
   // remove an agent
-  void remove_agent(std::shared_ptr<Agent>);
+  void remove_agent(std::shared_ptr<AgentComponent>);
   
-	// will throw Error("Agent not found!") if no agent of that name
-	std::shared_ptr<Agent> get_agent_ptr(const std::string& name) const;
+	// will throw Error("AgentComponent not found!") if no agent of that name
+	std::shared_ptr<AgentComponent> get_agent_ptr(const std::string& name) const;
 	// returns the closest agent to the provided agent (not the same agent)
-	std::shared_ptr<Agent> closest_agent(std::shared_ptr<Sim_object> object) const;
+	std::shared_ptr<AgentComponent> closest_agent(std::shared_ptr<Sim_object> object) const;
   // find all agents in the given range around the given object
-  std::vector<std::shared_ptr<Agent>> find_agents_in_range(std::shared_ptr<Sim_object> center, double range);
+  std::vector<std::shared_ptr<AgentComponent>> find_agents_in_range(std::shared_ptr<Sim_object> center, double range);
   
 	// tell all objects to describe themselves to the console
 	void describe() const;
@@ -105,16 +105,17 @@ public:
 private:
   using Objects_t = std::map<std::string, std::shared_ptr<Sim_object>>;
   using Structures_t = std::map<std::string, std::shared_ptr<Structure>>;
-  using Agents_t = std::map<std::string, std::shared_ptr<Agent>>;
+  using AgentComponents_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
   
   // Insert into containters w/o broadcasting
   void insert_structure(std::shared_ptr<Structure>);
-  void insert_agent(std::shared_ptr<Agent>);
+  void insert_agent(std::shared_ptr<AgentComponent>);
   
   int time;
   Objects_t objects;
   Structures_t structures;
-  Agents_t agents;
+  AgentComponents_t agents;
+  
   std::set<std::shared_ptr<View>> views;
   
 	// disallow copy/move construction or assignment

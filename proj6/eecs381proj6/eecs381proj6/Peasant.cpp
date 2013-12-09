@@ -1,6 +1,6 @@
 #include "Peasant.h"
 
-#include "Agent.h"
+#include "AgentComponent.h"
 #include "Geometry.h"
 #include "Model.h"
 #include "Moving_object.h"
@@ -18,14 +18,14 @@ const double INITIAL_CARRYING_FOOD = 0.0;
 const double MAXIMUM_CARRYING_CAPACITY = 35.0;
 
 Peasant::Peasant(const string& in_name, Point in_location) :
-  Agent{in_name, in_location},
+  AgentIndividual{in_name, in_location},
   food_in_hand{INITIAL_CARRYING_FOOD},
   state{NOT_WORKING} {}
 
 // implement Peasant behavior
 void Peasant::update()
 {
-  Agent::update();
+  AgentIndividual::update();
   
   if (!is_alive() || state == NOT_WORKING) {
     return;
@@ -43,7 +43,7 @@ void Peasant::update()
     if (withdrawl > 0.0) {
       cout << get_name() << ": Collected " << withdrawl << endl;
       state = OUTBOUND;
-      Agent::move_to(destination->get_location());
+      AgentIndividual::move_to(destination->get_location());
       
       // Let the Model know we've collected food.
       Model::get().notify_amount(get_name(), food_in_hand);
@@ -58,7 +58,7 @@ void Peasant::update()
     destination->deposit(food_in_hand);
     cout << get_name() << ": Deposited " << food_in_hand << endl;
     food_in_hand = INITIAL_CARRYING_FOOD;
-    Agent::move_to(source->get_location());
+    AgentIndividual::move_to(source->get_location());
     state = INBOUND;
     
     // Let the model know we've deposited food.
@@ -79,13 +79,13 @@ void Peasant::stop_working()
 void Peasant::move_to(Point dest)
 {
   stop_working();
-  Agent::move_to(dest);
+  AgentIndividual::move_to(dest);
 }
 
 // stop moving and working
 void Peasant::stop()
 {
-  Agent::stop();
+  AgentIndividual::stop();
   stop_working();
 }
 
@@ -93,7 +93,7 @@ void Peasant::stop()
 // Throws an exception if the source is the same as the destination.
 void Peasant::start_working(shared_ptr<Structure> source_, shared_ptr<Structure> destination_)
 {
-  Agent::stop();
+  AgentIndividual::stop();
   state = NOT_WORKING;
   destination = source = nullptr;
   
@@ -107,20 +107,20 @@ void Peasant::start_working(shared_ptr<Structure> source_, shared_ptr<Structure>
     if (get_location() == source->get_location()) {
       state = COLLECTING;
     } else {
-      Agent::move_to(source->get_location());
+      AgentIndividual::move_to(source->get_location());
       state = INBOUND;
     }
   } else {
     if (get_location() == destination->get_location()) {
       state = DEPOSITING;
     } else {
-      Agent::move_to(destination->get_location());
+      AgentIndividual::move_to(destination->get_location());
       state = OUTBOUND;
     }
   }
 }
 
-void Peasant::accept_blessing(int blessing_strength, shared_ptr<Agent> blesser_ptr)
+void Peasant::accept_blessing(int blessing_strength, shared_ptr<AgentIndividual> blesser_ptr)
 {
   gain_health(blessing_strength);
 }
@@ -129,7 +129,7 @@ void Peasant::accept_blessing(int blessing_strength, shared_ptr<Agent> blesser_p
 void Peasant::describe() const
 {
   cout << "Peasant ";
-  Agent::describe();
+  AgentIndividual::describe();
   cout << "   Carrying " << food_in_hand << endl;
   
   if (state == OUTBOUND) {
@@ -145,6 +145,6 @@ void Peasant::describe() const
 
 void Peasant::broadcast_current_state()
 {
-  Agent::broadcast_current_state();
+  AgentIndividual::broadcast_current_state();
   Model::get().notify_amount(get_name(), food_in_hand);
 }

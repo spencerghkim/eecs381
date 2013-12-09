@@ -14,7 +14,7 @@
 
 class View;
 class FullMapView;
-class Agent;
+class AgentComponent;
 
 class Controller {
 public:
@@ -27,7 +27,7 @@ public:
 private:
   //TODO: make sure std::function is Kosher, its much cleaner though
   using CmdFunc_t = std::map<std::string, std::function<void(Controller*)>>;
-  using CmdFunc_Agent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<Agent>)>>;
+  using CmdFunc_AgentComponent_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<AgentComponent>)>>;
   using CmdFunc_Map_View_t = std::map<std::string, std::function<void(Controller*, std::shared_ptr<FullMapView>)>>;
   
   using viewPair_t = struct {
@@ -57,17 +57,17 @@ private:
   void prog_train();
   
   // agent commands
-  void agent_move(std::shared_ptr<Agent>);
-  void agent_work(std::shared_ptr<Agent>);
-  void agent_attack(std::shared_ptr<Agent>);
-  void agent_stop(std::shared_ptr<Agent>);
+  void agent_move(std::shared_ptr<AgentComponent>);
+  void agent_work(std::shared_ptr<AgentComponent>);
+  void agent_attack(std::shared_ptr<AgentComponent>);
+  void agent_stop(std::shared_ptr<AgentComponent>);
   
   // weak pointer to prevent 
   std::weak_ptr<FullMapView> map_view;
   
   // containers
   CmdFunc_t program_cmds;
-  CmdFunc_Agent_t agent_cmds;
+  CmdFunc_AgentComponent_t agent_cmds;
   CmdFunc_t view_mgmt_cmds;
   CmdFunc_Map_View_t map_view_cmds;
   Views_t views;

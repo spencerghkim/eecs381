@@ -3,18 +3,18 @@
 
 /*
  
- A Warior is an Agent that has attack and defense behaviors. It can be commanded
- to start attacking another Agent and to move to a certain location.
+ A Warior is an AgentComponent that has attack and defense behaviors. It can be commanded
+ to start attacking another AgentComponent and to move to a certain location.
 
 */
 
-#include "Agent.h"
+#include "AgentIndividual.h"
 
 #include <memory>
 
 struct Point;
 
-class Warrior : public Agent {
+class Warrior : public AgentIndividual {
 public:
   
   Warrior(const std::string& name_, Point location_, int strength_, double range_);
@@ -25,12 +25,12 @@ public:
   // update implements a Warrior's general behavior
   void update() override;
   
-  // Make this Warrior start attacking the target Agent.
-	// Throws an exception if the target is the same as this Agent,
+  // Make this Warrior start attacking the target AgentComponent.
+	// Throws an exception if the target is the same as this AgentComponent,
 	// is out of range, or is not alive.
-  void start_attacking(std::shared_ptr<Agent> target_ptr) override;
+  void start_attacking(std::shared_ptr<AgentComponent> target_ptr) override;
   
-  // Overrides Agent's stop to print a message
+  // Overrides AgentComponent's stop to print a message
   void stop() override;
   
   // Describe the state of the object.
@@ -45,7 +45,7 @@ protected:
     { return attacking; }
   
   // Attack the given agent, regardless of if its status (in range, alive, etc.)
-  void attack(std::shared_ptr<Agent> target_ptr);
+  void attack(std::shared_ptr<AgentComponent> target_ptr);
   // attack is over, clear target and set state
   void clear_attack();
   
@@ -55,7 +55,7 @@ private:
   double attack_range;
   bool attacking;
   
-  std::weak_ptr<Agent> target;
+  std::weak_ptr<AgentComponent> target;
   
   // Ask subclasses for their battle cry.
   virtual std::string get_battle_cry() = 0;

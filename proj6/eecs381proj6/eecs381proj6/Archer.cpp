@@ -37,9 +37,9 @@ void Archer::update()
   }
 }
 
-void Archer::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
+void Archer::take_hit(int attack_strength, shared_ptr<AgentIndividual> attacker_ptr)
 {
-  Agent::take_hit(attack_strength, attacker_ptr);
+  AgentIndividual::take_hit(attack_strength, attacker_ptr);
   
   if (is_alive() && attacker_ptr->is_alive()) {
     // Run away!

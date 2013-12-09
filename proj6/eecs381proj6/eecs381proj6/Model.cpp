@@ -1,7 +1,7 @@
 
 #include "Model.h"
 
-#include "Agent.h"
+#include "AgentComponent.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
 #include "Sim_object.h"
@@ -139,7 +139,7 @@ bool Model::is_agent_present(const string& name) const
   return agents.find(name) != agents.end();
 }
 
-void Model::insert_agent(shared_ptr<Agent> a)
+void Model::insert_agent(shared_ptr<AgentComponent> a)
 {
   auto apair = make_pair(a->get_name(), a);
   objects.insert(apair);
@@ -147,34 +147,34 @@ void Model::insert_agent(shared_ptr<Agent> a)
 }
 
 // add a new agent; assumes none with the same name
-void Model::add_agent(shared_ptr<Agent> a)
+void Model::add_agent(shared_ptr<AgentComponent> a)
 {
   insert_agent(a);
   a->broadcast_current_state();
 }
 
 // remove an agent
-void Model::remove_agent(shared_ptr<Agent> a)
+void Model::remove_agent(shared_ptr<AgentComponent> a)
 {
   objects.erase(a->get_name());
   agents.erase(a->get_name());
 }
 
-// will throw Error("Agent not found!") if no agent of that name
-shared_ptr<Agent> Model::get_agent_ptr(const string& name) const
+// will throw Error("AgentComponent not found!") if no agent of that name
+shared_ptr<AgentComponent> Model::get_agent_ptr(const string& name) const
 {
   if (!is_agent_present(name)) {
-    throw Error("Agent not found!");
+    throw Error("AgentComponent not found!"); //TODO?
   }
   return agents.find(name)->second;
 }
 
 // returns the closest agent to the provided agent (not the same agent)
-shared_ptr<Agent> Model::closest_agent(shared_ptr<Sim_object> object) const
+shared_ptr<AgentComponent> Model::closest_agent(shared_ptr<Sim_object> object) const
 {
   // Check if the object arg is the only agent we have.
   if (agents.size() == 1 && agents.at(object->get_name()) == object) {
-    return shared_ptr<Agent>();
+    return shared_ptr<AgentComponent>();
   }
   
   auto closest_agent_it =
@@ -182,15 +182,15 @@ shared_ptr<Agent> Model::closest_agent(shared_ptr<Sim_object> object) const
               agents.end(),
               bind(sim_object_min_distance_comparator,
                    object,
-                   bind(&Agents_t::value_type::second, _1),
-                   bind(&Agents_t::value_type::second, _2)));
+                   bind(&AgentComponents_t::value_type::second, _1),
+                   bind(&AgentComponents_t::value_type::second, _2)));
   
   return closest_agent_it->second;
 }
 
-vector<shared_ptr<Agent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
+vector<shared_ptr<AgentComponent>> Model::find_agents_in_range(shared_ptr<Sim_object> center, double range)
 {
-  vector<shared_ptr<Agent>> agents_in_range;
+  vector<shared_ptr<AgentComponent>> agents_in_range;
   
   for (auto &agent_pair : agents) {
     if (agent_pair.second != center &&

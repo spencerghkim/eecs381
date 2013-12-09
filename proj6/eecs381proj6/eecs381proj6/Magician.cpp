@@ -1,7 +1,7 @@
 
 #include "Magician.h"
 
-#include "Agent.h"
+#include "AgentComponent.h"
 #include "Model.h"
 #include "Utility.h"
 
@@ -37,15 +37,16 @@ void Magician::update()
   // If we aren't attacking, bless the peaceful people.
   if (!is_attacking()) {
     auto agents_in_range = Model::get().find_agents_in_range(shared_from_this(), blessing_range);
-    for_each(agents_in_range.begin(),
+    //TODO: fix this shitshow
+    /*for_each(agents_in_range.begin(),
              agents_in_range.end(),
-             bind(&Agent::accept_blessing, _1, blessing_strength, shared_from_this()));
+             bind(&AgentIndividual::accept_blessing, _1, blessing_strength, shared_from_this()));*/
   }
 }
 
 // Magicians are wily, but poorly armored. A hit only has a 50% chance of landing, but
 // if it does, it kills the Magician immediately, regardless of attack_strength.
-void Magician::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
+void Magician::take_hit(int attack_strength, shared_ptr<AgentIndividual> attacker_ptr)
 {
   // "random" simulation
   // ideally we'd use a *real* random number here
@@ -56,7 +57,7 @@ void Magician::take_hit(int attack_strength, shared_ptr<Agent> attacker_ptr)
   
   if (hit_landed == 1) {
     // The hit landed.
-    Agent::take_hit(numeric_limits<int>::max(), attacker_ptr);
+    AgentIndividual::take_hit(numeric_limits<int>::max(), attacker_ptr);
   } else {
     // The hit missed.
     cout << get_name() << ": Aha! You missed!" << endl;

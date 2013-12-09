@@ -2,14 +2,14 @@
 #define PEASANT_H_
 
 /*
- A Peasant is an Agent that can move food between Structures. It can be commanded to
+ A Peasant is an AgentComponent that can move food between Structures. It can be commanded to
  start_working, whereupon it moves to the source, picks up food, returns to destination,
  deposits the food, returns to source.  If picks up zero food at the source, it waits there
  and tries again on the next update.
  If commanded to move_to somewhere, it stops working, and goes there.
  */
 
-#include "Agent.h"
+#include "AgentIndividual.h"
 #include "Moving_object.h"
 #include "Sim_object.h"
 
@@ -18,7 +18,7 @@
 class Structure;
 struct Point;
 
-class Peasant : public Agent {
+class Peasant : public AgentIndividual {
 public:
 	Peasant(const std::string& in_name, Point in_location);
   
@@ -36,7 +36,7 @@ public:
 	void start_working(std::shared_ptr<Structure> source_, std::shared_ptr<Structure> destination_) override;
   
   // Peasants accept blessings and gain health
-  void accept_blessing(int blessing_strength, std::shared_ptr<Agent> blesser_ptr) override;
+  void accept_blessing(int blessing_strength, std::shared_ptr<AgentIndividual> blesser_ptr) override;
   
 	// output information about the current state
 	void describe() const override;

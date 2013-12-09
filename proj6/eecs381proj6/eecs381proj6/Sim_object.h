@@ -19,7 +19,7 @@ public:
   
 	// ask model to notify views of current state
   virtual void broadcast_current_state() {}
-	virtual Point get_location() const = 0;
+	virtual Point get_location() const = 0; //TODO: move this out!?
 	virtual void describe() const = 0;
 	virtual void update() = 0;
   

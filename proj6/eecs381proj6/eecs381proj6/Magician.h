@@ -24,9 +24,9 @@ public:
   // update implementes Magician's behavior
   void update() override;
   
-  // Overrides Agent's take_hit to see if hit actually lands. If so, the Magician is killed
+  // Overrides AgentComponent's take_hit to see if hit actually lands. If so, the Magician is killed
   // regardless of attack_strength.
-  void take_hit(int attack_strength, std::shared_ptr<Agent> attacker_ptr) override;
+  void take_hit(int attack_strength, std::shared_ptr<AgentIndividual> attacker_ptr) override;
   
   // output information specific to magician
   void describe() const override;

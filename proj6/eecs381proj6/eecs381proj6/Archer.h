@@ -24,8 +24,8 @@ public:
   // update implements Archer's behavior
   void update() override;
   
-  // Overrides Agent's take_hit to run away to the nearest Structure when attacked.
-  void take_hit(int attack_strength, std::shared_ptr<Agent> attacker) override;
+  // Overrides AgentComponent's take_hit to run away to the nearest Structure when attacked.
+  void take_hit(int attack_strength, std::shared_ptr<AgentIndividual> attacker) override;
   
   // output information specific to Archer
   void describe() const override;

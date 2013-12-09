@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-#include "Agent.h"
+#include "AgentComponent.h"
 #include "Agent_factory.h"
 #include "AmountsView.h"
 #include "AttackView.h"
@@ -80,8 +80,7 @@ void Controller::run()
       
       // Call the correct function based on the command word.
       if (Model::get().is_agent_present(command)) {
-        shared_ptr<Agent> agent = Model::get().get_agent_ptr(command);
-        assert(agent->is_alive());
+        shared_ptr<AgentComponent> agent = Model::get().get_agent_ptr(command);
         
         // Check that the agent command is valid.
         cin >> command;
@@ -232,17 +231,17 @@ void Controller::prog_train()
   cin >> type;
   
   // create/add the agent to the model
-  shared_ptr<Agent> agent = create_agent(name, type, read_point());
+  shared_ptr<AgentComponent> agent = create_agent(name, type, read_point());
   Model::get().add_agent(agent);
 }
 
 // agent commands //
 
-void Controller::agent_move(shared_ptr<Agent> agent)
+void Controller::agent_move(shared_ptr<AgentComponent> agent)
 {
   agent->move_to(read_point());
 }
-void Controller::agent_work(shared_ptr<Agent> agent)
+void Controller::agent_work(shared_ptr<AgentComponent> agent)
 {
   string source, destination;
   cin >> source >> destination;
@@ -250,13 +249,13 @@ void Controller::agent_work(shared_ptr<Agent> agent)
   shared_ptr<Structure> dest = Model::get().get_structure_ptr(destination);
   agent->start_working(src, dest);
 }
-void Controller::agent_attack(shared_ptr<Agent> attacker)
+void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 {
   string agent_name;
   cin >> agent_name;
   attacker->start_attacking(Model::get().get_agent_ptr(agent_name));
 }
-void Controller::agent_stop(shared_ptr<Agent> agent)
+void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 {
   agent->stop();
 }
