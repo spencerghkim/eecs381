@@ -4,7 +4,6 @@
 #include "AgentComponent.h"
 #include "AgentIndividual.h"
 #include "AgentGroup.h"
-#include "AgentIndividual.h"
 #include "Agent_factory.h"
 #include "Geometry.h"
 #include "Sim_object.h"
@@ -20,7 +19,7 @@
 
 using std::cout; using std::endl;
 using std::string; using std::map; using std::vector;
-using std::make_pair;
+using std::make_pair; using std::make_shared;
 using std::shared_ptr; using std::unique_ptr;
 using std::bind;
 using std::min_element;
@@ -157,9 +156,9 @@ void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
 //TODO: name check here and above?
 
 // add a new group agent; assumes none with the same name
-void Model::add_new_group(shared_ptr<AgentGroup> new_group)
+void Model::create_new_group(const string &new_group)
 {
-  all_agents->add_component(new_group);
+  all_agents->add_component(make_shared<AgentGroup>(new_group));
 }
 
 // remove an agent

@@ -3,9 +3,10 @@
 
 /*
  
- AgentIndividuals
+ AgentComponent
  
- TODO:
+ This class is an abstract inerface which acts as a container for
+ either a single agent or a group of agents. All
  
 */
 
