@@ -12,5 +12,9 @@ go
 Zug attack Friends
 go
 status
+Zug add Friends
+Bug remove Friends
+Friends add Friends
+disband Bug
 go
 quit

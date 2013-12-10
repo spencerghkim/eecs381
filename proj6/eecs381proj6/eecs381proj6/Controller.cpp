@@ -63,9 +63,9 @@ Controller::Controller()
   
   // add new group commands
   program_cmds["group"]     = &Controller::group_create;
+  program_cmds["disband"]   = &Controller::group_disband;
   agent_cmds["add"]         = &Controller::group_add;
   agent_cmds["remove"]      = &Controller::group_remove;
-  program_cmds["disband"]   = &Controller::group_disband;
 
 }
 
@@ -274,16 +274,6 @@ void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 
 // group commands //
 
-void Controller::group_add(std::shared_ptr<AgentComponent> group)
-{
-  string agent_name;
-  cin >> agent_name;
-  
-  // Get the agent component and call Model to handle insertion and what not.
-  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
-  Model::get().add_agent_component_to_group(component, group);
-}
-
 void Controller::group_create()
 {
   string group_name;
@@ -301,6 +291,16 @@ void Controller::group_disband()
   group->disband();
   // remove the group from the model
   Model::get().remove_agent_component(group_name);
+}
+
+void Controller::group_add(std::shared_ptr<AgentComponent> group)
+{
+  string agent_name;
+  cin >> agent_name;
+  
+  // Get the agent component and call Model to handle insertion and what not.
+  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
+  Model::get().add_agent_component_to_group(component, group);
 }
 
 void Controller::group_remove(std::shared_ptr<AgentComponent> group)

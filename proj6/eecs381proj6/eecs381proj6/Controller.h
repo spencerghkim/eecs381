@@ -62,9 +62,10 @@ private:
   void agent_stop(std::shared_ptr<AgentComponent>);
   
   // group commands
-  void group_add(std::shared_ptr<AgentComponent> group);
+  
   void group_create();
   void group_disband();
+  void group_add(std::shared_ptr<AgentComponent> group);
   void group_remove(std::shared_ptr<AgentComponent> group);
   
   // weak pointer to prevent 
