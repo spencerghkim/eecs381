@@ -168,11 +168,11 @@ bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> comp) co
   return true;
 }
 
-bool Model::are_in_same_group(shared_ptr<AgentComponent> a1, shared_ptr<AgentComponent> a2) const
+bool Model::are_in_same_group(const string &a1, const string &a2) const
 {
   for (auto& component : agent_components) {
-    if (component.second->get_component(a1->get_name()) &&
-        component.second->get_component(a2->get_name())) {
+    if (component.second->get_component(a1) &&
+        component.second->get_component(a2)) {
       return true;
     }
   }
@@ -249,6 +249,7 @@ shared_ptr<AgentComponent> Model::get_agent_comp_ptr(const string& name) const
       return found_component;
     }
   }
+  throw Error("Agent or Group not found!");
   return nullptr;
 }
 
@@ -260,8 +261,8 @@ shared_ptr<AgentComponent> Model::closest_agent_in_range_not_in_group(shared_ptr
   for (auto& component : agent_components) {
     auto individual = component.second->get_nearest_in_range(object, range);
     
-    // Don't return the individual if it's in the same group.
-    if (are_in_same_group(component.second, individual)) {
+    // ignore if out of range or not in the same group
+    if (!individual || are_in_same_group(object->get_name(), individual->get_name())) {
       continue;
     }
     
@@ -281,7 +282,10 @@ shared_ptr<AgentComponent> Model::find_agents_in_range(shared_ptr<Sim_object> ce
 {
   auto agents_in_range = make_shared<AgentGroup>("");
   for (auto& component : agent_components) {
-    agents_in_range->add_component(component.second->get_all_in_range(center, range));
+    auto comp = component.second->get_all_in_range(center, range);
+    if (comp) {
+      agents_in_range->add_component(comp);
+    }
   }
   return agents_in_range;
 }

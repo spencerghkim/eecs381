@@ -68,7 +68,7 @@ public:
   // is this agent component in a group?
   bool is_agent_component_in_group(std::shared_ptr<AgentComponent>) const;
   // are these two agent components in the same group?
-  bool are_in_same_group(std::shared_ptr<AgentComponent>, std::shared_ptr<AgentComponent>) const;
+  bool are_in_same_group(const std::string &a1, const std::string &a2) const;
 	// add a new agent component to the model; assumes it doesn't exist already
 	void add_agent_component(std::shared_ptr<AgentComponent>);
   // add an existing agent component to an existing group

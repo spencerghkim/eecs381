@@ -265,8 +265,8 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
   cin >> agent_name;
   
   // Check to see if target is in the same group as attacker.
-  shared_ptr<AgentComponent> target = Model::get().get_agent_comp_ptr(agent_name);
-  if (Model::get().are_in_same_group(target, attacker)) {
+  auto target = Model::get().get_agent_comp_ptr(agent_name);
+  if (Model::get().are_in_same_group(target->get_name(), attacker->get_name())) {
     throw Error("Cannot attack, target and attacker are in same group!");
   }
   

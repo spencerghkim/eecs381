@@ -30,11 +30,10 @@ void Archer::update()
         Model::get().closest_agent_in_range_not_in_group(shared_from_this(), get_attack_range());
     
     // Validate closest_agent. If he's not nullptr, then he is in range.
-    if (!closest_agent) {
-      return;
+    if (closest_agent) {
+      start_attacking(closest_agent); // TODO: perhaps we need a no-throw version of attack
     }
     
-    start_attacking(closest_agent); // perhaps we need a no-throw version of attack
   }
 }
 
