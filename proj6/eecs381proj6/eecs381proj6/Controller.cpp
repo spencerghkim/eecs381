@@ -283,17 +283,13 @@ void Controller::group_create()
 {
   string group_name;
   cin >> group_name;
-  Model::get().add_agent_component(make_shared<AgentGroup>(group_name));
+  Model::get().add_new_agent_component(make_shared<AgentGroup>(group_name));
 }
 
 void Controller::group_add(std::shared_ptr<AgentComponent> group)
 {
   string agent_name;
   cin >> agent_name;
-  
-  if (agent_name == group->get_name()) {
-    throw Error("Cannot add a group to itself!");
-  }
   
   // Get the agent component and call Model to handle insertion and what not.
   shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);

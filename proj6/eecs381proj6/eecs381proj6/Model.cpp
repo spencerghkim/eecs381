@@ -179,8 +179,13 @@ bool Model::are_in_same_group(const string &a1, const string &a2) const
   return false;
 }
 
+void Model::add_existing_agent_component(shared_ptr<AgentComponent> component)
+{
+  agent_components[component->get_name()] = component;
+}
+
 // add a new agent component, does nothing with sim_objects
-void Model::add_agent_component(shared_ptr<AgentComponent> component)
+void Model::add_new_agent_component(shared_ptr<AgentComponent> component)
 {
   if (is_name_in_use(component->get_name())) {
     throw Error("Name is already in use!");
@@ -215,7 +220,7 @@ void Model::remove_agent_component_from_group(shared_ptr<AgentComponent> compone
 // helper that doesn't broadcast state
 void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
-  add_agent_component(new_agent);
+  add_new_agent_component(new_agent);
   objects[new_agent->get_name()] = new_agent;
 }
 
@@ -224,6 +229,22 @@ void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
   insert_new_agent(new_agent);
   new_agent->broadcast_current_state();
+}
+
+// remove an agent component, don't touch sim objects
+void Model::remove_agent_component(const string& name)
+{
+  // Hold on to the component so we can disband it after removing it.
+  auto component = get_agent_comp_ptr(name);
+  
+  if (!agent_components.erase(name)) {
+    for (auto& component : agent_components) {
+      component.second->remove_component_if_present(name);
+    }
+  }
+  
+  // Disband the component.
+  component->disband();
 }
 
 // remove an individual agent, should only be called internally upon death
@@ -249,7 +270,6 @@ shared_ptr<AgentComponent> Model::get_agent_comp_ptr(const string& name) const
     }
   }
   throw Error("Agent or Group not found!");
-  return nullptr;
 }
 
 // returns the closest agent to the provided object (excluding 'object' itself)

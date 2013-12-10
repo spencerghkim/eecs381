@@ -177,13 +177,8 @@ void AgentGroup::remove_component_if_present(const std::string& name_)
 
 // emptys the group, default is an error
 void AgentGroup::disband() {
-  disband_from_group();
+  for (auto& component : group_components) {
+    component.second->disband();
+  }
 }
 
-// adds all individuals back to model's base
-void AgentGroup::disband_from_group() {
-  for (auto& component : group_components) {
-    component.second->disband_from_group();
-  }
-  group_components.clear();
-}

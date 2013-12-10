@@ -77,13 +77,8 @@ public:
   // remove component only if present, does not throw Error
   virtual void remove_component_if_present(const std::string& name_) {}
   
-  // emptys the group, default is an error
-  virtual void disband()
-    { throw Error("This agent component cannot be disbanded"); };
-  
-  // TODO: fix this shit, protect it...
-  // adds all individuals back to model's base group
-  virtual void disband_from_group() = 0;
+  // disband the component
+  virtual void disband() = 0;
   
 protected:
   void set_parent(std::shared_ptr<AgentComponent> parent);

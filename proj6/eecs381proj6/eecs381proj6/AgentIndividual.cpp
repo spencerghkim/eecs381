@@ -160,8 +160,8 @@ void AgentIndividual::start_attacking(shared_ptr<AgentComponent>)
 }
 
 // adds individual back to model's base group
-void AgentIndividual::disband_from_group()  {
-  Model::get().add_agent_component(shared_from_this());
+void AgentIndividual::disband()  {
+  Model::get().add_existing_agent_component(shared_from_this());
 }
 
 // calculate loss of health due to hit.

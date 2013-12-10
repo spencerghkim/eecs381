@@ -71,11 +71,8 @@ public:
   // remove component only if present, does not throw Error
   void remove_component_if_present(const std::string& name_) override;
 
-  // emptys the group, default is an error
+  // empties the group
   void disband() override;
-  
-  // adds all individuals back to model's base
-  void disband_from_group() override;
   
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;

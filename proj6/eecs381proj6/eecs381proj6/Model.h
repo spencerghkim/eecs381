@@ -69,19 +69,24 @@ public:
   bool is_agent_component_in_group(std::shared_ptr<AgentComponent>) const;
   // are these two agent components in the same group?
   bool are_in_same_group(const std::string &a1, const std::string &a2) const;
+  
+  // add a new individual agent, throws if name is in use
+  void add_new_agent(std::shared_ptr<AgentIndividual>);
+  // add an existing agent component back to the model
+  void add_existing_agent_component(std::shared_ptr<AgentComponent> component);
 	// add a new agent component to the model; assumes it doesn't exist already
-	void add_agent_component(std::shared_ptr<AgentComponent>);
+	void add_new_agent_component(std::shared_ptr<AgentComponent>);
   // add an existing agent component to an existing group
   void add_agent_component_to_group(std::shared_ptr<AgentComponent> component,
                                     std::shared_ptr<AgentComponent> group);
+
+  // removes an agent from Sim_objects and AgentComponents; throws if doesn't exist
+  void remove_agent(const std::string& name);
+  // removes an agent component
+  void remove_agent_component(const std::string& name);
   // removes the specified agent component, assumes it exists
   void remove_agent_component_from_group(std::shared_ptr<AgentComponent> component,
                                          std::shared_ptr<AgentComponent> group);
-
-  // add a new individual agent, throws if name is in use
-  void add_new_agent(std::shared_ptr<AgentIndividual>);
-  // removes an agent from Sim_objects and AgentComponents; throws if doesn't exist
-  void remove_agent(const std::string& name);
   
 	// will throw Error("AgentComponent not found!") if no agent of that name
 	std::shared_ptr<AgentComponent> get_agent_comp_ptr(const std::string& name) const;

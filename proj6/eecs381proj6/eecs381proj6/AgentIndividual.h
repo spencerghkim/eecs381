@@ -92,7 +92,7 @@ public:
   std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;
 
   // adds individual back to model's base group
-  void disband_from_group() override;
+  void disband() override;
 
 protected:
 	// calculate loss of health due to hit.
