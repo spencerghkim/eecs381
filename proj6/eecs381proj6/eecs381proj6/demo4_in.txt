@@ -1,18 +1,24 @@
 
-group Mean
+group Bad
 open map
 open health
 open attack
 show
-Mean add Zug
-Mean add Bug
-Mean move 7 10
+Bad add Zug
+Bad add Bug
+Bad move 7 10
 show
-go go go
+go 
+go 
+go
 show
-Mean attack Pippin
-go go
+Bad attack Pippin
+go
+go
 show
-Mean attack Pippin
+Bad attack Pippin
+Bad disband
+go
+Bad move 0 0
 show
 quit

@@ -215,7 +215,6 @@ void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
 // removes an existing agent component, does nothing with sim_objects
 void Model::remove_agent_component(shared_ptr<AgentComponent> component)
 {
-  // TODO: put it back in the model if necessary
   agent_components.erase(component->get_name());
 }
 
