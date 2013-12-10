@@ -2,8 +2,8 @@
 group Friends
 Friends add Iriel
 group Alone
-Alone add Zug
 Friends add Alone
+Alone add Zug
 Friends move 20 34
 Zug attack Iriel
 go

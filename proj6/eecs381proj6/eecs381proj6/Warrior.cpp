@@ -55,7 +55,7 @@ void Warrior::update()
     cout << get_name() << ": I triumph!" << endl;
     auto old_target = target_ptr;
     Model::get().notify_end_attack(get_name());
-    //TODO: test this, should we pick a new target here first - we cant throw!
+    
     closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
     if (!closest_indv || !closest_indv->is_alive()) {
       // nobody in group in range
