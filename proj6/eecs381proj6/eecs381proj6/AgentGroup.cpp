@@ -161,7 +161,7 @@ void AgentGroup::remove_component(const string& name_)
   }
   
   // if we're removing a group, disband it
-  comp->second->disband();
+  comp->second->disband_from_group();
   group_components.erase(name_);
 }
 
