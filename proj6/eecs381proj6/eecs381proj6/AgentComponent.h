@@ -79,12 +79,6 @@ public:
   
   // disband the component
   virtual void disband() = 0;
-  
-protected:
-  void set_parent(std::shared_ptr<AgentComponent> parent);
-  
-private:
-  
 };
 
 #endif
