@@ -31,7 +31,7 @@ void Archer::update()
     
     // Validate closest_agent. If he's not nullptr, then he is in range.
     if (closest_agent) {
-      start_attacking(closest_agent); // TODO: perhaps we need a no-throw version of attack
+      start_attacking(closest_agent);
     }
   }
 }

@@ -91,9 +91,6 @@ public:
   // If we are the named component, return ourselves, otherwise nullptr.
   std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;
 
-  // adds individual back to model's base group
-  void disband_from_group() override;
-
 protected:
 	// calculate loss of health due to hit.
 	// if health decreases to zero or negative, AgentIndividual state becomes Dying, and any movement is stopped.

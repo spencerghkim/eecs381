@@ -71,9 +71,7 @@ void Warrior::update()
 // is out of range, or is not alive.
 void Warrior::start_attacking(shared_ptr<AgentComponent> target_ptr)
 {
-  if (target_ptr == shared_from_this()) {
-    
-    //TODO: add check for attacking own group
+  if (target_ptr == shared_from_this()) {    
     throw Error( get_name() + ": I cannot attack myself!" );
   }
   
@@ -133,12 +131,12 @@ void Warrior::describe() const
 void Warrior::broadcast_current_state()
 {
   AgentIndividual::broadcast_current_state();
-  if (is_attacking()) {
+  
+  // We shouldn't need the target expired check here; more for sanity's sake.
+  if (is_attacking() && !target.expired()) {
     auto target_ptr = target.lock();
-    assert(target_ptr);
-    
     auto closest_in_range = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
-    if (closest_in_range) { //TODO: is this always right?
+    if (closest_in_range) {
       Model::get().notify_attack(get_name(), closest_in_range->get_name());
     }
   }

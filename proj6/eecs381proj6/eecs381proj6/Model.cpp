@@ -229,12 +229,15 @@ void Model::remove_agent_component(const string& name)
   // Hold on to the component so we can disband it after removing it.
   auto component = get_agent_comp_ptr(name);
   
-  if (!agent_components.erase(name)) {
+  // If the component is not in a group, don't disband.
+  if (is_agent_component_in_group(component)) {
     throw Error("Cannot disband object inside group!");
   }
   
-  // Disband the component.
   component->disband();
+  
+  // Actually erase the group, we know it has been disbanded.
+  agent_components.erase(name);
 }
 
 // removes an existing agent component, does nothing with sim_objects

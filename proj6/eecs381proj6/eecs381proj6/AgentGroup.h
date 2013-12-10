@@ -71,11 +71,8 @@ public:
   // remove component only if present, does not throw Error
   void remove_component_if_present(const std::string& name_) override;
 
-  // clear out group and put agents back in model root
+  // put children back in the model
   void disband() override;
-
-  // disband the component to the root of the model
-  void disband_from_group() override;
 
 private:
   using Group_t = std::map<std::string, std::shared_ptr<AgentComponent>>;
