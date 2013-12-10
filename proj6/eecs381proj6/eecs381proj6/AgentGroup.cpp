@@ -20,7 +20,7 @@ using std::function;
 using std::shared_ptr; using std::make_shared;
 
 AgentGroup::AgentGroup(const std::string &name_) :
-  group_name{name_} {}
+group_name{name_} {}
 
 // does any one in the group have this full name?
 bool AgentGroup::has_name(const std::string& name_)

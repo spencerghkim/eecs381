@@ -192,8 +192,19 @@ void Model::add_agent_component(shared_ptr<AgentComponent> component)
 void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
                                          shared_ptr<AgentComponent> group)
 {
+  // Check for self assignment.
+  if (component->get_name() == group->get_name()) {
+    throw Error("Can't add component to self!");
+  }
+  
+  // Check if the component is already in another group.
   if (is_agent_component_in_group(component)) {
     throw Error("Agent component is already in a group!");
+  }
+  
+  // Check for cycles.
+  if (component->get_component(group->get_name())) {
+    throw Error("Can't add parent component to self!");
   }
   
   // Will throw if group is not actually a group.
