@@ -1,0 +1,134 @@
+Script started on Tue Dec 10 06:50:26 2013
+
+Time 0: Enter command: group Friends
+
+Time 0: Enter command: Friends add Iriel
+
+Time 0: Enter command: group Alone
+
+Time 0: Enter command: Friends add Alone
+
+Time 0: Enter command: Alone add Zug
+
+Time 0: Enter command: Friends move 20 34
+Zug: I'm on the way
+Iriel: I'm on the way
+
+Time 0: Enter command: Zug attack Iriel
+Zug: Cannot attack, we are in same group!
+
+Time 0: Enter command: go
+Iriel: I'm there!
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: I'm there!
+
+Time 1: Enter command: Friends remove Alone
+
+Time 1: Enter command: go
+Iriel: I'm attacking!
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+
+Time 2: Enter command: Zug attack Friends
+Zug: I'm attacking!
+
+Time 2: Enter command: go
+Iriel: Twang!
+Zug: Ouch!
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+Zug: Clang!
+Iriel: Ouch!
+Iriel: I'm going to run away to Paduca
+Iriel: I'm on the way
+
+Time 3: Enter command: status
+Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 34.00)
+   Health is 3
+   Moving at speed 5.00 to (30.00, 30.00)
+   Attacking Zug
+Peasant Merry at (0.00, 25.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 56.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 56.00
+Soldier Zug at (20.00, 34.00)
+   Health is 4
+   Stopped
+   Attacking Group Friends
+
+Time 3: Enter command: Zug add Friends
+This agent cannot add components!
+
+Time 3: Enter command: Bug remove Friends
+This agent cannot remove components!
+
+Time 3: Enter command: Friends add Friends
+Can't add component to self!
+
+Time 3: Enter command: disband Bug
+This agent cannot be disbanded!
+
+Time 3: Enter command: go
+Iriel: step...
+Iriel: Twang!
+Zug: Ouch!
+Farm Rivendale now has 58.00
+Farm Sunnybrook now has 58.00
+Zug: Target is now out of range
+
+Time 4: Enter command: open map
+
+Time 4: Enter command: open attack
+
+Time 4: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . Zu. . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . Ir. . . . . . . 
+     . . . . . Su. . . . . . . . . . . . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Me. . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . Bu. . Sh. . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . Pi. . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+Current Duels:
+(3) Iriel > . . . . . . . . . . . . . . . Zug (3)
+
+Time 4: Enter command: quit
+Done
+
+Script done on Tue Dec 10 06:52:13 2013
