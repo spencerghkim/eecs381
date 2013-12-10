@@ -1,4 +1,7 @@
-Script started on Tue Dec 10 06:47:09 2013
+Josh Billingham (wjbillin)
+Otto Sipe (ottosipe)
+381 Project 6
+demo1_console.txt
 
 Time 0: Enter command: open health
 
@@ -120,4 +123,3 @@ Farm Sunnybrook now has 68.00
 Time 9: Enter command: quit
 Done
 
-Script done on Tue Dec 10 06:48:22 2013

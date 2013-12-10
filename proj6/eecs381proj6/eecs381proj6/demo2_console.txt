@@ -1,4 +1,7 @@
-Script started on Tue Dec 10 06:49:07 2013
+Josh Billingham (wjbillin)
+Otto Sipe (ottosipe)
+381 Project 6
+demo2_console.txt
 
 Time 0: Enter command: open attack
 
@@ -64,5 +67,3 @@ No Active Duels!
 
 Time 5: Enter command: quit
 Done
-
-Script done on Tue Dec 10 06:49:41 2013
