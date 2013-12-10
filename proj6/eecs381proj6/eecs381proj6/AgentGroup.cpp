@@ -181,12 +181,12 @@ void AgentGroup::remove_component_if_present(const std::string& name_)
 // clear out group and put agents back in model root
 void AgentGroup::disband() {
   disband_from_group();
-};
+}
 
 // disband the component to the root of the model
 void AgentGroup::disband_from_group() {
   for (auto& component : group_components) {
     component.second->disband_from_group();
   }
-};
+}
 
