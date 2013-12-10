@@ -1,24 +1,23 @@
 
-group Bad
+group Friends
+Friends add Iriel
+group Alone
+Friends add Alone
+Alone add Zug
+Friends move 20 34
+Zug attack Iriel
+go
+Friends remove Alone
+go
+Zug attack Friends
+go
+status
+Zug add Friends
+Bug remove Friends
+Friends add Friends
+disband Bug
+go
 open map
-open health
 open attack
-show
-Bad add Zug
-Bad add Bug
-Bad move 7 10
-show
-go 
-go 
-go
-show
-Bad attack Pippin
-go
-go
-show
-Bad attack Pippin
-Bad disband
-go
-Bad move 0 0
 show
 quit

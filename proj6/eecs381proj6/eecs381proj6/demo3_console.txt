@@ -1,0 +1,26 @@
+Script started on Tue Dec 10 06:49:47 2013
+
+Time 0: Enter command: open attack
+
+Time 0: Enter command: train Sam Archer 0 0
+
+Time 0: Enter command: train Otto Archer 6 0
+
+Time 0: Enter command: train Avery Archer 12 0
+
+Time 0: Enter command: go
+Avery: I'm attacking!
+Otto: I'm attacking!
+Farm Rivendale now has 52.00
+Sam: I'm attacking!
+Farm Sunnybrook now has 52.00
+
+Time 1: Enter command: show
+Current Duels:
+(5) Avery > . . . . . . . . . . . . . . . . . . < Otto (5)
+(5) Sam > . . . . . . . . . . . . . . . . . . Otto (5)
+
+Time 1: Enter command: quit
+Done
+
+Script done on Tue Dec 10 06:50:16 2013

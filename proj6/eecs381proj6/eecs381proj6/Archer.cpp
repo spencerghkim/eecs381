@@ -33,7 +33,6 @@ void Archer::update()
     if (closest_agent) {
       start_attacking(closest_agent); // TODO: perhaps we need a no-throw version of attack
     }
-    
   }
 }
 

@@ -154,11 +154,14 @@ void AgentGroup::remove_component(const string& name_)
     throw Error("Can't remove group from self!");
   }
   
+  auto comp = group_components.find(name_);
   // Check to make sure that we directly own that component.
-  if (group_components.find(name_) == group_components.end()) {
+  if (comp == group_components.end()) {
     throw Error("Group does not directly contain that component!");
   }
   
+  // if we're removing a group, disband it
+  comp->second->disband();
   group_components.erase(name_);
 }
 
@@ -175,10 +178,15 @@ void AgentGroup::remove_component_if_present(const std::string& name_)
   }
 }
 
-// emptys the group, default is an error
+// clear out group and put agents back in model root
 void AgentGroup::disband() {
+  disband_from_group();
+}
+
+// disband the component to the root of the model
+void AgentGroup::disband_from_group() {
   for (auto& component : group_components) {
-    component.second->disband();
+    component.second->disband_from_group();
   }
 }
 

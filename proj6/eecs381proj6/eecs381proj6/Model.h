@@ -79,7 +79,7 @@ public:
   // add an existing agent component to an existing group
   void add_agent_component_to_group(std::shared_ptr<AgentComponent> component,
                                     std::shared_ptr<AgentComponent> group);
-
+  
   // removes an agent from Sim_objects and AgentComponents; throws if doesn't exist
   void remove_agent(const std::string& name);
   // removes an agent component
@@ -123,7 +123,7 @@ public:
   void notify_attack(const std::string& name, const std::string& target);
   // notify the views about the end of an attack
   void notify_end_attack(const std::string& name);
-
+  
 private:
   using Objects_t = std::map<std::string, std::shared_ptr<Sim_object>>;
   using Structures_t = std::map<std::string, std::shared_ptr<Structure>>;

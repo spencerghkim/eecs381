@@ -1,0 +1,82 @@
+Script started on Tue Dec 10 06:52:48 2013
+
+Time 0: Enter command: open attack
+
+Time 0: Enter command: train Gimli Soldier 20 28
+
+Time 0: Enter command: train Aragorn Soldier 18 30
+
+Time 0: Enter command: train Legolas Archer 16 18
+
+Time 0: Enter command: group Bad
+
+Time 0: Enter command: Bad add Zug
+
+Time 0: Enter command: Bad add Bug
+
+Time 0: Enter command: group Three
+
+Time 0: Enter command: Three add Gimli
+
+Time 0: Enter command: Three add Aragorn
+
+Time 0: Enter command: Three add Legolas
+
+Time 0: Enter command: Three attack Bad
+Aragorn: I'm attacking!
+Gimli: I'm attacking!
+Legolas: I'm attacking!
+
+Time 0: Enter command: show
+Current Duels:
+(5) Aragorn > . . . . . . Zug (5)
+(5) Gimli > . . . . . . Zug (5)
+(5) Legolas > . . . . . . Bug (5)
+
+Time 0: Enter command: go
+Aragorn: Clang!
+Zug: Ouch!
+Zug: I'm attacking!
+Gimli: Clang!
+Zug: Ouch!
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: Clang!
+Aragorn: Ouch!
+
+Time 1: Enter command: go
+Aragorn: Clang!
+Zug: Arrggh!
+Aragorn: I triumph!
+Bug: Target is now out of range
+Gimli: Target is now out of range
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+
+Time 2: Enter command: go
+Bug: Target is now out of range
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+
+Time 3: Enter command: show
+Current Duels:
+(5) Legolas > . . . . . . Bug (2)
+
+Time 3: Enter command: disband Three
+
+Time 3: Enter command: Three move 0 0
+Unrecognized command!
+
+Time 3: Enter command: quit
+Done
+
+Script done on Tue Dec 10 06:53:59 2013

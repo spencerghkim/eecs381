@@ -1,0 +1,68 @@
+Script started on Tue Dec 10 06:49:07 2013
+
+Time 0: Enter command: open attack
+
+Time 0: Enter command: show
+No Active Duels!
+
+Time 0: Enter command: Zug move 20 32
+Zug: I'm on the way
+
+Time 0: Enter command: go
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: I'm there!
+
+Time 1: Enter command: go
+Iriel: I'm attacking!
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+
+Time 2: Enter command: show
+Current Duels:
+(5) Iriel > . . . . . . . . . . . . . . . . . . Zug (5)
+
+Time 2: Enter command: Zug move 20 36
+Zug: I'm on the way
+
+Time 2: Enter command: go
+Iriel: Twang!
+Zug: Ouch!
+Zug: I'm attacking!
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+Zug: I'm there!
+Zug: Clang!
+Iriel: Ouch!
+Iriel: I'm going to run away to Paduca
+Iriel: I'm on the way
+
+Time 3: Enter command: show
+Current Duels:
+(3) Iriel > . . . . . . Zug (4)
+
+Time 3: Enter command: go
+Iriel: step...
+Iriel: Twang!
+Zug: Ouch!
+Farm Rivendale now has 58.00
+Farm Sunnybrook now has 58.00
+Zug: Target is now out of range
+
+Time 4: Enter command: show
+Current Duels:
+(3) Iriel > . . . . . . . . . . . . Zug (3)
+
+Time 4: Enter command: go
+Iriel: step...
+Iriel: Target is now out of range
+Farm Rivendale now has 60.00
+Farm Sunnybrook now has 60.00
+
+Time 5: Enter command: show
+No Active Duels!
+
+Time 5: Enter command: quit
+Done
+
+Script done on Tue Dec 10 06:49:41 2013

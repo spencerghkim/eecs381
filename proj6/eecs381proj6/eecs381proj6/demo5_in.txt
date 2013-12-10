@@ -3,19 +3,19 @@ open attack
 train Gimli Soldier 20 28
 train Aragorn Soldier 18 30
 train Legolas Archer 16 18
-group Mean
-Mean add Zug
-Mean add Bug
+group Bad
+Bad add Zug
+Bad add Bug
 group Three
 Three add Gimli
 Three add Aragorn
 Three add Legolas
-Three attack Mean
+Three attack Bad
 show
 go
 go
 go
 show
-Three disband
+disband Three
 Three move 0 0
 quit

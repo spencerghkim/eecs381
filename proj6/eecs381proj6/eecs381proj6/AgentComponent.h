@@ -65,14 +65,14 @@ public:
   
   // add component, throws "Cannot add" Error as default
   virtual void add_component(std::shared_ptr<AgentComponent>)
-    { throw Error("This agent component cannot add components!"); }
+    { throw Error("This agent cannot add components!"); }
 
   // return the component of the specified name, returns nullptr as default
   virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_) = 0;
 
   // remove component, throws "Cannot remove" Error as default
   virtual void remove_component(const std::string& name_)
-    { throw Error("This agent component cannot remove components!"); }
+    { throw Error("This agent cannot remove components!"); }
   
   // remove component only if present, does not throw Error
   virtual void remove_component_if_present(const std::string& name_) {}

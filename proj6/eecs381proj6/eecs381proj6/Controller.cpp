@@ -29,7 +29,6 @@ using std::cout; using std::cin; using std::endl;
 using std::string; using std::all_of;
 using std::shared_ptr;
 using std::make_shared;
-using std::static_pointer_cast;
 using std::find_if;
 
 // simple helper functions
@@ -63,9 +62,9 @@ Controller::Controller()
   
   // add new group commands
   program_cmds["group"]     = &Controller::group_create;
+  program_cmds["disband"]   = &Controller::group_disband;
   agent_cmds["add"]         = &Controller::group_add;
   agent_cmds["remove"]      = &Controller::group_remove;
-  program_cmds["disband"]     = &Controller::group_disband;
 
 }
 
@@ -263,13 +262,8 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 {
   string agent_name;
   cin >> agent_name;
-  
-  // Check to see if target is in the same group as attacker.
-  auto target = Model::get().get_agent_comp_ptr(agent_name);
-  if (Model::get().are_in_same_group(target->get_name(), attacker->get_name())) {
-    throw Error("Cannot attack, target and attacker are in same group!");
-  }
-  
+
+  auto target = Model::get().get_agent_comp_ptr(agent_name);  
   attacker->start_attacking(target);
 }
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)
@@ -278,16 +272,6 @@ void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 }
 
 // group commands //
-
-void Controller::group_add(std::shared_ptr<AgentComponent> group)
-{
-  string agent_name;
-  cin >> agent_name;
-  
-  // Get the agent component and call Model to handle insertion and what not.
-  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
-  Model::get().add_agent_component_to_group(component, group);
-}
 
 void Controller::group_create()
 {
@@ -306,6 +290,16 @@ void Controller::group_disband()
   group->disband();
   // remove the group from the model
   Model::get().remove_agent_component(group_name);
+}
+
+void Controller::group_add(std::shared_ptr<AgentComponent> group)
+{
+  string agent_name;
+  cin >> agent_name;
+  
+  // Get the agent component and call Model to handle insertion
+  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
+  Model::get().add_agent_component_to_group(component, group);
 }
 
 void Controller::group_remove(std::shared_ptr<AgentComponent> group)
