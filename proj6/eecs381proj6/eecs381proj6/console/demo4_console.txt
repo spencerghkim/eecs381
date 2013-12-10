@@ -1,4 +1,7 @@
-Script started on Tue Dec 10 06:50:26 2013
+Josh Billingham (wjbillin)
+Otto Sipe (ottosipe)
+381 Project 6
+demo4_console.txt
 
 Time 0: Enter command: group Friends
 
@@ -130,5 +133,3 @@ Current Duels:
 
 Time 4: Enter command: quit
 Done
-
-Script done on Tue Dec 10 06:52:13 2013
