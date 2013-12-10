@@ -270,7 +270,7 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
     throw Error("Cannot attack, target and attacker are in same group!");
   }
   
-  attacker->start_attacking(Model::get().get_agent_comp_ptr(agent_name));
+  attacker->start_attacking(target);
 }
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)
 {
