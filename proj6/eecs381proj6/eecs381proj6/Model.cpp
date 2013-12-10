@@ -47,7 +47,7 @@ bool sim_object_min_distance_comparator(const shared_ptr<Sim_object> origin,
          cartesian_distance(s2->get_location(), origin->get_location());
 }
 
-Model::Model() : time{0}, all_agents{new AgentGroup("all_agents")}
+Model::Model() : time{0}
 {
   insert_structure(create_structure("Rivendale", "Farm", Point(10., 10.)));
   insert_structure(create_structure("Sunnybrook", "Farm", Point(0., 30.)));
@@ -75,11 +75,20 @@ Model& Model::get()
 bool Model::is_name_in_use(const string& name) const
 {
   string prefix = name.substr(0, UNIQUE_STRING_PREFIX_SIZE);
-  auto itr = objects.lower_bound(prefix);
-  bool is_object_name = (itr != objects.end() && itr->first.find(prefix) == 0);
-  bool is_agent_comp_name = all_agents->has_prefix(prefix);
   
-  return is_object_name || is_agent_comp_name;
+  // Check if the name is used by an object.
+  auto itr = objects.lower_bound(prefix);
+  if (itr != objects.end() && itr->first.find(prefix) == 0) {
+    return true;
+  }
+  
+  // Check to see if the name is used by a group.
+  for (auto& component : agent_components) {
+    if (component.second->has_prefix(prefix)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // check if the full name given matches an existing object
@@ -139,76 +148,131 @@ shared_ptr<Structure> Model::closest_structure(shared_ptr<Sim_object> object) co
 // is there an agent with this name?
 bool Model::is_agent_component_present(const string& name) const
 {
-  return all_agents->get_component(name) != nullptr; //TODO: that work?
+  for (auto& component : agent_components) {
+    if (component.second->get_component(name)) {
+      return true;
+    }
+  }
+  return false;
 }
 
-bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> component) const
+bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> comp) const
 {
-  return !all_agents->is_top_level_component(component->get_name());
+  // Loop through all of our top level components. If we don't find the component, it must
+  // be inside a group.
+  for (auto& component : agent_components) {
+    if (component.second->get_name() == comp->get_name()) {
+      return false;
+    }
+  }
+  return true;
 }
 
-bool Model::are_in_same_group(shared_ptr<AgentComponent>, shared_ptr<AgentComponent>)
+bool Model::are_in_same_group(shared_ptr<AgentComponent> a1, shared_ptr<AgentComponent> a2) const
 {
-
+  for (auto& component : agent_components) {
+    if (component.second->get_component(a1->get_name()) &&
+        component.second->get_component(a2->get_name())) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // add a new agent component, does nothing with sim_objects
 void Model::add_agent_component(shared_ptr<AgentComponent> component)
 {
-  all_agents->add_component(component);
+  if (is_name_in_use(component->get_name())) {
+    throw Error("Name is already in use!");
+  }
+  agent_components[component->get_name()] = component;
+}
+
+// adds existing component to existing group
+void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
+                                         shared_ptr<AgentComponent> group)
+{
+  if (is_agent_component_in_group(component)) {
+    throw Error("Agent component is already in a group!");
+  }
+  
+  // Will throw if group is not actually a group.
+  group->add_component(component);
+  agent_components.erase(component->get_name());
 }
 
 // removes an existing agent component, does nothing with sim_objects
-void Model::remove_agent_component(const string& name)
+void Model::remove_agent_component(shared_ptr<AgentComponent> component)
 {
-  // TODO: the most efficient? seems like two finds
-  if (!is_agent_component_present(name)) {
-    throw Error("No Agent or Group of that name!");
-  }
-  all_agents->remove_component(name);
+  // TODO: put it back in the model if necessary
+  agent_components.erase(component->get_name());
 }
 
+// helper that doesn't broadcast state
 void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
   add_agent_component(new_agent);
   objects[new_agent->get_name()] = new_agent;
 }
 
-// add agent individual
+// add agent individual, throws if name is already in use
 void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
 {
-  insert_new_agent(new_agent); // TODO: error check for double add?
+  insert_new_agent(new_agent);
   new_agent->broadcast_current_state();
 }
 
 // remove an individual agent
 void Model::remove_agent(const string& name)
 {
-  remove_agent_component(name);
+  remove_agent_component(get_agent_comp_ptr(name));
   objects.erase(name);
 }
 
 // will throw Error("Agent/Component not found!") if no agent component of that name
 shared_ptr<AgentComponent> Model::get_agent_comp_ptr(const string& name) const
 {
-  if (!is_agent_component_present(name)) {
-    throw Error("Agent not found!");
+  for (auto& component : agent_components) {
+    auto found_component = component.second->get_component(name);
+    if (found_component) {
+      return found_component;
+    }
   }
-  return all_agents->get_component(name);
+  return nullptr;
 }
 
 // returns the closest agent to the provided object (excluding 'object' itself)
-shared_ptr<AgentComponent> Model::closest_agent_in_range(shared_ptr<Sim_object> object,
-                                                          double range) const
+shared_ptr<AgentComponent> Model::closest_agent_in_range_not_in_group(shared_ptr<Sim_object> object,
+                                                                      double range) const
 {
-  return all_agents->get_nearest_in_range(object, range);
+  shared_ptr<AgentIndividual> closest_individual;
+  for (auto& component : agent_components) {
+    auto individual = component.second->get_nearest_in_range(object, range);
+    
+    // Don't return the individual if it's in the same group.
+    if (are_in_same_group(component.second, individual)) {
+      continue;
+    }
+    
+    if (!closest_individual ||
+        cartesian_distance(object->get_location(), individual->get_location()) <
+        cartesian_distance(object->get_location(), closest_individual->get_location())) {
+      closest_individual = individual;
+    }
+  }
+  
+  return closest_individual;
 }
 
-// returns all agents within a certain range (excluding 'center' sim_object
+// returns all agents within a certain range (excluding 'center' sim_object)
 shared_ptr<AgentComponent> Model::find_agents_in_range(shared_ptr<Sim_object> center,
                                                        double range) const
 {
-  return all_agents->get_all_in_range(center, range);
+  auto agents_in_range = make_shared<AgentGroup>("");
+  for (auto& component : agent_components) {
+    agents_in_range->add_component(component.second->get_all_in_range(center, range));
+  }
+  return agents_in_range;
 }
 
 // tell all objects to describe themselves to the console

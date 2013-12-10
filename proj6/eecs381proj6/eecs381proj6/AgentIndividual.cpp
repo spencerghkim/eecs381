@@ -64,6 +64,14 @@ shared_ptr<AgentComponent> AgentIndividual::get_all_in_range(shared_ptr<const Si
   return {};
 }
 
+shared_ptr<AgentComponent> AgentIndividual::get_component(const string& name_)
+{
+  if (get_name() == name_) {
+    return shared_from_this();
+  }
+  return nullptr;
+}
+
 // return this AgentIndividual's location
 Point AgentIndividual::get_location() const
 {

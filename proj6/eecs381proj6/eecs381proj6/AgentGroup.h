@@ -18,7 +18,7 @@
 #include <string>
 #include <memory>
 
-class AgentGroup : public AgentComponent {
+class AgentGroup : public AgentComponent, public std::enable_shared_from_this<AgentGroup> {
 public:
   
   AgentGroup(const std::string &name_);
@@ -33,9 +33,6 @@ public:
   
   // does any one in the group have this prefix?
   bool has_prefix(const std::string& prefix) override;
-  
-  // is the provided component a top-level component?
-  bool is_top_level_component(const std::string& name_);
   
   // iterate over the contained components and handle errors
   void iterate_and_catch(std::function<void(AgentComponent*)> func);

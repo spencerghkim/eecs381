@@ -266,8 +266,8 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
   
   // Check to see if target is in the same group as attacker.
   shared_ptr<AgentComponent> target = Model::get().get_agent_comp_ptr(agent_name);
-  if (!target) {
-    throw Error("No agent component ")
+  if (Model::get().are_in_same_group(target, attacker)) {
+    throw Error("Cannot attack, target and attacker are in same group!");
   }
   
   attacker->start_attacking(Model::get().get_agent_comp_ptr(agent_name));
@@ -295,15 +295,9 @@ void Controller::group_add(std::shared_ptr<AgentComponent> group)
     throw Error("Cannot add a group to itself!");
   }
   
-  // Check that the component to add exists.
+  // Get the agent component and call Model to handle insertion and what not.
   shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
-  
-  // Check that the the component to add isn't already in a group.
-  if (Model::get().is_agent_component_in_group(component)) {
-    throw Error("That component is already in a group!");
-  }
-  Model::get().remove_agent_component(component->get_name());
-  group->add_component(component);
+  Model::get().add_agent_component_to_group(component, group);
 }
 
 void Controller::group_remove(std::shared_ptr<AgentComponent> group)

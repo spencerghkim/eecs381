@@ -36,6 +36,7 @@ public:
   // does any one in this component have this prefix?
   virtual bool has_prefix(const std::string& prefix) = 0;
   
+  // subclasses may override, default is just to give name
   virtual const std::string get_printed_name() const
       { return get_name(); }
 
@@ -70,8 +71,7 @@ public:
     { throw Error("This agent component cannot add components!"); }
 
   // return the component of the specified name, returns nullptr as default
-  virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_)
-    { return {nullptr}; }
+  virtual std::shared_ptr<AgentComponent> get_component(const std::string& name_) = 0;
 
   // remove component, throws "Cannot remove" Error as default
   virtual void remove_component(const std::string& name_)

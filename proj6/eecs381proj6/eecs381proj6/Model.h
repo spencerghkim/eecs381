@@ -68,22 +68,25 @@ public:
   // is this agent component in a group?
   bool is_agent_component_in_group(std::shared_ptr<AgentComponent>) const;
   // are these two agent components in the same group?
-  bool are_in_same_group(std::shared_ptr<AgentComponent>, std::shared_ptr<AgentComponent>);
-	// add a new agent component; throws if name is already in use
+  bool are_in_same_group(std::shared_ptr<AgentComponent>, std::shared_ptr<AgentComponent>) const;
+	// add a new agent component to the model; assumes it doesn't exist already
 	void add_agent_component(std::shared_ptr<AgentComponent>);
-  // removes the specified agent component, throws if doesn't exist
-  void remove_agent_component(const std::string& name);
+  // add an existing agent component to an existing group
+  void add_agent_component_to_group(std::shared_ptr<AgentComponent> component,
+                                    std::shared_ptr<AgentComponent> group);
+  // removes the specified agent component, assumes it exists
+  void remove_agent_component(std::shared_ptr<AgentComponent>);
 
   // add a new individual agent, throws if name is in use
   void add_new_agent(std::shared_ptr<AgentIndividual>);
-  // removes an agent from Views, Sim_objects, and AgentComponents; throws if doesn't exist
+  // removes an agent from Sim_objects and AgentComponents; throws if doesn't exist
   void remove_agent(const std::string& name);
   
 	// will throw Error("AgentComponent not found!") if no agent of that name
 	std::shared_ptr<AgentComponent> get_agent_comp_ptr(const std::string& name) const;
 	// returns the closest agent to the provided agent (not the same agent)
-	std::shared_ptr<AgentComponent> closest_agent_in_range(std::shared_ptr<Sim_object> object,
-                                                          double range) const;
+	std::shared_ptr<AgentComponent> closest_agent_in_range_not_in_group(std::shared_ptr<Sim_object> object,
+                                                                      double range) const;
   // find all agents in the given range around the given object
   std::shared_ptr<AgentComponent> find_agents_in_range(std::shared_ptr<Sim_object> center,
                                                        double range) const;
@@ -127,7 +130,7 @@ private:
   int time;
   Objects_t objects;
   Structures_t structures;
-  std::unique_ptr<AgentGroup> all_agents;
+  AgentComponents_t agent_components;
   
   std::set<std::shared_ptr<View>> views;
   

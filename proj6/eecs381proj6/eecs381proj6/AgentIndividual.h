@@ -91,6 +91,9 @@ public:
 	// Throws exception that an AgentIndividual cannot attack.
 	void start_attacking(std::shared_ptr<AgentComponent>) override;
 
+  // If we are the named component, return ourselves, otherwise nullptr.
+  std::shared_ptr<AgentComponent> get_component(const std::string& name_) override;
+
   // adds individual back to model's base group
   void disband_from_group() override;
 

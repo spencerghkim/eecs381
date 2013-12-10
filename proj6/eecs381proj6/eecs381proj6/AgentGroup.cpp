@@ -44,17 +44,6 @@ bool AgentGroup::has_prefix(const std::string& prefix)
   return false;
 }
 
-// is the given name a top level component? (i.e. not inside another group?)
-bool AgentGroup::is_top_level_component(const std::string& name_)
-{
-  for (auto& component : group_components) {
-    if (component.second->get_name() == name_) {
-      return true;
-    }
-  }
-  return false;
-}
-
 // iterate over the contained components and handle errors
 void AgentGroup::iterate_and_catch(function<void(AgentComponent*)> func) {
   for (auto& component : group_components) {
@@ -144,17 +133,20 @@ void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
 
 shared_ptr<AgentComponent> AgentGroup::get_component(const string& name_)
 {
+  // Check to see if we're asking for ourself.
+  if (get_name() == name_) {
+    return shared_from_this();
+  }
+  
+  // Recursively ask components to search for name_.
   for (auto& component : group_components) {
-    if (component.second->get_name() == name_) {
-      return component.second;
-    }
     auto found_component = component.second->get_component(name_);
     if (found_component) {
       return found_component;
     }
   }
-  // return empty shared_ptr
-  return shared_ptr<AgentComponent>();
+  // return empty pointer
+  return nullptr;
 }
 
 void AgentGroup::remove_component(const string& name_)
