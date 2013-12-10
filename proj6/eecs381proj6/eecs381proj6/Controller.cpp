@@ -284,10 +284,7 @@ void Controller::group_disband()
 {
   string group_name;
   cin >> group_name;
-  auto group = Model::get().get_agent_comp_ptr(group_name);
   
-  // remove all members from the group
-  group->disband();
   // remove the group from the model
   Model::get().remove_agent_component(group_name);
 }
@@ -306,7 +303,9 @@ void Controller::group_remove(std::shared_ptr<AgentComponent> group)
 {
   string agent_name;
   cin >> agent_name;
-  group->remove_component(agent_name);
+  
+  shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
+  Model::get().remove_agent_component_from_group(component, group);
 }
 
 // HELPERS //

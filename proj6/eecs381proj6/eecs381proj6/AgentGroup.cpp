@@ -99,11 +99,19 @@ void AgentGroup::stop()
 
 void AgentGroup::start_working(std::shared_ptr<Structure> s1, std::shared_ptr<Structure> s2)
 {
+  // Notify the user that this group is empty.
+  if (group_components.empty()) {
+    cout << get_printed_name() << " is empty. Not working." << endl;
+  }
   iterate_and_catch(bind(&AgentComponent::start_working, _1, s1, s2));
 }
 
 void AgentGroup::start_attacking(std::shared_ptr<AgentComponent> target)
 {
+  // Notify the user that this group is empty.
+  if (group_components.empty()) {
+    cout << get_printed_name() << " is empty. Not attacking." << endl;
+  }
   iterate_and_catch(bind(&AgentComponent::start_attacking, _1, target));
 }
 
@@ -154,15 +162,10 @@ void AgentGroup::remove_component(const string& name_)
     throw Error("Can't remove group from self!");
   }
   
-  auto comp = group_components.find(name_);
-  // Check to make sure that we directly own that component.
-  if (comp == group_components.end()) {
+  // Try to erase that component. If we don't directly own it, throw.
+  if (!group_components.erase(name_)) {
     throw Error("Group does not directly contain that component!");
   }
-  
-  // if we're removing a group, disband it
-  comp->second->disband_from_group();
-  group_components.erase(name_);
 }
 
 void AgentGroup::remove_component_if_present(const std::string& name_)

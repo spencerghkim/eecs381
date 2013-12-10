@@ -74,7 +74,7 @@ public:
   virtual void remove_component(const std::string& name_)
     { throw Error("This agent cannot remove components!"); }
   
-  // remove component only if present, does not throw Error
+  // remove component if present in this group or ANY subgroup, does not throw Error
   virtual void remove_component_if_present(const std::string& name_) {}
   
   // clear out group and put agents back in model root

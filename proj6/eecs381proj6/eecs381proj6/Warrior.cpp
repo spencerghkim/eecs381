@@ -85,7 +85,7 @@ void Warrior::start_attacking(shared_ptr<AgentComponent> target_ptr)
   // Check that there is anyone in range.
   auto closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
   if (!closest_indv) {
-    throw Error( get_name() + ": Target is out of range!" );
+    throw Error( get_name() + ": No one in range!" );
   }
   
   attack(target_ptr);

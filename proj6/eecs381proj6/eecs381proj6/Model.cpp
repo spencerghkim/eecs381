@@ -209,7 +209,8 @@ void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
   agent_components.erase(component->get_name());
 }
 
-// remove an individual agent, should only be called internally upon death
+// remove an individual agent, should only be called internally upon death.
+// assumes that named agent exists
 void Model::remove_agent(const string& name)
 {
   // If we didn't erase it from our map, remove it from all components.
@@ -229,9 +230,7 @@ void Model::remove_agent_component(const string& name)
   auto component = get_agent_comp_ptr(name);
   
   if (!agent_components.erase(name)) {
-    for (auto& component : agent_components) {
-      component.second->remove_component_if_present(name);
-    }
+    throw Error("Cannot disband object inside group!");
   }
   
   // Disband the component.
