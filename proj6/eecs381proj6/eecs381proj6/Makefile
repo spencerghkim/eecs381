@@ -18,6 +18,17 @@ default: $(PROG)
 $(PROG): $(OBJS)
 	$(LD) $(LFLAGS) $(OBJS) -o $(PROG)
 
+demos: $(PROG)
+	make demo num=1 || exit 0
+	make demo num=2 || exit 0
+	make demo num=3 || exit 0
+	make demo num=4 || exit 0
+	make demo num=5 || exit 0
+
+demo: $(PROG)
+	./p6exe < demo$(num)_in.txt > junk.out
+	diff junk.out demo$(num)_out.txt
+
 tests: $(PROG)
 	make test file=fight || exit 0
 	make test file=fight_noshow	|| exit 0
@@ -27,6 +38,7 @@ tests: $(PROG)
 	make test file=views || exit 0
 	make test file=workviolence || exit 0
 	make test file=workviolence_noshow || exit 0
+
 test: $(PROG)
 	./p6exe < samples/$(file)_in.txt > junk.out
 	diff junk.out samples/$(file)_out.txt

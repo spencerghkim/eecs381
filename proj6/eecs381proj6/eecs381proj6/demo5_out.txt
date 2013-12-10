@@ -1,1 +1,59 @@
-TODO:
+
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: 
+Time 0: Enter command: Aragorn: I'm attacking!
+Gimli: I'm attacking!
+Legolas: I'm attacking!
+
+Time 0: Enter command: Current Duels:
+(5) Aragorn > . . . . . . Zug (5)
+(5) Gimli > . . . . . . Zug (5)
+(5) Legolas > . . . . . . Bug (5)
+
+Time 0: Enter command: Aragorn: Clang!
+Zug: Ouch!
+Zug: I'm attacking!
+Gimli: Clang!
+Zug: Ouch!
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+Zug: Clang!
+Aragorn: Ouch!
+
+Time 1: Enter command: Aragorn: Clang!
+Zug: Arrggh!
+Aragorn: I triumph!
+Bug: Target is now out of range
+Gimli: Target is now out of range
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+
+Time 2: Enter command: Bug: Target is now out of range
+Legolas: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+
+Time 3: Enter command: Current Duels:
+(5) Legolas > . . . . . . Bug (2)
+
+Time 3: Enter command: 
+Time 3: Enter command: Unrecognized command!
+
+Time 3: Enter command: Done
