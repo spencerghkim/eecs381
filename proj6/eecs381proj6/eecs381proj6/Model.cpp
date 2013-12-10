@@ -103,13 +103,6 @@ bool Model::is_structure_present(const string& name) const
   return structures.find(name) != structures.end();
 }
 
-void Model::insert_structure(shared_ptr<Structure>s)
-{
-  auto spair = make_pair(s->get_name(), s);
-  objects.insert(spair);
-  structures.insert(spair);
-}
-
 // add a new structure; assumes none with the same name
 void Model::add_structure(shared_ptr<Structure> s)
 {
@@ -156,6 +149,7 @@ bool Model::is_agent_component_present(const string& name) const
   return false;
 }
 
+// is this agent component in a group?
 bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> comp) const
 {
   // Loop through all of our top level components. If we don't find the component, it must
@@ -168,6 +162,7 @@ bool Model::is_agent_component_in_group(std::shared_ptr<AgentComponent> comp) co
   return true;
 }
 
+// are these two agent components in the same group?
 bool Model::are_in_same_group(const string &a1, const string &a2) const
 {
   for (auto& component : agent_components) {
@@ -177,6 +172,13 @@ bool Model::are_in_same_group(const string &a1, const string &a2) const
     }
   }
   return false;
+}
+
+// add agent individual, throws if name is already in use
+void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
+{
+  insert_new_agent(new_agent);
+  new_agent->broadcast_current_state();
 }
 
 void Model::add_existing_agent_component(shared_ptr<AgentComponent> component)
@@ -207,28 +209,17 @@ void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
   agent_components.erase(component->get_name());
 }
 
-// removes an existing agent component, does nothing with sim_objects
-void Model::remove_agent_component_from_group(shared_ptr<AgentComponent> component,
-                                              shared_ptr<AgentComponent> group)
+// remove an individual agent, should only be called internally upon death
+void Model::remove_agent(const string& name)
 {
-  group->remove_component(component->get_name());
-  
-  // Add the component back to our collection of components.
-  agent_components[component->get_name()] = component;
-}
-
-// helper that doesn't broadcast state
-void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
-{
-  add_new_agent_component(new_agent);
-  objects[new_agent->get_name()] = new_agent;
-}
-
-// add agent individual, throws if name is already in use
-void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
-{
-  insert_new_agent(new_agent);
-  new_agent->broadcast_current_state();
+  // If we didn't erase it from our map, remove it from all components.
+  if (!agent_components.erase(name)) {
+    for (auto& component : agent_components) {
+      component.second->remove_component_if_present(name);
+    }
+  }
+  // Take him out of our sim objects as well.
+  objects.erase(name);
 }
 
 // remove an agent component, don't touch sim objects
@@ -247,17 +238,14 @@ void Model::remove_agent_component(const string& name)
   component->disband();
 }
 
-// remove an individual agent, should only be called internally upon death
-void Model::remove_agent(const string& name)
+// removes an existing agent component, does nothing with sim_objects
+void Model::remove_agent_component_from_group(shared_ptr<AgentComponent> component,
+                                              shared_ptr<AgentComponent> group)
 {
-  // If we didn't erase it from our map, remove it from all components.
-  if (!agent_components.erase(name)) {
-    for (auto& component : agent_components) {
-      component.second->remove_component_if_present(name);
-    }
-  }
-  // Take him out of our sim objects as well.
-  objects.erase(name);
+  group->remove_component(component->get_name());
+  
+  // Add the component back to our collection of components.
+  agent_components[component->get_name()] = component;
 }
 
 // will throw Error("Agent/Component not found!") if no agent component of that name
@@ -382,5 +370,21 @@ void Model::notify_end_attack(const std::string &name)
 {
   for (auto &i : views)
     i->update_end_attack(name);
+}
+
+// protected helpers //
+
+// dont broadcast state
+void Model::insert_structure(shared_ptr<Structure>s)
+{
+  auto spair = make_pair(s->get_name(), s);
+  objects.insert(spair);
+  structures.insert(spair);
+}
+
+void Model::insert_new_agent(shared_ptr<AgentIndividual> new_agent)
+{
+  add_new_agent_component(new_agent);
+  objects[new_agent->get_name()] = new_agent;
 }
 

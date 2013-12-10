@@ -29,7 +29,6 @@ using std::cout; using std::cin; using std::endl;
 using std::string; using std::all_of;
 using std::shared_ptr;
 using std::make_shared;
-using std::static_pointer_cast;
 using std::find_if;
 
 // simple helper functions
@@ -298,7 +297,7 @@ void Controller::group_add(std::shared_ptr<AgentComponent> group)
   string agent_name;
   cin >> agent_name;
   
-  // Get the agent component and call Model to handle insertion and what not.
+  // Get the agent component and call Model to handle insertion
   shared_ptr<AgentComponent> component = Model::get().get_agent_comp_ptr(agent_name);
   Model::get().add_agent_component_to_group(component, group);
 }

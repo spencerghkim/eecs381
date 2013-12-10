@@ -17,4 +17,7 @@ Bug remove Friends
 Friends add Friends
 disband Bug
 go
+open map
+open attack
+show
 quit
