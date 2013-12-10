@@ -154,11 +154,14 @@ void AgentGroup::remove_component(const string& name_)
     throw Error("Can't remove group from self!");
   }
   
+  auto comp = group_components.find(name_);
   // Check to make sure that we directly own that component.
-  if (group_components.find(name_) == group_components.end()) {
+  if (comp == group_components.end()) {
     throw Error("Group does not directly contain that component!");
   }
   
+  // if we're removing a group, disband it
+  comp->second->disband();
   group_components.erase(name_);
 }
 

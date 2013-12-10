@@ -77,6 +77,11 @@ void Warrior::start_attacking(shared_ptr<AgentComponent> target_ptr)
     throw Error( get_name() + ": I cannot attack myself!" );
   }
   
+  // Check to see if target is in the same group as attacker.
+  if (Model::get().are_in_same_group(target_ptr->get_name(), get_name())) {
+    throw Error( get_name() + ": Cannot attack, we are in same group!");
+  }
+  
   // Check that there is anyone in range.
   auto closest_indv = target_ptr->get_nearest_in_range(shared_from_this(), attack_range);
   if (!closest_indv) {

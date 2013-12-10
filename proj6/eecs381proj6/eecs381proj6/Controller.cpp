@@ -65,7 +65,7 @@ Controller::Controller()
   program_cmds["group"]     = &Controller::group_create;
   agent_cmds["add"]         = &Controller::group_add;
   agent_cmds["remove"]      = &Controller::group_remove;
-  program_cmds["disband"]     = &Controller::group_disband;
+  program_cmds["disband"]   = &Controller::group_disband;
 
 }
 
@@ -263,13 +263,8 @@ void Controller::agent_attack(shared_ptr<AgentComponent> attacker)
 {
   string agent_name;
   cin >> agent_name;
-  
-  // Check to see if target is in the same group as attacker.
-  auto target = Model::get().get_agent_comp_ptr(agent_name);
-  if (Model::get().are_in_same_group(target->get_name(), attacker->get_name())) {
-    throw Error("Cannot attack, target and attacker are in same group!");
-  }
-  
+
+  auto target = Model::get().get_agent_comp_ptr(agent_name);  
   attacker->start_attacking(target);
 }
 void Controller::agent_stop(shared_ptr<AgentComponent> agent)
