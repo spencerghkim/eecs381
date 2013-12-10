@@ -160,7 +160,8 @@ void AgentIndividual::start_attacking(shared_ptr<AgentComponent>)
 }
 
 // adds individual back to model's base group
-void AgentIndividual::disband_from_group()  {
+void AgentIndividual::disband_from_group()
+{
   Model::get().add_existing_agent_component(shared_from_this());
 }
 
