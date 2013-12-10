@@ -28,9 +28,6 @@ public:
   const std::string get_printed_name() const override
     { return "Group " + group_name; }
   
-  // does any one in the group have this full name?
-  bool has_name(const std::string& name_) override;
-  
   // does any one in the group have this prefix?
   bool has_prefix(const std::string& prefix) override;
   
@@ -70,10 +67,10 @@ public:
   
   // remove component
   void remove_component(const std::string& name_) override;
- 
-  // remove component, but dont throw
+
+  // remove component only if present, does not throw Error
   void remove_component_if_present(const std::string& name_) override;
-  
+
   // emptys the group, default is an error
   void disband() override;
   

@@ -24,12 +24,6 @@ AgentIndividual::AgentIndividual(const string& in_name, Point in_location) :
 // Explicit default destructor.
 AgentIndividual::~AgentIndividual() {}
 
-// does this individual have this full name?
-bool AgentIndividual::has_name(const std::string& name_)
-{
-  return get_name() == name_;
-}
-
 bool AgentIndividual::has_prefix(const std::string &prefix)
 {
   return get_name().substr(0, prefix.size()) == prefix;

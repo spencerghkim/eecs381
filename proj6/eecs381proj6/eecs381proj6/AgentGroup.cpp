@@ -22,17 +22,6 @@ using std::shared_ptr; using std::make_shared;
 AgentGroup::AgentGroup(const std::string &name_) :
     group_name{name_} {}
 
-// does any one in the group have this full name?
-bool AgentGroup::has_name(const std::string& name_)
-{
-  for (auto& component : group_components) {
-    if (component.second->has_name(name_)) {
-      return true;
-    }
-  }
-  return false;
-}
-
 // does any one in the group have this prefix?
 bool AgentGroup::has_prefix(const std::string& prefix)
 {
@@ -124,11 +113,20 @@ void AgentGroup::accept_blessing(int blessing_strength, std::shared_ptr<AgentInd
   iterate_and_catch(bind(&AgentComponent::accept_blessing, _1, blessing_strength, blesser_ptr));
 }
 
-void AgentGroup::add_component(std::shared_ptr<AgentComponent> agent)
+// Will throw if trying to add self or parent.
+void AgentGroup::add_component(std::shared_ptr<AgentComponent> component)
 {
-  // TODO: need this?
-  //assert(!get_component(agent->get_name()));
-  group_components[agent->get_name()] = agent;
+  // Check for self assignment.
+  if (component->get_name() == get_name()) {
+    throw Error("Can't add component to self!");
+  }
+  
+  // Check for cycles.
+  if (component->get_component(get_name())) {
+    throw Error("Can't add parent component to self!");
+  }
+  
+  group_components[component->get_name()] = component;
 }
 
 shared_ptr<AgentComponent> AgentGroup::get_component(const string& name_)
@@ -151,12 +149,27 @@ shared_ptr<AgentComponent> AgentGroup::get_component(const string& name_)
 
 void AgentGroup::remove_component(const string& name_)
 {
-  remove_component_if_present(name_);
+  // Check to see if we're trying to remove ourself.
+  if (name_ == get_name()) {
+    throw Error("Can't remove group from self!");
+  }
+  
+  // Check to make sure that we directly own that component.
+  if (group_components.find(name_) == group_components.end()) {
+    throw Error("Group does not directly contain that component!");
+  }
+  
+  group_components.erase(name_);
 }
 
-// remove component, but dont throw
-void AgentGroup::remove_component_if_present(const string& name_) {
-  group_components.erase(name_);
+void AgentGroup::remove_component_if_present(const std::string& name_)
+{
+  if (group_components.erase(name_)) {
+    // We found it and erased it. Get out.
+    return;
+  }
+  
+  // Otherwise, remove components iteratively.
   for (auto& component : group_components) {
     component.second->remove_component_if_present(name_);
   }

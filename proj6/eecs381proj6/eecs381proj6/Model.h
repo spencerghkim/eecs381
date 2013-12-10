@@ -75,7 +75,8 @@ public:
   void add_agent_component_to_group(std::shared_ptr<AgentComponent> component,
                                     std::shared_ptr<AgentComponent> group);
   // removes the specified agent component, assumes it exists
-  void remove_agent_component(std::shared_ptr<AgentComponent>);
+  void remove_agent_component_from_group(std::shared_ptr<AgentComponent> component,
+                                         std::shared_ptr<AgentComponent> group);
 
   // add a new individual agent, throws if name is in use
   void add_new_agent(std::shared_ptr<AgentIndividual>);

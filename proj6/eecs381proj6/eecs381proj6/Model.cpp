@@ -192,31 +192,24 @@ void Model::add_agent_component(shared_ptr<AgentComponent> component)
 void Model::add_agent_component_to_group(shared_ptr<AgentComponent> component,
                                          shared_ptr<AgentComponent> group)
 {
-  // Check for self assignment.
-  if (component->get_name() == group->get_name()) {
-    throw Error("Can't add component to self!");
-  }
-  
   // Check if the component is already in another group.
   if (is_agent_component_in_group(component)) {
     throw Error("Agent component is already in a group!");
   }
   
-  // Check for cycles.
-  if (component->get_component(group->get_name())) {
-    throw Error("Can't add parent component to self!");
-  }
-  
-  // Will throw if group is not actually a group.
+  // Will throw if add is not valid.
   group->add_component(component);
   agent_components.erase(component->get_name());
 }
 
 // removes an existing agent component, does nothing with sim_objects
-void Model::remove_agent_component(shared_ptr<AgentComponent> component)
+void Model::remove_agent_component_from_group(shared_ptr<AgentComponent> component,
+                                              shared_ptr<AgentComponent> group)
 {
-  // TODO: put it back in the model if necessary
-  agent_components.erase(component->get_name());
+  group->remove_component(component->get_name());
+  
+  // Add the component back to our collection of components.
+  agent_components[component->get_name()] = component;
 }
 
 // helper that doesn't broadcast state
@@ -233,10 +226,16 @@ void Model::add_new_agent(shared_ptr<AgentIndividual> new_agent)
   new_agent->broadcast_current_state();
 }
 
-// remove an individual agent
+// remove an individual agent, should only be called internally upon death
 void Model::remove_agent(const string& name)
 {
-  remove_agent_component(get_agent_comp_ptr(name));
+  // If we didn't erase it from our map, remove it from all components.
+  if (!agent_components.erase(name)) {
+    for (auto& component : agent_components) {
+      component.second->remove_component_if_present(name);
+    }
+  }
+  // Take him out of our sim objects as well.
   objects.erase(name);
 }
 

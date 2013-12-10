@@ -36,9 +36,6 @@ public:
   const std::string &get_name() const override
     { return Sim_object::get_name(); }
 
-  // does this individual have this full name?
-  bool has_name(const std::string& name_) override;
-
   // does this individual have this prefix?
   bool has_prefix(const std::string& prefix) override;
 
